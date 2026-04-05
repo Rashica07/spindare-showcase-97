@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 225 25% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 225 25% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 25% 12%;
+    --primary: 220 90% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 350 80% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 260 60% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 220 90% 50%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 225 30% 6%;
+    --foreground: 210 20% 92%;
+    --card: 225 25% 10%;
+    --card-foreground: 210 20% 92%;
+    --popover: 225 25% 10%;
+    --popover-foreground: 210 20% 92%;
+    --primary: 199 100% 55%;
+    --primary-foreground: 225 30% 6%;
+    --secondary: 350 85% 62%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 225 20% 16%;
+    --muted-foreground: 215 15% 55%;
+    --accent: 270 70% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 225 15% 18%;
+    --input: 225 15% 18%;
+    --ring: 199 100% 55%;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-outfit), 'Outfit', sans-serif;
+    overscroll-behavior: none;
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-strong {
+    @apply bg-white/80 dark:bg-black/40 border border-white/30 dark:border-white/10;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent;
+  }
+
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent via-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.4), 0 4px 15px hsl(var(--primary) / 0.2);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .section-label {
+    @apply font-mono text-primary text-sm tracking-widest uppercase mb-3;
+  }
+}
+
+/* ─── Keyframes ─────────────────────────────────────────────── */
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-blob { animation: blob 7s infinite; }
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ─── Mobile performance (≤ 640px) ─────────────────────────── */
+@media (max-width: 640px) {
+  /* Kill backdrop blur — extremely GPU-heavy on low-end chips */
+  .glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    @apply bg-white/15 dark:bg-white/10;
+  }
+
+  .glass-strong {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    @apply bg-white/90 dark:bg-black/70;
+  }
+
+  /* Disable blob + float animations — they paint on every frame */
+  .animate-blob,
+  .animate-float {
+    animation: none;
+    transform: none;
+  }
+
+  /* Glow is expensive on mobile OLED */
+  .glow-primary {
+    box-shadow: none;
+  }
+
+  /* Prevent any horizontal overflow on narrow screens */
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* ─── Samsung Galaxy S23 — 393px CSS viewport ───────────────── */
+@media (max-width: 430px) {
+  /* Base container padding tightened */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Section labels slightly smaller */
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* ─── Respect prefers-reduced-motion ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-blob,
+  .animate-float,
+  .animate-gradient,
+  .animate-ping,
+  .animate-pulse {
+    animation: none !important;
+  }
+}
