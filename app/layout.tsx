@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Kristian Gjergji — Developer",
   description:
-    "14-year-old self-taught developer from Albania. Building Spindare and TravelMe.",
+    "14-year-old self-taught developer from Kosovo. Building Spindare and TravelMe.",
   authors: [{ name: "Kristian Gjergji" }],
   creator: "Kristian Gjergji",
   robots: { index: true, follow: true },

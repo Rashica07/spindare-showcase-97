@@ -39,7 +39,7 @@ export default function DevHubPage() {
         <p className="hub-tag">Developer Hub</p>
         <h1>Kiq.<br /><em>Builder.</em></h1>
         <p className="hub-desc">
-          14-year-old full-stack and mobile developer from Albania. Currently building <strong>Spindare</strong> — a social gamification app — and <strong>TravelMe</strong>, an AI travel planner.
+          14-year-old full-stack and mobile developer from Kosovo. Currently building <strong>Spindare</strong> — a social gamification app — and <strong>TravelMe</strong>, an AI travel planner.
           Open to freelance web and app projects.
         </p>
         <div className="hub-links">

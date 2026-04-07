@@ -29,8 +29,8 @@ export default function Nav({ heroActionsRef }: { heroActionsRef: React.RefObjec
           key="nav"
           initial={{ y: -64, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -64, opacity: 0 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          exit={{ y: -64, opacity: 1 }}
+          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
           style={{
             position: "fixed",
             top: 0, left: 0, right: 0,
