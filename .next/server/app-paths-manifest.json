@@ -1,3 +1,16 @@
 {
-  "/page": "app/page.js"
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/api/spotify/authorize/route": "app/api/spotify/authorize/route.js",
+  "/api/spotify/callback/route": "app/api/spotify/callback/route.js",
+  "/api/spotify/route": "app/api/spotify/route.js",
+  "/api/visitors/route": "app/api/visitors/route.js",
+  "/api/waitlist/route": "app/api/waitlist/route.js",
+  "/dev-hub/page": "app/dev-hub/page.js",
+  "/icon.png/route": "app/icon.png/route.js",
+  "/opengraph-image/route": "app-edge-has-no-entrypoint",
+  "/page": "app/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js"
 }
