@@ -45,6 +45,10 @@ lerna-debug.log*
 .upm/
 .config/
 replit.md
+.local/
+.visitor-count
+attached_assets/
+cache/
 
 # Type declarations (auto-generated)
 next-env.d.ts
