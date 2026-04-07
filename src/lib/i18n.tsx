@@ -94,7 +94,7 @@ const en = {
     },
     filters: ["All", "Mobile", "Web"],
     status: { live: "Live", dev: "In Development", soon: "Coming Soon" },
-    viewProject: "View Project", viewCode: "View Code",
+    viewProject: "View Project", viewCode: "View Code", hire: "Hire me for this",
     projects: [
       {
         name: "Spindare",
@@ -350,7 +350,7 @@ const de: typeof en = {
     },
     filters: ["Alle", "Mobile", "Web"],
     status: { live: "Live", dev: "In Entwicklung", soon: "Demnächst" },
-    viewProject: "Projekt ansehen", viewCode: "Code ansehen",
+    viewProject: "Projekt ansehen", viewCode: "Code ansehen", hire: "Beauftrage mich",
     projects: en.portfolio.projects,
   },
   blog: {
@@ -529,7 +529,7 @@ const it: typeof en = {
     },
     filters: ["Tutti", "Mobile", "Web"],
     status: { live: "Live", dev: "In Sviluppo", soon: "Prossimamente" },
-    viewProject: "Vedi progetto", viewCode: "Vedi codice",
+    viewProject: "Vedi progetto", viewCode: "Vedi codice", hire: "Assumimi per questo",
     projects: en.portfolio.projects,
   },
   blog: {
@@ -705,7 +705,7 @@ const sq: typeof en = {
     },
     filters: ["Të gjitha", "Mobile", "Web"],
     status: { live: "Live", dev: "Në Zhvillim", soon: "Së shpejti" },
-    viewProject: "Shiko projektin", viewCode: "Shiko kodin",
+    viewProject: "Shiko projektin", viewCode: "Shiko kodin", hire: "Punëso mua",
     projects: en.portfolio.projects,
   },
   blog: {
