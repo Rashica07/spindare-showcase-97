@@ -7,8 +7,8 @@
   --border: #1f1f1f;
   --border-2: #2a2a2a;
   --text: #e8e8e8;
-  --text-2: #888888;
-  --text-3: #555555;
+  --text-2: #a8a8a8;
+  --text-3: #707070;
   --accent: #2EB9DF;
   --accent-dim: rgba(46, 185, 223, 0.08);
   --accent-border: rgba(46, 185, 223, 0.2);
@@ -150,7 +150,7 @@ nav {
 }
 .section-label {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -169,10 +169,10 @@ nav {
 /* ── Buttons ── */
 .btn-primary {
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
+  font-size: 13px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--bg);
+  color: #050505;
   background: var(--accent);
   border: none;
   padding: 12px 24px;
@@ -184,8 +184,8 @@ nav {
 .btn-primary:hover { opacity: 0.85; }
 .btn-ghost {
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
+  font-size: 13px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text-2);
   background: none;
@@ -201,7 +201,7 @@ nav {
 /* ── Shared card pieces ── */
 .project-badge {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 3px 8px;
@@ -217,7 +217,7 @@ nav {
 }
 .stack-tag {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
   padding: 4px 10px;
   border: 1px solid var(--border);
@@ -237,14 +237,14 @@ footer {
 }
 .footer-left {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.06em;
 }
 .footer-left span { color: var(--accent); }
 .footer-right {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.06em;
 }
@@ -265,7 +265,7 @@ footer {
 }
 .hero-tag {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--accent);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -282,7 +282,7 @@ footer {
 }
 .hero h1 {
   font-family: var(--sans);
-  font-size: clamp(48px, 8vw, 96px);
+  font-size: clamp(64px, 10vw, 120px);
   font-weight: 300;
   line-height: 1.0;
   letter-spacing: -0.03em;
@@ -297,7 +297,7 @@ footer {
   font-size: 17px;
   font-weight: 300;
   color: var(--text-2);
-  max-width: 520px;
+  max-width: 680px;
   line-height: 1.7;
   margin-bottom: 48px;
 }
@@ -313,7 +313,7 @@ footer {
   bottom: 40px;
   left: 40px;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -361,12 +361,9 @@ footer {
   padding: 40px;
   background: var(--bg-2);
   border-bottom: 1px solid var(--border);
-  transition: background 0.2s;
-  text-decoration: none;
   color: inherit;
 }
 .project-item:last-child { border-bottom: none; }
-.project-item:hover { background: var(--bg-3); }
 .project-header {
   display: flex;
   align-items: center;
@@ -402,19 +399,9 @@ footer {
 }
 .project-stat {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.04em;
-}
-.project-arrow {
-  font-size: 20px;
-  color: var(--text-3);
-  margin-top: 8px;
-  transition: color 0.2s, transform 0.2s;
-}
-.project-item:hover .project-arrow {
-  color: var(--accent);
-  transform: translate(3px, -3px);
 }
 
 /* Stack grid */
@@ -432,9 +419,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  transition: background 0.2s;
 }
-.stack-item:hover { background: var(--bg-3); }
 .stack-item-name {
   font-size: 14px;
   font-weight: 400;
@@ -442,7 +427,7 @@ footer {
 }
 .stack-item-type {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -465,15 +450,12 @@ footer {
   padding: 28px 40px;
   background: var(--bg-2);
   border-bottom: 1px solid var(--border);
-  text-decoration: none;
   color: inherit;
-  transition: background 0.2s;
 }
 .blog-item:last-child { border-bottom: none; }
-.blog-item:hover { background: var(--bg-3); }
 .blog-tag {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--accent);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -487,7 +469,7 @@ footer {
 }
 .blog-date {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
   white-space: nowrap;
 }
@@ -514,7 +496,7 @@ footer {
 .contact-item:hover { background: var(--bg-3); }
 .contact-label {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -544,7 +526,7 @@ footer {
 }
 .hub-tag {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--accent);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -586,7 +568,7 @@ footer {
 }
 .hub-link {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-3);
@@ -626,7 +608,7 @@ footer {
 }
 .project-role {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.06em;
   margin-bottom: 14px;
@@ -671,7 +653,7 @@ footer {
 }
 .stat-label {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -708,7 +690,7 @@ footer {
 }
 .decision-project {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -724,7 +706,7 @@ footer {
 }
 .point-label {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--accent);
   letter-spacing: 0.06em;
   padding-top: 2px;
@@ -748,7 +730,7 @@ footer {
 .skill-group { padding: 28px 32px; background: var(--bg-2); }
 .skill-group-name {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -815,7 +797,7 @@ footer {
 }
 .exp-date {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.06em;
   white-space: nowrap;
@@ -849,7 +831,7 @@ footer {
 /* Project GitHub link */
 .project-github {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-3);
   text-decoration: none;
   letter-spacing: 0.06em;
@@ -870,7 +852,7 @@ footer {
 .contact-field { display: flex; flex-direction: column; gap: 8px; position: relative; }
 .contact-field-label {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -893,7 +875,7 @@ footer {
 .contact-textarea { resize: vertical; min-height: 120px; }
 .contact-char-count {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-3);
   letter-spacing: 0.04em;
   text-align: right;
@@ -901,7 +883,7 @@ footer {
 }
 .contact-error {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   color: #e06c75;
   letter-spacing: 0.04em;
   padding: 8px 12px;
@@ -930,7 +912,7 @@ footer {
 }
 .contact-form-reset {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-3);

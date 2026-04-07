@@ -159,7 +159,6 @@ export default function HomePage() {
                   <span className="project-stat">300+ components</span>
                   <span className="project-stat">40K lines</span>
                   <span className="project-stat">3-person team</span>
-                  <span className="project-arrow">↗</span>
                 </div>
               </div>
             </FadeUp>
@@ -195,7 +194,6 @@ export default function HomePage() {
                     GitHub ↗
                   </a>
                   <span className="project-stat">Solo project</span>
-                  <span className="project-arrow">↗</span>
                 </div>
               </div>
             </FadeUp>
@@ -224,14 +222,13 @@ export default function HomePage() {
                 ["Cloudflare", "Infra"],
                 ["Git", "Version Control"],
               ].map(([name, type]) => (
-                <motion.div
+                <div
                   key={name}
                   className="stack-item"
-                  whileHover={{ borderColor: "var(--accent)", transition: { duration: 0.15 } }}
                 >
                   <span className="stack-item-name">{name}</span>
                   <span className="stack-item-type">{type}</span>
-                </motion.div>
+                </div>
               ))}
             </div>
           </FadeUp>
@@ -265,13 +262,13 @@ export default function HomePage() {
               },
             ].map((post, i) => (
               <FadeUp key={post.title} delay={i * 0.08}>
-                <a href="#" className="blog-item">
+                <div className="blog-item">
                   <div>
                     <p className="blog-tag">{post.tag}</p>
                     <p className="blog-title">{post.title}</p>
                   </div>
                   <span className="blog-date">{post.date}</span>
-                </a>
+                </div>
               </FadeUp>
             ))}
           </div>
