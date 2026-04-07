@@ -201,7 +201,7 @@ export default function SpindarePreview() {
             <div className="space-y-5">
               {[
                 { icon: "🎡", title: "200+ curated challenges", desc: "Hand-picked across fitness, creativity, cooking, outdoor, social, and learning — no AI-generated filler." },
-                { icon: "🎯", title: "Production-identical", desc: "This component is lifted directly from the Spindare V2 codebase (~40,000 lines). What you see here ships to the App Store." },
+                { icon: "🎯", title: "Production-identical", desc: "This component is lifted directly from the Spindare V2 codebase (~150,000+ lines). What you see here ships to the App Store." },
                 { icon: "🔥", title: "Streak system", desc: "Complete a challenge every day to extend your streak. Miss a day and it resets — same pressure as Duolingo." },
               ].map(({ icon, title, desc }) => (
                 <div key={title} className="flex gap-4">

@@ -57,7 +57,7 @@ const COMMANDS: Record<string, () => { lines: Line[]; action?: () => void }> = {
       { type: "success", text: "Spindare — Social Gamification Platform" },
       { type: "output", text: "Status: In Development (V2)" },
       { type: "output", text: "Stack:  React Native · TypeScript · Supabase · Clerk" },
-      { type: "output", text: "Scale:  300+ components · 40K+ lines of code" },
+      { type: "output", text: "Scale:  300+ components · 150k+ lines of code" },
       { type: "output", text: "Team:   3 people · I lead all frontend & mobile" },
       { type: "output", text: "GitHub: github.com/biba-work/spindare" },
     ],

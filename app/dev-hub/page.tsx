@@ -89,7 +89,7 @@ export default function DevHubPage() {
               </div>
               <div className="project-stats">
                 <div className="stat"><span className="stat-value">300+</span><span className="stat-label">Components</span></div>
-                <div className="stat"><span className="stat-value">40K+</span><span className="stat-label">Lines of code</span></div>
+                <div className="stat"><span className="stat-value">150k+</span><span className="stat-label">Lines of code</span></div>
                 <div className="stat"><span className="stat-value">3</span><span className="stat-label">Person team</span></div>
                 <div className="stat"><span className="stat-value">Sep &apos;26</span><span className="stat-label">iOS launch</span></div>
               </div>
@@ -176,7 +176,7 @@ export default function DevHubPage() {
               <div className="decision-points">
                 <div className="decision-point">
                   <span className="point-label">Bug prevention</span>
-                  <span className="point-text">With 40K+ LOC across Spindare, TypeScript&apos;s type checker prevents entire classes of runtime errors before they reach users.</span>
+                  <span className="point-text">With 150k+ LOC across Spindare, TypeScript&apos;s type checker prevents entire classes of runtime errors before they reach users.</span>
                 </div>
                 <div className="decision-point">
                   <span className="point-label">Refactoring</span>

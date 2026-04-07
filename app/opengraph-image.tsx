@@ -117,7 +117,7 @@ export default function Image() {
           {/* Stats row */}
           <div style={{ display: "flex", gap: 16 }}>
             {[
-              { value: "40K+", label: "Lines of code" },
+              { value: "150k+", label: "Lines of code" },
               { value: "300+", label: "Components" },
               { value: "2",    label: "Live products" },
               { value: "14",   label: "Years old" },

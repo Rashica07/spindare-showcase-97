@@ -36,7 +36,7 @@ const projects = [
     status: "V2 In Progress",
     statusColor: "text-green-400 bg-green-500/10 border-green-500/20",
     desc: "Spindare is a daily challenge social app — spin a wheel, get a random challenge from 200+ curated picks, complete it, and share your attempt with friends. Think TikTok-style feed meets real-world daily accountability.",
-    detail: "V2 sits at 300+ files and ~40,000 lines of code. A 3-person team (Uncle Bib, Daniel, and me as UI/UX lead). iOS launch targeting May 11 2026.",
+    detail: "V2 sits at 300+ files and ~150,000+ lines of code. A 3-person team (Uncle Bib, Daniel, and me as UI/UX lead). iOS launch targeting May 11 2026.",
     highlights: ["Daily spin with 200+ curated challenges", "Real-time Supabase feed", "Stream Chat DMs", "Streak system"],
     tech: ["React Native", "Expo", "TypeScript", "Supabase", "Clerk", "Stream Chat", "Backblaze B2", "Vercel"],
     github: "https://github.com/biba-work/spindare",

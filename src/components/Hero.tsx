@@ -34,7 +34,7 @@ export default function Hero({ actionsRef }: { actionsRef: React.RefObject<HTMLD
         transition={{ duration: 0.7, delay: 0.2, ease }}
       >
         14-year-old developer from Kosovo, living in Italy.
-        I&apos;ve spent the last year building <strong>Spindare</strong> — a social app with 40,000 lines of code — with my uncle and a friend. It ships to the App Store in September.
+        I&apos;ve spent the last year building <strong>Spindare</strong> — a social app with 150,000+ lines of code — with my uncle and a friend. It ships to the App Store in September.
         That&apos;s basically my CV.
       </motion.p>
 

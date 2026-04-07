@@ -135,7 +135,7 @@ export default function HomePage() {
                     A daily challenge social app. Spin a wheel, get a challenge
                     from 200+ curated picks, complete it, share it with friends.
                     Think TikTok-style feed meets real-world accountability.
-                    300+ components, 40K lines of code. iOS launch September
+                    300+ components, 150k+ lines of code. iOS launch September
                     2026.
                   </p>
                   <div className="project-stack">
@@ -157,7 +157,7 @@ export default function HomePage() {
                     GitHub ↗
                   </a>
                   <span className="project-stat">300+ components</span>
-                  <span className="project-stat">40K lines</span>
+                  <span className="project-stat">150k+ lines</span>
                   <span className="project-stat">3-person team</span>
                 </div>
               </div>
