@@ -71,17 +71,11 @@ section {
 
 /* ── Nav ── */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
   height: 56px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(8, 8, 8, 0.85);
-  backdrop-filter: blur(12px);
 }
 .nav-logo {
   font-family: var(--mono);
@@ -264,7 +258,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 120px 40px 80px;
+  padding: 60px 40px 80px;
   max-width: 960px;
   margin: 0 auto;
   position: relative;
@@ -954,7 +948,7 @@ footer {
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-  .hero { padding: 100px 20px 60px; }
+  .hero { padding: 60px 20px 60px; }
   .hero-scroll { left: 20px; }
   .section-inner { padding: 72px 20px; }
   .divider { margin: 0 20px; }
