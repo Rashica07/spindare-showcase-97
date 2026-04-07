@@ -61,7 +61,10 @@ export default function DevHubPage() {
                   <p className="project-name">Spindare</p>
                   <p className="project-role">Lead Developer · UI/UX · 3-person team</p>
                 </div>
-                <span className="project-badge">In Development</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  <a href="https://github.com/biba-work/spindare" target="_blank" rel="noopener noreferrer" className="hub-link" style={{ padding: "4px 10px" }}>GitHub ↗</a>
+                  <span className="project-badge">In Development</span>
+                </div>
               </div>
               <p className="project-desc">
                 A social gamification platform where users spin for daily challenges, complete them, and share with friends. Built for iOS and Android with React Native, TypeScript, and Supabase Realtime.
@@ -98,7 +101,10 @@ export default function DevHubPage() {
                   <p className="project-name">TravelMe</p>
                   <p className="project-role">Solo Project · Full-stack</p>
                 </div>
-                <span className="project-badge soon">Coming Soon</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  <a href="https://github.com/rashica07/booking-fallc" target="_blank" rel="noopener noreferrer" className="hub-link" style={{ padding: "4px 10px" }}>GitHub ↗</a>
+                  <span className="project-badge soon">Coming Soon</span>
+                </div>
               </div>
               <p className="project-desc">
                 Describe your trip in plain language — TravelMe generates a full itinerary: flights, hotels, local experiences, day-by-day plan. No more juggling 10 apps.

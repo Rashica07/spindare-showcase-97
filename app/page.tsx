@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -23,6 +23,42 @@ export default function HomePage() {
 
     return () => observer.disconnect();
   }, []);
+
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [error, setError] = useState("");
+
+  const sanitize = (v: string) =>
+    v.replace(/[<>'"&]/g, (c) => (({ "<": "&lt;", ">": "&gt;", "'": "&#x27;", '"': "&quot;", "&": "&amp;" } as Record<string, string>)[c] ?? c));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    const name = sanitize(form.name.trim());
+    const email = sanitize(form.email.trim());
+    const message = sanitize(form.message.trim());
+    if (!name || !email || !message) { setError("Please fill in all fields."); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError("Please enter a valid email address."); return; }
+    if (message.length > 2000) { setError("Message must be under 2000 characters."); return; }
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setStatus("sent");
+      } else {
+        setError(data.error || "Something went wrong. Please try again.");
+        setStatus("idle");
+      }
+    } catch {
+      setError("Network error. Please check your connection.");
+      setStatus("idle");
+    }
+  };
 
   return (
     <>
@@ -95,6 +131,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="project-meta">
+                <a href="https://github.com/biba-work/spindare" target="_blank" rel="noopener noreferrer" className="project-github">GitHub ↗</a>
                 <span className="project-stat">300+ components</span>
                 <span className="project-stat">40K lines</span>
                 <span className="project-stat">3-person team</span>
@@ -120,6 +157,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="project-meta">
+                <a href="https://github.com/rashica07/booking-fallc" target="_blank" rel="noopener noreferrer" className="project-github">GitHub ↗</a>
                 <span className="project-stat">Solo project</span>
                 <span className="project-arrow">↗</span>
               </div>
@@ -187,8 +225,9 @@ export default function HomePage() {
       <section id="contact">
         <div className="section-inner">
           <p className="section-label">Contact</p>
+
           <div className="contact-grid">
-            <a href="https://discord.com/users/kodibkfg" className="contact-item fade-up">
+            <a href="https://discord.com/users/kodibkfg" target="_blank" rel="noopener noreferrer" className="contact-item fade-up">
               <span className="contact-label">Discord</span>
               <span className="contact-value">@kodibkfg</span>
               <span className="contact-arrow">↗</span>
@@ -198,17 +237,79 @@ export default function HomePage() {
               <span className="contact-value">newkiqaa@gmail.com</span>
               <span className="contact-arrow">↗</span>
             </a>
-            <a href="https://github.com/rashica07" className="contact-item fade-up delay-2">
+            <a href="https://github.com/rashica07" target="_blank" rel="noopener noreferrer" className="contact-item fade-up delay-2">
               <span className="contact-label">GitHub</span>
               <span className="contact-value">github.com/rashica07</span>
               <span className="contact-arrow">↗</span>
             </a>
-            <a href="https://twitter.com/kristiangjergj4" className="contact-item fade-up delay-3">
+            <a href="https://twitter.com/kristiangjergj4" target="_blank" rel="noopener noreferrer" className="contact-item fade-up delay-3">
               <span className="contact-label">Twitter</span>
               <span className="contact-value">@kristiangjergj4</span>
               <span className="contact-arrow">↗</span>
             </a>
           </div>
+
+          <div className="contact-form-wrap fade-up">
+            {status === "sent" ? (
+              <div className="contact-form-success">
+                <p className="contact-form-success-title">Message sent.</p>
+                <p className="contact-form-success-sub">I&apos;ll get back to you as soon as possible.</p>
+                <button
+                  className="contact-form-reset"
+                  onClick={() => { setStatus("idle"); setForm({ name: "", email: "", message: "" }); }}
+                >
+                  Send another
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} noValidate className="contact-form">
+                <div className="contact-form-row">
+                  <div className="contact-field">
+                    <label className="contact-field-label">Name</label>
+                    <input
+                      type="text"
+                      value={form.name}
+                      onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
+                      placeholder="Your name"
+                      maxLength={100}
+                      className="contact-input"
+                      required
+                    />
+                  </div>
+                  <div className="contact-field">
+                    <label className="contact-field-label">Email</label>
+                    <input
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
+                      placeholder="you@example.com"
+                      maxLength={200}
+                      className="contact-input"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="contact-field">
+                  <label className="contact-field-label">Message</label>
+                  <textarea
+                    value={form.message}
+                    onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
+                    placeholder="Tell me about your project..."
+                    rows={5}
+                    maxLength={2000}
+                    className="contact-input contact-textarea"
+                    required
+                  />
+                  <span className="contact-char-count">{form.message.length}/2000</span>
+                </div>
+                {error && <p className="contact-error">{error}</p>}
+                <button type="submit" disabled={status === "sending"} className="btn-primary contact-submit">
+                  {status === "sending" ? "Sending..." : "Send Message"}
+                </button>
+              </form>
+            )}
+          </div>
+
         </div>
       </section>
 
