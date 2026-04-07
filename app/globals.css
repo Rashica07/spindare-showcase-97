@@ -7,9 +7,9 @@
   --text: #e8e8e8;
   --text-2: #a8a8a8;
   --text-3: #707070;
-  --accent: #2EB9DF;
-  --accent-dim: rgba(46, 185, 223, 0.08);
-  --accent-border: rgba(46, 185, 223, 0.2);
+  --accent: #F5A623;
+  --accent-dim: rgba(245, 166, 35, 0.08);
+  --accent-border: rgba(245, 166, 35, 0.25);
   --mono: var(--font-geist-mono), 'Geist Mono', monospace;
   --sans: var(--font-dm-sans), 'DM Sans', sans-serif;
 }
