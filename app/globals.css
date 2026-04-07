@@ -501,22 +501,48 @@ section, main, header, footer { position: relative; z-index: 1; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.hero-scroll-hint {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+/* scroll hint removed */
+
+
+/* ════════════════════════════════════════
+   TICKER STRIP
+   ════════════════════════════════════════ */
+
+.ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-2);
+  padding: 14px 0;
+  position: relative;
+  z-index: 1;
 }
-.hero-scroll-hint span {
-  display: block;
-  width: 1px;
-  height: 52px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-  animation: scrollPulse 2.2s ease-in-out infinite;
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll 28s linear infinite;
 }
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.25; transform: scaleY(0.8); }
-  50% { opacity: 1; transform: scaleY(1); }
+.ticker-track:hover { animation-play-state: paused; }
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 0 8px;
+}
+.ticker-sep {
+  color: var(--accent);
+  font-size: 14px;
+}
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 
@@ -888,17 +914,25 @@ section, main, header, footer { position: relative; z-index: 1; }
   padding: 4px;
   background: var(--bg-2);
   width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex-wrap: wrap;
 }
+.filter-tabs::-webkit-scrollbar { display: none; }
 .filter-tab {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   color: var(--text-3);
   background: none;
   border: none;
-  padding: 7px 16px;
+  padding: 6px 12px;
   border-radius: 4px;
   transition: color var(--tr), background var(--tr);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .filter-tab:hover { color: var(--text); }
 .filter-tab--active {

@@ -79,16 +79,16 @@ export default function AboutPage() {
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
-            <h2 className="section-title">{t.about.timeline.title}</h2>
+            <h2 className="section-title">{t.about.experience.title}</h2>
           </FadeUp>
           <div className="timeline">
-            {t.about.timeline.items.map((item, i) => (
-              <FadeUp key={item.year} delay={i * 0.08}>
+            {t.about.experience.items.map((item, i) => (
+              <FadeUp key={item.year + i} delay={i * 0.08}>
                 <div className="timeline-item">
                   <span className="timeline-year">{item.year}</span>
                   <div className="timeline-dot" />
                   <div className="timeline-content">
-                    <h3 className="timeline-title">{item.title}</h3>
+                    <h3 className="timeline-title">{item.role}</h3>
                     <p className="timeline-desc">{item.desc}</p>
                   </div>
                 </div>
@@ -123,10 +123,10 @@ export default function AboutPage() {
       <FadeUp>
         <section className="section-padded cta-section">
           <div className="section-inner cta-inner">
-            <h2 className="cta-title">{t.about.cta.title}</h2>
-            <p className="cta-sub">{t.about.cta.sub}</p>
+            <h2 className="cta-title">Want to work together?</h2>
+            <p className="cta-sub">I'm open to freelance projects, collabs, and interesting builds.</p>
             <Link href="/contact" className="btn-primary btn-large">
-              {t.about.cta.button} <ArrowRight size={16} />
+              Get in touch <ArrowRight size={16} />
             </Link>
           </div>
         </section>

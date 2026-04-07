@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Smartphone, Globe, Palette, Server, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { FadeUp } from "@/components/FadeUp";
+import { Ticker } from "@/components/Ticker";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 const serviceIcons = [Smartphone, Globe, Palette, Server];
@@ -84,9 +85,9 @@ export default function HomePage() {
             ))}
           </motion.div>
         </div>
-
-        <div className="hero-scroll-hint" aria-hidden="true"><span /></div>
       </section>
+
+      <Ticker />
 
       {/* ── Services Overview ── */}
       <section className="section-padded">
