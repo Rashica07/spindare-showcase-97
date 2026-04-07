@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Mail, MessageSquare, Github, Twitter, MapPin, Clock } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
+import { FadeUp } from "@/components/FadeUp";
 
 export default function ContactPage() {
   const { t } = useLanguage();
@@ -39,7 +40,6 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* ── Page Hero ── */}
       <section className="page-hero">
         <div className="section-inner">
           <p className="section-label">{t.contact.hero.label}</p>
@@ -50,8 +50,7 @@ export default function ContactPage() {
 
       <section className="section-padded">
         <div className="section-inner contact-page-layout">
-          {/* ── Form ── */}
-          <div className="contact-form-col">
+          <FadeUp className="contact-form-col">
             {status === "sent" ? (
               <div className="contact-success-state">
                 <p className="contact-success-title">{f.sent}</p>
@@ -68,51 +67,20 @@ export default function ContactPage() {
                 <div className="cf-row">
                   <div className="cf-field">
                     <label className="cf-label">{f.name}</label>
-                    <input
-                      type="text"
-                      value={form.name}
-                      onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-                      placeholder={f.namePh}
-                      maxLength={100}
-                      className="cf-input"
-                      required
-                    />
+                    <input type="text" value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} placeholder={f.namePh} maxLength={100} className="cf-input" required />
                   </div>
                   <div className="cf-field">
                     <label className="cf-label">{f.email}</label>
-                    <input
-                      type="email"
-                      value={form.email}
-                      onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
-                      placeholder={f.emailPh}
-                      maxLength={200}
-                      className="cf-input"
-                      required
-                    />
+                    <input type="email" value={form.email} onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))} placeholder={f.emailPh} maxLength={200} className="cf-input" required />
                   </div>
                 </div>
                 <div className="cf-field">
                   <label className="cf-label">{f.subject}</label>
-                  <input
-                    type="text"
-                    value={form.subject}
-                    onChange={(e) => setForm((p) => ({ ...p, subject: e.target.value }))}
-                    placeholder={f.subjectPh}
-                    maxLength={200}
-                    className="cf-input"
-                  />
+                  <input type="text" value={form.subject} onChange={(e) => setForm((p) => ({ ...p, subject: e.target.value }))} placeholder={f.subjectPh} maxLength={200} className="cf-input" />
                 </div>
                 <div className="cf-field">
                   <label className="cf-label">{f.message}</label>
-                  <textarea
-                    value={form.message}
-                    onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
-                    placeholder={f.messagePh}
-                    rows={6}
-                    maxLength={2000}
-                    className="cf-input cf-textarea"
-                    required
-                  />
+                  <textarea value={form.message} onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))} placeholder={f.messagePh} rows={6} maxLength={2000} className="cf-input cf-textarea" required />
                   <span className="cf-char">{form.message.length}/2000</span>
                 </div>
                 {error && <p className="cf-error">{error}</p>}
@@ -121,78 +89,59 @@ export default function ContactPage() {
                 </button>
               </form>
             )}
-          </div>
+          </FadeUp>
 
-          {/* ── Info sidebar ── */}
-          <div className="contact-info-col">
+          <FadeUp delay={0.1} className="contact-info-col">
             <h2 className="contact-info-title">{info.title}</h2>
-
             <div className="contact-info-items">
               <a href={`mailto:${info.email}`} className="contact-info-item">
                 <span className="contact-info-icon"><Mail size={15} /></span>
-                <div>
-                  <span className="contact-info-label">Email</span>
-                  <span className="contact-info-value">{info.email}</span>
-                </div>
+                <div><span className="contact-info-label">Email</span><span className="contact-info-value">{info.email}</span></div>
               </a>
               <a href="https://discord.com/users/kodibkfg" target="_blank" rel="noopener noreferrer" className="contact-info-item">
                 <span className="contact-info-icon"><MessageSquare size={15} /></span>
-                <div>
-                  <span className="contact-info-label">Discord</span>
-                  <span className="contact-info-value">{info.discord}</span>
-                </div>
+                <div><span className="contact-info-label">Discord</span><span className="contact-info-value">{info.discord}</span></div>
               </a>
               <a href="https://github.com/rashica07" target="_blank" rel="noopener noreferrer" className="contact-info-item">
                 <span className="contact-info-icon"><Github size={15} /></span>
-                <div>
-                  <span className="contact-info-label">GitHub</span>
-                  <span className="contact-info-value">{info.github}</span>
-                </div>
+                <div><span className="contact-info-label">GitHub</span><span className="contact-info-value">{info.github}</span></div>
               </a>
               <a href="https://twitter.com/kristiangjergj4" target="_blank" rel="noopener noreferrer" className="contact-info-item">
                 <span className="contact-info-icon"><Twitter size={15} /></span>
-                <div>
-                  <span className="contact-info-label">Twitter</span>
-                  <span className="contact-info-value">{info.twitter}</span>
-                </div>
+                <div><span className="contact-info-label">Twitter</span><span className="contact-info-value">{info.twitter}</span></div>
               </a>
               <div className="contact-info-item no-hover">
                 <span className="contact-info-icon"><MapPin size={15} /></span>
-                <div>
-                  <span className="contact-info-label">Location</span>
-                  <span className="contact-info-value">{info.location}</span>
-                </div>
+                <div><span className="contact-info-label">Location</span><span className="contact-info-value">Lecco, Italy</span></div>
               </div>
               <div className="contact-info-item no-hover">
                 <span className="contact-info-icon"><Clock size={15} /></span>
-                <div>
-                  <span className="contact-info-label">{info.hours}</span>
-                  <span className="contact-info-value">{info.hoursValue}</span>
-                </div>
+                <div><span className="contact-info-label">{info.hours}</span><span className="contact-info-value">{info.hoursValue}</span></div>
               </div>
             </div>
-          </div>
+          </FadeUp>
         </div>
       </section>
 
       <div className="divider" />
 
-      {/* ── Google Maps ── */}
       <section className="section-padded">
         <div className="section-inner">
-          <p className="section-label">{t.contact.map.title}</p>
-          <div className="map-container">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94285.68560867082!2d21.10866!3d42.66295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ee6f0000001%3A0x4fb1b2a1a8f04f94!2sPristina%2C%20Kosovo!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="KIQA DEV location — Pristina, Kosovo"
-            />
-          </div>
+          <FadeUp>
+            <p className="section-label">Location — Lecco, Italy</p>
+            <div className="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22434.206756!2d9.3719!3d45.8557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786869bae4ce3d5%3A0xb9c3fba47f2a51d7!2sLecco%2C+Province+of+Lecco%2C+Italy!5e0!3m2!1sen!2sit!4v1700000000000!5m2!1sen!2sit"
+                width="100%"
+                height="420"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="KIQA DEV location — Lecco, Italy"
+              />
+            </div>
+          </FadeUp>
         </div>
       </section>
     </>

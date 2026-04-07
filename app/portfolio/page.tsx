@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, Github } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
+import { FadeUp } from "@/components/FadeUp";
 
 const statusClass: Record<string, string> = {
   live: "status-live",
@@ -22,7 +23,6 @@ export default function PortfolioPage() {
 
   return (
     <>
-      {/* ── Page Hero ── */}
       <section className="page-hero">
         <div className="section-inner">
           <p className="section-label">{t.portfolio.hero.label}</p>
@@ -31,70 +31,54 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* ── Filters ── */}
       <section className="section-padded">
         <div className="section-inner">
-          <div className="filter-tabs">
-            {filters.map((f, i) => (
-              <button
-                key={f}
-                className={`filter-tab${filter === i ? " filter-tab--active" : ""}`}
-                onClick={() => setFilter(i)}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
+          <FadeUp>
+            <div className="filter-tabs">
+              {filters.map((f, i) => (
+                <button
+                  key={f}
+                  className={`filter-tab${filter === i ? " filter-tab--active" : ""}`}
+                  onClick={() => setFilter(i)}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </FadeUp>
 
           <div className="portfolio-grid">
-            {projects.map((proj) => (
-              <article className="portfolio-card" key={proj.name}>
-                <div className="portfolio-card-top">
-                  <div className="portfolio-card-header">
-                    <span className="portfolio-card-type">{proj.type}</span>
-                    <span className={`project-status ${statusClass[proj.status]}`}>
-                      {t.portfolio.status[proj.status as keyof typeof t.portfolio.status]}
-                    </span>
+            {projects.map((proj, i) => (
+              <FadeUp key={proj.name} delay={(i % 3) * 0.07}>
+                <article className="portfolio-card">
+                  <div className="portfolio-card-top">
+                    <div className="portfolio-card-header">
+                      <span className="portfolio-card-type">{proj.type}</span>
+                      <span className={`project-status ${statusClass[proj.status]}`}>
+                        {t.portfolio.status[proj.status as keyof typeof t.portfolio.status]}
+                      </span>
+                    </div>
+                    <h2 className="portfolio-card-name">{proj.name}</h2>
+                    <p className="portfolio-card-year">{proj.year}</p>
+                    <p className="portfolio-card-desc">{proj.desc}</p>
+                    <div className="portfolio-card-stack">
+                      {proj.stack.map((s) => <span className="stack-tag" key={s}>{s}</span>)}
+                    </div>
                   </div>
-                  <h2 className="portfolio-card-name">{proj.name}</h2>
-                  <p className="portfolio-card-year">{proj.year}</p>
-                  <p className="portfolio-card-desc">{proj.desc}</p>
-                  <p className="portfolio-card-detail">{proj.detail}</p>
-                </div>
-
-                <div className="portfolio-card-stack">
-                  {proj.stack.map((s) => (
-                    <span className="stack-tag" key={s}>{s}</span>
-                  ))}
-                </div>
-
-                <div className="portfolio-card-links">
-                  {proj.link && proj.link !== "/" && (
-                    <a
-                      href={proj.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="portfolio-link"
-                    >
-                      <Github size={14} /> {t.portfolio.viewCode}
-                    </a>
-                  )}
-                </div>
-              </article>
+                  <div className="portfolio-card-actions">
+                    {proj.link && proj.link !== "/" && (
+                      <a href={proj.link} target="_blank" rel="noopener noreferrer" className="portfolio-card-link">
+                        <Github size={13} /> GitHub
+                      </a>
+                    )}
+                    <Link href="/contact" className="portfolio-card-link">
+                      {t.portfolio.hire} <ArrowRight size={13} />
+                    </Link>
+                  </div>
+                </article>
+              </FadeUp>
             ))}
           </div>
-        </div>
-      </section>
-
-      <div className="divider" />
-
-      <section className="section-padded cta-section">
-        <div className="section-inner cta-inner">
-          <h2 className="cta-title">Have a project in mind?</h2>
-          <p className="cta-sub">Let&apos;s talk about what you&apos;re building.</p>
-          <Link href="/contact" className="btn-primary btn-large">
-            {t.common.getQuote} <ArrowRight size={16} />
-          </Link>
         </div>
       </section>
     </>

@@ -14,38 +14,26 @@ export default function DevHubPage() {
       { threshold: 0.08 }
     );
     document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
-
     setTimeout(() => {
-      document
-        .querySelectorAll(".hub-header.fade-up")
-        .forEach((el) => el.classList.add("visible"));
+      document.querySelectorAll(".hub-header.fade-up").forEach((el) => el.classList.add("visible"));
     }, 100);
-
     return () => observer.disconnect();
   }, []);
 
   return (
     <>
-      <nav>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <Link href="/" className="nav-logo">kiq<span>.</span>dev</Link>
-          <span className="nav-sep">/</span>
-          <span className="nav-page">dev-hub</span>
-        </div>
-        <Link href="/" className="nav-back">← Portfolio</Link>
-      </nav>
-
       <div className="hub-header fade-up">
         <p className="hub-tag">Developer Hub</p>
-        <h1>Kiq.<br /><em>Builder.</em></h1>
+        <h1>KIQA<span style={{ color: "var(--accent)" }}>.</span><br /><em>Builder.</em></h1>
         <p className="hub-desc">
-          14-year-old full-stack and mobile developer from Kosovo. Currently building <strong>Spindare</strong> — a social gamification app — and <strong>TravelMe</strong>, an AI travel planner.
+          14-year-old full-stack and mobile developer from Kosovo, living in Italy. Currently building <strong>Spindare</strong> — a social gamification app — and <strong>TravelMe</strong>, an AI travel planner.
           Open to freelance web and app projects.
         </p>
         <div className="hub-links">
-          <a href="https://github.com/rashica07" className="hub-link primary">GitHub</a>
+          <a href="https://github.com/rashica07" className="hub-link primary" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           <a href="mailto:newkiqaa@gmail.com" className="hub-link">Email</a>
-          <a href="https://discord.com/users/kodibkfg" className="hub-link">Discord</a>
+          <a href="https://discord.com/users/kodibkfg" className="hub-link" target="_blank" rel="noopener noreferrer">Discord</a>
+          <Link href="/contact" className="hub-link">Contact page ↗</Link>
         </div>
       </div>
 
@@ -251,7 +239,7 @@ export default function DevHubPage() {
             <div className="exp-item fade-up delay-1">
               <div>
                 <p className="exp-title">Freelance Developer</p>
-                <p className="exp-company">Independent</p>
+                <p className="exp-company">KIQA DEV</p>
                 <div className="exp-bullets">
                   <p className="exp-bullet">Full-stack web and mobile projects for clients</p>
                   <p className="exp-bullet">Focus on React Native apps and Next.js web platforms</p>
@@ -269,17 +257,12 @@ export default function DevHubPage() {
             <p>Open to freelance work, collabs, and interesting builds.</p>
           </div>
           <div className="cta-actions">
-            <a href="mailto:newkiqaa@gmail.com" className="btn-primary">Email Me</a>
-            <a href="https://discord.com/users/kodibkfg" className="btn-ghost">Discord</a>
+            <Link href="/contact" className="btn-primary">Get in touch</Link>
+            <a href="https://discord.com/users/kodibkfg" className="btn-ghost" target="_blank" rel="noopener noreferrer">Discord</a>
           </div>
         </div>
 
       </div>
-
-      <footer>
-        <span className="footer-left">kiq<span>.</span>dev — Developer Hub</span>
-        <span className="footer-right">Next.js + TypeScript ⚡</span>
-      </footer>
     </>
   );
 }

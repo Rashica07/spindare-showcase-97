@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import { Clock, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
+import { FadeUp } from "@/components/FadeUp";
 
 export default function BlogPage() {
   const { t } = useLanguage();
@@ -17,7 +17,6 @@ export default function BlogPage() {
 
   return (
     <>
-      {/* ── Page Hero ── */}
       <section className="page-hero">
         <div className="section-inner">
           <p className="section-label">{t.blog.hero.label}</p>
@@ -28,36 +27,38 @@ export default function BlogPage() {
 
       <section className="section-padded">
         <div className="section-inner">
-          {/* Category filter */}
-          <div className="filter-tabs">
-            {categories.map((cat, i) => (
-              <button
-                key={cat}
-                className={`filter-tab${filter === i ? " filter-tab--active" : ""}`}
-                onClick={() => setFilter(i)}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+          <FadeUp>
+            <div className="filter-tabs">
+              {categories.map((cat, i) => (
+                <button
+                  key={cat}
+                  className={`filter-tab${filter === i ? " filter-tab--active" : ""}`}
+                  onClick={() => setFilter(i)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </FadeUp>
 
-          {/* Posts */}
           <div className="blog-grid">
-            {posts.map((post) => (
-              <article className="blog-card" key={post.slug}>
-                <div className="blog-card-meta">
-                  <span className="blog-card-category">{post.category}</span>
-                  <span className="blog-card-date-read">
-                    <Clock size={12} />
-                    {post.read} {t.blog.minRead} · {post.date}
-                  </span>
-                </div>
-                <h2 className="blog-card-title">{post.title}</h2>
-                <p className="blog-card-excerpt">{post.excerpt}</p>
-                <div className="blog-card-link">
-                  {t.blog.readMore} <ArrowRight size={13} />
-                </div>
-              </article>
+            {posts.map((post, i) => (
+              <FadeUp key={post.slug} delay={(i % 2) * 0.08}>
+                <article className="blog-card">
+                  <div className="blog-card-meta">
+                    <span className="blog-card-category">{post.category}</span>
+                    <span className="blog-card-date-read">
+                      <Clock size={12} />
+                      {post.read} {t.blog.minRead} · {post.date}
+                    </span>
+                  </div>
+                  <h2 className="blog-card-title">{post.title}</h2>
+                  <p className="blog-card-excerpt">{post.excerpt}</p>
+                  <div className="blog-card-link">
+                    {t.blog.readMore} <ArrowRight size={13} />
+                  </div>
+                </article>
+              </FadeUp>
             ))}
           </div>
         </div>
