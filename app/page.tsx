@@ -8,6 +8,14 @@ import Hero from "@/components/Hero";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
+function GlossWord({ word, def }: { word: string; def: string }) {
+  return (
+    <span className="gloss-word" data-def={def}>
+      {word}
+    </span>
+  );
+}
+
 function FadeUp({
   children,
   delay = 0,
@@ -104,15 +112,26 @@ export default function HomePage() {
             <p className="about-text">
               I started coding out of curiosity and turned it into something
               real. I build mobile apps and web platforms —{" "}
-              <strong>not as a hobby, but as a mission.</strong> Spindare exists
-              because my family needs it to succeed. That changes how you write
-              code.
+              <strong>
+                not as a hobby, but as a{" "}
+                <GlossWord
+                  word="mission"
+                  def="A goal so important it changes how you write every single line of code."
+                />
+                .
+              </strong>{" "}
+              Spindare exists because my family needs it to succeed. That
+              changes how you write code.
               <br />
               <br />
               I&apos;m the UI/UX lead on a 3-person team. I work with{" "}
               <span className="accent">React Native, TypeScript, Supabase</span>
-              , and whatever else the problem needs. I learn by shipping — not
-              by watching tutorials.
+              , and whatever else the problem needs. I learn by{" "}
+              <GlossWord
+                word="shipping"
+                def="The only real way to learn. Build it, put it in users' hands, and face the feedback."
+              />{" "}
+              — not by watching tutorials.
             </p>
           </FadeUp>
         </div>
@@ -125,7 +144,10 @@ export default function HomePage() {
           <p className="section-label">Projects</p>
           <div className="projects-list">
             <FadeUp delay={0}>
-              <div className="project-item">
+              <div
+                className="project-item"
+                onClick={() => window.open("https://github.com/biba-work/spindare", "_blank")}
+              >
                 <div>
                   <div className="project-header">
                     <span className="project-name">Spindare</span>
@@ -134,8 +156,12 @@ export default function HomePage() {
                   <p className="project-desc">
                     A daily challenge social app. Spin a wheel, get a challenge
                     from 200+ curated picks, complete it, share it with friends.
-                    Think TikTok-style feed meets real-world accountability.
-                    300+ components, 150k+ lines of code. iOS launch September
+                    Think TikTok-style feed meets real-world{" "}
+                    <GlossWord
+                      word="accountability"
+                      def="You said you'd do the challenge. Your friends are watching. No hiding."
+                    />
+                    . 300+ components, 150k+ lines of code. iOS launch September
                     2026.
                   </p>
                   <div className="project-stack">
@@ -153,6 +179,7 @@ export default function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="project-github"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     GitHub ↗
                   </a>
@@ -164,7 +191,10 @@ export default function HomePage() {
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <div className="project-item">
+              <div
+                className="project-item"
+                onClick={() => window.open("https://github.com/rashica07/booking-fallc", "_blank")}
+              >
                 <div>
                   <div className="project-header">
                     <span className="project-name">TravelMe</span>
@@ -173,8 +203,12 @@ export default function HomePage() {
                   <p className="project-desc">
                     Describe your trip in plain language — TravelMe generates
                     the full itinerary: flights, hotels, experiences, day-by-day
-                    plan. No more switching between 10 apps. AI-powered, built
-                    solo with React Native and Node.js.
+                    plan. No more switching between 10 apps. AI-powered, built{" "}
+                    <GlossWord
+                      word="solo"
+                      def="No team. No co-founder. Just me, the problem, and the code."
+                    />{" "}
+                    with React Native and Node.js.
                   </p>
                   <div className="project-stack">
                     <span className="stack-tag">React Native</span>
@@ -190,6 +224,7 @@ export default function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="project-github"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     GitHub ↗
                   </a>

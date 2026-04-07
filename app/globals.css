@@ -179,7 +179,8 @@ nav {
   transition: opacity 0.2s;
   cursor: pointer;
 }
-.btn-primary:hover { opacity: 0.85; }
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-primary { transition: opacity 0.18s, transform 0.18s; }
 .btn-ghost {
   font-family: var(--mono);
   font-size: 13px;
@@ -194,7 +195,8 @@ nav {
   transition: all 0.2s;
   cursor: pointer;
 }
-.btn-ghost:hover { color: var(--text); border-color: var(--text-3); }
+.btn-ghost:hover { color: var(--text); border-color: var(--text-3); transform: translateY(-1px); }
+.btn-ghost { transition: all 0.18s; }
 
 /* ── Shared card pieces ── */
 .project-badge {
@@ -342,6 +344,43 @@ footer {
 .about-text strong { color: var(--text); font-weight: 400; }
 .about-text .accent { color: var(--accent); }
 
+/* Glossary word — bordered term with hover tooltip */
+.gloss-word {
+  display: inline-block;
+  border: 1px solid var(--accent-border);
+  border-radius: 3px;
+  padding: 0 4px;
+  cursor: help;
+  position: relative;
+  transition: border-color 0.15s;
+  line-height: inherit;
+}
+.gloss-word:hover { border-color: var(--accent); }
+.gloss-word::after {
+  content: attr(data-def);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-3);
+  border: 1px solid var(--border-2);
+  color: var(--text-2);
+  font-size: 12px;
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.55;
+  padding: 10px 14px;
+  border-radius: 4px;
+  width: 230px;
+  white-space: normal;
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  z-index: 100;
+}
+.gloss-word:hover::after { opacity: 1; }
+
 /* Projects list (homepage) */
 .projects-list {
   display: flex;
@@ -360,8 +399,12 @@ footer {
   background: var(--bg-2);
   border-bottom: 1px solid var(--border);
   color: inherit;
+  cursor: pointer;
+  transition: background 0.18s;
 }
 .project-item:last-child { border-bottom: none; }
+.project-item:hover { background: var(--bg-3); }
+.project-item:hover .project-name { color: var(--accent); }
 .project-header {
   display: flex;
   align-items: center;
@@ -449,8 +492,13 @@ footer {
   background: var(--bg-2);
   border-bottom: 1px solid var(--border);
   color: inherit;
+  cursor: pointer;
+  transition: background 0.18s;
 }
 .blog-item:last-child { border-bottom: none; }
+.blog-item:hover { background: var(--bg-3); }
+.blog-item:hover .blog-title { color: var(--accent); }
+.blog-item:hover .blog-date { color: var(--text-2); }
 .blog-tag {
   font-family: var(--mono);
   font-size: 12px;
