@@ -39,16 +39,30 @@ lerna-debug.log*
 *.sln
 *.sw?
 
-# Replit internals
+# Replit internals & AI tooling
 .replit
+.replit.nix
 .agents/
 .upm/
 .config/
 replit.md
+REPLIT.md
 .local/
 .visitor-count
 attached_assets/
 cache/
+
+# AI assistant configs (Cursor, Windsurf, Copilot, Claude, etc.)
+.cursor/
+.cursorignore
+.cursorules
+.windsurf/
+.aider*
+.claude*
+.copilot/
+.codeium/
+*.ai-context
+ai-context/
 
 # Type declarations (auto-generated)
 next-env.d.ts
