@@ -1,5 +1,6 @@
 {
   "/page": "app/page.js",
-  "/api/visitors/route": "app/api/visitors/route.js",
-  "/api/spotify/route": "app/api/spotify/route.js"
+  "/api/spotify/route": "app/api/spotify/route.js",
+  "/icon.png/route": "app/icon.png/route.js",
+  "/api/visitors/route": "app/api/visitors/route.js"
 }
