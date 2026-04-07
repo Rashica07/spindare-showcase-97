@@ -1,451 +1,150 @@
 "use client";
-
-import { useRef, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
+import { ArrowRight, Smartphone, Globe, Palette, Server, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
-const ease = [0.16, 1, 0.3, 1] as const;
+const serviceIcons = [Smartphone, Globe, Palette, Server];
 
-function GlossWord({ word, def }: { word: string; def: string }) {
-  return (
-    <span className="gloss-word" data-def={def}>
-      {word}
-    </span>
-  );
-}
-
-function FadeUp({
-  children,
-  delay = 0,
-  className,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay, ease }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+const statusColors: Record<string, string> = {
+  live: "status-live",
+  dev: "status-dev",
+  soon: "status-soon",
+};
 
 export default function HomePage() {
-  const heroActionsRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [error, setError] = useState("");
-
-  const sanitize = (v: string) =>
-    v.replace(
-      /[<>'"&]/g,
-      (c) =>
-        (
-          {
-            "<": "&lt;",
-            ">": "&gt;",
-            "'": "&#x27;",
-            '"': "&quot;",
-            "&": "&amp;",
-          } as Record<string, string>
-        )[c] ?? c
-    );
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    const name = sanitize(form.name.trim());
-    const email = sanitize(form.email.trim());
-    const message = sanitize(form.message.trim());
-    if (!name || !email || !message) {
-      setError("Please fill in all fields.");
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-    if (message.length > 2000) {
-      setError("Message must be under 2000 characters.");
-      return;
-    }
-    setStatus("sending");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        setStatus("sent");
-      } else {
-        setError(data.error || "Something went wrong. Please try again.");
-        setStatus("idle");
-      }
-    } catch {
-      setError("Network error. Please check your connection.");
-      setStatus("idle");
-    }
-  };
+  const featuredProjects = t.portfolio.projects.slice(0, 2);
 
   return (
     <>
-      <Nav heroActionsRef={heroActionsRef} />
-      <Hero actionsRef={heroActionsRef} />
-
-      <div className="divider" />
-
-      <section id="about">
-        <div className="section-inner">
-          <FadeUp>
-            <p className="section-label">About</p>
-            <p className="about-text">
-              I started coding out of curiosity and turned it into something
-              real. I build mobile apps and web platforms —{" "}
-              <strong>
-                not as a hobby, but as a{" "}
-                <GlossWord
-                  word="mission"
-                  def="A goal so important it changes how you write every single line of code."
-                />
-                .
-              </strong>{" "}
-              Spindare exists because my family needs it to succeed. That
-              changes how you write code.
-              <br />
-              <br />
-              I&apos;m the UI/UX lead on a 3-person team. I work with{" "}
-              <span className="accent">React Native, TypeScript, Supabase</span>
-              , and whatever else the problem needs. I learn by{" "}
-              <GlossWord
-                word="shipping"
-                def="The only real way to learn. Build it, put it in users' hands, and face the feedback."
-              />{" "}
-              — not by watching tutorials.
-            </p>
-          </FadeUp>
+      {/* ── Hero ── */}
+      <section className="hero-section">
+        <div className="hero-grid-accent" aria-hidden="true" />
+        <div className="section-inner hero-inner">
+          <p className="section-badge">{t.home.hero.badge}</p>
+          <h1 className="hero-headline">
+            <span className="hero-h1">{t.home.hero.h1}</span>
+            <span className="hero-h2 accent-text">{t.home.hero.h2}</span>
+          </h1>
+          <p className="hero-sub">{t.home.hero.sub}</p>
+          <div className="hero-actions">
+            <Link href="/services" className="btn-primary">
+              {t.home.hero.cta1} <ArrowRight size={15} />
+            </Link>
+            <Link href="/portfolio" className="btn-secondary">
+              {t.home.hero.cta2}
+            </Link>
+          </div>
+        </div>
+        <div className="hero-scroll-hint" aria-hidden="true">
+          <span />
         </div>
       </section>
 
-      <div className="divider" />
-
-      <section id="projects">
+      {/* ── Services Overview ── */}
+      <section className="section-padded">
         <div className="section-inner">
-          <p className="section-label">Projects</p>
-          <div className="projects-list">
-            <FadeUp delay={0}>
-              <div
-                className="project-item"
-                onClick={() => window.open("https://github.com/biba-work/spindare", "_blank")}
-              >
-                <div>
-                  <div className="project-header">
-                    <span className="project-name">Spindare</span>
-                    <span className="project-badge">In Development</span>
+          <p className="section-label">{t.home.services.label}</p>
+          <h2 className="section-title">{t.home.services.title}</h2>
+          <p className="section-sub">{t.home.services.sub}</p>
+          <div className="services-overview-grid">
+            {t.home.services.items.map((item, i) => {
+              const Icon = serviceIcons[i];
+              return (
+                <div className="service-overview-card" key={item.name}>
+                  <div className="service-overview-icon">
+                    <Icon size={20} />
                   </div>
-                  <p className="project-desc">
-                    A daily challenge social app. Spin a wheel, get a challenge
-                    from 200+ curated picks, complete it, share it with friends.
-                    Think TikTok-style feed meets real-world{" "}
-                    <GlossWord
-                      word="accountability"
-                      def="You said you'd do the challenge. Your friends are watching. No hiding."
-                    />
-                    . 300+ components, 150k+ lines of code. iOS launch September
-                    2026.
-                  </p>
-                  <div className="project-stack">
-                    <span className="stack-tag">React Native</span>
-                    <span className="stack-tag">TypeScript</span>
-                    <span className="stack-tag">Supabase</span>
-                    <span className="stack-tag">Clerk</span>
-                    <span className="stack-tag">Stream Chat</span>
-                    <span className="stack-tag">Expo</span>
-                  </div>
+                  <h3 className="service-overview-name">{item.name}</h3>
+                  <p className="service-overview-desc">{item.desc}</p>
                 </div>
-                <div className="project-meta">
-                  <a
-                    href="https://github.com/biba-work/spindare"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-github"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    GitHub ↗
-                  </a>
-                  <span className="project-stat">300+ components</span>
-                  <span className="project-stat">150k+ lines</span>
-                  <span className="project-stat">3-person team</span>
-                </div>
-              </div>
-            </FadeUp>
-
-            <FadeUp delay={0.1}>
-              <div
-                className="project-item"
-                onClick={() => window.open("https://github.com/rashica07/booking-fallc", "_blank")}
-              >
-                <div>
-                  <div className="project-header">
-                    <span className="project-name">TravelMe</span>
-                    <span className="project-badge soon">Coming Soon</span>
-                  </div>
-                  <p className="project-desc">
-                    Describe your trip in plain language — TravelMe generates
-                    the full itinerary: flights, hotels, experiences, day-by-day
-                    plan. No more switching between 10 apps. AI-powered, built{" "}
-                    <GlossWord
-                      word="solo"
-                      def="No team. No co-founder. Just me, the problem, and the code."
-                    />{" "}
-                    with React Native and Node.js.
-                  </p>
-                  <div className="project-stack">
-                    <span className="stack-tag">React Native</span>
-                    <span className="stack-tag">TypeScript</span>
-                    <span className="stack-tag">OpenAI API</span>
-                    <span className="stack-tag">Node.js</span>
-                    <span className="stack-tag">MongoDB</span>
-                  </div>
-                </div>
-                <div className="project-meta">
-                  <a
-                    href="https://github.com/rashica07/booking-fallc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-github"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    GitHub ↗
-                  </a>
-                  <span className="project-stat">Solo project</span>
-                </div>
-              </div>
-            </FadeUp>
+              );
+            })}
+          </div>
+          <div className="section-link-row">
+            <Link href="/services" className="section-link">
+              {t.common.viewAll} <ChevronRight size={14} />
+            </Link>
           </div>
         </div>
       </section>
 
       <div className="divider" />
 
-      <section id="stack">
+      {/* ── Featured Projects ── */}
+      <section className="section-padded">
         <div className="section-inner">
-          <p className="section-label">Stack</p>
-          <FadeUp>
-            <div className="stack-grid">
-              {[
-                ["TypeScript", "Language"],
-                ["React Native", "Mobile"],
-                ["Next.js", "Web"],
-                ["Supabase", "Backend"],
-                ["Expo", "Mobile"],
-                ["Tailwind", "Styling"],
-                ["PostgreSQL", "Database"],
-                ["Vercel", "Deploy"],
-                ["Clerk", "Auth"],
-                ["Node.js", "Runtime"],
-                ["Cloudflare", "Infra"],
-                ["Git", "Version Control"],
-              ].map(([name, type]) => (
-                <div
-                  key={name}
-                  className="stack-item"
-                >
-                  <span className="stack-item-name">{name}</span>
-                  <span className="stack-item-type">{type}</span>
-                </div>
-              ))}
-            </div>
-          </FadeUp>
-        </div>
-      </section>
-
-      <div className="divider" />
-
-      <section id="writing">
-        <div className="section-inner">
-          <p className="section-label">Writing</p>
-          <div className="blog-list">
-            {[
-              {
-                tag: "React Native",
-                title:
-                  "How I fixed a memory leak in FlatList that was crashing Spindare's social feed",
-                date: "Mar 28, 2026",
-              },
-              {
-                tag: "Architecture",
-                title:
-                  "Why I rebuilt Spindare's authentication flow in 48 hours — and why I don't regret it",
-                date: "Mar 14, 2026",
-              },
-              {
-                tag: "Backend",
-                title:
-                  "Supabase Realtime vs Firebase for social feeds: what I found after stress-testing both",
-                date: "Feb 22, 2026",
-              },
-            ].map((post, i) => (
-              <FadeUp key={post.title} delay={i * 0.08}>
-                <div className="blog-item">
-                  <div>
-                    <p className="blog-tag">{post.tag}</p>
-                    <p className="blog-title">{post.title}</p>
-                  </div>
-                  <span className="blog-date">{post.date}</span>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="divider" />
-
-      <section id="contact">
-        <div className="section-inner">
-          <p className="section-label">Contact</p>
-
-          <div className="contact-grid">
-            {[
-              {
-                href: "https://discord.com/users/kodibkfg",
-                label: "Discord",
-                value: "@kodibkfg",
-              },
-              {
-                href: "mailto:newkiqaa@gmail.com",
-                label: "Email",
-                value: "newkiqaa@gmail.com",
-              },
-              {
-                href: "https://github.com/rashica07",
-                label: "GitHub",
-                value: "github.com/rashica07",
-              },
-              {
-                href: "https://twitter.com/kristiangjergj4",
-                label: "Twitter",
-                value: "@kristiangjergj4",
-              },
-            ].map((item, i) => (
-              <FadeUp key={item.label} delay={i * 0.07}>
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="contact-item"
-                >
-                  <span className="contact-label">{item.label}</span>
-                  <span className="contact-value">{item.value}</span>
-                  <span className="contact-arrow">↗</span>
-                </a>
-              </FadeUp>
-            ))}
-          </div>
-
-          <FadeUp delay={0.12}>
-            <div className="contact-form-wrap">
-              {status === "sent" ? (
-                <div className="contact-form-success">
-                  <p className="contact-form-success-title">Message sent.</p>
-                  <p className="contact-form-success-sub">
-                    I&apos;ll get back to you as soon as possible.
-                  </p>
-                  <button
-                    className="contact-form-reset"
-                    onClick={() => {
-                      setStatus("idle");
-                      setForm({ name: "", email: "", message: "" });
-                    }}
-                  >
-                    Send another
-                  </button>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  noValidate
-                  className="contact-form"
-                >
-                  <div className="contact-form-row">
-                    <div className="contact-field">
-                      <label className="contact-field-label">Name</label>
-                      <input
-                        type="text"
-                        value={form.name}
-                        onChange={(e) =>
-                          setForm((p) => ({ ...p, name: e.target.value }))
-                        }
-                        placeholder="Your name"
-                        maxLength={100}
-                        className="contact-input"
-                        required
-                      />
-                    </div>
-                    <div className="contact-field">
-                      <label className="contact-field-label">Email</label>
-                      <input
-                        type="email"
-                        value={form.email}
-                        onChange={(e) =>
-                          setForm((p) => ({ ...p, email: e.target.value }))
-                        }
-                        placeholder="you@example.com"
-                        maxLength={200}
-                        className="contact-input"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="contact-field">
-                    <label className="contact-field-label">Message</label>
-                    <textarea
-                      value={form.message}
-                      onChange={(e) =>
-                        setForm((p) => ({ ...p, message: e.target.value }))
-                      }
-                      placeholder="Tell me about your project..."
-                      rows={5}
-                      maxLength={2000}
-                      className="contact-input contact-textarea"
-                      required
-                    />
-                    <span className="contact-char-count">
-                      {form.message.length}/2000
+          <p className="section-label">{t.home.featured.label}</p>
+          <h2 className="section-title">{t.home.featured.title}</h2>
+          <div className="featured-projects">
+            {featuredProjects.map((proj) => (
+              <div className="featured-card" key={proj.name}>
+                <div className="featured-card-top">
+                  <div className="featured-card-name-row">
+                    <span className="featured-card-name">{proj.name}</span>
+                    <span className={`project-status ${statusColors[proj.status]}`}>
+                      {t.portfolio.status[proj.status as keyof typeof t.portfolio.status]}
                     </span>
                   </div>
-                  {error && <p className="contact-error">{error}</p>}
-                  <button
-                    type="submit"
-                    disabled={status === "sending"}
-                    className="btn-primary contact-submit"
+                  <p className="featured-card-year">{proj.year}</p>
+                  <p className="featured-card-desc">{proj.desc}</p>
+                </div>
+                <div className="featured-card-stack">
+                  {proj.stack.map((s) => (
+                    <span className="stack-tag" key={s}>{s}</span>
+                  ))}
+                </div>
+                {proj.link && proj.link !== "/" && (
+                  <a
+                    href={proj.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="featured-card-link"
                   >
-                    {status === "sending" ? "Sending..." : "Send Message"}
-                  </button>
-                </form>
-              )}
-            </div>
-          </FadeUp>
+                    GitHub <ArrowRight size={13} />
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="section-link-row">
+            <Link href="/portfolio" className="section-link">
+              {t.common.viewAll} <ChevronRight size={14} />
+            </Link>
+          </div>
         </div>
       </section>
 
-      <footer>
-        <span className="footer-left">
-          kiq<span>.</span>dev — Kristian Gjergji
-        </span>
-        <span className="footer-right">Next.js + TypeScript ⚡</span>
-      </footer>
+      <div className="divider" />
+
+      {/* ── Stats ── */}
+      <section className="section-padded">
+        <div className="section-inner">
+          <p className="section-label">{t.home.stats.label}</p>
+          <div className="stats-row">
+            {t.home.stats.items.map((s) => (
+              <div className="stat-card" key={s.label}>
+                <span className="stat-value">{s.value}</span>
+                <span className="stat-label">{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="divider" />
+
+      {/* ── CTA ── */}
+      <section className="section-padded cta-section">
+        <div className="section-inner cta-inner">
+          <h2 className="cta-title">{t.home.cta.title}</h2>
+          <p className="cta-sub">{t.home.cta.sub}</p>
+          <Link href="/contact" className="btn-primary btn-large">
+            {t.home.cta.button} <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,61 +1,120 @@
 "use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { useLanguage, Lang } from "@/lib/i18n";
 
-export default function Nav({ heroActionsRef }: { heroActionsRef: React.RefObject<HTMLDivElement | null> }) {
-  const [visible, setVisible] = useState(false);
+const LANGS: { code: Lang; label: string }[] = [
+  { code: "en", label: "EN" },
+  { code: "de", label: "DE" },
+  { code: "it", label: "IT" },
+  { code: "sq", label: "SQ" },
+];
+
+export default function Nav() {
+  const { t, lang, setLang } = useLanguage();
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    function onScroll() {
-      if (!heroActionsRef.current) {
-        setVisible(window.scrollY > 80);
-        return;
-      }
-      const rect = heroActionsRef.current.getBoundingClientRect();
-      setVisible(rect.bottom < 0);
-    }
+    const handler = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [heroActionsRef]);
+  useEffect(() => { setOpen(false); }, [pathname]);
+
+  const navLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/services", label: t.nav.services },
+    { href: "/portfolio", label: t.nav.portfolio },
+    { href: "/blog", label: t.nav.blog },
+    { href: "/about", label: t.nav.about },
+    { href: "/contact", label: t.nav.contact },
+  ];
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.nav
-          key="nav"
-          initial={{ y: -64, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -64, opacity: 1 }}
-          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-          style={{
-            position: "fixed",
-            top: 0, left: 0, right: 0,
-            zIndex: 100,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "0 40px",
-            height: "56px",
-            borderBottom: "1px solid var(--border)",
-            background: "rgba(8,8,8,0.90)",
-            backdropFilter: "blur(12px)",
-          }}
-        >
-          <a href="/" className="nav-logo">kiq<span>.</span>dev</a>
-          <ul className="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#stack">Stack</a></li>
-            <li><a href="#writing">Writing</a></li>
-            <li><Link href="/dev-hub">Dev Hub</Link></li>
-            <li><a href="#contact" className="nav-cta">Hire Me</a></li>
-          </ul>
-        </motion.nav>
+    <>
+      <header className={`site-nav${scrolled ? " site-nav--scrolled" : ""}`}>
+        <div className="site-nav-inner">
+          <Link href="/" className="site-nav-logo">
+            KIQA<span className="accent-text">.</span>DEV
+          </Link>
+
+          <nav className="site-nav-links" aria-label="Main navigation">
+            {navLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={`site-nav-link${isActive(l.href) ? " site-nav-link--active" : ""}`}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="site-nav-right">
+            <div className="lang-switcher" role="group" aria-label="Language selector">
+              {LANGS.map((l) => (
+                <button
+                  key={l.code}
+                  className={`lang-btn${lang === l.code ? " lang-btn--active" : ""}`}
+                  onClick={() => setLang(l.code)}
+                  aria-pressed={lang === l.code}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
+            <Link href="/contact" className="nav-quote-btn">
+              {t.nav.quote}
+            </Link>
+            <button
+              className="nav-hamburger"
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle menu"
+              aria-expanded={open}
+            >
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {open && (
+        <div className="mobile-drawer" role="dialog" aria-label="Mobile navigation">
+          <nav className="mobile-drawer-links">
+            {navLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={`mobile-drawer-link${isActive(l.href) ? " mobile-drawer-link--active" : ""}`}
+              >
+                {l.label}
+              </Link>
+            ))}
+            <Link href="/contact" className="mobile-drawer-cta">
+              {t.nav.quote}
+            </Link>
+          </nav>
+          <div className="mobile-drawer-langs">
+            {LANGS.map((l) => (
+              <button
+                key={l.code}
+                className={`lang-btn${lang === l.code ? " lang-btn--active" : ""}`}
+                onClick={() => setLang(l.code)}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

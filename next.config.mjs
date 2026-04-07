@@ -17,6 +17,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https:",
       "connect-src 'self' https: https://api.web3forms.com",
+      "frame-src https://www.google.com https://maps.google.com https://maps.googleapis.com",
       "frame-ancestors 'none'",
     ].join("; "),
   },
