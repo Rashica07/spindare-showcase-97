@@ -1,5 +1,17 @@
 import type { Metadata } from "next";
+import { GeistMono } from "geist/font/mono";
+import { DM_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Kristian Gjergji — Developer",
@@ -21,9 +33,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${GeistMono.variable} ${dmSans.variable}`}
+      suppressHydrationWarning
+    >
       <head />
-      <body>{children}</body>
+      <body>{children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
