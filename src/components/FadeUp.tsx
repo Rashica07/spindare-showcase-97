@@ -1,30 +1,41 @@
 "use client";
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { useEffect, useRef, CSSProperties, ReactNode } from "react";
 
-const ease = [0.16, 1, 0.3, 1] as const;
+function useFadeIn(rootMargin = "-30px") {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("visible");
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.06, rootMargin }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [rootMargin]);
+  return ref;
+}
 
 export function FadeUp({
   children,
   delay = 0,
   className,
-  y = 28,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
-  y?: number;
 }) {
+  const ref = useFadeIn();
+  const style: CSSProperties = delay ? { transitionDelay: `${delay}s` } : {};
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay, ease }}
-    >
+    <div ref={ref} className={`fade-up${className ? ` ${className}` : ""}`} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -37,15 +48,11 @@ export function FadeIn({
   delay?: number;
   className?: string;
 }) {
+  const ref = useFadeIn("-10px");
+  const style: CSSProperties = delay ? { transitionDelay: `${delay}s` } : {};
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay, ease }}
-    >
+    <div ref={ref} className={`fade-up${className ? ` ${className}` : ""}`} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }

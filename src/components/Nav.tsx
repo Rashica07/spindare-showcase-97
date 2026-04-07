@@ -3,7 +3,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage, Lang } from "@/lib/i18n";
 
 const LANGS: { code: Lang; label: string }[] = [
@@ -12,20 +11,6 @@ const LANGS: { code: Lang; label: string }[] = [
   { code: "it", label: "IT" },
   { code: "sq", label: "SQ" },
 ];
-
-const drawerVariants = {
-  hidden: { opacity: 0, y: -12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] as const } },
-  exit: { opacity: 0, y: -8, transition: { duration: 0.16, ease: "easeIn" } },
-};
-
-const linkVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: (i: number) => ({
-    opacity: 1, x: 0,
-    transition: { delay: i * 0.04 + 0.06, duration: 0.22, ease: [0.16, 1, 0.3, 1] as const },
-  }),
-};
 
 export default function Nav() {
   const { t, lang, setLang } = useLanguage();
@@ -89,78 +74,48 @@ export default function Nav() {
             <Link href="/contact" className="nav-quote-btn">
               {t.nav.quote}
             </Link>
-            <motion.button
-              className="nav-hamburger"
+            <button
+              className={`nav-hamburger${open ? " nav-hamburger--open" : ""}`}
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
               aria-expanded={open}
-              whileTap={{ scale: 0.88 }}
-              transition={{ duration: 0.12 }}
             >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={open ? "close" : "open"}
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                  style={{ display: "flex" }}
-                >
-                  {open ? <X size={20} /> : <Menu size={20} />}
-                </motion.span>
-              </AnimatePresence>
-            </motion.button>
+              <span className="hamburger-icon hamburger-icon--menu"><Menu size={20} /></span>
+              <span className="hamburger-icon hamburger-icon--close"><X size={20} /></span>
+            </button>
           </div>
         </div>
       </header>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="mobile-drawer"
-            role="dialog"
-            aria-label="Mobile navigation"
-            variants={drawerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            <nav className="mobile-drawer-links">
-              {navLinks.map((l, i) => (
-                <motion.div key={l.href} custom={i} variants={linkVariants} initial="hidden" animate="visible">
-                  <Link
-                    href={l.href}
-                    className={`mobile-drawer-link${isActive(l.href) ? " mobile-drawer-link--active" : ""}`}
-                  >
-                    {l.label}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div custom={navLinks.length} variants={linkVariants} initial="hidden" animate="visible">
-                <Link href="/contact" className="mobile-drawer-cta">
-                  {t.nav.quote}
-                </Link>
-              </motion.div>
-            </nav>
-            <motion.div
-              className="mobile-drawer-langs"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.24 }}
-            >
-              {LANGS.map((l) => (
-                <button
-                  key={l.code}
-                  className={`lang-btn${lang === l.code ? " lang-btn--active" : ""}`}
-                  onClick={() => setLang(l.code)}
-                >
-                  {l.label}
-                </button>
-              ))}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {open && (
+        <div className="mobile-drawer" role="dialog" aria-label="Mobile navigation">
+          <nav className="mobile-drawer-links">
+            {navLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={`mobile-drawer-link${isActive(l.href) ? " mobile-drawer-link--active" : ""}`}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+          <Link href="/contact" className="mobile-drawer-cta">
+            {t.nav.quote}
+          </Link>
+          <div className="mobile-drawer-langs">
+            {LANGS.map((l) => (
+              <button
+                key={l.code}
+                className={`lang-btn${lang === l.code ? " lang-btn--active" : ""}`}
+                onClick={() => setLang(l.code)}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 }
