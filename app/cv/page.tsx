@@ -1,7 +1,9 @@
 "use client";
 import { useRef, useState } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 export default function CVPage() {
+  const { t } = useLanguage();
   const docRef = useRef<HTMLDivElement>(null);
   const [generating, setGenerating] = useState(false);
 
