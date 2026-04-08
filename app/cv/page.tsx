@@ -4,6 +4,7 @@ import { useLanguage } from "@/lib/i18n";
 
 export default function CVPage() {
   const { t } = useLanguage();
+  const cv = t.cv;
   const docRef = useRef<HTMLDivElement>(null);
   const [generating, setGenerating] = useState(false);
 
@@ -43,12 +44,12 @@ export default function CVPage() {
   return (
     <div className="cv-page">
       <div className="cv-print-bar">
-        <span className="cv-print-hint">{t.cv.note}</span>
+        <span className="cv-print-hint">{cv.note}</span>
         <button className="cv-print-btn cv-print-btn--accent" onClick={handleSavePDF} disabled={generating}>
-          {generating ? t.cv.generating : t.cv.savePdf}
+          {generating ? cv.generating : cv.savePdf}
         </button>
         <button className="cv-print-btn" onClick={() => window.print()}>
-          {t.cv.printCv}
+          {cv.printCv}
         </button>
       </div>
 
@@ -56,91 +57,70 @@ export default function CVPage() {
         <div className="cv-header">
           <div>
             <h1 className="cv-name">Kristian Gjergji</h1>
-            <p className="cv-title-line">Full-Stack Developer · Product Designer · Mobile Engineer</p>
+            <p className="cv-title-line">{cv.titleLine}</p>
           </div>
           <div className="cv-contact-block">
             <a href="mailto:contact@kiqa-dev.it">contact@kiqa-dev.it</a>
             <a href="https://github.com/rashica07" target="_blank" rel="noopener noreferrer">github.com/rashica07</a>
             <a href="https://kiqa-dev.it" target="_blank" rel="noopener noreferrer">kiqa-dev.it</a>
-            <span>Lecco, Italy · Remote-friendly</span>
+            <span>{cv.location}</span>
           </div>
         </div>
 
         <div className="cv-divider" />
 
         <section className="cv-section">
-          <h2 className="cv-section-title">{t.cv.summary}</h2>
-          <p className="cv-body-text">
-            Self-employed developer specializing in mobile-first applications and full-stack
-            development. Currently leading UI/UX development for Spindare, a social gamification
-            platform with 300+ components and production-grade architecture. Passionate about
-            shipping clean, performant products that solve real problems. Open to select freelance
-            projects starting June 2026.
-          </p>
+          <h2 className="cv-section-title">{cv.summary}</h2>
+          <p className="cv-body-text">{cv.summaryText}</p>
         </section>
 
         <section className="cv-section">
-          <h2 className="cv-section-title">{t.cv.experience}</h2>
+          <h2 className="cv-section-title">{cv.experience}</h2>
 
           <div className="cv-exp-item">
             <div className="cv-exp-top">
               <div>
-                <p className="cv-exp-role">Co-Founder &amp; Lead UI/UX Developer</p>
+                <p className="cv-exp-role">{cv.exp.spindare.role}</p>
                 <p className="cv-exp-company">Spindare</p>
               </div>
-              <span className="cv-exp-date">Jan 2025 – Present · Remote</span>
+              <span className="cv-exp-date">{cv.exp.spindare.date}</span>
             </div>
             <ul className="cv-bullets">
-              <li>Architected a 300+ component library and full design system for a React Native application from scratch</li>
-              <li>Built 300+ TypeScript components with comprehensive type safety across iOS and Android platforms</li>
-              <li>Implemented real-time social feed with Supabase Realtime subscriptions and offline-first architecture</li>
-              <li>Integrated Stream Chat for production messaging with JWT authentication</li>
-              <li>Built custom authentication flow with Clerk integration and Supabase ban system</li>
-              <li>Reduced app bundle size by 40% through code-splitting optimization</li>
-              <li>Collaborated with cross-functional distributed team across Italy and Albania</li>
+              {cv.exp.spindare.bullets.map((b, i) => <li key={i}>{b}</li>)}
             </ul>
             <div className="cv-stats-row">
-              <span>300+ components</span>
-              <span>150,000+ lines of code</span>
-              <span>iOS launch Sep 2026</span>
+              {cv.exp.spindare.stats.map((s, i) => <span key={i}>{s}</span>)}
             </div>
           </div>
 
           <div className="cv-exp-item">
             <div className="cv-exp-top">
               <div>
-                <p className="cv-exp-role">Self-Employed Developer</p>
+                <p className="cv-exp-role">{cv.exp.kiqa.role}</p>
                 <p className="cv-exp-company">KIQA DEV — kiqa-dev.it</p>
               </div>
-              <span className="cv-exp-date">2024 – Present · Italy</span>
+              <span className="cv-exp-date">{cv.exp.kiqa.date}</span>
             </div>
             <ul className="cv-bullets">
-              <li>Full-stack development services focusing on React Native mobile apps and Next.js web platforms</li>
-              <li>End-to-end delivery: architecture, UI/UX design, development, deployment, and maintenance</li>
-              <li>Mobile app development for iOS and Android; web application development</li>
-              <li>Database architecture, cloud infrastructure setup, and performance optimization</li>
+              {cv.exp.kiqa.bullets.map((b, i) => <li key={i}>{b}</li>)}
             </ul>
           </div>
         </section>
 
         <section className="cv-section">
-          <h2 className="cv-section-title">{t.cv.projects}</h2>
+          <h2 className="cv-section-title">{cv.projects}</h2>
 
           <div className="cv-exp-item">
             <div className="cv-exp-top">
               <p className="cv-exp-role">
                 Spindare
-                <span className="cv-project-tag">In Development</span>
+                <span className="cv-project-tag">{cv.proj.inDev}</span>
               </p>
               <a href="https://spindare.it" className="cv-project-link" target="_blank" rel="noopener noreferrer">spindare.it ↗</a>
             </div>
-            <p className="cv-body-text">
-              Social gamification platform — users spin a wheel for daily challenges, complete them, and share with
-              friends. Built for iOS and Android with real-time social feed, 200+ curated challenges, offline-first
-              architecture, and production-grade messaging.
-            </p>
+            <p className="cv-body-text">{cv.proj.spindare.desc}</p>
             <p className="cv-body-text" style={{ marginTop: 8 }}>
-              <strong style={{ color: "var(--text)", fontWeight: 500 }}>Stack:</strong>{" "}
+              <strong style={{ color: "var(--text)", fontWeight: 500 }}>{cv.proj.stack}:</strong>{" "}
               React Native, Expo, TypeScript, Supabase, PostgreSQL, Clerk, Stream Chat, Backblaze B2, Vercel, Cloudflare
             </p>
           </div>
@@ -149,31 +129,24 @@ export default function CVPage() {
             <div className="cv-exp-top">
               <p className="cv-exp-role">
                 Custom Gaming Console
-                <span className="cv-project-tag">Hardware</span>
+                <span className="cv-project-tag">{cv.proj.hardware}</span>
               </p>
               <span className="cv-exp-date">2024</span>
             </div>
-            <p className="cv-body-text">
-              Engineered a high-performance custom gaming console combining hardware expertise with system-level
-              optimization. Custom APU architecture, 32GB unified RAM, 10TB storage, titanium/aluminum composite
-              chassis with liquid metal cooling. Multi-platform compatibility across PS1/2/3/5 and PC.
-            </p>
+            <p className="cv-body-text">{cv.proj.console.desc}</p>
           </div>
 
           <div className="cv-exp-item">
             <div className="cv-exp-top">
               <p className="cv-exp-role">
                 Developer Portfolio
-                <span className="cv-project-tag">Web</span>
+                <span className="cv-project-tag">{cv.proj.web}</span>
               </p>
               <a href="https://kiqa-dev.it" className="cv-project-link" target="_blank" rel="noopener noreferrer">kiqa-dev.it ↗</a>
             </div>
-            <p className="cv-body-text">
-              Professional portfolio showcasing development work and services. Multi-page Next.js site with 4-language
-              support, SEO optimization, and Cloudflare CDN delivery.
-            </p>
+            <p className="cv-body-text">{cv.proj.portfolio.desc}</p>
             <p className="cv-body-text" style={{ marginTop: 8 }}>
-              <strong style={{ color: "var(--text)", fontWeight: 500 }}>Stack:</strong>{" "}
+              <strong style={{ color: "var(--text)", fontWeight: 500 }}>{cv.proj.stack}:</strong>{" "}
               React, Next.js, TypeScript, Tailwind CSS, Vercel
             </p>
           </div>
@@ -182,79 +155,71 @@ export default function CVPage() {
             <div className="cv-exp-top">
               <p className="cv-exp-role">
                 TravelMe
-                <span className="cv-project-tag soon">Coming Soon</span>
+                <span className="cv-project-tag soon">{cv.proj.soon}</span>
               </p>
             </div>
-            <p className="cv-body-text">
-              AI travel planner — describe your trip in plain language, get a full itinerary with flights, hotels, and
-              day-by-day plan.
-            </p>
+            <p className="cv-body-text">{cv.proj.travel.desc}</p>
             <p className="cv-body-text" style={{ marginTop: 8 }}>
-              <strong style={{ color: "var(--text)", fontWeight: 500 }}>Stack:</strong>{" "}
+              <strong style={{ color: "var(--text)", fontWeight: 500 }}>{cv.proj.stack}:</strong>{" "}
               React Native, TypeScript, OpenAI API, Node.js, MongoDB, Stripe
             </p>
           </div>
         </section>
 
         <section className="cv-section">
-          <h2 className="cv-section-title">{t.cv.skills}</h2>
+          <h2 className="cv-section-title">{cv.skills}</h2>
           <div className="cv-two-col">
             <div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Expert</p>
+                <p className="cv-skill-label">{cv.skillLabels.expert}</p>
                 <p className="cv-skill-list">TypeScript, JavaScript, React, React Native</p>
               </div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Proficient</p>
+                <p className="cv-skill-label">{cv.skillLabels.proficient}</p>
                 <p className="cv-skill-list">Python, Bash, HTML5, CSS3, SQL</p>
               </div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Mobile / Frontend</p>
+                <p className="cv-skill-label">{cv.skillLabels.mobileFront}</p>
                 <p className="cv-skill-list">React Native, Expo, Next.js, Tailwind CSS, Responsive design, Component architecture</p>
               </div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Backend &amp; Database</p>
+                <p className="cv-skill-label">{cv.skillLabels.backendDb}</p>
                 <p className="cv-skill-list">Supabase, PostgreSQL, Node.js, REST APIs, Real-time sync, Serverless functions</p>
               </div>
             </div>
             <div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Infrastructure &amp; Tools</p>
+                <p className="cv-skill-label">{cv.skillLabels.infra}</p>
                 <p className="cv-skill-list">Git, Vercel, Cloudflare, Figma, EAS Build, Claude Code</p>
               </div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Services &amp; APIs</p>
+                <p className="cv-skill-label">{cv.skillLabels.services}</p>
                 <p className="cv-skill-list">Clerk, Stream Chat, Backblaze B2, Stripe, OpenAI API, Supabase Auth</p>
               </div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Languages Spoken</p>
-                <p className="cv-skill-list">Albanian (Native) · English (Fluent) · Italian (Intermediate) · German (Basic)</p>
+                <p className="cv-skill-label">{cv.skillLabels.spoken}</p>
+                <p className="cv-skill-list">{cv.skillLabels.spokenValue}</p>
               </div>
               <div className="cv-skill-group" style={{ marginTop: 16 }}>
-                <p className="cv-skill-label">Development Practices</p>
-                <p className="cv-skill-list">Agile, component-driven development, type-safe programming, mobile-first design, performance optimization</p>
+                <p className="cv-skill-label">{cv.skillLabels.practices}</p>
+                <p className="cv-skill-list">{cv.skillLabels.practicesValue}</p>
               </div>
             </div>
           </div>
         </section>
 
         <section className="cv-section">
-          <h2 className="cv-section-title">{t.cv.education}</h2>
+          <h2 className="cv-section-title">{cv.education}</h2>
           <div className="cv-exp-item">
             <div className="cv-exp-top">
               <div>
-                <p className="cv-exp-role">Self-Taught Developer</p>
+                <p className="cv-exp-role">{cv.edu.role}</p>
               </div>
               <span className="cv-exp-date">2022 – Present</span>
             </div>
-            <p className="cv-body-text">
-              Intensive self-directed learning focused on modern web and mobile development.
-              Progressed from frontend fundamentals to production-grade full-stack applications.
-            </p>
+            <p className="cv-body-text">{cv.edu.desc}</p>
             <ul className="cv-bullets" style={{ marginTop: 8 }}>
-              <li>Frontend: HTML/CSS → JavaScript → React → React Native → TypeScript</li>
-              <li>Backend: REST APIs → PostgreSQL → Supabase → Serverless edge computing</li>
-              <li>Infrastructure: Git → CI/CD → Cloud deployment → Production monitoring</li>
+              {cv.edu.bullets.map((b, i) => <li key={i}>{b}</li>)}
             </ul>
           </div>
         </section>
@@ -262,45 +227,43 @@ export default function CVPage() {
         <div className="cv-divider" />
 
         <section className="cv-section cv-onepage">
-          <h2 className="cv-section-title">{t.cv.onePage}</h2>
-          <p className="cv-body-text cv-onepage-tagline">
-            Self-employed developer building production-grade applications with modern tech stacks.
-          </p>
+          <h2 className="cv-section-title">{cv.onePage}</h2>
+          <p className="cv-body-text cv-onepage-tagline">{cv.oneP.tagline}</p>
 
           <div className="cv-two-col" style={{ marginTop: 20 }}>
             <div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Languages</p>
+                <p className="cv-skill-label">{cv.oneP.langs}</p>
                 <p className="cv-skill-list">TypeScript, JavaScript, Python</p>
               </div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Frontend</p>
+                <p className="cv-skill-label">{cv.oneP.frontend}</p>
                 <p className="cv-skill-list">React Native, React, Next.js, Tailwind CSS</p>
               </div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Backend</p>
+                <p className="cv-skill-label">{cv.oneP.backend}</p>
                 <p className="cv-skill-list">Supabase, PostgreSQL, Serverless</p>
               </div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Tools</p>
+                <p className="cv-skill-label">{cv.oneP.tools}</p>
                 <p className="cv-skill-list">Git, Vercel, Cloudflare, Figma, Claude Code</p>
               </div>
             </div>
             <div>
               <div className="cv-skill-group">
-                <p className="cv-skill-label">Experience</p>
+                <p className="cv-skill-label">{cv.oneP.expLabel}</p>
                 <ul className="cv-bullets" style={{ paddingLeft: 14 }}>
-                  <li><strong style={{ color: "var(--text)", fontWeight: 500 }}>Spindare</strong> (2025–Present) — Lead UI/UX for social mobile app</li>
-                  <li><strong style={{ color: "var(--text)", fontWeight: 500 }}>Freelance</strong> (2024–Present) — Full-stack development services</li>
-                  <li><strong style={{ color: "var(--text)", fontWeight: 500 }}>Self-taught</strong> (2022–Present) — Intensive programming education</li>
+                  <li><strong style={{ color: "var(--text)", fontWeight: 500 }}>Spindare</strong> (2025–Present) — {cv.oneP.spindareExp}</li>
+                  <li><strong style={{ color: "var(--text)", fontWeight: 500 }}>{cv.oneP.freelance}</strong> (2024–Present) — {cv.oneP.freelanceExp}</li>
+                  <li><strong style={{ color: "var(--text)", fontWeight: 500 }}>{cv.oneP.selfTaught}</strong> (2022–Present) — {cv.oneP.selfTaughtExp}</li>
                 </ul>
               </div>
               <div className="cv-skill-group" style={{ marginTop: 16 }}>
-                <p className="cv-skill-label">Approach</p>
-                <p className="cv-skill-list" style={{ fontStyle: "italic" }}>Ship fast. Iterate constantly. Build things people use.</p>
+                <p className="cv-skill-label">{cv.oneP.approach}</p>
+                <p className="cv-skill-list" style={{ fontStyle: "italic" }}>{cv.oneP.approachValue}</p>
               </div>
               <div className="cv-skill-group" style={{ marginTop: 16 }}>
-                <p className="cv-skill-label">Contact</p>
+                <p className="cv-skill-label">{cv.oneP.contact}</p>
                 <p className="cv-skill-list">
                   <a href="mailto:contact@kiqa-dev.it" style={{ color: "var(--accent)", textDecoration: "none" }}>contact@kiqa-dev.it</a>
                   {" · "}
