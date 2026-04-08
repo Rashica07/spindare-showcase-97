@@ -200,7 +200,7 @@ const en = {
     bio: {
       title: "About",
       p1: "Self-employed developer specializing in mobile-first applications and full-stack development. Passionate about building products that people actually use and iterating until they work.",
-      p2: "Currently leading UI/UX development for Spindare, a social gamification platform with 300+ components and 40,000+ lines of production code. I believe in shipping fast, solving real problems through technology, and writing code that's maintainable at scale.",
+      p2: "Currently leading UI/UX development for Spindare, a social gamification platform with 300+ components and 150,000+ lines of production code. I believe in shipping fast, solving real problems through technology, and writing code that's maintainable at scale.",
       p3: "At KIQA DEV I offer end-to-end development services — from architecture and design to deployment and ongoing maintenance. Open to select freelance projects starting June 2026.",
     },
     skills: {
@@ -227,7 +227,7 @@ const en = {
     experience: {
       title: "Experience",
       items: [
-        { year: "2025–Now", role: "Co-Founder & Lead UI/UX Developer — Spindare", desc: "Leading all frontend and mobile development on a distributed team. 300+ components, 40k+ lines of React Native TypeScript." },
+        { year: "2025–Now", role: "Co-Founder & Lead UI/UX Developer — Spindare", desc: "Leading all frontend and mobile development on a distributed team. 300+ components, 150k+ lines of React Native TypeScript." },
         { year: "2024–Now", role: "Self-Employed Developer — KIQA DEV", desc: "Full-stack web and mobile development for clients. End-to-end delivery from architecture to deployment." },
         { year: "2025", role: "Hardware Engineering — Custom Gaming Console", desc: "Engineered a custom high-performance gaming console with custom APU, 32GB RAM, and titanium/aluminum chassis." },
         { year: "2022–Now", role: "Self-Taught Developer", desc: "Intensive self-directed learning from frontend fundamentals to production-grade full-stack applications." },

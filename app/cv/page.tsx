@@ -61,7 +61,7 @@ export default function CVPage() {
             </ul>
             <div className="cv-stats-row">
               <span>300+ components</span>
-              <span>40,000+ lines of code</span>
+              <span>150,000+ lines of code</span>
               <span>iOS launch Sep 2026</span>
             </div>
           </div>
@@ -216,6 +216,58 @@ export default function CVPage() {
               <li>Backend: REST APIs → PostgreSQL → Supabase → Serverless edge computing</li>
               <li>Infrastructure: Git → CI/CD → Cloud deployment → Production monitoring</li>
             </ul>
+          </div>
+        </section>
+
+        <div className="cv-divider" />
+
+        <section className="cv-section cv-onepage">
+          <h2 className="cv-section-title">One-Page Summary</h2>
+          <p className="cv-body-text cv-onepage-tagline">
+            Self-employed developer building production-grade applications with modern tech stacks.
+          </p>
+
+          <div className="cv-two-col" style={{ marginTop: 20 }}>
+            <div>
+              <div className="cv-skill-group">
+                <p className="cv-skill-label">Languages</p>
+                <p className="cv-skill-list">TypeScript, JavaScript, Python</p>
+              </div>
+              <div className="cv-skill-group">
+                <p className="cv-skill-label">Frontend</p>
+                <p className="cv-skill-list">React Native, React, Next.js, Tailwind CSS</p>
+              </div>
+              <div className="cv-skill-group">
+                <p className="cv-skill-label">Backend</p>
+                <p className="cv-skill-list">Supabase, PostgreSQL, Serverless</p>
+              </div>
+              <div className="cv-skill-group">
+                <p className="cv-skill-label">Tools</p>
+                <p className="cv-skill-list">Git, Vercel, Cloudflare, Figma, Claude Code</p>
+              </div>
+            </div>
+            <div>
+              <div className="cv-skill-group">
+                <p className="cv-skill-label">Experience</p>
+                <ul className="cv-bullets" style={{ paddingLeft: 14 }}>
+                  <li><strong style={{ color: "var(--text)", fontWeight: 500 }}>Spindare</strong> (2025–Present) — Lead UI/UX for social mobile app</li>
+                  <li><strong style={{ color: "var(--text)", fontWeight: 500 }}>Freelance</strong> (2024–Present) — Full-stack development services</li>
+                  <li><strong style={{ color: "var(--text)", fontWeight: 500 }}>Self-taught</strong> (2022–Present) — Intensive programming education</li>
+                </ul>
+              </div>
+              <div className="cv-skill-group" style={{ marginTop: 16 }}>
+                <p className="cv-skill-label">Approach</p>
+                <p className="cv-skill-list" style={{ fontStyle: "italic" }}>Ship fast. Iterate constantly. Build things people use.</p>
+              </div>
+              <div className="cv-skill-group" style={{ marginTop: 16 }}>
+                <p className="cv-skill-label">Contact</p>
+                <p className="cv-skill-list">
+                  <a href="mailto:contact@kiqa-dev.it" style={{ color: "var(--accent)", textDecoration: "none" }}>contact@kiqa-dev.it</a>
+                  {" · "}
+                  <a href="https://kiqa-dev.it" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", textDecoration: "none" }}>kiqa-dev.it</a>
+                </p>
+              </div>
+            </div>
           </div>
         </section>
       </div>

@@ -2129,6 +2129,12 @@ section, main, header, footer { position: relative; z-index: 1; }
   letter-spacing: 0.04em;
 }
 .cv-skill-group { margin-bottom: 10px; }
+.cv-onepage-tagline {
+  font-size: 15px;
+  font-style: italic;
+  color: var(--text-2);
+  margin-bottom: 4px;
+}
 .cv-skill-label {
   font-family: var(--mono);
   font-size: 11px;
