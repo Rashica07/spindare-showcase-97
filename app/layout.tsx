@@ -54,8 +54,12 @@ export const metadata: Metadata = {
     description: "Professional mobile app and web development services by Kristian Gjergji.",
   },
   icons: {
-    icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png" }],
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "512x512" }],
+    shortcut: "/favicon.ico",
   },
   verification: {
     google: "google-site-verification-token",
