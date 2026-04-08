@@ -1968,8 +1968,16 @@ section, main, header, footer { position: relative; z-index: 1; }
   margin: 0 auto;
   padding: 16px 48px;
   display: flex;
+  align-items: center;
   justify-content: flex-end;
   gap: 8px;
+}
+.cv-print-hint {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  margin-right: auto;
 }
 .cv-print-btn {
   font-family: var(--mono);

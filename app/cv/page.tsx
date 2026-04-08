@@ -4,16 +4,17 @@ export default function CVPage() {
   return (
     <div className="cv-page">
       <div className="cv-print-bar">
-        <a href="/cv.pdf" download className="cv-print-btn">
-          Download PDF
-        </a>
+        <span className="cv-print-hint">To download: print → Save as PDF</span>
+        <button className="cv-print-btn" onClick={() => window.print()}>
+          Save as PDF
+        </button>
         <button className="cv-print-btn" onClick={() => window.print()}>
           Print CV
         </button>
       </div>
 
       <div className="cv-doc">
-        <header className="cv-header">
+        <div className="cv-header">
           <div>
             <h1 className="cv-name">Kristian Gjergji</h1>
             <p className="cv-title-line">Full-Stack Developer · Product Designer · Mobile Engineer</p>
@@ -24,7 +25,7 @@ export default function CVPage() {
             <a href="https://kiqa-dev.it" target="_blank" rel="noopener noreferrer">kiqa-dev.it</a>
             <span>Lecco, Italy · Remote-friendly</span>
           </div>
-        </header>
+        </div>
 
         <div className="cv-divider" />
 
