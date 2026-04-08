@@ -4,11 +4,25 @@ export default function CVPage() {
   return (
     <div className="cv-page">
       <div className="cv-print-bar">
-        <span className="cv-print-hint">To download: print → Save as PDF</span>
-        <button className="cv-print-btn" onClick={() => window.print()}>
+        <span className="cv-print-hint">Save as PDF → choose &quot;Save as PDF&quot; in print dialog</span>
+        <button
+          className="cv-print-btn"
+          onClick={() => {
+            const w = window.open(window.location.href, "_blank");
+            if (w) { w.onload = () => { w.focus(); w.print(); }; }
+            else { window.print(); }
+          }}
+        >
           Save as PDF
         </button>
-        <button className="cv-print-btn" onClick={() => window.print()}>
+        <button
+          className="cv-print-btn"
+          onClick={() => {
+            const w = window.open(window.location.href, "_blank");
+            if (w) { w.onload = () => { w.focus(); w.print(); }; }
+            else { window.print(); }
+          }}
+        >
           Print CV
         </button>
       </div>

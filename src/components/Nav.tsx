@@ -18,11 +18,15 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const alwaysScrolled = pathname === "/cv";
+
   useEffect(() => {
+    if (alwaysScrolled) { setScrolled(true); return; }
     const handler = () => setScrolled(window.scrollY > 40);
+    handler();
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
-  }, []);
+  }, [alwaysScrolled]);
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
