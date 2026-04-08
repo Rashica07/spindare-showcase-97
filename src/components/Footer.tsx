@@ -39,7 +39,10 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <span className="footer-legal">{t.footer.legal}</span>
-        <span className="footer-built">{t.footer.built}</span>
+        <div className="footer-bottom-right">
+          <a href="/cv" className="footer-cv-link">CV</a>
+          <span className="footer-built">{t.footer.built}</span>
+        </div>
       </div>
     </footer>
   );

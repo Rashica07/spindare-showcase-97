@@ -166,6 +166,31 @@ export default function HomePage() {
 
       <div className="divider" />
 
+      {/* ── Testimonials ── */}
+      <section className="section-padded">
+        <div className="section-inner">
+          <FadeUp>
+            <p className="section-label">{t.home.testimonials.label}</p>
+            <h2 className="section-title">{t.home.testimonials.title}</h2>
+          </FadeUp>
+          <div className="testimonials-grid">
+            {t.home.testimonials.items.map((item, i) => (
+              <FadeUp key={item.name} delay={i * 0.08}>
+                <div className="testimonial-card">
+                  <p className="testimonial-quote">&ldquo;{item.quote}&rdquo;</p>
+                  <div className="testimonial-author">
+                    <span className="testimonial-name">{item.name}</span>
+                    <span className="testimonial-role">{item.role} · {item.location}</span>
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="divider" />
+
       {/* ── CTA ── */}
       <FadeUp>
         <section className="section-padded cta-section">

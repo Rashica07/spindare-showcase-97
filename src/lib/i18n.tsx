@@ -41,6 +41,30 @@ const en = {
       sub: "Tell me about your project and let's make it real.",
       button: "Start a conversation",
     },
+    testimonials: {
+      label: "Testimonials",
+      title: "What people say",
+      items: [
+        {
+          quote: "Kristian delivered our landing page in under a week. Clean code, zero revisions, and he communicated clearly throughout. Rare for any developer, let alone one this young.",
+          name: "Marco V.",
+          role: "Startup founder",
+          location: "Milan, Italy",
+        },
+        {
+          quote: "Working with Kiqa on the Spindare codebase has been impressive. He architects things properly from the start — the kind of discipline that usually takes years to develop.",
+          name: "Biba W.",
+          role: "Co-founder, Spindare",
+          location: "Kosovo",
+        },
+        {
+          quote: "He built a full booking and payments flow for my business in two weeks. Stripe integration, email notifications, everything. Agencies I've worked with couldn't match this.",
+          name: "Luca R.",
+          role: "Business owner",
+          location: "Lecco, Italy",
+        },
+      ],
+    },
   },
   services: {
     hero: {
@@ -297,6 +321,11 @@ const de: typeof en = {
       sub: "Erzähl mir von deinem Projekt — ich mache es Wirklichkeit.",
       button: "Gespräch starten",
     },
+    testimonials: {
+      label: "Referenzen",
+      title: "Was andere sagen",
+      items: en.home.testimonials.items,
+    },
   },
   services: {
     hero: {
@@ -476,6 +505,11 @@ const it: typeof en = {
       sub: "Raccontami del tuo progetto e lo realizziamo insieme.",
       button: "Inizia una conversazione",
     },
+    testimonials: {
+      label: "Testimonianze",
+      title: "Cosa dicono di me",
+      items: en.home.testimonials.items,
+    },
   },
   services: {
     hero: {
@@ -651,6 +685,11 @@ const sq: typeof en = {
       title: "Gati të ndërtoni diçka?",
       sub: "Tregomëni për projektin tuaj dhe le ta bëjmë real.",
       button: "Fillo bisedën",
+    },
+    testimonials: {
+      label: "Dëshmitë",
+      title: "Çfarë thonë të tjerët",
+      items: en.home.testimonials.items,
     },
   },
   services: {
