@@ -401,7 +401,36 @@ const de: typeof en = {
     },
     readMore: "Artikel lesen", minRead: "Min. Lesezeit",
     categories: ["Alle", "React Native", "Architektur", "Backend", "Design"],
-    posts: en.blog.posts,
+    posts: [
+      {
+        slug: "flatlist-memory-leak",
+        category: "React Native",
+        title: "Wie ich einen Memory Leak in FlatList behoben habe, der Spindares Social Feed zum Absturz brachte",
+        excerpt: "Ein Echtzeit-Feed mit 1.000+ Posts kam zum Stillstand. So habe ich den Leak gefunden und dauerhaft behoben.",
+        date: "28. Mär. 2026", read: 7,
+      },
+      {
+        slug: "auth-flow-48-hours",
+        category: "Architecture",
+        title: "Warum ich Spindares Authentifizierungsfluss in 48 Stunden neu gebaut habe — ohne Reue",
+        excerpt: "Das alte Auth-Setup funktionierte — bis es das nicht mehr tat. Eine ehrliche Analyse der Entscheidung, der Neuimplementierung und was ich anders machen würde.",
+        date: "14. Mär. 2026", read: 9,
+      },
+      {
+        slug: "supabase-vs-firebase",
+        category: "Backend",
+        title: "Supabase Realtime vs Firebase für Social Feeds: meine Erkenntnisse nach Stresstests beider Lösungen",
+        excerpt: "Ich brauchte einen Echtzeit-Feed für 10.000+ gleichzeitige Nutzer. Beide haben es versprochen. Nur eine hat geliefert.",
+        date: "22. Feb. 2026", read: 11,
+      },
+      {
+        slug: "react-native-design-system",
+        category: "Design",
+        title: "Ein Design System für eine React Native App mit 300 Komponenten aufbauen",
+        excerpt: "Wenn deine App 300 Komponenten und 3 Entwickler hat, sind Design Tokens keine Option. So haben wir unsere gebaut.",
+        date: "8. Feb. 2026", read: 8,
+      },
+    ],
   },
   about: {
     hero: {
@@ -596,7 +625,36 @@ const it: typeof en = {
     },
     readMore: "Leggi articolo", minRead: "min di lettura",
     categories: ["Tutti", "React Native", "Architettura", "Backend", "Design"],
-    posts: en.blog.posts,
+    posts: [
+      {
+        slug: "flatlist-memory-leak",
+        category: "React Native",
+        title: "Come ho risolto un memory leak in FlatList che mandava in crash il social feed di Spindare",
+        excerpt: "Un feed in tempo reale con 1.000+ post stava rallentando fino a bloccarsi. Ecco come ho individuato il leak e risolto il problema definitivamente.",
+        date: "28 mar 2026", read: 7,
+      },
+      {
+        slug: "auth-flow-48-hours",
+        category: "Architecture",
+        title: "Perché ho riscritto il flusso di autenticazione di Spindare in 48 ore — senza rimpianti",
+        excerpt: "Il vecchio setup di autenticazione funzionava bene — finché non ha smesso. Un'analisi onesta della decisione, della riscrittura e di cosa farei diversamente.",
+        date: "14 mar 2026", read: 9,
+      },
+      {
+        slug: "supabase-vs-firebase",
+        category: "Backend",
+        title: "Supabase Realtime vs Firebase per i social feed: cosa ho scoperto dopo aver testato entrambi",
+        excerpt: "Avevo bisogno di un feed in tempo reale per 10.000+ utenti simultanei. Entrambi lo promettevano. Solo uno ha mantenuto la promessa.",
+        date: "22 feb 2026", read: 11,
+      },
+      {
+        slug: "react-native-design-system",
+        category: "Design",
+        title: "Costruire un design system per un'app React Native con 300 componenti",
+        excerpt: "Quando la tua app ha 300 componenti e 3 sviluppatori, i design token non sono opzionali. Ecco come li abbiamo costruiti.",
+        date: "8 feb 2026", read: 8,
+      },
+    ],
   },
   about: {
     hero: {
@@ -788,7 +846,36 @@ const sq: typeof en = {
     },
     readMore: "Lexo postin", minRead: "min lexim",
     categories: ["Të gjitha", "React Native", "Arkitekturë", "Backend", "Dizajn"],
-    posts: en.blog.posts,
+    posts: [
+      {
+        slug: "flatlist-memory-leak",
+        category: "React Native",
+        title: "Si e zgjidha një rrjedhje memorie në FlatList që rrëzonte feed-in social të Spindare",
+        excerpt: "Një feed në kohë reale me 1.000+ postime ishte duke u ngadalësuar deri në ndalje. Ja si e gjurmova rrjedhjen dhe e zgjidha përfundimisht.",
+        date: "28 mar 2026", read: 7,
+      },
+      {
+        slug: "auth-flow-48-hours",
+        category: "Architecture",
+        title: "Pse e rikonstruova rrjedhën e autentikimit të Spindare në 48 orë — pa pendim",
+        excerpt: "Konfigurimi i vjetër i autentikimit funksiononte mirë — derisa nuk funksionoi. Një analizë e ndershme e vendimit, rishkrimit dhe çfarë do të bëja ndryshe.",
+        date: "14 mar 2026", read: 9,
+      },
+      {
+        slug: "supabase-vs-firebase",
+        category: "Backend",
+        title: "Supabase Realtime vs Firebase për feed-et sociale: çfarë gjeta pasi i testova të dyja",
+        excerpt: "Kisha nevojë për një feed në kohë reale për 10.000+ përdorues të njëkohshëm. Të dyja premtuan. Vetëm njëra dha.",
+        date: "22 shk 2026", read: 11,
+      },
+      {
+        slug: "react-native-design-system",
+        category: "Design",
+        title: "Ndërtimi i një sistemi dizajni për një aplikacion React Native me 300 komponente",
+        excerpt: "Kur aplikacioni yt ka 300 komponente dhe 3 zhvillues, design token-at nuk janë opsionale. Kështu i ndërtuam tonën.",
+        date: "8 shk 2026", read: 8,
+      },
+    ],
   },
   about: {
     hero: {

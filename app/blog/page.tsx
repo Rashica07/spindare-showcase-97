@@ -10,10 +10,13 @@ export default function BlogPage() {
   const [filter, setFilter] = useState(0);
 
   const categories = t.blog.categories;
+  const catKeys = ["All", "React Native", "Architecture", "Backend", "Design"];
+  const catDisplay: Record<string, string> = Object.fromEntries(
+    catKeys.map((k, i) => [k, t.blog.categories[i]])
+  );
   const posts = t.blog.posts.filter((p) => {
     if (filter === 0) return true;
-    const cats = ["All", "React Native", "Architecture", "Backend", "Design"];
-    return p.category === cats[filter];
+    return p.category === catKeys[filter];
   });
 
   return (
@@ -48,7 +51,7 @@ export default function BlogPage() {
                 <Link href={`/blog/${post.slug}`} className="blog-card-link-wrap">
                 <article className="blog-card">
                   <div className="blog-card-meta">
-                    <span className="blog-card-category">{post.category}</span>
+                    <span className="blog-card-category">{catDisplay[post.category] ?? post.category}</span>
                     <span className="blog-card-date-read">
                       <Clock size={12} />
                       {post.read} {t.blog.minRead} · {post.date}

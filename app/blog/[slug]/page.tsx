@@ -66,6 +66,15 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
   if (!post) notFound();
 
+  const catKeys = ["All", "React Native", "Architecture", "Backend", "Design"];
+  const catDisplay: Record<string, string> = Object.fromEntries(
+    catKeys.map((k, i) => [k, t.blog.categories[i]])
+  );
+  const localPost = t.blog.posts.find((p) => p.slug === slug);
+  const title = localPost?.title ?? post.title;
+  const excerpt = localPost?.excerpt ?? post.excerpt;
+  const date = localPost?.date ?? post.date;
+
   return (
     <>
       <section className="blog-post-hero">
@@ -75,15 +84,15 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
           </Link>
           <div className="blog-post-meta-row">
             <span className="blog-card-category">
-              <Tag size={11} /> {post.category}
+              <Tag size={11} /> {catDisplay[post.category] ?? post.category}
             </span>
             <span className="blog-card-date-read">
               <Clock size={12} />
-              {post.read} {t.blog.minRead} · {post.date}
+              {post.read} {t.blog.minRead} · {date}
             </span>
           </div>
-          <h1 className="blog-post-title">{post.title}</h1>
-          <p className="blog-post-excerpt">{post.excerpt}</p>
+          <h1 className="blog-post-title">{title}</h1>
+          <p className="blog-post-excerpt">{excerpt}</p>
         </div>
       </section>
 
