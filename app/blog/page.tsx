@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { Clock, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { FadeUp } from "@/components/FadeUp";
@@ -44,6 +45,7 @@ export default function BlogPage() {
           <div className="blog-grid">
             {posts.map((post, i) => (
               <FadeUp key={post.slug} delay={(i % 2) * 0.08}>
+                <Link href={`/blog/${post.slug}`} className="blog-card-link-wrap">
                 <article className="blog-card">
                   <div className="blog-card-meta">
                     <span className="blog-card-category">{post.category}</span>
@@ -54,10 +56,11 @@ export default function BlogPage() {
                   </div>
                   <h2 className="blog-card-title">{post.title}</h2>
                   <p className="blog-card-excerpt">{post.excerpt}</p>
-                  <div className="blog-card-link">
+                  <div className="blog-card-read">
                     {t.blog.readMore} <ArrowRight size={13} />
                   </div>
                 </article>
+              </Link>
               </FadeUp>
             ))}
           </div>

@@ -281,6 +281,17 @@ const en = {
     liveNow: "Live", inDev: "In Development", comingSoon: "Coming Soon",
     backHome: "Back to home",
   },
+  cv: {
+    savePdf: "Save as PDF", printCv: "Print CV",
+    note: "CV content is in English (international professional standard)",
+    generating: "Generating…",
+    summary: "Professional Summary",
+    experience: "Experience",
+    projects: "Projects",
+    skills: "Technical Skills",
+    education: "Education",
+    onePage: "One-Page Summary",
+  },
 };
 
 const de: typeof en = {
@@ -465,6 +476,17 @@ const de: typeof en = {
     liveNow: "Live", inDev: "In Entwicklung", comingSoon: "Demnächst",
     backHome: "Zurück zur Startseite",
   },
+  cv: {
+    savePdf: "Als PDF speichern", printCv: "CV drucken",
+    note: "Der CV-Inhalt ist auf Englisch (internationaler Berufsstandard)",
+    generating: "Wird erstellt…",
+    summary: "Berufliche Zusammenfassung",
+    experience: "Erfahrung",
+    projects: "Projekte",
+    skills: "Technische Fähigkeiten",
+    education: "Ausbildung",
+    onePage: "Einseitige Zusammenfassung",
+  },
 };
 
 const it: typeof en = {
@@ -646,6 +668,17 @@ const it: typeof en = {
     liveNow: "Live", inDev: "In Sviluppo", comingSoon: "Prossimamente",
     backHome: "Torna alla home",
   },
+  cv: {
+    savePdf: "Salva come PDF", printCv: "Stampa CV",
+    note: "Il contenuto del CV è in inglese (standard professionale internazionale)",
+    generating: "Generazione in corso…",
+    summary: "Sommario Professionale",
+    experience: "Esperienza",
+    projects: "Progetti",
+    skills: "Competenze Tecniche",
+    education: "Formazione",
+    onePage: "Riepilogo in Una Pagina",
+  },
 };
 
 const sq: typeof en = {
@@ -826,6 +859,17 @@ const sq: typeof en = {
     viewAll: "Shiko të gjitha", getQuote: "Kërko ofertë", learnMore: "Mëso më shumë",
     liveNow: "Live", inDev: "Në Zhvillim", comingSoon: "Së shpejti",
     backHome: "Kthehu në kryefaqe",
+  },
+  cv: {
+    savePdf: "Ruaj si PDF", printCv: "Printo CV",
+    note: "Përmbajtja e CV-së është në anglisht (standard ndërkombëtar profesional)",
+    generating: "Duke gjeneruar…",
+    summary: "Përmbledhje Profesionale",
+    experience: "Eksperiencë",
+    projects: "Projekte",
+    skills: "Aftësi Teknike",
+    education: "Arsim",
+    onePage: "Përmbledhje në Një Faqe",
   },
 };
 

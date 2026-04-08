@@ -1,7 +1,9 @@
 "use client";
 import { useRef, useState } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 export default function CVPage() {
+  const { t } = useLanguage();
   const docRef = useRef<HTMLDivElement>(null);
   const [generating, setGenerating] = useState(false);
 
@@ -41,11 +43,12 @@ export default function CVPage() {
   return (
     <div className="cv-page">
       <div className="cv-print-bar">
+        <span className="cv-print-hint">{t.cv.note}</span>
         <button className="cv-print-btn cv-print-btn--accent" onClick={handleSavePDF} disabled={generating}>
-          {generating ? "Generating…" : "Save as PDF"}
+          {generating ? t.cv.generating : t.cv.savePdf}
         </button>
         <button className="cv-print-btn" onClick={() => window.print()}>
-          Print CV
+          {t.cv.printCv}
         </button>
       </div>
 
@@ -66,7 +69,7 @@ export default function CVPage() {
         <div className="cv-divider" />
 
         <section className="cv-section">
-          <h2 className="cv-section-title">Professional Summary</h2>
+          <h2 className="cv-section-title">{t.cv.summary}</h2>
           <p className="cv-body-text">
             Self-employed developer specializing in mobile-first applications and full-stack
             development. Currently leading UI/UX development for Spindare, a social gamification
@@ -77,7 +80,7 @@ export default function CVPage() {
         </section>
 
         <section className="cv-section">
-          <h2 className="cv-section-title">Experience</h2>
+          <h2 className="cv-section-title">{t.cv.experience}</h2>
 
           <div className="cv-exp-item">
             <div className="cv-exp-top">
@@ -121,7 +124,7 @@ export default function CVPage() {
         </section>
 
         <section className="cv-section">
-          <h2 className="cv-section-title">Projects</h2>
+          <h2 className="cv-section-title">{t.cv.projects}</h2>
 
           <div className="cv-exp-item">
             <div className="cv-exp-top">
@@ -194,7 +197,7 @@ export default function CVPage() {
         </section>
 
         <section className="cv-section">
-          <h2 className="cv-section-title">Technical Skills</h2>
+          <h2 className="cv-section-title">{t.cv.skills}</h2>
           <div className="cv-two-col">
             <div>
               <div className="cv-skill-group">
@@ -236,7 +239,7 @@ export default function CVPage() {
         </section>
 
         <section className="cv-section">
-          <h2 className="cv-section-title">Education</h2>
+          <h2 className="cv-section-title">{t.cv.education}</h2>
           <div className="cv-exp-item">
             <div className="cv-exp-top">
               <div>
@@ -259,7 +262,7 @@ export default function CVPage() {
         <div className="cv-divider" />
 
         <section className="cv-section cv-onepage">
-          <h2 className="cv-section-title">One-Page Summary</h2>
+          <h2 className="cv-section-title">{t.cv.onePage}</h2>
           <p className="cv-body-text cv-onepage-tagline">
             Self-employed developer building production-grade applications with modern tech stacks.
           </p>
