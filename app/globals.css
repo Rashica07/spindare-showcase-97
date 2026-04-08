@@ -1993,6 +1993,12 @@ section, main, header, footer { position: relative; z-index: 1; }
   transition: color var(--tr), border-color var(--tr);
 }
 .cv-print-btn:hover { color: var(--text); border-color: var(--border-2); }
+.cv-print-btn--accent {
+  color: var(--accent);
+  border-color: rgba(245,166,35,0.4);
+}
+.cv-print-btn--accent:hover { border-color: var(--accent); }
+.cv-print-btn:disabled { opacity: 0.5; cursor: wait; }
 .cv-doc {
   max-width: 860px;
   margin: 0 auto;

@@ -1,33 +1,55 @@
 "use client";
+import { useRef, useState } from "react";
 
 export default function CVPage() {
+  const docRef = useRef<HTMLDivElement>(null);
+  const [generating, setGenerating] = useState(false);
+
+  const handleSavePDF = async () => {
+    if (!docRef.current || generating) return;
+    setGenerating(true);
+    try {
+      const html2canvas = (await import("html2canvas")).default;
+      const jsPDF = (await import("jspdf")).jsPDF;
+      const canvas = await html2canvas(docRef.current, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#080808",
+      });
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      const imgW = pageW;
+      const imgH = (canvas.height * imgW) / canvas.width;
+      let y = 0;
+      let remaining = imgH;
+      while (remaining > 0) {
+        pdf.addImage(imgData, "PNG", 0, -y, imgW, imgH);
+        remaining -= pageH;
+        y += pageH;
+        if (remaining > 0) pdf.addPage();
+      }
+      pdf.save("Kristian-Gjergji-CV.pdf");
+    } catch (e) {
+      window.print();
+    } finally {
+      setGenerating(false);
+    }
+  };
+
   return (
     <div className="cv-page">
       <div className="cv-print-bar">
-        <span className="cv-print-hint">Save as PDF → choose &quot;Save as PDF&quot; in print dialog</span>
-        <button
-          className="cv-print-btn"
-          onClick={() => {
-            const w = window.open(window.location.href, "_blank");
-            if (w) { w.onload = () => { w.focus(); w.print(); }; }
-            else { window.print(); }
-          }}
-        >
-          Save as PDF
+        <button className="cv-print-btn cv-print-btn--accent" onClick={handleSavePDF} disabled={generating}>
+          {generating ? "Generating…" : "Save as PDF"}
         </button>
-        <button
-          className="cv-print-btn"
-          onClick={() => {
-            const w = window.open(window.location.href, "_blank");
-            if (w) { w.onload = () => { w.focus(); w.print(); }; }
-            else { window.print(); }
-          }}
-        >
+        <button className="cv-print-btn" onClick={() => window.print()}>
           Print CV
         </button>
       </div>
 
-      <div className="cv-doc">
+      <div className="cv-doc" ref={docRef}>
         <div className="cv-header">
           <div>
             <h1 className="cv-name">Kristian Gjergji</h1>
