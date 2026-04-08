@@ -4,8 +4,11 @@ export default function CVPage() {
   return (
     <div className="cv-page">
       <div className="cv-print-bar">
+        <a href="/cv.pdf" download className="cv-print-btn">
+          Download PDF
+        </a>
         <button className="cv-print-btn" onClick={() => window.print()}>
-          Download / Print PDF
+          Print CV
         </button>
       </div>
 

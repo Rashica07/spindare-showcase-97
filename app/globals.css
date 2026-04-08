@@ -1969,6 +1969,7 @@ section, main, header, footer { position: relative; z-index: 1; }
   padding: 16px 48px;
   display: flex;
   justify-content: flex-end;
+  gap: 8px;
 }
 .cv-print-btn {
   font-family: var(--mono);
