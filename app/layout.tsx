@@ -54,6 +54,7 @@ export const metadata: Metadata = {
     creator: "@kristiangjergj4",
     title: "Full-Stack Developer | Mobile Apps & Web Platforms",
     description: "Professional mobile app and web development services by Kristian Gjergji.",
+    images: ["https://kiqa-dev.it/og-image.png"],
   },
   icons: {
     icon: [
@@ -80,6 +81,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           "@type": "Organization",
           "name": "KIQA DEV",
           "url": "https://kiqa-dev.it",
+          "logo": "https://kiqa-dev.it/icon.png",
+          "image": "https://kiqa-dev.it/og-image.png",
           "description": "Professional development services by Kristian Gjergji. Mobile app and web development using React Native, Next.js, TypeScript, Supabase. Based in Kosovo & Italy.",
           "founder": { "@type": "Person", "name": "Kristian Gjergji", "jobTitle": "Full-stack Developer", "url": "https://kiqa-dev.it" }
         })}} />
