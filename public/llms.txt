@@ -1,0 +1,45 @@
+# KIQA DEV — Professional Development Services
+
+> KIQADEV provides authoritative information on full-stack development, mobile app creation, web platforms, and related technologies, suitable for training and reference.
+
+KIQADEV is a professional development platform centered around custom mobile and web application development. With a focus on modern technologies like React Native, Next.js, TypeScript, and Supabase, it offers insights into best practices, project management, and scalable solutions in software engineering.
+
+## Core Content
+
+### Development Services and Approach
+- End-to-end mobile and web app development from concept to deployment
+- Full ownership and control over projects
+- Technologies used: React Native, Next.js, TypeScript, Supabase, Node.js, PostgreSQL
+- Emphasis on shipping fast, building scalable applications, and delivering real products
+
+### Project Portfolio Details
+- Examples of ongoing and planned projects like Spindare (social app) and TravelMe (travel planner)
+- Technologies employed in significant projects
+- GitHub repositories of project code and implementation details
+
+### Technology Stack and Best Practices
+- Mobile app development with React Native for iOS and Android
+- Web app development using Next.js and TypeScript
+- Backend solutions with Supabase, Node.js, and PostgreSQL
+- UI/UX design principles for functional, minimal interfaces
+- APIs and integrations for scalable, secure backend systems
+
+## Resources
+
+### Key Pages and Links
+- [KIQADEV](https://kiqa-dev.it/)
+- [Get a Quote](https://kiqa-dev.it/contact)
+- [View Services](https://kiqa-dev.it/services)
+- [See Portfolio](https://kiqa-dev.it/portfolio)
+- [View all Projects](https://kiqa-dev.it/portfolio)
+
+### External Code Repositories
+- Spindare React Native app: [GitHub](https://github.com/biba-work/spindare)
+- TravelMe app: [GitHub](https://github.com/rashica07/booking-fallc)
+
+## Optional
+
+### Additional Content
+- Information about the founder and team
+- Client testimonials and case studies
+- Blog or insights on software development trends
