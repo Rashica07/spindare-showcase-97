@@ -247,7 +247,7 @@ const en = {
     hero: {
       label: "Contact",
       title: "Get in touch",
-      sub: "Have a project in mind? Let's talk. I usually respond within 24 hours.",
+      sub: "Tell me about your project. I'll reply within 24 hours.",
     },
     form: {
       name: "Your name", namePh: "Kristian Gjergji",
@@ -530,7 +530,7 @@ const de: typeof en = {
     hero: {
       label: "Kontakt",
       title: "Kontakt aufnehmen",
-      sub: "Hast du ein Projekt? Lass uns reden. Ich antworte in der Regel innerhalb von 24 Stunden.",
+      sub: "Erzähl mir von deinem Projekt. Ich antworte innerhalb von 24 Stunden.",
     },
     form: {
       name: "Dein Name", namePh: "Max Mustermann",
@@ -810,7 +810,7 @@ const it: typeof en = {
     hero: {
       label: "Contatti",
       title: "Contattami",
-      sub: "Hai un progetto in mente? Parliamone. Di solito rispondo entro 24 ore.",
+      sub: "Parlami del tuo progetto. Rispondo entro 24 ore.",
     },
     form: {
       name: "Il tuo nome", namePh: "Mario Rossi",
@@ -1090,7 +1090,7 @@ const sq: typeof en = {
     hero: {
       label: "Kontakt",
       title: "Na kontaktoni",
-      sub: "Keni një projekt në mendje? Le të flasim. Zakonisht përgjigjem brenda 24 orëve.",
+      sub: "Tregomëni për projektin tuaj. Përgjigjem brenda 24 orëve.",
     },
     form: {
       name: "Emri juaj", namePh: "Agim Berisha",

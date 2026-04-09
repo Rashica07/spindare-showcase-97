@@ -1332,6 +1332,37 @@ section, main, header, footer { position: relative; z-index: 1; }
    CONTACT PAGE
    ════════════════════════════════════════ */
 
+/* Work notice */
+.contact-notice-section { padding: 0 0 32px; }
+.contact-work-notice {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 24px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius);
+}
+.contact-work-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.contact-work-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+.contact-work-text {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+.contact-work-text strong { color: var(--text); font-weight: 400; }
+
 .contact-page-layout {
   display: grid;
   grid-template-columns: 1fr 340px;

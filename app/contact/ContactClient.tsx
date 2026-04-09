@@ -42,6 +42,25 @@ export default function ContactClient() {
           <p className="page-hero-sub">{t.contact.hero.sub}</p>
         </div>
       </section>
+
+      <section className="contact-notice-section">
+        <div className="section-inner">
+          <FadeUp>
+            <div className="contact-work-notice">
+              <div className="contact-work-tags">
+                <span className="contact-work-tag">Fixed price</span>
+                <span className="contact-work-tag">Clear milestones</span>
+              </div>
+              <p className="contact-work-text">
+                I work with fixed price projects or structured milestones — no open-ended billing, no surprises.
+                Currently finishing existing commitments.{" "}
+                <strong>Open for new freelance work from June 2026.</strong>
+              </p>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
       <section className="section-padded">
         <div className="section-inner contact-page-layout">
           <FadeUp className="contact-form-col">
@@ -77,6 +96,7 @@ export default function ContactClient() {
               </form>
             )}
           </FadeUp>
+
           <FadeUp delay={0.1} className="contact-info-col">
             <h2 className="contact-info-title">{info.title}</h2>
             <div className="contact-info-items">
@@ -108,7 +128,9 @@ export default function ContactClient() {
           </FadeUp>
         </div>
       </section>
+
       <div className="divider" />
+
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
