@@ -1143,7 +1143,7 @@ section, main, header, footer { position: relative; z-index: 1; }
 }
 .lb-close {
   position: fixed;
-  top: 24px;
+  top: calc(var(--nav-h) + 12px);
   right: 24px;
   background: var(--bg-2);
   border: 1px solid var(--border);
