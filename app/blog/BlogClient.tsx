@@ -32,21 +32,26 @@ export default function BlogClient() {
             </div>
           </FadeUp>
           <div className="blog-grid">
-            {posts.map((post, i) => (
-              <FadeUp key={post.slug} delay={(i % 2) * 0.08}>
-                <Link href={`/blog/${post.slug}`} className="blog-card-link-wrap">
-                  <article className="blog-card">
-                    <div className="blog-card-meta">
-                      <span className="blog-card-category">{catDisplay[post.category] ?? post.category}</span>
-                      <span className="blog-card-date-read"><Clock size={12} />{post.read} {t.blog.minRead} · {post.date}</span>
-                    </div>
-                    <h2 className="blog-card-title">{post.title}</h2>
-                    <p className="blog-card-excerpt">{post.excerpt}</p>
-                    <div className="blog-card-read">{t.blog.readMore} <ArrowRight size={13} /></div>
-                  </article>
-                </Link>
-              </FadeUp>
-            ))}
+            {posts.map((post, i) => {
+              const isFeatured = i === 0 && filter === 0;
+              return (
+                <FadeUp key={post.slug} delay={(i % 3) * 0.07}>
+                  <Link href={`/blog/${post.slug}`} className="blog-card-link-wrap">
+                    <article className={`blog-card${isFeatured ? " blog-card--featured" : ""}`}>
+                      <div className="blog-card-meta">
+                        <span className="blog-card-category">{catDisplay[post.category] ?? post.category}</span>
+                        <span className="blog-card-date-read">
+                          <Clock size={12} />{post.read} {t.blog.minRead} · {post.date}
+                        </span>
+                      </div>
+                      <h2 className={`blog-card-title${isFeatured ? " blog-card-title--featured" : ""}`}>{post.title}</h2>
+                      <p className="blog-card-excerpt">{post.excerpt}</p>
+                      <div className="blog-card-read">{t.blog.readMore} <ArrowRight size={13} /></div>
+                    </article>
+                  </Link>
+                </FadeUp>
+              );
+            })}
           </div>
         </div>
       </section>
