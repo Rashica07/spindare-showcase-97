@@ -88,6 +88,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         })}} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
+          "@type": "ImageObject",
+          "url": "https://kiqa-dev.it/og-image.png",
+          "width": 1200,
+          "height": 630,
+          "name": "KIQA DEV — Full-Stack Developer",
+          "description": "Professional mobile app and web development services by Kristian Gjergji.",
+          "author": { "@type": "Person", "name": "Kristian Gjergji" },
+          "contentUrl": "https://kiqa-dev.it/og-image.png",
+          "license": "https://kiqa-dev.it"
+        })}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
           "@type": "Person",
           "name": "Kristian Gjergji",
           "givenName": "Kristian",
