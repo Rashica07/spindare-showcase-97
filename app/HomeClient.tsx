@@ -19,19 +19,73 @@ export default function HomeClient() {
       <section className="hero-section">
         <div className="hero-glow" aria-hidden="true" />
         <div className="section-inner hero-inner">
-          <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }}>
-            <p className="section-badge">{t.home.hero.badge}</p>
-          </motion.div>
+
+          <motion.p
+            className="hero-greeting"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease }}
+          >
+            {t.home.hero.badge}
+          </motion.p>
+
           <h1 className="hero-headline">
-            <motion.span className="hero-h1" initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1, ease }}>{t.home.hero.h1}</motion.span>
-            <motion.span className="hero-h2 accent-text" initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2, ease }}>{t.home.hero.h2}</motion.span>
+            <motion.span
+              className="hero-h1"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.1, ease }}
+            >
+              {t.home.hero.h1}
+            </motion.span>
+            <motion.span
+              className="hero-h2 accent-text"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.2, ease }}
+            >
+              {t.home.hero.h2}
+            </motion.span>
           </h1>
-          <motion.p className="hero-sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.38, ease }}>{t.home.hero.sub}</motion.p>
-          <motion.div className="hero-actions" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.52, ease }}>
-            <Link href="/services" className="btn-primary">{t.home.hero.cta1} <ArrowRight size={15} /></Link>
-            <Link href="/portfolio" className="btn-secondary">{t.home.hero.cta2}</Link>
+
+          <motion.p
+            className="hero-sub"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.34, ease }}
+          >
+            {t.home.hero.sub}
+          </motion.p>
+
+          <motion.div
+            className="hero-spindare-pill"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.44, ease }}
+          >
+            <span className="hero-spindare-dot" aria-hidden="true" />
+            <span className="hero-spindare-label">{t.home.hero.spindare}:</span>
+            <span className="hero-spindare-name">Spindare</span>
+            <span className="hero-spindare-meta">React Native · iOS · Sep 2026</span>
           </motion.div>
-          <motion.div className="hero-stats-row" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.7, ease }}>
+
+          <motion.div
+            className="hero-actions"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.54, ease }}
+          >
+            <Link href="/portfolio" className="btn-primary">{t.home.hero.cta1} <ArrowRight size={15} /></Link>
+            <Link href="/contact" className="btn-secondary">{t.home.hero.cta2}</Link>
+            <span className="hero-avail">{t.home.hero.avail}</span>
+          </motion.div>
+
+          <motion.div
+            className="hero-stats-row"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.72, ease }}
+          >
             {t.home.stats.items.map((s) => (
               <div className="hero-stat" key={s.label}>
                 <span className="hero-stat-value">{s.value}</span>
@@ -39,6 +93,7 @@ export default function HomeClient() {
               </div>
             ))}
           </motion.div>
+
         </div>
       </section>
 

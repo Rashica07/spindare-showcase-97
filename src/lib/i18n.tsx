@@ -10,10 +10,12 @@ const en = {
   },
   home: {
     hero: {
-      badge: "Professional Development Services",
-      h1: "KIQA", h2: "DEV.",
-      sub: "Full-stack developer from Kosovo. I build mobile apps and web platforms that ship — fast, clean, and built to last.",
-      cta1: "View Services", cta2: "See Portfolio",
+      badge: "Kristian Gjergji · Developer · Lecco, Italy",
+      h1: "I build apps", h2: "that ship.",
+      sub: "Mobile-first, full-stack. React Native to Next.js — clean code, clear milestones, no surprises.",
+      spindare: "Currently building",
+      avail: "Open for freelance from June 2026",
+      cta1: "View Portfolio", cta2: "Get in touch",
     },
     services: {
       label: "What We Build",
@@ -360,10 +362,12 @@ const de: typeof en = {
   },
   home: {
     hero: {
-      badge: "Professionelle Entwicklungsdienstleistungen",
-      h1: "KIQA", h2: "DEV.",
-      sub: "Full-Stack-Entwickler aus dem Kosovo. Ich baue Mobile Apps und Web-Plattformen — schnell, sauber und nachhaltig.",
-      cta1: "Leistungen ansehen", cta2: "Portfolio",
+      badge: "Kristian Gjergji · Entwickler · Lecco, Italien",
+      h1: "Ich baue Apps", h2: "die funktionieren.",
+      sub: "Mobile-first, Full-Stack. React Native bis Next.js — sauberer Code, klare Meilensteine, keine Überraschungen.",
+      spindare: "Aktuell im Bau",
+      avail: "Verfügbar für Freelance ab Juni 2026",
+      cta1: "Portfolio ansehen", cta2: "Kontakt aufnehmen",
     },
     services: {
       label: "Was wir bauen",
@@ -643,10 +647,12 @@ const it: typeof en = {
   },
   home: {
     hero: {
-      badge: "Servizi di Sviluppo Professionale",
-      h1: "KIQA", h2: "DEV.",
-      sub: "Sviluppatore full-stack dal Kosovo. Creo app mobile e piattaforme web — veloci, pulite e durature.",
-      cta1: "Vedi i Servizi", cta2: "Portfolio",
+      badge: "Kristian Gjergji · Sviluppatore · Lecco, Italia",
+      h1: "Creo app", h2: "che funzionano.",
+      sub: "Mobile-first, full-stack. Da React Native a Next.js — codice pulito, scadenze chiare, nessuna sorpresa.",
+      spindare: "In sviluppo ora",
+      avail: "Disponibile per freelance da giugno 2026",
+      cta1: "Vedi Portfolio", cta2: "Contattami",
     },
     services: {
       label: "Cosa costruiamo",
@@ -923,10 +929,12 @@ const sq: typeof en = {
   },
   home: {
     hero: {
-      badge: "Shërbime Profesionale Zhvillimi",
-      h1: "KIQA", h2: "DEV.",
-      sub: "Zhvillues full-stack nga Kosova. Ndërtoj aplikacione mobile dhe platforma web — shpejt, pastër dhe me qëndrueshmëri.",
-      cta1: "Shiko Shërbimet", cta2: "Portofoli",
+      badge: "Kristian Gjergji · Zhvillues · Lecco, Itali",
+      h1: "Ndërtoj aplikacione", h2: "që funksionojnë.",
+      sub: "Mobile-first, full-stack. Nga React Native te Next.js — kod i pastër, afate të qarta, pa surpriza.",
+      spindare: "Aktualisht në zhvillim",
+      avail: "I disponueshëm për freelance nga qershori 2026",
+      cta1: "Shiko Portofolin", cta2: "Na kontaktoni",
     },
     services: {
       label: "Çfarë ndërtojmë",

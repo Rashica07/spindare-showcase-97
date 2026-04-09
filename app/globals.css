@@ -468,6 +468,14 @@ section, main, header, footer { position: relative; z-index: 1; }
   padding-top: 96px;
   padding-bottom: 96px;
 }
+.hero-greeting {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
 .hero-headline {
   display: flex;
   flex-direction: column;
@@ -475,28 +483,72 @@ section, main, header, footer { position: relative; z-index: 1; }
   font-weight: 300;
   line-height: 0.95;
   letter-spacing: -0.04em;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 .hero-h1 {
-  font-size: clamp(80px, 13vw, 160px);
+  font-size: clamp(52px, 9vw, 104px);
   color: var(--text);
 }
 .hero-h2 {
-  font-size: clamp(80px, 13vw, 160px);
+  font-size: clamp(52px, 9vw, 104px);
 }
 .hero-sub {
-  font-size: clamp(17px, 2vw, 20px);
+  font-size: clamp(16px, 1.8vw, 19px);
   font-weight: 300;
   color: var(--text-2);
-  max-width: 620px;
+  max-width: 560px;
   line-height: 1.72;
-  margin-bottom: 48px;
+  margin-bottom: 28px;
+}
+.hero-spindare-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 40px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.hero-spindare-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: glowPulse 2.4s ease-in-out infinite;
+}
+.hero-spindare-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.hero-spindare-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.hero-spindare-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
 }
 .hero-actions {
   display: flex;
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
+}
+.hero-avail {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
 }
 .hero-stats-row {
   display: flex;
@@ -1844,7 +1896,7 @@ section, main, header, footer { position: relative; z-index: 1; }
   .nav-hamburger { display: flex; }
   .lang-switcher { display: none; }
 
-  .hero-h1, .hero-h2 { font-size: clamp(56px, 14vw, 80px); }
+  .hero-h1, .hero-h2 { font-size: clamp(40px, 11vw, 64px); }
 
   .services-overview-grid { grid-template-columns: 1fr; }
   .featured-projects { grid-template-columns: 1fr; }
