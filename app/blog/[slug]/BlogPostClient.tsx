@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Clock, Tag } from "lucide-react";
 import { getPost } from "@/lib/blog-posts";
+import type { BlogLang } from "@/lib/blog-posts";
 import { useLanguage } from "@/lib/i18n";
 
 function renderContent(content: string) {
@@ -48,8 +49,8 @@ function renderContent(content: string) {
 
 export default function BlogPostClient({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
-  const post = getPost(slug);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const post = getPost(slug, lang as BlogLang);
 
   if (!post) notFound();
 
