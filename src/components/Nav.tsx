@@ -37,6 +37,7 @@ export default function Nav() {
     { href: "/blog", label: t.nav.blog },
     { href: "/about", label: t.nav.about },
     { href: "/contact", label: t.nav.contact },
+    { href: "/dev-hub", label: "DEV HUB" },
   ];
 
   const isActive = (href: string) =>
