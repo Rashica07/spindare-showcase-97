@@ -10,7 +10,7 @@ export default function ServicesClient() {
   const { t } = useLanguage();
   return (
     <>
-      <section className="page-hero">
+      <section className="page-hero" data-label="SERVICES">
         <div className="section-inner">
           <p className="section-label">{t.services.hero.label}</p>
           <h1 className="page-hero-title">{t.services.hero.title}</h1>

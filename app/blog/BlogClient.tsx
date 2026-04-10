@@ -15,7 +15,7 @@ export default function BlogClient() {
 
   return (
     <>
-      <section className="page-hero">
+      <section className="page-hero" data-label="BLOG">
         <div className="section-inner">
           <p className="section-label">{t.blog.hero.label}</p>
           <h1 className="page-hero-title">{t.blog.hero.title}</h1>

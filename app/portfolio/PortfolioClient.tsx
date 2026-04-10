@@ -53,7 +53,7 @@ export default function PortfolioClient() {
         <Lightbox screens={SPINDARE_SCREENS} start={lightbox} onClose={() => setLightbox(null)} />
       )}
 
-      <section className="page-hero">
+      <section className="page-hero" data-label="PORTFOLIO">
         <div className="section-inner">
           <p className="section-label">{t.portfolio.hero.label}</p>
           <h1 className="page-hero-title">{t.portfolio.hero.title}</h1>

@@ -10,7 +10,7 @@ export default function AboutClient() {
   const { t } = useLanguage();
   return (
     <>
-      <section className="page-hero">
+      <section className="page-hero" data-label="ABOUT">
         <div className="section-inner">
           <p className="section-label">{t.about.hero.label}</p>
           <h1 className="page-hero-title">{t.about.hero.title}</h1>

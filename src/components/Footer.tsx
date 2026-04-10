@@ -22,6 +22,7 @@ export default function Footer() {
           <Link href="/blog">{t.footer.nav.blog}</Link>
           <Link href="/about">{t.footer.nav.about}</Link>
           <Link href="/contact">{t.footer.nav.contact}</Link>
+          <Link href="/dev-hub">Dev Hub</Link>
         </nav>
 
         <div className="footer-socials">

@@ -35,7 +35,7 @@ export default function ContactClient() {
 
   return (
     <>
-      <section className="page-hero">
+      <section className="page-hero" data-label="CONTACT">
         <div className="section-inner">
           <p className="section-label">{t.contact.hero.label}</p>
           <h1 className="page-hero-title">{t.contact.hero.title}</h1>
