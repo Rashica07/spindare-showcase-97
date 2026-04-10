@@ -100,9 +100,9 @@ export default function AboutClient() {
       <FadeUp>
         <section className="section-padded cta-section">
           <div className="section-inner cta-inner">
-            <h2 className="cta-title">Want to work together?</h2>
-            <p className="cta-sub">I&apos;m open to freelance projects, collabs, and interesting builds.</p>
-            <Link href="/contact" className="btn-primary btn-large">Get in touch <ArrowRight size={16} /></Link>
+            <h2 className="cta-title">{t.about.cta.title}</h2>
+            <p className="cta-sub">{t.about.cta.sub}</p>
+            <Link href="/contact" className="btn-primary btn-large">{t.about.cta.button} <ArrowRight size={16} /></Link>
           </div>
         </section>
       </FadeUp>

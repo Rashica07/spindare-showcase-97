@@ -394,7 +394,7 @@ section, main, header, footer { position: relative; z-index: 1; }
   text-transform: uppercase;
   color: #050505;
   background: var(--accent);
-  border: none;
+  border: 1px solid transparent;
   padding: 12px 24px;
   border-radius: 4px;
   text-decoration: none;

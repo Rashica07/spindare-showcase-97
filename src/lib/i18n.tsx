@@ -244,6 +244,11 @@ const en = {
         { title: "Ownership mindset", desc: "I treat every project like it's mine — because while we work together, it is." },
       ],
     },
+    cta: {
+      title: "Want to work together?",
+      sub: "I'm open to freelance projects, collabs, and interesting builds.",
+      button: "Get in touch",
+    },
   },
   contact: {
     hero: {
@@ -529,6 +534,11 @@ const de: typeof en = {
         { title: "Ownership-Mindset", desc: "Ich behandle jedes Projekt so, als wäre es meins." },
       ],
     },
+    cta: {
+      title: "Lust auf eine Zusammenarbeit?",
+      sub: "Ich bin offen für Freelance-Projekte, Kollaborationen und interessante Builds.",
+      button: "Kontakt aufnehmen",
+    },
   },
   contact: {
     hero: {
@@ -811,6 +821,11 @@ const it: typeof en = {
         { title: "Mentalità di proprietà", desc: "Tratto ogni progetto come se fosse mio." },
       ],
     },
+    cta: {
+      title: "Vuoi lavorare insieme?",
+      sub: "Sono disponibile per progetti freelance, collaborazioni e build interessanti.",
+      button: "Contattami",
+    },
   },
   contact: {
     hero: {
@@ -1092,6 +1107,11 @@ const sq: typeof en = {
         { title: "Komunikim i sinqertë", desc: "Të tregoj çfarë mund të ndërtoj, kur dhe me sa." },
         { title: "Mentalitet pronësie", desc: "Çdo projekt e trajtoj sikur të jetë i imi." },
       ],
+    },
+    cta: {
+      title: "Doni të punoni bashkë?",
+      sub: "Jam i hapur për projekte freelance, bashkëpunime dhe ndërtime interesante.",
+      button: "Na kontaktoni",
     },
   },
   contact: {
