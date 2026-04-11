@@ -2228,6 +2228,50 @@ section, main, header, footer { position: relative; z-index: 1; }
   padding-top: 4px;
 }
 
+/* Collaborator card */
+.dh-collab-card {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-2);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dh-collab-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.dh-collab-name {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+.dh-collab-role {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.dh-collab-note {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.68;
+}
+.dh-collab-context {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
 /* CTA actions row */
 .dh-cta-actions {
   display: flex;
