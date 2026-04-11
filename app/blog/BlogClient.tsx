@@ -8,10 +8,26 @@ import { FadeUp } from "@/components/FadeUp";
 export default function BlogClient() {
   const { t } = useLanguage();
   const [filter, setFilter] = useState(0);
+  const [email, setEmail] = useState("");
+  const [subStatus, setSubStatus] = useState<"idle" | "sending" | "done">("idle");
   const categories = t.blog.categories;
   const catKeys = ["All", "React Native", "Architecture", "Backend", "Design"];
   const catDisplay: Record<string, string> = Object.fromEntries(catKeys.map((k, i) => [k, t.blog.categories[i]]));
   const posts = t.blog.posts.filter((p) => { if (filter === 0) return true; return p.category === catKeys[filter]; });
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+    setSubStatus("sending");
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: "Newsletter Signup", email, message: "[Newsletter] New subscriber: " + email }),
+      });
+    } catch { /* silent — not critical */ }
+    setSubStatus("done");
+  };
 
   return (
     <>
@@ -55,6 +71,38 @@ export default function BlogClient() {
           </div>
         </div>
       </section>
+
+      <div className="divider" />
+
+      <FadeUp>
+        <section className="section-padded">
+          <div className="section-inner">
+            <div className="newsletter-block">
+              <div className="newsletter-text">
+                <p className="newsletter-title">Get updates when I ship something new</p>
+                <p className="newsletter-sub">No spam. Occasional posts, projects, and things worth reading.</p>
+              </div>
+              {subStatus === "done" ? (
+                <p className="newsletter-done">You&apos;re in. I&apos;ll be in touch.</p>
+              ) : (
+                <form className="newsletter-form" onSubmit={handleSubscribe}>
+                  <input
+                    type="email"
+                    className="newsletter-input"
+                    placeholder="your@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  <button type="submit" className="btn-primary newsletter-btn" disabled={subStatus === "sending"}>
+                    {subStatus === "sending" ? "..." : "Subscribe"}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+      </FadeUp>
     </>
   );
 }

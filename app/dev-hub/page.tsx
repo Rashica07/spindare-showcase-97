@@ -301,6 +301,54 @@ export default function DevHubPage() {
 
       <div className="divider" />
 
+      <section className="section-padded">
+        <div className="section-inner">
+          <FadeUp>
+            <p className="section-label">Open Source</p>
+            <h2 className="section-title">Public work</h2>
+            <p className="section-sub">Early in my open source journey — but everything I build is built in public.</p>
+          </FadeUp>
+          <FadeUp delay={0.08}>
+            <div className="dh-oss-grid">
+              <a href="https://github.com/biba-work/spindare" target="_blank" rel="noopener noreferrer" className="dh-oss-card">
+                <div className="dh-oss-card-top">
+                  <span className="dh-oss-name">spindare</span>
+                  <span className="dh-oss-org">biba-work</span>
+                </div>
+                <p className="dh-oss-desc">Daily challenge social app. React Native · TypeScript · Supabase. 150k+ lines, 300+ components.</p>
+                <div className="dh-oss-tags">
+                  <span className="stack-tag">React Native</span>
+                  <span className="stack-tag">TypeScript</span>
+                  <span className="stack-tag">Supabase</span>
+                </div>
+              </a>
+              <a href="https://github.com/rashica07/booking-fallc" target="_blank" rel="noopener noreferrer" className="dh-oss-card">
+                <div className="dh-oss-card-top">
+                  <span className="dh-oss-name">booking-fallc</span>
+                  <span className="dh-oss-org">rashica07</span>
+                </div>
+                <p className="dh-oss-desc">TravelMe — AI travel planner. React Native · OpenAI API · Node.js · MongoDB.</p>
+                <div className="dh-oss-tags">
+                  <span className="stack-tag">React Native</span>
+                  <span className="stack-tag">OpenAI</span>
+                  <span className="stack-tag">Node.js</span>
+                </div>
+              </a>
+              <a href="https://github.com/rashica07" target="_blank" rel="noopener noreferrer" className="dh-oss-card dh-oss-card--profile">
+                <div className="dh-oss-card-top">
+                  <span className="dh-oss-name">rashica07</span>
+                  <span className="dh-oss-org">GitHub profile</span>
+                </div>
+                <p className="dh-oss-desc">All public repositories, commit history, and ongoing work. Building more every week.</p>
+                <span className="dh-oss-arrow">View profile ↗</span>
+              </a>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      <div className="divider" />
+
       <FadeUp>
         <section className="section-padded cta-section">
           <div className="section-inner cta-inner">

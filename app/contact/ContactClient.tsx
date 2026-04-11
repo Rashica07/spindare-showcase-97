@@ -1,8 +1,35 @@
 "use client";
 import { useState } from "react";
-import { Mail, MessageSquare, Github, Twitter, MapPin, Clock } from "lucide-react";
+import { Mail, MessageSquare, Github, Twitter, MapPin, Clock, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { FadeUp } from "@/components/FadeUp";
+
+const FAQ = [
+  {
+    q: "How old are you?",
+    a: "I'm 14. Age doesn't define skill — my code does. Spindare has 150k+ lines and 300+ components. Judge the work, not the birth year.",
+  },
+  {
+    q: "Can you work with clients outside Italy?",
+    a: "Yes. I work fully remote and have no geographic restrictions. Timezone differences are manageable — I'm flexible.",
+  },
+  {
+    q: "What's your availability right now?",
+    a: "Currently focused on Spindare's iOS launch (September 2026). Open for new freelance work from June 2026. I can discuss your project now and plan accordingly.",
+  },
+  {
+    q: "Do you work alone or with a team?",
+    a: "Usually solo — I handle everything end-to-end. For larger projects, I collaborate with Daniel F. (Lead Developer, Spindare co-founder) when needed.",
+  },
+  {
+    q: "What's your rate?",
+    a: "Depends on scope, timeline, and complexity. I work on fixed-price projects — no hourly surprises. See the Services page for starting ranges, or email me with your project details.",
+  },
+  {
+    q: "Can you start immediately?",
+    a: "Not until June 2026. Spindare's launch is the current priority. That said, I'm happy to plan ahead — booking slots fill up, so reach out now.",
+  },
+];
 
 export default function ContactClient() {
   const { t } = useLanguage();
@@ -11,6 +38,7 @@ export default function ContactClient() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [error, setError] = useState("");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const sanitize = (v: string) =>
     v.replace(/[<>'"&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "'": "&#x27;", '"': "&quot;", "&": "&amp;" }[c] ?? c));
@@ -46,16 +74,26 @@ export default function ContactClient() {
       <section className="contact-notice-section">
         <div className="section-inner">
           <FadeUp>
-            <div className="contact-work-notice">
-              <div className="contact-work-tags">
-                <span className="contact-work-tag">Fixed price</span>
-                <span className="contact-work-tag">Clear milestones</span>
+            <div className="avail-status-block">
+              <p className="avail-status-label">Current Status</p>
+              <div className="avail-status-rows">
+                <div className="avail-row">
+                  <span className="avail-row-key">Status</span>
+                  <span className="avail-row-val"><span className="avail-dot avail-dot--busy" />Focused on Spindare launch</span>
+                </div>
+                <div className="avail-row">
+                  <span className="avail-row-key">Available for freelance</span>
+                  <span className="avail-row-val avail-row-val--accent">June 2026</span>
+                </div>
+                <div className="avail-row">
+                  <span className="avail-row-key">Booking for</span>
+                  <span className="avail-row-val">July–August 2026 projects</span>
+                </div>
+                <div className="avail-row">
+                  <span className="avail-row-key">Response time</span>
+                  <span className="avail-row-val">Within 24 hours</span>
+                </div>
               </div>
-              <p className="contact-work-text">
-                I work with fixed price projects or structured milestones — no open-ended billing, no surprises.
-                Currently finishing existing commitments.{" "}
-                <strong>Open for new freelance work from June 2026.</strong>
-              </p>
             </div>
           </FadeUp>
         </div>
@@ -124,6 +162,36 @@ export default function ContactClient() {
                 <span className="contact-info-icon"><Clock size={15} /></span>
                 <div><span className="contact-info-label">{info.hours}</span><span className="contact-info-value">{info.hoursValue}</span></div>
               </div>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      <div className="divider" />
+
+      <section className="section-padded">
+        <div className="section-inner">
+          <FadeUp>
+            <p className="section-label">FAQ</p>
+            <h2 className="section-title">Common questions</h2>
+          </FadeUp>
+          <FadeUp delay={0.08}>
+            <div className="faq-list">
+              {FAQ.map((item, i) => (
+                <div key={i} className={`faq-item${openFaq === i ? " faq-item--open" : ""}`}>
+                  <button
+                    className="faq-question"
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    aria-expanded={openFaq === i}
+                  >
+                    {item.q}
+                    <ChevronDown size={16} className="faq-chevron" />
+                  </button>
+                  {openFaq === i && (
+                    <p className="faq-answer">{item.a}</p>
+                  )}
+                </div>
+              ))}
             </div>
           </FadeUp>
         </div>

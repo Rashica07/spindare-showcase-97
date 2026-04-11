@@ -6,6 +6,14 @@ import { FadeUp } from "@/components/FadeUp";
 
 const serviceIcons = [Smartphone, Globe, Palette, Server, MessageSquare];
 
+const PRICING = [
+  { from: "€2,000", timeline: "4–8 weeks" },
+  { from: "€1,000", timeline: "2–4 weeks" },
+  { from: "€400",   timeline: "1–3 weeks" },
+  { from: "€800",   timeline: "2–4 weeks" },
+  { from: "€70/hr", timeline: "Flexible" },
+];
+
 export default function ServicesClient() {
   const { t } = useLanguage();
   return (
@@ -22,14 +30,26 @@ export default function ServicesClient() {
           <div className="services-list">
             {t.services.items.map((svc, i) => {
               const Icon = serviceIcons[i];
+              const price = PRICING[i];
               return (
                 <FadeUp key={svc.name} delay={i * 0.07}>
                   <div className="service-card">
                     <div className="service-card-header">
                       <div className="service-card-icon-wrap"><Icon size={22} /></div>
-                      <div>
+                      <div className="service-card-title-block">
                         <h2 className="service-card-name">{svc.name}</h2>
                         <p className="service-card-desc">{svc.desc}</p>
+                        <div className="service-pricing">
+                          <span className="service-pricing-item">
+                            <span className="service-pricing-label">Starting from</span>
+                            <span className="service-pricing-val">{price.from}</span>
+                          </span>
+                          <span className="service-pricing-sep">·</span>
+                          <span className="service-pricing-item">
+                            <span className="service-pricing-label">Timeline</span>
+                            <span className="service-pricing-val">{price.timeline}</span>
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <ul className="service-features">
