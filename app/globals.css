@@ -72,18 +72,6 @@ section, main, header, footer { position: relative; z-index: 1; }
 .fade-up.delay-3 { transition-delay: 0.30s; }
 .fade-up.delay-4 { transition-delay: 0.40s; }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-}
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  50% { opacity: 0.9; transform: scale(1.06); }
-}
-@keyframes badgePulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(245,166,35,0.3); }
-  50% { box-shadow: 0 0 0 4px rgba(245,166,35,0); }
-}
 
 
 /* ════════════════════════════════════════
@@ -334,7 +322,6 @@ section, main, header, footer { position: relative; z-index: 1; }
   padding: 6px 14px;
   border-radius: 20px;
   margin-bottom: 44px;
-  animation: badgePulse 2.5s ease-in-out infinite;
 }
 .section-badge::before {
   content: '';
@@ -462,7 +449,7 @@ section, main, header, footer { position: relative; z-index: 1; }
   height: 800px;
   background: radial-gradient(ellipse at 25% 30%, rgba(245,166,35,0.11) 0%, transparent 62%);
   pointer-events: none;
-  animation: glowPulse 5s ease-in-out infinite;
+  opacity: 0.65;
 }
 .hero-inner {
   padding-top: 96px;
@@ -517,7 +504,6 @@ section, main, header, footer { position: relative; z-index: 1; }
   border-radius: 50%;
   background: var(--accent);
   flex-shrink: 0;
-  animation: glowPulse 2.4s ease-in-out infinite;
 }
 .hero-spindare-label {
   font-family: var(--mono);
@@ -596,31 +582,20 @@ section, main, header, footer { position: relative; z-index: 1; }
   position: relative;
   z-index: 1;
 }
-.ticker-track {
+.info-strip-list {
   display: flex;
-  width: max-content;
-  animation: tickerScroll 28s linear infinite;
-}
-.ticker-track:hover { animation-play-state: paused; }
-.ticker-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 18px;
   font-family: var(--mono);
   font-size: 11px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--text-3);
   text-transform: uppercase;
-  white-space: nowrap;
-  padding: 0 8px;
 }
-.ticker-sep {
+.info-strip-sep {
   color: var(--accent);
-  font-size: 14px;
-}
-@keyframes tickerScroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  user-select: none;
 }
 
 

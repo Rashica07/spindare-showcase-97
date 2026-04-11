@@ -1,14 +1,23 @@
 "use client";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, Smartphone, Globe, Palette, Server, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { FadeUp } from "@/components/FadeUp";
-import { Ticker } from "@/components/Ticker";
 
-const ease = [0.16, 1, 0.3, 1] as const;
 const serviceIcons = [Smartphone, Globe, Palette, Server];
 const statusColors: Record<string, string> = { live: "status-live", dev: "status-dev", soon: "status-soon" };
+
+const stripItems = [
+  "Full Stack",
+  "React Native",
+  "Next.js",
+  "TypeScript",
+  "Supabase",
+  "14 Years Old",
+  "Based in Italy",
+  "Ships Fast",
+  "Open to Freelance",
+];
 
 export default function HomeClient() {
   const { t } = useLanguage();
@@ -20,84 +29,50 @@ export default function HomeClient() {
         <div className="hero-glow" aria-hidden="true" />
         <div className="section-inner hero-inner">
 
-          <motion.p
-            className="hero-greeting"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease }}
-          >
-            {t.home.hero.badge}
-          </motion.p>
+          <p className="hero-greeting">{t.home.hero.badge}</p>
 
           <h1 className="hero-headline">
-            <motion.span
-              className="hero-h1"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.1, ease }}
-            >
-              {t.home.hero.h1}
-            </motion.span>
-            <motion.span
-              className="hero-h2 accent-text"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.2, ease }}
-            >
-              {t.home.hero.h2}
-            </motion.span>
+            <span className="hero-h1">{t.home.hero.h1}</span>
+            <span className="hero-h2 accent-text">{t.home.hero.h2}</span>
           </h1>
 
-          <motion.p
-            className="hero-sub"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.34, ease }}
-          >
-            {t.home.hero.sub}
-          </motion.p>
+          <p className="hero-sub">{t.home.hero.sub}</p>
 
-          <motion.div
-            className="hero-spindare-pill"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.44, ease }}
-          >
+          <div className="hero-spindare-pill">
             <span className="hero-spindare-dot" aria-hidden="true" />
             <span className="hero-spindare-label">{t.home.hero.spindare}:</span>
             <span className="hero-spindare-name">Spindare</span>
             <span className="hero-spindare-meta">React Native · iOS · Sep 2026</span>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="hero-actions"
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.54, ease }}
-          >
+          <div className="hero-actions">
             <Link href="/portfolio" className="btn-primary">{t.home.hero.cta1} <ArrowRight size={15} /></Link>
             <Link href="/contact" className="btn-secondary">{t.home.hero.cta2}</Link>
             <span className="hero-avail">{t.home.hero.avail}</span>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="hero-stats-row"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.72, ease }}
-          >
+          <div className="hero-stats-row">
             {t.home.stats.items.map((s) => (
               <div className="hero-stat" key={s.label}>
                 <span className="hero-stat-value">{s.value}</span>
                 <span className="hero-stat-label">{s.label}</span>
               </div>
             ))}
-          </motion.div>
+          </div>
 
         </div>
       </section>
 
-      <Ticker />
+      <div className="ticker-wrapper" aria-hidden="true">
+        <div className="info-strip-list">
+          {stripItems.map((item, i) => (
+            <span key={item} style={{ display: "inline-flex", alignItems: "center", gap: "18px" }}>
+              {item}
+              {i < stripItems.length - 1 && <span className="info-strip-sep">·</span>}
+            </span>
+          ))}
+        </div>
+      </div>
 
       <section className="section-padded">
         <div className="section-inner">
