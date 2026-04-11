@@ -190,7 +190,7 @@ export default function DevHubPage() {
           <FadeUp delay={0.08}>
             <div className="dh-collab-card">
               <div className="dh-collab-name-row">
-                <span className="dh-collab-name">Daniel F.</span>
+                <a href="https://danielfrrokaj.com" target="_blank" rel="noopener noreferrer" className="dh-collab-name dh-collab-link">Daniel F. ↗</a>
                 <span className="dh-collab-role">Lead Developer · Spindare</span>
               </div>
               <p className="dh-collab-note">

@@ -2252,6 +2252,11 @@ section, main, header, footer { position: relative; z-index: 1; }
   font-weight: 600;
   color: var(--text);
 }
+.dh-collab-link {
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.dh-collab-link:hover { color: var(--accent); }
 .dh-collab-role {
   font-family: var(--mono);
   font-size: 11px;
