@@ -32,7 +32,7 @@ export default function Footer() {
           <a href="https://twitter.com/kristiangjergj4" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
             <Twitter size={16} />
           </a>
-          <a href="mailto:newkiqaa@gmail.com" aria-label="Email">
+          <a href="mailto:contact@kiqa-dev.it" aria-label="Email">
             <Mail size={16} />
           </a>
         </div>

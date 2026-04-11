@@ -197,18 +197,6 @@ export default function ContactClient() {
         </div>
       </section>
 
-      <div className="divider" />
-
-      <section className="section-padded">
-        <div className="section-inner">
-          <FadeUp>
-            <p className="section-label">Location — Lecco, Italy</p>
-            <div className="map-container">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22434.206756!2d9.3719!3d45.8557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786869bae4ce3d5%3A0xb9c3fba47f2a51d7!2sLecco%2C+Province+of+Lecco%2C+Italy!5e0!3m2!1sen!2sit!4v1700000000000!5m2!1sen!2sit" width="100%" height="420" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="KIQA DEV location — Lecco, Italy" />
-            </div>
-          </FadeUp>
-        </div>
-      </section>
     </>
   );
 }

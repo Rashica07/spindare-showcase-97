@@ -88,6 +88,29 @@ export default function HomeClient() {
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
+            <p className="section-label">Spindare Team</p>
+            <h2 className="section-title">Who I build with</h2>
+          </FadeUp>
+          <FadeUp delay={0.08}>
+            <div className="dh-collab-card">
+              <div className="dh-collab-name-row">
+                <a href="https://danielfrrokaj.com" target="_blank" rel="noopener noreferrer" className="dh-collab-name dh-collab-link">Daniel F. ↗</a>
+                <span className="dh-collab-role">Lead Developer · Spindare</span>
+              </div>
+              <p className="dh-collab-note">
+                Working with Daniel on Spindare has been invaluable. As the technical lead, he&apos;s helped me level up my architecture skills and navigate complex backend challenges.
+              </p>
+              <span className="dh-collab-context">Co-founder &amp; uncle</span>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      <div className="divider" />
+
+      <section className="section-padded">
+        <div className="section-inner">
+          <FadeUp>
             <p className="section-label">{t.home.featured.label}</p>
             <h2 className="section-title">{t.home.featured.title}</h2>
           </FadeUp>
@@ -120,29 +143,6 @@ export default function HomeClient() {
           <FadeUp delay={0.15}>
             <div className="section-link-row">
               <Link href="/portfolio" className="section-link">{t.common.viewAll} <ChevronRight size={14} /></Link>
-            </div>
-          </FadeUp>
-        </div>
-      </section>
-
-      <div className="divider" />
-
-      <section className="section-padded">
-        <div className="section-inner">
-          <FadeUp>
-            <p className="section-label">Spindare Team</p>
-            <h2 className="section-title">Who I build with</h2>
-          </FadeUp>
-          <FadeUp delay={0.08}>
-            <div className="dh-collab-card">
-              <div className="dh-collab-name-row">
-                <a href="https://danielfrrokaj.com" target="_blank" rel="noopener noreferrer" className="dh-collab-name dh-collab-link">Daniel F. ↗</a>
-                <span className="dh-collab-role">Lead Developer · Spindare</span>
-              </div>
-              <p className="dh-collab-note">
-                Working with Daniel on Spindare has been invaluable. As the technical lead, he&apos;s helped me level up my architecture skills and navigate complex backend challenges.
-              </p>
-              <span className="dh-collab-context">Co-founder &amp; uncle</span>
             </div>
           </FadeUp>
         </div>

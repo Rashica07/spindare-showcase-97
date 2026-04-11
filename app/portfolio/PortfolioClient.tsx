@@ -165,24 +165,6 @@ export default function PortfolioClient() {
                     <div className="cs-stat"><span className="cs-stat-value">3</span><span className="cs-stat-label">Person team</span></div>
                     <div className="cs-stat"><span className="cs-stat-value">Sep &apos;26</span><span className="cs-stat-label">iOS launch</span></div>
                   </div>
-                  <div className="case-study-decisions">
-                    <p className="section-label" style={{ marginBottom: 16 }}>Architecture decisions</p>
-                    <div className="cs-decision">
-                      <div className="cs-decision-top"><span className="cs-decision-title">Why Supabase over Firebase</span></div>
-                      <div className="cs-decision-points">
-                        <div className="cs-point"><span className="cs-point-label">Real-time scale</span><span className="cs-point-text">Supabase Realtime handled 10K+ concurrent reactions with lower latency than Firebase&apos;s WebSocket implementation.</span></div>
-                        <div className="cs-point"><span className="cs-point-label">Data integrity</span><span className="cs-point-text">PostgreSQL RLS let me enforce privacy rules at the DB layer — no bloated middleware needed.</span></div>
-                        <div className="cs-point"><span className="cs-point-label">Dev velocity</span><span className="cs-point-text">GoTrue Auth let me ship the full V2 authentication flow in under 48 hours.</span></div>
-                      </div>
-                    </div>
-                    <div className="cs-decision">
-                      <div className="cs-decision-top"><span className="cs-decision-title">Why Expo over bare React Native</span></div>
-                      <div className="cs-decision-points">
-                        <div className="cs-point"><span className="cs-point-label">OTA updates</span><span className="cs-point-text">Ship bug fixes without waiting for App Store review cycles.</span></div>
-                        <div className="cs-point"><span className="cs-point-label">Build pipeline</span><span className="cs-point-text">EAS Build replaced a complex native build setup with a single command — critical for a small team.</span></div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </details>
             </FadeUp>
@@ -202,16 +184,6 @@ export default function PortfolioClient() {
                     <div className="case-study-feature">Full itinerary generation — flights, hotels, activities</div>
                     <div className="case-study-feature">Payments via Stripe</div>
                     <div className="case-study-feature">Offline itinerary access</div>
-                  </div>
-                  <div className="case-study-decisions">
-                    <p className="section-label" style={{ marginBottom: 16 }}>Architecture decisions</p>
-                    <div className="cs-decision">
-                      <div className="cs-decision-top"><span className="cs-decision-title">Why TypeScript everywhere</span></div>
-                      <div className="cs-decision-points">
-                        <div className="cs-point"><span className="cs-point-label">Bug prevention</span><span className="cs-point-text">TypeScript&apos;s type checker prevents entire classes of runtime errors before they reach users.</span></div>
-                        <div className="cs-point"><span className="cs-point-label">Refactoring</span><span className="cs-point-text">Renaming a prop instantly surfaces every affected usage — essential when working fast and solo.</span></div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </details>

@@ -238,10 +238,10 @@ const en = {
     values: {
       title: "How I work",
       items: [
-        { title: "Ship fast, iterate faster", desc: "Bias toward action and rapid prototyping. Ship early, measure, improve." },
-        { title: "User-first thinking", desc: "Every technical decision serves user experience. Performance is a feature." },
-        { title: "Type-safe everything", desc: "TypeScript everywhere. Reliable, maintainable, self-documenting code." },
-        { title: "Ownership mindset", desc: "I treat every project like it's mine — because while we work together, it is." },
+        { title: "I learn by building", desc: "Every project teaches me something new. I'd rather build and learn than plan forever." },
+        { title: "Make it work, then make it better", desc: "First version ships fast. Then I improve based on what actually matters." },
+        { title: "TypeScript everywhere", desc: "I write TypeScript for everything. It catches bugs early and makes refactoring painless." },
+        { title: "I finish what I start", desc: "If I take on a project, I see it through. No half-built prototypes." },
       ],
     },
     cta: {
@@ -267,7 +267,7 @@ const en = {
     },
     info: {
       title: "Contact details",
-      email: "newkiqaa@gmail.com",
+      email: "contact@kiqa-dev.it",
       discord: "@kodibkfg",
       github: "github.com/rashica07",
       twitter: "@kristiangjergj4",
@@ -528,10 +528,10 @@ const de: typeof en = {
     values: {
       title: "Meine Arbeitsweise",
       items: [
-        { title: "Schnell liefern, sauber liefern", desc: "Schnelligkeit ohne Qualität ist nur technische Schulden." },
-        { title: "Keine Tutorials, nur Projekte", desc: "Alles, was ich weiß, habe ich durch echte Projekte gelernt." },
-        { title: "Ehrliche Kommunikation", desc: "Ich sage dir, was ich bauen kann, wann und für wie viel." },
-        { title: "Ownership-Mindset", desc: "Ich behandle jedes Projekt so, als wäre es meins." },
+        { title: "Ich lerne durch Bauen", desc: "Jedes Projekt bringt mir etwas Neues bei. Lieber bauen und lernen als ewig planen." },
+        { title: "Erst funktionieren, dann verbessern", desc: "Die erste Version wird schnell geliefert. Dann verbessere ich, was wirklich zählt." },
+        { title: "Überall TypeScript", desc: "Ich schreibe TypeScript für alles. Es fängt Fehler früh ab und macht Refactoring schmerzlos." },
+        { title: "Ich bringe zu Ende, was ich anfange", desc: "Wenn ich ein Projekt übernehme, ziehe ich es durch. Keine halbfertigen Prototypen." },
       ],
     },
     cta: {
@@ -557,7 +557,7 @@ const de: typeof en = {
     },
     info: {
       title: "Kontaktdaten",
-      email: "newkiqaa@gmail.com",
+      email: "contact@kiqa-dev.it",
       discord: "@kodibkfg",
       github: "github.com/rashica07",
       twitter: "@kristiangjergj4",
@@ -815,10 +815,10 @@ const it: typeof en = {
     values: {
       title: "Come lavoro",
       items: [
-        { title: "Consegna rapida e pulita", desc: "La velocità senza qualità è solo debito tecnico." },
-        { title: "Niente tutorial, solo progetti", desc: "Tutto quello che so, l'ho imparato costruendo qualcosa di reale." },
-        { title: "Comunicazione onesta", desc: "Ti dico cosa posso costruire, quando e per quanto." },
-        { title: "Mentalità di proprietà", desc: "Tratto ogni progetto come se fosse mio." },
+        { title: "Imparo costruendo", desc: "Ogni progetto mi insegna qualcosa di nuovo. Preferisco costruire e imparare piuttosto che pianificare all'infinito." },
+        { title: "Prima funziona, poi migliora", desc: "La prima versione esce veloce. Poi miglioro in base a quello che conta davvero." },
+        { title: "TypeScript ovunque", desc: "Scrivo TypeScript per tutto. Trova i bug presto e rende il refactoring indolore." },
+        { title: "Finisco quello che inizio", desc: "Se prendo un progetto, lo porto a termine. Nessun prototipo lasciato a metà." },
       ],
     },
     cta: {
@@ -844,7 +844,7 @@ const it: typeof en = {
     },
     info: {
       title: "Dettagli di contatto",
-      email: "newkiqaa@gmail.com",
+      email: "contact@kiqa-dev.it",
       discord: "@kodibkfg",
       github: "github.com/rashica07",
       twitter: "@kristiangjergj4",
@@ -1102,10 +1102,10 @@ const sq: typeof en = {
     values: {
       title: "Si punoj",
       items: [
-        { title: "Dorëzo shpejt, dorëzo pastër", desc: "Shpejtësia pa cilësi është thjesht borxh teknik." },
-        { title: "Pa tutorial, vetëm projekte", desc: "Gjithçka di, e mësova duke ndërtuar diçka reale." },
-        { title: "Komunikim i sinqertë", desc: "Të tregoj çfarë mund të ndërtoj, kur dhe me sa." },
-        { title: "Mentalitet pronësie", desc: "Çdo projekt e trajtoj sikur të jetë i imi." },
+        { title: "Mësoj duke ndërtuar", desc: "Çdo projekt më mëson diçka të re. Preferoj të ndërtoj dhe mësoj sesa të planifikoj përgjithmonë." },
+        { title: "Fillimisht funksionon, pastaj përmirësohet", desc: "Versioni i parë del shpejt. Pastaj përmirësoj bazuar në atë që ka rëndësi." },
+        { title: "TypeScript kudo", desc: "Shkruaj TypeScript për gjithçka. Kap gabimet herët dhe e bën refaktorimin pa dhimbje." },
+        { title: "Mbaroj atë që filloj", desc: "Nëse marr një projekt, e çoj deri në fund. Asnjë prototip i lënë përgjysmë." },
       ],
     },
     cta: {
@@ -1131,7 +1131,7 @@ const sq: typeof en = {
     },
     info: {
       title: "Detajet e kontaktit",
-      email: "newkiqaa@gmail.com",
+      email: "contact@kiqa-dev.it",
       discord: "@kodibkfg",
       github: "github.com/rashica07",
       twitter: "@kristiangjergj4",

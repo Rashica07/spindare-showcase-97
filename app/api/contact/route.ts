@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
 
     const { error } = await resend.emails.send({
       from: "kiqa-dev Portfolio <onboarding@resend.dev>",
-      to: "newkiqaa@gmail.com",
+      to: "contact@kiqa-dev.it",
       replyTo: email,
       subject: `New message from ${name} — kiqa-dev.it`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,

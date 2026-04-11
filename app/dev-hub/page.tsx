@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { ArrowRight, Github, Mail } from "lucide-react";
+import { ArrowRight, Github } from "lucide-react";
 import { FadeUp } from "@/components/FadeUp";
 
 const SPINDARE_FEATURES = [
@@ -65,35 +65,7 @@ export default function DevHubPage() {
               <a href="https://github.com/rashica07" className="btn-primary" target="_blank" rel="noopener noreferrer">
                 <Github size={14} /> GitHub ↗
               </a>
-              <a href="mailto:contact@kiqa-dev.it" className="btn-secondary">
-                <Mail size={14} /> Email
-              </a>
-              <a href="https://discord.com/users/kodibkfg" className="btn-secondary" target="_blank" rel="noopener noreferrer">Discord</a>
-              <Link href="/contact" className="btn-secondary">Contact ↗</Link>
-            </div>
-          </div>
-          <div className="dh-hero-right">
-            <div className="dh-stat-grid">
-              <div className="dh-stat-card">
-                <span className="dh-stat-val">150k+</span>
-                <span className="dh-stat-key">Lines of code</span>
-              </div>
-              <div className="dh-stat-card">
-                <span className="dh-stat-val">300+</span>
-                <span className="dh-stat-key">Components</span>
-              </div>
-              <div className="dh-stat-card">
-                <span className="dh-stat-val">2+</span>
-                <span className="dh-stat-key">Years building</span>
-              </div>
-              <div className="dh-stat-card">
-                <span className="dh-stat-val accent-text">Sep &apos;26</span>
-                <span className="dh-stat-key">iOS launch</span>
-              </div>
-            </div>
-            <div className="dh-avail-pill">
-              <span className="dh-avail-dot" />
-              Open for freelance from June 2026
+              <Link href="/contact" className="btn-secondary">Get in touch</Link>
             </div>
           </div>
         </div>
@@ -184,29 +156,6 @@ export default function DevHubPage() {
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
-            <p className="section-label">Spindare Team</p>
-            <h2 className="section-title">Who I build with</h2>
-          </FadeUp>
-          <FadeUp delay={0.08}>
-            <div className="dh-collab-card">
-              <div className="dh-collab-name-row">
-                <a href="https://danielfrrokaj.com" target="_blank" rel="noopener noreferrer" className="dh-collab-name dh-collab-link">Daniel F. ↗</a>
-                <span className="dh-collab-role">Lead Developer · Spindare</span>
-              </div>
-              <p className="dh-collab-note">
-                Working with Daniel on Spindare has been invaluable. As the technical lead, he&apos;s helped me level up my architecture skills and navigate complex backend challenges.
-              </p>
-              <span className="dh-collab-context">Co-founder &amp; uncle</span>
-            </div>
-          </FadeUp>
-        </div>
-      </section>
-
-      <div className="divider" />
-
-      <section className="section-padded">
-        <div className="section-inner">
-          <FadeUp>
             <p className="section-label">What I Work With</p>
             <h2 className="section-title">Tech stack</h2>
           </FadeUp>
@@ -232,7 +181,7 @@ export default function DevHubPage() {
           <FadeUp>
             <p className="section-label">Architecture Decision Log</p>
             <h2 className="section-title">Why I chose what I chose</h2>
-            <p className="section-sub">Technical decisions with reasoning. No cargo-culting.</p>
+            <p className="section-sub">Technical decisions with reasoning — every choice has a why.</p>
           </FadeUp>
           <div className="dh-adl">
             {DECISIONS.map((d, i) => (

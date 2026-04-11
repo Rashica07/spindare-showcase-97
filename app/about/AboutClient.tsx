@@ -26,7 +26,7 @@ export default function AboutClient() {
             <div className="about-quick-links">
               <a href="https://github.com/rashica07" target="_blank" rel="noopener noreferrer" className="about-quick-link">GitHub ↗</a>
               <a href="https://twitter.com/kristiangjergj4" target="_blank" rel="noopener noreferrer" className="about-quick-link">Twitter ↗</a>
-              <a href="mailto:newkiqaa@gmail.com" className="about-quick-link">Email ↗</a>
+              <a href="mailto:contact@kiqa-dev.it" className="about-quick-link">Email ↗</a>
             </div>
           </FadeUp>
           <FadeUp delay={0.1} className="about-bio-col">

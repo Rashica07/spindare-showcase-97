@@ -9,10 +9,8 @@ const items = [
   "OPEN TO FREELANCE",
   "14 YEARS OLD",
   "BASED IN ITALY",
-  "SHIPS FAST",
   "TYPESCRIPT",
   "SUPABASE",
-  "BUILDS REAL PRODUCTS",
 ];
 
 export function Ticker() {
