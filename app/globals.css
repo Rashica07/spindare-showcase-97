@@ -582,20 +582,31 @@ section, main, header, footer { position: relative; z-index: 1; }
   position: relative;
   z-index: 1;
 }
-.info-strip-list {
+.ticker-track {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 6px 18px;
+  width: max-content;
+  animation: tickerScroll 28s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
   font-family: var(--mono);
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--text-3);
   text-transform: uppercase;
+  white-space: nowrap;
+  padding: 0 8px;
 }
-.info-strip-sep {
+.ticker-sep {
   color: var(--accent);
-  user-select: none;
+  font-size: 14px;
+}
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 

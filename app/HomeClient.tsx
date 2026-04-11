@@ -3,21 +3,10 @@ import Link from "next/link";
 import { ArrowRight, Smartphone, Globe, Palette, Server, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { FadeUp } from "@/components/FadeUp";
+import { Ticker } from "@/components/Ticker";
 
 const serviceIcons = [Smartphone, Globe, Palette, Server];
 const statusColors: Record<string, string> = { live: "status-live", dev: "status-dev", soon: "status-soon" };
-
-const stripItems = [
-  "Full Stack",
-  "React Native",
-  "Next.js",
-  "TypeScript",
-  "Supabase",
-  "14 Years Old",
-  "Based in Italy",
-  "Ships Fast",
-  "Open to Freelance",
-];
 
 export default function HomeClient() {
   const { t } = useLanguage();
@@ -63,16 +52,7 @@ export default function HomeClient() {
         </div>
       </section>
 
-      <div className="ticker-wrapper" aria-hidden="true">
-        <div className="info-strip-list">
-          {stripItems.map((item, i) => (
-            <span key={item} style={{ display: "inline-flex", alignItems: "center", gap: "18px" }}>
-              {item}
-              {i < stripItems.length - 1 && <span className="info-strip-sep">·</span>}
-            </span>
-          ))}
-        </div>
-      </div>
+      <Ticker />
 
       <section className="section-padded">
         <div className="section-inner">
@@ -142,30 +122,6 @@ export default function HomeClient() {
               <Link href="/portfolio" className="section-link">{t.common.viewAll} <ChevronRight size={14} /></Link>
             </div>
           </FadeUp>
-        </div>
-      </section>
-
-      <div className="divider" />
-
-      <section className="section-padded">
-        <div className="section-inner">
-          <FadeUp>
-            <p className="section-label">{t.home.testimonials.label}</p>
-            <h2 className="section-title">{t.home.testimonials.title}</h2>
-          </FadeUp>
-          <div className="testimonials-grid">
-            {t.home.testimonials.items.map((item, i) => (
-              <FadeUp key={item.name} delay={i * 0.08}>
-                <div className="testimonial-card">
-                  <p className="testimonial-quote">&ldquo;{item.quote}&rdquo;</p>
-                  <div className="testimonial-author">
-                    <span className="testimonial-name">{item.name}</span>
-                    <span className="testimonial-role">{item.role} · {item.location}</span>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
         </div>
       </section>
 
