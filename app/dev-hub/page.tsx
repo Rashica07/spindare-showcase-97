@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { ArrowRight, Github } from "lucide-react";
 import { FadeUp } from "@/components/FadeUp";
+import { useLanguage } from "@/lib/i18n";
 
 const SPINDARE_FEATURES = [
   "Real-time social feed with reactions",
@@ -49,23 +50,23 @@ const DECISIONS = [
 ];
 
 export default function DevHubPage() {
+  const { t } = useLanguage();
+  const dh = t.devHub;
+
   return (
     <main className="site-main">
       <section className="page-hero" data-label="DEV HUB">
         <div className="section-inner dh-hero">
           <div className="dh-hero-left">
-            <p className="section-label">Developer Hub</p>
+            <p className="section-label">{dh.hero.label}</p>
             <h1 className="page-hero-title">Kristian <span className="accent-text">Gjergji</span></h1>
-            <p className="dh-role-line">Full-stack &amp; mobile developer · Lecco, Italy</p>
-            <p className="page-hero-sub">
-              Building production apps since 2023. Currently leading development on <strong>Spindare</strong> —
-              a social gamification platform targeting iOS launch September 2026 — while taking on freelance web and mobile projects.
-            </p>
+            <p className="dh-role-line">{dh.hero.role}</p>
+            <p className="page-hero-sub">{dh.hero.sub}</p>
             <div className="dh-hero-actions">
               <a href="https://github.com/rashica07" className="btn-primary" target="_blank" rel="noopener noreferrer">
                 <Github size={14} /> GitHub ↗
               </a>
-              <Link href="/contact" className="btn-secondary">Get in touch</Link>
+              <Link href="/contact" className="btn-secondary">{dh.hero.contact}</Link>
             </div>
           </div>
         </div>
@@ -74,8 +75,8 @@ export default function DevHubPage() {
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
-            <p className="section-label">Current Projects</p>
-            <h2 className="section-title">What I&apos;m building</h2>
+            <p className="section-label">{dh.projects.label}</p>
+            <h2 className="section-title">{dh.projects.title}</h2>
           </FadeUp>
           <div className="dh-projects">
             <FadeUp delay={0.08}>
@@ -83,15 +84,12 @@ export default function DevHubPage() {
                 <div className="dh-project-head">
                   <div className="dh-project-name-row">
                     <span className="dh-project-name">Spindare</span>
-                    <span className="dh-badge dh-badge-active">In Development</span>
+                    <span className="dh-badge dh-badge-active">{dh.projects.spindareBadge}</span>
                   </div>
-                  <span className="dh-project-role">Lead Developer · UI/UX · 3-person team</span>
+                  <span className="dh-project-role">{dh.projects.spindareRole}</span>
                 </div>
                 <div className="dh-project-body">
-                  <p className="dh-project-desc">
-                    A social gamification platform where users spin for daily challenges, complete them, and share with friends.
-                    Built for iOS and Android with React Native, TypeScript, and Supabase Realtime.
-                  </p>
+                  <p className="dh-project-desc">{dh.projects.spindareDesc}</p>
                   <div className="dh-features">
                     {SPINDARE_FEATURES.map((f) => (
                       <div className="dh-feature" key={f}><span className="dh-dot" />{f}</div>
@@ -124,14 +122,12 @@ export default function DevHubPage() {
                 <div className="dh-project-head">
                   <div className="dh-project-name-row">
                     <span className="dh-project-name">TravelMe</span>
-                    <span className="dh-badge dh-badge-soon">Coming Soon</span>
+                    <span className="dh-badge dh-badge-soon">{dh.projects.travelmeBadge}</span>
                   </div>
-                  <span className="dh-project-role">Solo Project · Full-stack</span>
+                  <span className="dh-project-role">{dh.projects.travelmeRole}</span>
                 </div>
                 <div className="dh-project-body">
-                  <p className="dh-project-desc">
-                    Describe your trip in plain language — TravelMe generates a full itinerary: flights, hotels, local experiences, day-by-day plan. No more juggling 10 apps.
-                  </p>
+                  <p className="dh-project-desc">{dh.projects.travelmeDesc}</p>
                 </div>
                 <div className="dh-project-foot">
                   <div className="dh-stack-row">
@@ -156,8 +152,8 @@ export default function DevHubPage() {
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
-            <p className="section-label">What I Work With</p>
-            <h2 className="section-title">Tech stack</h2>
+            <p className="section-label">{dh.stack.label}</p>
+            <h2 className="section-title">{dh.stack.title}</h2>
           </FadeUp>
           <FadeUp delay={0.08}>
             <div className="dh-stack-grid">
@@ -179,9 +175,9 @@ export default function DevHubPage() {
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
-            <p className="section-label">Architecture Decision Log</p>
-            <h2 className="section-title">Why I chose what I chose</h2>
-            <p className="section-sub">Technical decisions with reasoning — every choice has a why.</p>
+            <p className="section-label">{dh.adl.label}</p>
+            <h2 className="section-title">{dh.adl.title}</h2>
+            <p className="section-sub">{dh.adl.sub}</p>
           </FadeUp>
           <div className="dh-adl">
             {DECISIONS.map((d, i) => (
@@ -211,37 +207,32 @@ export default function DevHubPage() {
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
-            <p className="section-label">Experience</p>
-            <h2 className="section-title">Timeline</h2>
+            <p className="section-label">{dh.exp.label}</p>
+            <h2 className="section-title">{dh.exp.title}</h2>
           </FadeUp>
           <div className="dh-exp-list">
             <FadeUp delay={0.08}>
               <div className="dh-exp-item">
                 <div className="dh-exp-left">
-                  <p className="dh-exp-title">Co-Founder &amp; Lead Developer</p>
+                  <p className="dh-exp-title">{dh.exp.spindareRole}</p>
                   <p className="dh-exp-company">Spindare</p>
                   <ul className="dh-exp-bullets">
-                    <li>Leading all frontend and mobile development on a 3-person team</li>
-                    <li>Architected the full component library and design system from scratch</li>
-                    <li>Integrated real-time features with Supabase Realtime across the social feed</li>
-                    <li>Built in-app messaging, streak tracking, and AI challenge generation</li>
+                    {dh.exp.spindareBullets.map((b) => <li key={b}>{b}</li>)}
                   </ul>
                 </div>
-                <span className="dh-exp-date">Jan 2025 – Present</span>
+                <span className="dh-exp-date">{dh.exp.spindareDate}</span>
               </div>
             </FadeUp>
             <FadeUp delay={0.14}>
               <div className="dh-exp-item">
                 <div className="dh-exp-left">
-                  <p className="dh-exp-title">Freelance Developer</p>
+                  <p className="dh-exp-title">{dh.exp.kiqaRole}</p>
                   <p className="dh-exp-company">KIQA DEV</p>
                   <ul className="dh-exp-bullets">
-                    <li>Full-stack web and mobile projects for clients across Europe</li>
-                    <li>Focus on React Native apps and Next.js web platforms</li>
-                    <li>End-to-end delivery: design, build, deploy, maintain</li>
+                    {dh.exp.kiqaBullets.map((b) => <li key={b}>{b}</li>)}
                   </ul>
                 </div>
-                <span className="dh-exp-date">2024 – Present</span>
+                <span className="dh-exp-date">{dh.exp.kiqaDate}</span>
               </div>
             </FadeUp>
           </div>
@@ -253,9 +244,9 @@ export default function DevHubPage() {
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
-            <p className="section-label">Open Source</p>
-            <h2 className="section-title">Public work</h2>
-            <p className="section-sub">Early in my open source journey — but everything I build is built in public.</p>
+            <p className="section-label">{dh.oss.label}</p>
+            <h2 className="section-title">{dh.oss.title}</h2>
+            <p className="section-sub">{dh.oss.sub}</p>
           </FadeUp>
           <FadeUp delay={0.08}>
             <div className="dh-oss-grid">
@@ -264,7 +255,7 @@ export default function DevHubPage() {
                   <span className="dh-oss-name">spindare</span>
                   <span className="dh-oss-org">biba-work</span>
                 </div>
-                <p className="dh-oss-desc">Daily challenge social app. React Native · TypeScript · Supabase. 150k+ lines, 300+ components.</p>
+                <p className="dh-oss-desc">{dh.oss.spindareDesc}</p>
                 <div className="dh-oss-tags">
                   <span className="stack-tag">React Native</span>
                   <span className="stack-tag">TypeScript</span>
@@ -276,7 +267,7 @@ export default function DevHubPage() {
                   <span className="dh-oss-name">booking-fallc</span>
                   <span className="dh-oss-org">rashica07</span>
                 </div>
-                <p className="dh-oss-desc">TravelMe — AI travel planner. React Native · OpenAI API · Node.js · MongoDB.</p>
+                <p className="dh-oss-desc">{dh.oss.travelmeDesc}</p>
                 <div className="dh-oss-tags">
                   <span className="stack-tag">React Native</span>
                   <span className="stack-tag">OpenAI</span>
@@ -288,8 +279,8 @@ export default function DevHubPage() {
                   <span className="dh-oss-name">rashica07</span>
                   <span className="dh-oss-org">GitHub profile</span>
                 </div>
-                <p className="dh-oss-desc">All public repositories, commit history, and ongoing work. Building more every week.</p>
-                <span className="dh-oss-arrow">View profile ↗</span>
+                <p className="dh-oss-desc">{dh.oss.profileDesc}</p>
+                <span className="dh-oss-arrow">{dh.oss.viewProfile} ↗</span>
               </a>
             </div>
           </FadeUp>
@@ -301,11 +292,11 @@ export default function DevHubPage() {
       <FadeUp>
         <section className="section-padded cta-section">
           <div className="section-inner cta-inner">
-            <h2 className="cta-title">Got a project in mind?</h2>
-            <p className="cta-sub">Open to freelance work, collabs, and interesting builds. Available from June 2026.</p>
+            <h2 className="cta-title">{dh.cta.title}</h2>
+            <p className="cta-sub">{dh.cta.sub}</p>
             <div className="dh-cta-actions">
-              <Link href="/contact" className="btn-primary btn-large">Get in touch <ArrowRight size={16} /></Link>
-              <a href="https://discord.com/users/kodibkfg" className="btn-secondary btn-large" target="_blank" rel="noopener noreferrer">Discord</a>
+              <Link href="/contact" className="btn-primary btn-large">{dh.hero.contact} <ArrowRight size={16} /></Link>
+              <a href="https://discord.com/users/kodibkfg" className="btn-secondary btn-large" target="_blank" rel="noopener noreferrer">{dh.cta.discord}</a>
             </div>
           </div>
         </section>

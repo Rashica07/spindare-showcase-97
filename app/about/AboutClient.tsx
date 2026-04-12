@@ -97,6 +97,27 @@ export default function AboutClient() {
         </div>
       </section>
       <div className="divider" />
+      <section className="section-padded">
+        <div className="section-inner">
+          <FadeUp>
+            <p className="section-label">{t.about.collab.label}</p>
+            <h2 className="section-title">{t.about.collab.title}</h2>
+          </FadeUp>
+          <FadeUp delay={0.08}>
+            <div className="dh-collab-card">
+              <div className="dh-collab-name-row">
+                <a href="https://danielfrrokaj.com" target="_blank" rel="noopener noreferrer" className="dh-collab-name dh-collab-link">
+                  {t.about.collab.name} ↗
+                </a>
+                <span className="dh-collab-role">{t.about.collab.role}</span>
+              </div>
+              <p className="dh-collab-note">{t.about.collab.note}</p>
+              <span className="dh-collab-context">{t.about.collab.context}</span>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+      <div className="divider" />
       <FadeUp>
         <section className="section-padded cta-section">
           <div className="section-inner cta-inner">

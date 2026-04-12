@@ -112,8 +112,8 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* Testimonials section — uncomment when ready
       <div className="divider" />
-
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
@@ -146,6 +146,7 @@ export default function HomeClient() {
           </FadeUp>
         </div>
       </section>
+      */}
 
       <div className="divider" />
 

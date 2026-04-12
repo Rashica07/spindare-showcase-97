@@ -805,7 +805,23 @@ section, main, header, footer { position: relative; z-index: 1; }
   position: relative;
   overflow: hidden;
 }
-/* page-hero::after watermark removed */
+.page-hero::after {
+  content: attr(data-label);
+  position: absolute;
+  right: -8px;
+  bottom: -28px;
+  font-family: var(--mono);
+  font-size: clamp(80px, 11vw, 160px);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.045);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 .page-hero .section-inner {
   padding-top: 80px;
   padding-bottom: 72px;
