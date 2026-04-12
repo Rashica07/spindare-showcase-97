@@ -12,13 +12,13 @@ const en = {
     hero: {
       badge: "Kristian Gjergji · Developer · Lecco, Italy",
       h1: "I build apps", h2: "that ship.",
-      sub: "Mobile-first, full-stack. React Native to Next.js — clean code, clear milestones, no surprises.",
+      sub: "14 years old, based in Lecco. I do mobile and web — React Native, Next.js, Supabase. Serious about what I build.",
       spindare: "Currently building",
-      avail: "Open for freelance from June 2026",
+      avail: "Available for freelance from June 2026",
       cta1: "View Portfolio", cta2: "Get in touch",
     },
     services: {
-      label: "What We Build",
+      label: "Services",
       title: "End-to-end development",
       sub: "From concept to App Store. One developer, full ownership.",
       items: [
@@ -39,13 +39,13 @@ const en = {
       ],
     },
     cta: {
-      title: "Ready to build something?",
-      sub: "Tell me about your project and let's make it real.",
-      button: "Start a conversation",
+      title: "Taking on projects from mid-2026.",
+      sub: "Currently heads-down on Spindare — iOS launch September 2026. A few freelance slots open after that.",
+      button: "Get in touch",
     },
     testimonials: {
-      label: "Testimonials",
-      title: "What people say",
+      label: "From clients & collaborators",
+      title: "In their words",
       items: [
         {
           quote: "Kristian delivered our landing page in under a week. Clean code, zero revisions, and he communicated clearly throughout. Rare for any developer, let alone one this young.",

@@ -11,14 +11,13 @@ const statusColors: Record<string, string> = { live: "status-live", dev: "status
 export default function HomeClient() {
   const { t } = useLanguage();
   const featuredProjects = t.portfolio.projects.slice(0, 2);
+  const testimonials = t.home.testimonials.items;
 
   return (
     <>
       <section className="hero-section">
         <div className="hero-glow" aria-hidden="true" />
         <div className="section-inner hero-inner">
-
-          <p className="hero-greeting">{t.home.hero.badge}</p>
 
           <h1 className="hero-headline">
             <span className="hero-h1">{t.home.hero.h1}</span>
@@ -27,26 +26,14 @@ export default function HomeClient() {
 
           <p className="hero-sub">{t.home.hero.sub}</p>
 
-          <div className="hero-spindare-pill">
-            <span className="hero-spindare-dot" aria-hidden="true" />
-            <span className="hero-spindare-label">{t.home.hero.spindare}:</span>
-            <span className="hero-spindare-name">Spindare</span>
-            <span className="hero-spindare-meta">React Native · iOS · Sep 2026</span>
-          </div>
+          <p className="hero-spindare-inline">
+            {t.home.hero.spindare}: <span>Spindare</span> — React Native · iOS · Sep 2026
+          </p>
 
           <div className="hero-actions">
             <Link href="/portfolio" className="btn-primary">{t.home.hero.cta1} <ArrowRight size={15} /></Link>
             <Link href="/contact" className="btn-secondary">{t.home.hero.cta2}</Link>
             <span className="hero-avail">{t.home.hero.avail}</span>
-          </div>
-
-          <div className="hero-stats-row">
-            {t.home.stats.items.map((s) => (
-              <div className="hero-stat" key={s.label}>
-                <span className="hero-stat-value">{s.value}</span>
-                <span className="hero-stat-label">{s.label}</span>
-              </div>
-            ))}
           </div>
 
         </div>
@@ -78,29 +65,6 @@ export default function HomeClient() {
           <FadeUp delay={0.2}>
             <div className="section-link-row">
               <Link href="/services" className="section-link">{t.common.viewAll} <ChevronRight size={14} /></Link>
-            </div>
-          </FadeUp>
-        </div>
-      </section>
-
-      <div className="divider" />
-
-      <section className="section-padded">
-        <div className="section-inner">
-          <FadeUp>
-            <p className="section-label">Spindare Team</p>
-            <h2 className="section-title">Who I build with</h2>
-          </FadeUp>
-          <FadeUp delay={0.08}>
-            <div className="dh-collab-card">
-              <div className="dh-collab-name-row">
-                <a href="https://danielfrrokaj.com" target="_blank" rel="noopener noreferrer" className="dh-collab-name dh-collab-link">Daniel F. ↗</a>
-                <span className="dh-collab-role">Lead Developer · Spindare</span>
-              </div>
-              <p className="dh-collab-note">
-                Working with Daniel on Spindare has been invaluable. As the technical lead, he&apos;s helped me level up my architecture skills and navigate complex backend challenges.
-              </p>
-              <span className="dh-collab-context">Co-founder &amp; uncle</span>
             </div>
           </FadeUp>
         </div>
@@ -143,6 +107,41 @@ export default function HomeClient() {
           <FadeUp delay={0.15}>
             <div className="section-link-row">
               <Link href="/portfolio" className="section-link">{t.common.viewAll} <ChevronRight size={14} /></Link>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      <div className="divider" />
+
+      <section className="section-padded">
+        <div className="section-inner">
+          <FadeUp>
+            <p className="section-label">{t.home.testimonials.label}</p>
+            <h2 className="section-title">{t.home.testimonials.title}</h2>
+          </FadeUp>
+          <FadeUp delay={0.08}>
+            <div className="testimonials-layout">
+              {testimonials[0] && (
+                <div className="testimonial-featured">
+                  <p className="testimonial-featured-quote">&ldquo;{testimonials[0].quote}&rdquo;</p>
+                  <div className="testimonial-featured-author">
+                    <span className="testimonial-name">{testimonials[0].name}</span>
+                    <span className="testimonial-role">{testimonials[0].role} · {testimonials[0].location}</span>
+                  </div>
+                </div>
+              )}
+              <div className="testimonials-pair">
+                {testimonials.slice(1).map((item) => (
+                  <div className="testimonial-card" key={item.name}>
+                    <p className="testimonial-quote">&ldquo;{item.quote}&rdquo;</p>
+                    <div className="testimonial-author">
+                      <span className="testimonial-name">{item.name}</span>
+                      <span className="testimonial-role">{item.role} · {item.location}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </FadeUp>
         </div>
