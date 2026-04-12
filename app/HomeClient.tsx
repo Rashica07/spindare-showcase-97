@@ -5,6 +5,8 @@ import { useLanguage } from "@/lib/i18n";
 import { FadeUp } from "@/components/FadeUp";
 import { Ticker } from "@/components/Ticker";
 import { HeroTerminal } from "@/components/HeroTerminal";
+import { Tilt3D } from "@/components/Tilt3D";
+import { useParallax } from "@/hooks/useParallax";
 
 const serviceIcons = [Smartphone, Globe, Palette, Server];
 const statusColors: Record<string, string> = { live: "status-live", dev: "status-dev", soon: "status-soon" };
@@ -12,13 +14,14 @@ const statusColors: Record<string, string> = { live: "status-live", dev: "status
 export default function HomeClient() {
   const { t } = useLanguage();
   const featuredProjects = t.portfolio.projects.slice(0, 2);
+  const parallaxRef = useParallax(0.22);
 
   return (
     <>
       <section className="hero-section">
         <div className="hero-glow" aria-hidden="true" />
         <div className="section-inner hero-inner">
-          <div className="hero-content-wrap">
+          <div className="hero-content-wrap" ref={parallaxRef}>
             <div className="hero-left">
               <h1 className="hero-headline">
                 <span className="hero-h1">{t.home.hero.h1}</span>
@@ -81,7 +84,7 @@ export default function HomeClient() {
           <div className="featured-projects">
             {featuredProjects.map((proj, i) => (
               <FadeUp key={proj.name} delay={i * 0.1}>
-                <div className="featured-card">
+                <Tilt3D className="featured-card">
                   <div className="featured-card-top">
                     <div className="featured-card-name-row">
                       <span className="featured-card-name">{proj.name}</span>
@@ -100,7 +103,7 @@ export default function HomeClient() {
                       GitHub <ArrowRight size={13} />
                     </a>
                   )}
-                </div>
+                </Tilt3D>
               </FadeUp>
             ))}
           </div>

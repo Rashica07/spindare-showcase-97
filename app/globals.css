@@ -67,13 +67,20 @@ section, main, header, footer { position: relative; z-index: 1; }
   color: var(--accent);
 }
 
-/* ── Fade-up (IntersectionObserver — dev-hub) ── */
+/* ── Fade-up — 3D entrance (IntersectionObserver) ── */
 .fade-up {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+  transform: perspective(900px) translateY(36px) rotateX(5deg);
+  transform-origin: top center;
+  transition:
+    opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
-.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up.visible {
+  opacity: 1;
+  transform: perspective(900px) translateY(0) rotateX(0deg);
+}
 .fade-up.delay-1 { transition-delay: 0.10s; }
 .fade-up.delay-2 { transition-delay: 0.20s; }
 .fade-up.delay-3 { transition-delay: 0.30s; }
@@ -708,7 +715,9 @@ section, main, header, footer { position: relative; z-index: 1; }
   border-radius: var(--radius);
   position: relative;
   overflow: hidden;
-  transition: background var(--tr), transform 0.2s ease, box-shadow 0.2s ease, border-color var(--tr);
+  /* transform handled by Tilt3D, keep box-shadow transition */
+  transition: background var(--tr), box-shadow 0.2s ease, border-color var(--tr);
+  transform-style: preserve-3d;
 }
 .featured-card::before {
   content: '';
@@ -2608,9 +2617,6 @@ section, main, header, footer { position: relative; z-index: 1; }
 /* ════════════════════════════════════════
    WILL-CHANGE optimisation (only on GPU-composited elements)
    ════════════════════════════════════════ */
-.fade-up {
-  will-change: opacity, transform;
-}
 .fade-up.visible {
   will-change: auto;
 }

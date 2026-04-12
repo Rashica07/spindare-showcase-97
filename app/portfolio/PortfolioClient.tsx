@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Github, ChevronDown, X, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { FadeUp } from "@/components/FadeUp";
+import { Tilt3D } from "@/components/Tilt3D";
 
 const statusClass: Record<string, string> = { live: "status-live", dev: "status-dev", soon: "status-soon" };
 
@@ -73,7 +74,7 @@ export default function PortfolioClient() {
           <div className="portfolio-grid">
             {projects.map((proj, i) => (
               <FadeUp key={proj.name} delay={(i % 3) * 0.07}>
-                <article className="portfolio-card">
+                <Tilt3D><article className="portfolio-card" style={{ height: "100%" }}>
                   {proj.name === "Spindare" && (
                     <div className="pc-screens-strip">
                       {SPINDARE_SCREENS.slice(0, 3).map((s, si) => (
@@ -113,7 +114,7 @@ export default function PortfolioClient() {
                       {t.portfolio.hire} <ArrowRight size={13} />
                     </Link>
                   </div>
-                </article>
+                </article></Tilt3D>
               </FadeUp>
             ))}
           </div>
