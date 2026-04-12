@@ -461,37 +461,6 @@ section, main, header, footer { position: relative; z-index: 1; }
   line-height: 1.72;
   margin-bottom: 28px;
 }
-/* hero-spindare-pill replaced with inline text */
-.hero-spindare-pill {
-  display: none;
-  flex-wrap: wrap;
-}
-.hero-spindare-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-}
-.hero-spindare-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.hero-spindare-name {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-}
-.hero-spindare-meta {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
-  letter-spacing: 0.04em;
-}
 .hero-actions {
   display: flex;
   align-items: center;
@@ -504,38 +473,7 @@ section, main, header, footer { position: relative; z-index: 1; }
   color: var(--text-3);
   letter-spacing: 0.06em;
 }
-.hero-stats-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 48px;
-  margin-top: 64px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border);
-  flex-wrap: wrap;
-}
-.hero-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.hero-stat-value {
-  font-family: var(--sans);
-  font-size: 32px;
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  line-height: 1;
-}
-.hero-stat-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-/* scroll hint removed */
-
-/* ── Hero spindare inline (replaces pill) ── */
+/* ── Hero spindare inline ── */
 .hero-spindare-inline {
   font-family: var(--mono);
   font-size: 12px;
@@ -731,41 +669,6 @@ section, main, header, footer { position: relative; z-index: 1; }
   color: var(--text-3);
   background: transparent;
   border-color: var(--border-2);
-}
-
-
-/* ════════════════════════════════════════
-   HOME — STATS
-   ════════════════════════════════════════ */
-
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.stat-card {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 40px;
-  background: var(--bg-2);
-}
-.stat-value {
-  font-family: var(--mono);
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 500;
-  color: var(--text);
-  letter-spacing: -0.03em;
-}
-.stat-label {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--text-3);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 

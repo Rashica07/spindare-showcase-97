@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { GeistMono } from "geist/font/mono";
 import { DM_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LanguageProvider } from "@/lib/i18n";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { LangSync } from "@/components/LangSync";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -66,7 +67,19 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: BASE,
+    languages: {
+      "x-default": BASE,
+      "en": BASE,
+      "de": BASE,
+      "it": BASE,
+      "sq": BASE,
+    },
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -76,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#080808" />
         <meta name="color-scheme" content="dark" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
@@ -112,6 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <LanguageProvider>
+          <LangSync />
           <Nav />
           <main className="site-main">{children}</main>
           <Footer />
