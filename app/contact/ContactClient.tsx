@@ -4,37 +4,14 @@ import { Mail, MessageSquare, Github, Twitter, MapPin, Clock, ChevronDown } from
 import { useLanguage } from "@/lib/i18n";
 import { FadeUp } from "@/components/FadeUp";
 
-const FAQ = [
-  {
-    q: "How old are you?",
-    a: "I'm 14. Age doesn't define skill — my code does. Spindare has 150k+ lines and 300+ components. Judge the work, not the birth year.",
-  },
-  {
-    q: "Can you work with clients outside Italy?",
-    a: "Yes. I work fully remote and have no geographic restrictions. Timezone differences are manageable — I'm flexible.",
-  },
-  {
-    q: "What's your availability right now?",
-    a: "Currently focused on Spindare's iOS launch (September 2026). Open for new freelance work from June 2026. I can discuss your project now and plan accordingly.",
-  },
-  {
-    q: "Do you work alone or with a team?",
-    a: "Usually solo — I handle everything end-to-end. For larger projects, I collaborate with Daniel F. (Lead Developer, Spindare co-founder) when needed.",
-  },
-  {
-    q: "What's your rate?",
-    a: "Depends on scope, timeline, and complexity. I work on fixed-price projects — no hourly surprises. See the Services page for starting ranges, or email me with your project details.",
-  },
-  {
-    q: "Can you start immediately?",
-    a: "Not until June 2026. Spindare's launch is the current priority. That said, I'm happy to plan ahead — booking slots fill up, so reach out now.",
-  },
-];
-
 export default function ContactClient() {
   const { t } = useLanguage();
   const f = t.contact.form;
   const info = t.contact.info;
+  const st = t.contact.status;
+  const faq = t.contact.faq;
+  const err = t.contact.errors;
+
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [error, setError] = useState("");
@@ -49,16 +26,16 @@ export default function ContactClient() {
     const name = sanitize(form.name.trim());
     const email = sanitize(form.email.trim());
     const message = sanitize(`[${form.subject.trim()}] ${form.message.trim()}`);
-    if (!name || !email || !form.message.trim()) { setError("Please fill in all fields."); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError("Please enter a valid email."); return; }
-    if (form.message.length > 2000) { setError("Message must be under 2000 characters."); return; }
+    if (!name || !email || !form.message.trim()) { setError(err.fillAll); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError(err.invalidEmail); return; }
+    if (form.message.length > 2000) { setError(err.tooLong); return; }
     setStatus("sending");
     try {
       const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, email, message }) });
       const data = await res.json();
       if (res.ok && data.success) { setStatus("sent"); }
-      else { setError(data.error || "Something went wrong."); setStatus("idle"); }
-    } catch { setError("Network error. Check your connection."); setStatus("idle"); }
+      else { setError(data.error || err.serverError); setStatus("idle"); }
+    } catch { setError(err.networkError); setStatus("idle"); }
   };
 
   return (
@@ -75,23 +52,23 @@ export default function ContactClient() {
         <div className="section-inner">
           <FadeUp>
             <div className="avail-status-block">
-              <p className="avail-status-label">Current Status</p>
+              <p className="avail-status-label">{st.title}</p>
               <div className="avail-status-rows">
                 <div className="avail-row">
-                  <span className="avail-row-key">Status</span>
-                  <span className="avail-row-val"><span className="avail-dot avail-dot--busy" />Focused on Spindare launch</span>
+                  <span className="avail-row-key">{st.statusLabel}</span>
+                  <span className="avail-row-val"><span className="avail-dot avail-dot--busy" />{st.statusValue}</span>
                 </div>
                 <div className="avail-row">
-                  <span className="avail-row-key">Available for freelance</span>
-                  <span className="avail-row-val avail-row-val--accent">June 2026</span>
+                  <span className="avail-row-key">{st.freelanceLabel}</span>
+                  <span className="avail-row-val avail-row-val--accent">{st.freelanceValue}</span>
                 </div>
                 <div className="avail-row">
-                  <span className="avail-row-key">Booking for</span>
-                  <span className="avail-row-val">July–August 2026 projects</span>
+                  <span className="avail-row-key">{st.bookingLabel}</span>
+                  <span className="avail-row-val">{st.bookingValue}</span>
                 </div>
                 <div className="avail-row">
-                  <span className="avail-row-key">Response time</span>
-                  <span className="avail-row-val">Within 24 hours</span>
+                  <span className="avail-row-key">{st.responseLabel}</span>
+                  <span className="avail-row-val">{st.responseValue}</span>
                 </div>
               </div>
             </div>
@@ -156,7 +133,7 @@ export default function ContactClient() {
               </a>
               <div className="contact-info-item no-hover">
                 <span className="contact-info-icon"><MapPin size={15} /></span>
-                <div><span className="contact-info-label">Location</span><span className="contact-info-value">Lecco, Italy</span></div>
+                <div><span className="contact-info-label">Location</span><span className="contact-info-value">{info.location}</span></div>
               </div>
               <div className="contact-info-item no-hover">
                 <span className="contact-info-icon"><Clock size={15} /></span>
@@ -172,12 +149,12 @@ export default function ContactClient() {
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
-            <p className="section-label">FAQ</p>
-            <h2 className="section-title">Common questions</h2>
+            <p className="section-label">{faq.label}</p>
+            <h2 className="section-title">{faq.title}</h2>
           </FadeUp>
           <FadeUp delay={0.08}>
             <div className="faq-list">
-              {FAQ.map((item, i) => (
+              {faq.items.map((item, i) => (
                 <div key={i} className={`faq-item${openFaq === i ? " faq-item--open" : ""}`}>
                   <button
                     className="faq-question"
@@ -196,7 +173,6 @@ export default function ContactClient() {
           </FadeUp>
         </div>
       </section>
-
     </>
   );
 }

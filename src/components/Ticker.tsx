@@ -1,20 +1,9 @@
 "use client";
-
-const items = [
-  "FULL STACK DEVELOPER",
-  "MOBILE APPS",
-  "WEB PLATFORMS",
-  "REACT NATIVE",
-  "NEXT.JS",
-  "OPEN TO FREELANCE",
-  "14 YEARS OLD",
-  "BASED IN ITALY",
-  "TYPESCRIPT",
-  "SUPABASE",
-];
+import { useLanguage } from "@/lib/i18n";
 
 export function Ticker() {
-  const repeated = [...items, ...items];
+  const { t } = useLanguage();
+  const repeated = [...t.ticker.items, ...t.ticker.items];
 
   return (
     <div className="ticker-wrapper" aria-hidden="true">

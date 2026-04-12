@@ -125,9 +125,9 @@ export default function PortfolioClient() {
       <section className="section-padded">
         <div className="section-inner">
           <FadeUp>
-            <p className="section-label">Case Studies</p>
-            <h2 className="section-title">Under the hood</h2>
-            <p className="section-sub">Architecture decisions, technical depth, and what it actually took to build these.</p>
+            <p className="section-label">{t.portfolio.caseStudies.label}</p>
+            <h2 className="section-title">{t.portfolio.caseStudies.title}</h2>
+            <p className="section-sub">{t.portfolio.caseStudies.sub}</p>
           </FadeUp>
           <div className="case-studies-list">
             <FadeUp delay={0.05}>

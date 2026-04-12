@@ -10,6 +10,7 @@ export default function BlogClient() {
   const [filter, setFilter] = useState(0);
   const [email, setEmail] = useState("");
   const [subStatus, setSubStatus] = useState<"idle" | "sending" | "done">("idle");
+  const nl = t.blog.newsletter;
   const categories = t.blog.categories;
   const catKeys = ["All", "React Native", "Architecture", "Backend", "Design"];
   const catDisplay: Record<string, string> = Object.fromEntries(catKeys.map((k, i) => [k, t.blog.categories[i]]));
@@ -79,11 +80,11 @@ export default function BlogClient() {
           <div className="section-inner">
             <div className="newsletter-block">
               <div className="newsletter-text">
-                <p className="newsletter-title">Get updates when I ship something new</p>
-                <p className="newsletter-sub">No spam. Occasional posts, projects, and things worth reading.</p>
+                <p className="newsletter-title">{nl.title}</p>
+                <p className="newsletter-sub">{nl.sub}</p>
               </div>
               {subStatus === "done" ? (
-                <p className="newsletter-done">You&apos;re in. I&apos;ll be in touch.</p>
+                <p className="newsletter-done">{nl.done}</p>
               ) : (
                 <form className="newsletter-form" onSubmit={handleSubscribe}>
                   <input
@@ -95,7 +96,7 @@ export default function BlogClient() {
                     required
                   />
                   <button type="submit" className="btn-primary newsletter-btn" disabled={subStatus === "sending"}>
-                    {subStatus === "sending" ? "..." : "Subscribe"}
+                    {subStatus === "sending" ? nl.sending : nl.subscribe}
                   </button>
                 </form>
               )}

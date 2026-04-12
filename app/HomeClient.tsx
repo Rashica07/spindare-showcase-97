@@ -4,6 +4,7 @@ import { ArrowRight, Smartphone, Globe, Palette, Server, ChevronRight } from "lu
 import { useLanguage } from "@/lib/i18n";
 import { FadeUp } from "@/components/FadeUp";
 import { Ticker } from "@/components/Ticker";
+import { HeroTerminal } from "@/components/HeroTerminal";
 
 const serviceIcons = [Smartphone, Globe, Palette, Server];
 const statusColors: Record<string, string> = { live: "status-live", dev: "status-dev", soon: "status-soon" };
@@ -11,31 +12,30 @@ const statusColors: Record<string, string> = { live: "status-live", dev: "status
 export default function HomeClient() {
   const { t } = useLanguage();
   const featuredProjects = t.portfolio.projects.slice(0, 2);
-  const testimonials = t.home.testimonials.items;
 
   return (
     <>
       <section className="hero-section">
         <div className="hero-glow" aria-hidden="true" />
         <div className="section-inner hero-inner">
-
-          <h1 className="hero-headline">
-            <span className="hero-h1">{t.home.hero.h1}</span>
-            <span className="hero-h2 accent-text">{t.home.hero.h2}</span>
-          </h1>
-
-          <p className="hero-sub">{t.home.hero.sub}</p>
-
-          <p className="hero-spindare-inline">
-            {t.home.hero.spindare}: <span>Spindare</span> — React Native · iOS · Sep 2026
-          </p>
-
-          <div className="hero-actions">
-            <Link href="/portfolio" className="btn-primary">{t.home.hero.cta1} <ArrowRight size={15} /></Link>
-            <Link href="/contact" className="btn-secondary">{t.home.hero.cta2}</Link>
-            <span className="hero-avail">{t.home.hero.avail}</span>
+          <div className="hero-content-wrap">
+            <div className="hero-left">
+              <h1 className="hero-headline">
+                <span className="hero-h1">{t.home.hero.h1}</span>
+                <span className="hero-h2 accent-text">{t.home.hero.h2}</span>
+              </h1>
+              <p className="hero-sub">{t.home.hero.sub}</p>
+              <p className="hero-spindare-inline">
+                {t.home.hero.spindare}: <span>Spindare</span> — React Native · iOS · Sep 2026
+              </p>
+              <div className="hero-actions">
+                <Link href="/portfolio" className="btn-primary">{t.home.hero.cta1} <ArrowRight size={15} /></Link>
+                <Link href="/contact" className="btn-secondary">{t.home.hero.cta2}</Link>
+                <span className="hero-avail">{t.home.hero.avail}</span>
+              </div>
+            </div>
+            <HeroTerminal />
           </div>
-
         </div>
       </section>
 
@@ -112,7 +112,7 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* Testimonials section — uncomment when ready
+      {/* Testimonials — uncomment when ready
       <div className="divider" />
       <section className="section-padded">
         <div className="section-inner">
@@ -122,26 +122,7 @@ export default function HomeClient() {
           </FadeUp>
           <FadeUp delay={0.08}>
             <div className="testimonials-layout">
-              {testimonials[0] && (
-                <div className="testimonial-featured">
-                  <p className="testimonial-featured-quote">&ldquo;{testimonials[0].quote}&rdquo;</p>
-                  <div className="testimonial-featured-author">
-                    <span className="testimonial-name">{testimonials[0].name}</span>
-                    <span className="testimonial-role">{testimonials[0].role} · {testimonials[0].location}</span>
-                  </div>
-                </div>
-              )}
-              <div className="testimonials-pair">
-                {testimonials.slice(1).map((item) => (
-                  <div className="testimonial-card" key={item.name}>
-                    <p className="testimonial-quote">&ldquo;{item.quote}&rdquo;</p>
-                    <div className="testimonial-author">
-                      <span className="testimonial-name">{item.name}</span>
-                      <span className="testimonial-role">{item.role} · {item.location}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              ...
             </div>
           </FadeUp>
         </div>

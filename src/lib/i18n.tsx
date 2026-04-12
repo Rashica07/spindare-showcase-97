@@ -153,6 +153,11 @@ const en = {
         link: "/",
       },
     ],
+    caseStudies: {
+      label: "Case Studies",
+      title: "Under the hood",
+      sub: "Architecture decisions, technical depth, and what it actually took to build these.",
+    },
   },
   blog: {
     hero: {
@@ -192,6 +197,13 @@ const en = {
         date: "Feb 8, 2026", read: 8,
       },
     ],
+    newsletter: {
+      title: "Get updates when I ship something new",
+      sub: "No spam. Occasional posts, projects, and things worth reading.",
+      done: "You're in. I'll be in touch.",
+      subscribe: "Subscribe",
+      sending: "...",
+    },
   },
   about: {
     hero: {
@@ -344,6 +356,36 @@ const en = {
       hoursValue: "Within 24 hours",
     },
     map: { title: "Location — Kosovo" },
+    status: {
+      title: "Current Status",
+      statusLabel: "Status",
+      statusValue: "Focused on Spindare launch",
+      freelanceLabel: "Available for freelance",
+      freelanceValue: "June 2026",
+      bookingLabel: "Booking for",
+      bookingValue: "July–August 2026 projects",
+      responseLabel: "Response time",
+      responseValue: "Within 24 hours",
+    },
+    faq: {
+      label: "FAQ",
+      title: "Common questions",
+      items: [
+        { q: "How old are you?", a: "I'm 14. Age doesn't define skill — my code does. Spindare has 150k+ lines and 300+ components. Judge the work, not the birth year." },
+        { q: "Can you work with clients outside Italy?", a: "Yes. I work fully remote and have no geographic restrictions. Timezone differences are manageable — I'm flexible." },
+        { q: "What's your availability right now?", a: "Currently focused on Spindare's iOS launch (September 2026). Open for new freelance work from June 2026. I can discuss your project now and plan accordingly." },
+        { q: "Do you work alone or with a team?", a: "Usually solo — I handle everything end-to-end. For larger projects, I collaborate with Daniel F. (Lead Developer, Spindare co-founder) when needed." },
+        { q: "What's your rate?", a: "Depends on scope, timeline, and complexity. I work on fixed-price projects — no hourly surprises. See the Services page for starting ranges, or email me with your project details." },
+        { q: "Can you start immediately?", a: "Not until June 2026. Spindare's launch is the current priority. That said, I'm happy to plan ahead — booking slots fill up, so reach out now." },
+      ],
+    },
+    errors: {
+      fillAll: "Please fill in all fields.",
+      invalidEmail: "Please enter a valid email.",
+      tooLong: "Message must be under 2000 characters.",
+      serverError: "Something went wrong.",
+      networkError: "Network error. Check your connection.",
+    },
   },
   footer: {
     tagline: "Professional development services.",
@@ -425,6 +467,13 @@ const en = {
         "Infrastructure: Git → CI/CD → Cloud deployment → Production monitoring",
       ],
     },
+  },
+  ticker: {
+    items: [
+      "FULL STACK DEVELOPER", "MOBILE APPS", "WEB PLATFORMS",
+      "REACT NATIVE", "NEXT.JS", "OPEN TO FREELANCE",
+      "14 YEARS OLD", "BASED IN ITALY", "TYPESCRIPT", "SUPABASE",
+    ],
   },
 };
 
@@ -528,6 +577,11 @@ const de: typeof en = {
     status: { live: "Live", dev: "In Entwicklung", soon: "Demnächst" },
     viewProject: "Projekt ansehen", viewCode: "Code ansehen", hire: "Beauftrage mich",
     projects: en.portfolio.projects,
+    caseStudies: {
+      label: "Fallstudien",
+      title: "Unter der Haube",
+      sub: "Architekturentscheidungen, technische Tiefe und was es wirklich gebraucht hat, das zu bauen.",
+    },
   },
   blog: {
     hero: {
@@ -567,6 +621,13 @@ const de: typeof en = {
         date: "8. Feb. 2026", read: 8,
       },
     ],
+    newsletter: {
+      title: "Updates erhalten, wenn ich etwas Neues shippe",
+      sub: "Kein Spam. Gelegentliche Posts, Projekte und Lesenswertes.",
+      done: "Du bist dabei. Ich melde mich.",
+      subscribe: "Abonnieren",
+      sending: "...",
+    },
   },
   about: {
     hero: {
@@ -693,6 +754,36 @@ const de: typeof en = {
       hoursValue: "Innerhalb von 24 Stunden",
     },
     map: { title: "Standort — Kosovo" },
+    status: {
+      title: "Aktueller Status",
+      statusLabel: "Status",
+      statusValue: "Fokussiert auf Spindare-Launch",
+      freelanceLabel: "Verfügbar für Freelance",
+      freelanceValue: "Juni 2026",
+      bookingLabel: "Buchung für",
+      bookingValue: "Juli–August 2026 Projekte",
+      responseLabel: "Antwortzeit",
+      responseValue: "Innerhalb von 24 Stunden",
+    },
+    faq: {
+      label: "FAQ",
+      title: "Häufige Fragen",
+      items: [
+        { q: "Wie alt bist du?", a: "Ich bin 14. Alter definiert keine Fähigkeiten — mein Code schon. Spindare hat 150k+ Zeilen und 300+ Komponenten. Beurteile die Arbeit, nicht das Geburtsjahr." },
+        { q: "Kannst du mit Kunden außerhalb Italiens arbeiten?", a: "Ja. Ich arbeite vollständig remote und habe keine geografischen Einschränkungen. Zeitzonenunterschiede sind handhabbar — ich bin flexibel." },
+        { q: "Wie ist deine aktuelle Verfügbarkeit?", a: "Aktuell fokussiert auf Spindares iOS-Launch (September 2026). Offen für neue Freelance-Arbeit ab Juni 2026. Wir können dein Projekt jetzt besprechen und entsprechend planen." },
+        { q: "Arbeitest du alleine oder im Team?", a: "Meistens solo — ich übernehme alles von Anfang bis Ende. Für größere Projekte arbeite ich mit Daniel F. (Lead-Entwickler, Spindare-Mitgründer) zusammen, wenn nötig." },
+        { q: "Was ist dein Stundensatz?", a: "Hängt von Umfang, Zeitplan und Komplexität ab. Ich arbeite zu Festpreisen — keine stündlichen Überraschungen. Sieh dir die Dienste-Seite für Ausgangsbereiche an." },
+        { q: "Kannst du sofort anfangen?", a: "Nicht bis Juni 2026. Spindares Launch hat aktuell Priorität. Ich plane aber gerne im Voraus — Zeitfenster füllen sich, also melde dich jetzt." },
+      ],
+    },
+    errors: {
+      fillAll: "Bitte fülle alle Felder aus.",
+      invalidEmail: "Bitte gib eine gültige E-Mail-Adresse ein.",
+      tooLong: "Nachricht muss unter 2000 Zeichen sein.",
+      serverError: "Etwas ist schiefgelaufen.",
+      networkError: "Netzwerkfehler. Überprüfe deine Verbindung.",
+    },
   },
   footer: {
     tagline: "Professionelle Entwicklungsdienstleistungen.",
@@ -774,6 +865,13 @@ const de: typeof en = {
         "Infrastruktur: Git → CI/CD → Cloud-Deployment → Produktionsüberwachung",
       ],
     },
+  },
+  ticker: {
+    items: [
+      "FULL STACK ENTWICKLER", "MOBILE APPS", "WEB PLATTFORMEN",
+      "REACT NATIVE", "NEXT.JS", "OFFEN FÜR FREELANCE",
+      "14 JAHRE ALT", "BASIERT IN ITALIEN", "TYPESCRIPT", "SUPABASE",
+    ],
   },
 };
 
@@ -877,6 +975,11 @@ const it: typeof en = {
     status: { live: "Live", dev: "In Sviluppo", soon: "Prossimamente" },
     viewProject: "Vedi progetto", viewCode: "Vedi codice", hire: "Assumimi per questo",
     projects: en.portfolio.projects,
+    caseStudies: {
+      label: "Casi Studio",
+      title: "Sotto il cofano",
+      sub: "Decisioni architetturali, profondità tecnica e cosa ha richiesto davvero costruirli.",
+    },
   },
   blog: {
     hero: {
@@ -916,6 +1019,13 @@ const it: typeof en = {
         date: "8 feb 2026", read: 8,
       },
     ],
+    newsletter: {
+      title: "Ricevi aggiornamenti quando pubblico qualcosa di nuovo",
+      sub: "Niente spam. Post occasionali, progetti e cose che vale la pena leggere.",
+      done: "Ci sei. Ti contatterò.",
+      subscribe: "Iscriviti",
+      sending: "...",
+    },
   },
   about: {
     hero: {
@@ -1039,6 +1149,36 @@ const it: typeof en = {
       hoursValue: "Entro 24 ore",
     },
     map: { title: "Posizione — Kosovo" },
+    status: {
+      title: "Stato Attuale",
+      statusLabel: "Stato",
+      statusValue: "Concentrato sul lancio di Spindare",
+      freelanceLabel: "Disponibile per freelance",
+      freelanceValue: "Giugno 2026",
+      bookingLabel: "Prenotazioni per",
+      bookingValue: "Progetti luglio–agosto 2026",
+      responseLabel: "Tempo di risposta",
+      responseValue: "Entro 24 ore",
+    },
+    faq: {
+      label: "FAQ",
+      title: "Domande frequenti",
+      items: [
+        { q: "Quanti anni hai?", a: "Ho 14 anni. L'età non definisce le competenze — il mio codice sì. Spindare ha 150k+ righe e 300+ componenti. Giudica il lavoro, non l'anno di nascita." },
+        { q: "Puoi lavorare con clienti fuori dall'Italia?", a: "Sì. Lavoro completamente da remoto e non ho restrizioni geografiche. Le differenze di fuso orario sono gestibili — sono flessibile." },
+        { q: "Qual è la tua disponibilità attuale?", a: "Attualmente concentrato sul lancio iOS di Spindare (settembre 2026). Aperto a nuovi lavori freelance da giugno 2026. Possiamo discutere il tuo progetto ora e pianificare di conseguenza." },
+        { q: "Lavori da solo o con un team?", a: "Di solito da solo — gestisco tutto dall'inizio alla fine. Per progetti più grandi, collaboro con Daniel F. (Lead Developer, co-fondatore Spindare) quando necessario." },
+        { q: "Qual è la tua tariffa?", a: "Dipende da portata, tempi e complessità. Lavoro a prezzi fissi — nessuna sorpresa oraria. Vedi la pagina Servizi per i prezzi di partenza." },
+        { q: "Puoi iniziare subito?", a: "Non prima di giugno 2026. Il lancio di Spindare è la priorità attuale. Sono però felice di pianificare in anticipo — i posti si riempiono, quindi contattami ora." },
+      ],
+    },
+    errors: {
+      fillAll: "Per favore compila tutti i campi.",
+      invalidEmail: "Per favore inserisci un'email valida.",
+      tooLong: "Il messaggio deve essere sotto i 2000 caratteri.",
+      serverError: "Qualcosa è andato storto.",
+      networkError: "Errore di rete. Controlla la connessione.",
+    },
   },
   footer: {
     tagline: "Servizi di sviluppo professionale.",
@@ -1120,6 +1260,13 @@ const it: typeof en = {
         "Infrastruttura: Git → CI/CD → Cloud deployment → Monitoraggio in produzione",
       ],
     },
+  },
+  ticker: {
+    items: [
+      "SVILUPPATORE FULL STACK", "APP MOBILE", "PIATTAFORME WEB",
+      "REACT NATIVE", "NEXT.JS", "APERTO AL FREELANCE",
+      "14 ANNI", "BASATO IN ITALIA", "TYPESCRIPT", "SUPABASE",
+    ],
   },
 };
 
@@ -1223,6 +1370,11 @@ const sq: typeof en = {
     status: { live: "Live", dev: "Në Zhvillim", soon: "Së shpejti" },
     viewProject: "Shiko projektin", viewCode: "Shiko kodin", hire: "Punëso mua",
     projects: en.portfolio.projects,
+    caseStudies: {
+      label: "Studime Rasti",
+      title: "Nën kapakun",
+      sub: "Vendimet arkitekturore, thellësia teknike dhe çfarë duhej vërtet për t'i ndërtuar.",
+    },
   },
   blog: {
     hero: {
@@ -1262,6 +1414,13 @@ const sq: typeof en = {
         date: "8 shk 2026", read: 8,
       },
     ],
+    newsletter: {
+      title: "Merr përditësime kur publikoj diçka të re",
+      sub: "Pa spam. Postime të rastit, projekte dhe gjëra që ia vlen të lexosh.",
+      done: "Je brenda. Do të kontaktoj.",
+      subscribe: "Abonohu",
+      sending: "...",
+    },
   },
   about: {
     hero: {
@@ -1385,6 +1544,36 @@ const sq: typeof en = {
       hoursValue: "Brenda 24 orëve",
     },
     map: { title: "Vendndodhja — Kosovë" },
+    status: {
+      title: "Statusi Aktual",
+      statusLabel: "Statusi",
+      statusValue: "I fokusuar në lansimin e Spindare",
+      freelanceLabel: "I disponueshëm për freelance",
+      freelanceValue: "Qershor 2026",
+      bookingLabel: "Rezervime për",
+      bookingValue: "Projekte korrik–gusht 2026",
+      responseLabel: "Koha e përgjigjes",
+      responseValue: "Brenda 24 orëve",
+    },
+    faq: {
+      label: "FAQ",
+      title: "Pyetje të shpeshta",
+      items: [
+        { q: "Sa vjeç je?", a: "Jam 14 vjeç. Mosha nuk përcakton aftësinë — kodi im po. Spindare ka 150k+ rreshta dhe 300+ komponentë. Gjyko punën, jo vitin e lindjes." },
+        { q: "Mund të punosh me klientë jashtë Italisë?", a: "Po. Punoj plotësisht nga distanca dhe nuk kam kufizime gjeografike. Ndryshimet e orës janë të menaxhueshme — jam fleksibël." },
+        { q: "Cila është disponueshmëria jote aktuale?", a: "Aktualisht i fokusuar në lansimin iOS të Spindare (shtator 2026). I hapur për punë të re freelance nga qershori 2026. Mund të diskutojmë projektin tënd tani dhe të planifikojmë." },
+        { q: "Punon vetëm apo me ekip?", a: "Zakonisht vetëm — trajtoj gjithçka nga fillimi në fund. Për projekte më të mëdha, bashkëpunoj me Daniel F. (Drejtuesi kryesor, bashkëthemelues Spindare) kur nevojitet." },
+        { q: "Cili është tarifa jote?", a: "Varet nga qëllimi, afati dhe kompleksiteti. Punoj me çmime fikse — pa surpriza orare. Shiko faqen e Shërbimeve për diapazones e fillimit." },
+        { q: "Mund të fillosh menjëherë?", a: "Jo deri në qershor 2026. Lansimi i Spindare është prioriteti aktual. Megjithatë, jam i lumtur të planifikoj paraprakisht — hapësirat mbushen, kështu që kontaktomë tani." },
+      ],
+    },
+    errors: {
+      fillAll: "Ju lutemi plotësoni të gjitha fushat.",
+      invalidEmail: "Ju lutemi vendosni një email të vlefshëm.",
+      tooLong: "Mesazhi duhet të jetë nën 2000 karaktere.",
+      serverError: "Diçka shkoi gabim.",
+      networkError: "Gabim rrjeti. Kontrollo lidhjen.",
+    },
   },
   footer: {
     tagline: "Shërbime profesionale zhvillimi.",
@@ -1466,6 +1655,13 @@ const sq: typeof en = {
         "Infrastrukturë: Git → CI/CD → Deployment në cloud → Monitorim prodhimi",
       ],
     },
+  },
+  ticker: {
+    items: [
+      "ZHVILLUES FULL STACK", "APLIKACIONE MOBILE", "PLATFORMA WEB",
+      "REACT NATIVE", "NEXT.JS", "I HAPUR PËR FREELANCE",
+      "14 VJEÇ", "BAZUAR NË ITALI", "TYPESCRIPT", "SUPABASE",
+    ],
   },
 };
 
