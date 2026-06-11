@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
+import { PageWatermark } from "@/components/PageWatermark";
 import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql, SiExpo, SiGithub } from "react-icons/si";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -32,7 +33,8 @@ export default function AboutPage() {
       <AmbientOrbs variant="about" />
       <Navbar />
 
-      <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="about-hero">
+      <section className="page-hero-glow pt-32 pb-20 border-b border-border/40 relative overflow-hidden" data-testid="about-hero">
+        <PageWatermark text="ABOUT" />
         <div className="max-w-7xl mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
             <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.about.label}</span>

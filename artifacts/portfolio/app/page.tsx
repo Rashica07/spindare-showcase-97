@@ -14,6 +14,7 @@ const HeroCanvas = dynamic(
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
+import { PageWatermark } from "@/components/PageWatermark";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -75,6 +76,7 @@ export default function HomePage() {
 
       {/* HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden" data-testid="section-hero">
+        <PageWatermark text="KIQA" />
         <HeroCanvas />
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background pointer-events-none z-10" />
         <div className="relative z-20 max-w-7xl mx-auto px-6 pt-24 pb-16 w-full">

@@ -8,6 +8,24 @@ interface OrbConfig {
   small: { left: string; top: string; size: number; dx: number[]; dy: number[]; duration: number };
 }
 
+const BIG_MORPH = [
+  '50% 50% 50% 50% / 50% 50% 50% 50%',
+  '62% 38% 46% 54% / 44% 58% 42% 56%',
+  '38% 62% 58% 42% / 56% 44% 60% 40%',
+  '54% 46% 40% 60% / 48% 52% 44% 56%',
+  '44% 56% 62% 38% / 58% 42% 54% 46%',
+  '50% 50% 50% 50% / 50% 50% 50% 50%',
+];
+
+const SMALL_MORPH = [
+  '50% 50% 50% 50% / 50% 50% 50% 50%',
+  '40% 60% 54% 46% / 60% 40% 56% 44%',
+  '58% 42% 44% 56% / 42% 58% 48% 52%',
+  '46% 54% 62% 38% / 52% 48% 40% 60%',
+  '60% 40% 46% 54% / 44% 56% 62% 38%',
+  '50% 50% 50% 50% / 50% 50% 50% 50%',
+];
+
 const CONFIGS: Record<OrbVariant, OrbConfig> = {
   home: {
     big:   { left: '72%', top: '18%', size: 520, dx: [0, 50, -30, 40, 0],  dy: [0, -40, 30, -50, 0],  duration: 20 },
@@ -45,30 +63,45 @@ export function AmbientOrbs({ variant }: { variant: OrbVariant }) {
       aria-hidden="true"
     >
       <motion.div
-        animate={{ x: big.dx, y: big.dy }}
-        transition={{ duration: big.duration, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{
+          x: big.dx,
+          y: big.dy,
+          borderRadius: BIG_MORPH,
+        }}
+        transition={{
+          duration: big.duration,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
         style={{
           position: 'absolute',
           left: big.left,
           top: big.top,
           width: big.size,
           height: big.size,
-          borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(249,115,22,0.16) 0%, rgba(249,115,22,0.07) 45%, transparent 72%)',
           filter: 'blur(72px)',
           transform: 'translate(-50%, -50%)',
         }}
       />
       <motion.div
-        animate={{ x: small.dx, y: small.dy }}
-        transition={{ duration: small.duration, repeat: Infinity, ease: 'easeInOut', delay: 2.5 }}
+        animate={{
+          x: small.dx,
+          y: small.dy,
+          borderRadius: SMALL_MORPH,
+        }}
+        transition={{
+          duration: small.duration,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 2.5,
+        }}
         style={{
           position: 'absolute',
           left: small.left,
           top: small.top,
           width: small.size,
           height: small.size,
-          borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(251,146,60,0.13) 0%, rgba(249,115,22,0.05) 50%, transparent 72%)',
           filter: 'blur(56px)',
           transform: 'translate(-50%, -50%)',
