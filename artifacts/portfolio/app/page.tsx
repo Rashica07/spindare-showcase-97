@@ -44,29 +44,49 @@ export default function HomePage() {
   const prevBlog = () => setBlogIndex((prev) => (prev - 1 + blogPosts.length) % blogPosts.length);
 
   const timelineRef = useRef<HTMLDivElement>(null);
-  const [activeStep, setActiveStep] = useState(0);
-  const [stepProgress, setStepProgress] = useState(0);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
+  const progressRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
+  const scrollRafRef = useRef<number>(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const update = () => {
       if (!timelineRef.current) return;
       const rect = timelineRef.current.getBoundingClientRect();
-      const containerHeight = rect.height;
-      const windowHeight = window.innerHeight;
-      const totalScrollable = containerHeight - windowHeight;
+      const totalScrollable = rect.height - window.innerHeight;
       const scrolled = -rect.top;
-      if (scrolled < 0) { setActiveStep(0); setStepProgress(0); return; }
-      if (scrolled > totalScrollable) { setActiveStep(3); setStepProgress(1); return; }
-      const pct = scrolled / totalScrollable;
-      const step = Math.min(Math.floor(pct * 4), 3);
-      setActiveStep(step);
-      const stepStart = step * 0.25;
-      const progressInStep = (pct - stepStart) / 0.25;
-      setStepProgress(Math.max(0, Math.min(1, progressInStep)));
+      let activeStep: number;
+      let progress: number;
+      if (scrolled <= 0) { activeStep = 0; progress = 0; }
+      else if (scrolled >= totalScrollable) { activeStep = 3; progress = 1; }
+      else {
+        const pct = scrolled / totalScrollable;
+        activeStep = Math.min(Math.floor(pct * 4), 3);
+        const stepStart = activeStep * 0.25;
+        progress = Math.max(0, Math.min(1, (pct - stepStart) / 0.25));
+      }
+      stepRefs.current.forEach((el, i) => {
+        if (!el) return;
+        el.classList.remove("timeline-step--active", "timeline-step--completed", "timeline-step--pending");
+        if (i === activeStep) el.classList.add("timeline-step--active");
+        else if (i < activeStep) el.classList.add("timeline-step--completed");
+        else el.classList.add("timeline-step--pending");
+      });
+      progressRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const w = i === activeStep ? progress : i < activeStep ? 1 : 0;
+        el.style.width = `${w * 100}%`;
+      });
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => {
+      cancelAnimationFrame(scrollRafRef.current);
+      scrollRafRef.current = requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(scrollRafRef.current);
+    };
   }, []);
 
   return (
@@ -213,20 +233,21 @@ export default function HomePage() {
               <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight">{t.process.title}</h2>
             </div>
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {t.process.steps.map((step, i) => {
-                const isActive = activeStep === i;
-                const isCompleted = activeStep > i;
-                const progress = isActive ? stepProgress : isCompleted ? 1 : 0;
-                const stepState = isActive ? "timeline-step--active" : isCompleted ? "timeline-step--completed" : "timeline-step--pending";
-                return (
-                  <div key={i} className={`timeline-step glass-card rounded-xl p-6 flex flex-col gap-4 relative ${stepState}`} data-testid={`process-step-${i}`}>
-                    <span className={`timeline-step-number font-mono text-3xl font-black transition-colors duration-300 ${isActive ? "" : "text-muted-foreground/30"}`}>{step.n}</span>
-                    <h3 className={`timeline-step-title font-semibold transition-colors duration-300 ${isActive ? "" : "text-muted-foreground"}`}>{step.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{step.desc}</p>
-                    <div className="timeline-progress"><div className="timeline-progress__fill" style={{ width: `${progress * 100}%` }} /></div>
+              {t.process.steps.map((step, i) => (
+                <div
+                  key={i}
+                  ref={el => { stepRefs.current[i] = el; }}
+                  className="timeline-step timeline-step--pending glass-card rounded-xl p-6 flex flex-col gap-4 relative"
+                  data-testid={`process-step-${i}`}
+                >
+                  <span className="timeline-step-number font-mono text-3xl font-black transition-colors duration-300">{step.n}</span>
+                  <h3 className="timeline-step-title font-semibold transition-colors duration-300">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{step.desc}</p>
+                  <div className="timeline-progress">
+                    <div ref={el => { progressRefs.current[i] = el; }} className="timeline-progress__fill" style={{ width: "0%" }} />
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
         </div>
