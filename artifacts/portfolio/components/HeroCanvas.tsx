@@ -232,6 +232,7 @@ export function HeroCanvas() {
   const [hasWebGL, setHasWebGL] = useState(false);
   const [lowPerf,  setLowPerf]  = useState(false);
   const [mounted,  setMounted]  = useState(false);
+  const [gyroState, setGyroState] = useState<'idle' | 'prompt' | 'granted' | 'denied'>('idle');
   const mouse         = useRef<[number, number]>([0, 0]);
   const scrollImpulse = useRef(0);
 
@@ -255,6 +256,20 @@ export function HeroCanvas() {
     scrollImpulse.current = Math.min(scrollImpulse.current + 0.06, 0.18);
   }, []);
 
+  const requestGyro = useCallback(async () => {
+    try {
+      const result = await (DeviceOrientationEvent as unknown as { requestPermission: () => Promise<string> }).requestPermission();
+      if (result === 'granted') {
+        setGyroState('granted');
+        window.addEventListener('deviceorientation', onDeviceOrientation as EventListener, { passive: true });
+      } else {
+        setGyroState('denied');
+      }
+    } catch {
+      setGyroState('denied');
+    }
+  }, [onDeviceOrientation]);
+
   useEffect(() => {
     try {
       const c  = document.createElement('canvas');
@@ -266,8 +281,13 @@ export function HeroCanvas() {
       return;
     }
     window.addEventListener('mousemove', onMouseMove, { passive: true });
-    window.addEventListener('deviceorientation', onDeviceOrientation as EventListener, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
+    const needsPermission = typeof (DeviceOrientationEvent as unknown as { requestPermission?: unknown }).requestPermission === 'function';
+    if (needsPermission) {
+      setGyroState('prompt');
+    } else {
+      window.addEventListener('deviceorientation', onDeviceOrientation as EventListener, { passive: true });
+    }
     const t = setTimeout(() => setMounted(true), 80);
     return () => {
       clearTimeout(t);
@@ -303,6 +323,42 @@ export function HeroCanvas() {
           onLowPerf={() => setLowPerf(true)}
         />
       </Canvas>
+      {gyroState === 'prompt' && (
+        <motion.button
+          aria-hidden="false"
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 6 }}
+          transition={{ delay: 1.2, duration: 0.5 }}
+          onClick={requestGyro}
+          style={{
+            position: 'absolute',
+            bottom: '24px',
+            right: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            background: 'hsl(20 8% 7% / 0.72)',
+            border: '1px solid hsl(32 98% 54% / 0.35)',
+            borderRadius: '6px',
+            padding: '7px 12px',
+            color: 'hsl(32 98% 70%)',
+            fontSize: '11px',
+            fontFamily: 'var(--font-dm-mono, monospace)',
+            letterSpacing: '0.08em',
+            cursor: 'pointer',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            zIndex: 30,
+          }}
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          ENABLE TILT
+        </motion.button>
+      )}
     </motion.div>
   );
 }
