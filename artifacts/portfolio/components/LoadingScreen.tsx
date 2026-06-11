@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const COLS = 14;
 const ROWS = 9;
-const FILL_MS = 700;
+const FILL_MS = 400;
 
 export function LoadingScreen() {
   const [progress, setProgress]   = useState(0);
@@ -28,8 +28,8 @@ export function LoadingScreen() {
         setTimeout(() => {
           setExiting(true);
           sessionStorage.setItem('kd_loaded', '1');
-          setTimeout(() => setGone(true), 450);
-        }, 160);
+          setTimeout(() => setGone(true), 280);
+        }, 80);
       }
     };
     rafRef.current = requestAnimationFrame(tick);

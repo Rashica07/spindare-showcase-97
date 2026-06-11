@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
@@ -85,7 +86,9 @@ export default function PortfolioPage() {
                         </div>
                         <div className="relative mt-8 w-[170px] h-[310px] rounded-[24px] border-4 border-card-border bg-background shadow-2xl overflow-hidden flex items-center justify-center">
                           <div className="absolute top-0 w-16 h-3 bg-card-border rounded-b-lg z-20" />
-                          <motion.img key={spindareActiveIdx} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.25 }} src={SPINDARE_SCREENS[spindareActiveIdx].src} alt={SPINDARE_SCREENS[spindareActiveIdx].name} className="w-full h-full object-cover z-10" />
+                          <motion.div key={spindareActiveIdx} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.25 }} className="w-full h-full z-10">
+                            <Image src={SPINDARE_SCREENS[spindareActiveIdx].src} alt={SPINDARE_SCREENS[spindareActiveIdx].name} fill className="object-cover" sizes="170px" priority={spindareActiveIdx === 0} />
+                          </motion.div>
                         </div>
                       </div>
                     ) : (
