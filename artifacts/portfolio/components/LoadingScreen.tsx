@@ -14,10 +14,17 @@ export function LoadingScreen() {
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
-    if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('kd_loaded')) {
-      setGone(true);
-      return;
+    const cached = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('kd_loaded');
+
+    if (cached) {
+      setProgress(1);
+      const t = setTimeout(() => {
+        setExiting(true);
+        setTimeout(() => setGone(true), 150);
+      }, 280);
+      return () => clearTimeout(t);
     }
+
     const start = performance.now();
     const tick = (now: number) => {
       const p = Math.min((now - start) / FILL_MS, 1);

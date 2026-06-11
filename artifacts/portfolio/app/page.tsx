@@ -13,6 +13,7 @@ const HeroCanvas = dynamic(
 );
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { AmbientOrbs } from "@/components/AmbientOrbs";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -69,6 +70,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <AmbientOrbs variant="home" />
       <Navbar />
 
       {/* HERO */}

@@ -9,7 +9,7 @@ import * as THREE from 'three';
 const NODE_COUNT    = 26;
 const CONNECT_DIST  = 4.6;
 const MAX_LINKS     = 4;
-const MOUSE_EASE    = 0.032;
+const MOUSE_EASE    = 0.038;
 const HUB_SET       = new Set([0, 4, 9, 14, 19, 23]);
 
 const CONTENT: Array<{ title: string; body: string } | null> = [
@@ -78,15 +78,38 @@ function buildEdges(pos: Float32Array): [number, number][] {
   return edges;
 }
 
+function FPSMonitor({ onLowPerf }: { onLowPerf: () => void }) {
+  const deltasRef  = useRef<number[]>([]);
+  const doneRef    = useRef(false);
+
+  useFrame((_, delta) => {
+    if (doneRef.current) return;
+    deltasRef.current.push(delta);
+    if (deltasRef.current.length > 150) deltasRef.current.shift();
+    if (deltasRef.current.length >= 90) {
+      const avg = deltasRef.current.reduce((a, b) => a + b, 0) / deltasRef.current.length;
+      if (1 / avg < 28) {
+        doneRef.current = true;
+        onLowPerf();
+      } else if (deltasRef.current.length >= 150) {
+        doneRef.current = true;
+      }
+    }
+  });
+
+  return null;
+}
+
 interface SceneProps {
   mouse: React.MutableRefObject<[number, number]>;
   scrollImpulse: React.MutableRefObject<number>;
   onDismiss: () => void;
+  onLowPerf: () => void;
 }
 
-function NetworkScene({ mouse, scrollImpulse, onDismiss }: SceneProps) {
-  const groupRef  = useRef<THREE.Group>(null);
-  const [hovered, setHovered]  = useState<number | null>(null);
+function NetworkScene({ mouse, scrollImpulse, onDismiss, onLowPerf }: SceneProps) {
+  const groupRef   = useRef<THREE.Group>(null);
+  const [hovered, setHovered]   = useState<number | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
 
   const { pos, phase }  = useMemo(makeNodes, []);
@@ -111,8 +134,12 @@ function NetworkScene({ mouse, scrollImpulse, onDismiss }: SceneProps) {
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
     if (groupRef.current) {
-      groupRef.current.rotation.x += (mouse.current[1] * 0.22 - groupRef.current.rotation.x) * MOUSE_EASE;
-      groupRef.current.rotation.y += (mouse.current[0] * 0.30 - groupRef.current.rotation.y) * MOUSE_EASE;
+      const mx = mouse.current[0];
+      const my = mouse.current[1];
+      groupRef.current.rotation.x += (my * 0.52 - groupRef.current.rotation.x) * MOUSE_EASE;
+      groupRef.current.rotation.y += (mx * 0.62 - groupRef.current.rotation.y) * MOUSE_EASE;
+      groupRef.current.position.x += (mx * 1.5  - groupRef.current.position.x) * MOUSE_EASE;
+      groupRef.current.position.y += (my * 1.0  - groupRef.current.position.y) * MOUSE_EASE;
       groupRef.current.rotation.y += 0.0005;
     }
     const imp = scrollImpulse.current;
@@ -165,6 +192,7 @@ function NetworkScene({ mouse, scrollImpulse, onDismiss }: SceneProps) {
 
   return (
     <group ref={groupRef}>
+      <FPSMonitor onLowPerf={onLowPerf} />
       <lineSegments geometry={lineGeo} material={lineMat} frustumCulled={false} />
       {Array.from({ length: NODE_COUNT }, (_, i) => {
         const isHub   = HUB_SET.has(i);
@@ -202,9 +230,10 @@ function NetworkScene({ mouse, scrollImpulse, onDismiss }: SceneProps) {
 
 export function HeroCanvas() {
   const [hasWebGL, setHasWebGL] = useState(false);
-  const [mounted, setMounted]   = useState(false);
-  const mouse          = useRef<[number, number]>([0, 0]);
-  const scrollImpulse  = useRef(0);
+  const [lowPerf,  setLowPerf]  = useState(false);
+  const [mounted,  setMounted]  = useState(false);
+  const mouse         = useRef<[number, number]>([0, 0]);
+  const scrollImpulse = useRef(0);
 
   const onMouseMove = useCallback((e: MouseEvent) => {
     mouse.current = [
@@ -216,8 +245,8 @@ export function HeroCanvas() {
   const onDeviceOrientation = useCallback((e: DeviceOrientationEvent) => {
     if (e.gamma !== null && e.beta !== null) {
       mouse.current = [
-        Math.max(-1, Math.min(1, (e.gamma ?? 0) / 22)),
-        Math.max(-1, Math.min(1, ((e.beta ?? 45) - 45) / 22)),
+        Math.max(-1, Math.min(1, (e.gamma ?? 0) / 18)),
+        Math.max(-1, Math.min(1, ((e.beta ?? 45) - 45) / 18)),
       ];
     }
   }, []);
@@ -248,13 +277,7 @@ export function HeroCanvas() {
     };
   }, [onMouseMove, onDeviceOrientation, onScroll]);
 
-  if (!hasWebGL) {
-    return (
-      <div className="absolute inset-0 z-0">
-        <div className="w-full h-full bg-[radial-gradient(ellipse_80%_60%_at_60%_40%,hsl(32_98%_54%_/_0.07)_0%,transparent_70%)]" />
-      </div>
-    );
-  }
+  if (!hasWebGL || lowPerf) return null;
 
   return (
     <motion.div
@@ -273,7 +296,12 @@ export function HeroCanvas() {
         onPointerMissed={() => { document.body.style.cursor = 'default'; }}
       >
         <fog attach="fog" args={['#0b0804', 14, 38]} />
-        <NetworkScene mouse={mouse} scrollImpulse={scrollImpulse} onDismiss={() => {}} />
+        <NetworkScene
+          mouse={mouse}
+          scrollImpulse={scrollImpulse}
+          onDismiss={() => {}}
+          onLowPerf={() => setLowPerf(true)}
+        />
       </Canvas>
     </motion.div>
   );

@@ -7,6 +7,7 @@ import { ArrowRight, Clock } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { AmbientOrbs } from "@/components/AmbientOrbs";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -35,6 +36,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <AmbientOrbs variant="blog" />
       <Navbar />
 
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="blog-hero">

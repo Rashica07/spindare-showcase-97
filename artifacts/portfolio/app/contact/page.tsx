@@ -8,6 +8,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { useLanguage } from "@/lib/i18n";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -75,6 +76,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <AmbientOrbs variant="contact" />
       <Navbar />
 
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="contact-hero">

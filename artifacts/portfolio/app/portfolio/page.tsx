@@ -7,6 +7,7 @@ import { ExternalLink } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo } from "react-icons/si";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -42,6 +43,7 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <AmbientOrbs variant="portfolio" />
       <Navbar />
 
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="portfolio-hero">
