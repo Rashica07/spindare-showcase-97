@@ -14,15 +14,16 @@ const CATEGORY_COLORS: Record<string, string> = {
   "Architecture": "text-purple-400 border-purple-400/30 bg-purple-400/10",
   "Backend": "text-green-400 border-green-400/30 bg-green-400/10",
   "Design": "text-pink-400 border-pink-400/30 bg-pink-400/10",
+  "AI": "text-orange-400 border-orange-400/30 bg-orange-400/10",
 };
 
 export default function BlogPostPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const params = useParams<{ slug: string }>();
   const slug = params?.slug;
-
   const post = t.blog.posts.find((p) => p.slug === slug);
-  const article = BLOG_ARTICLES.find((a) => a.slug === slug);
+  const langArticles = BLOG_ARTICLES[lang] ?? BLOG_ARTICLES['en'];
+  const article = langArticles.find((a) => a.slug === slug);
 
   if (!post) {
     return (
@@ -132,8 +133,8 @@ export default function BlogPostPage() {
           ) : (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="border border-primary/30 bg-primary/5 rounded-xl p-10 text-center relative overflow-hidden shadow-lg glow-orange-sm">
               <div className="absolute inset-0 grid-bg opacity-10 pointer-events-none" />
-              <p className="font-mono text-xs text-primary tracking-widest uppercase mb-3 relative z-10">Coming soon</p>
-              <p className="text-muted-foreground text-sm leading-relaxed relative z-10">Full article content is being written. Check back soon.</p>
+              <p className="font-mono text-xs text-primary tracking-widest uppercase mb-3 relative z-10">{t.blog.comingSoon}</p>
+              <p className="text-muted-foreground text-sm leading-relaxed relative z-10">{t.blog.comingSoonSub}</p>
             </motion.div>
           )}
         </div>

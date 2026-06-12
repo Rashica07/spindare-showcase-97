@@ -162,12 +162,17 @@ export const translations = {
       sub: "Real stories from projects I've worked on — what went wrong, what worked, and what I'd do differently.",
       readMore: "Read post",
       minRead: "min read",
-      categories: ["All", "React Native", "Architecture", "Backend", "Design"],
+      comingSoon: "Coming soon",
+      comingSoonSub: "Full article content is being written. Check back soon.",
+      categories: ["All", "React Native", "Architecture", "Backend", "Design", "AI"],
       posts: [
         { slug: "flatlist-memory-leak", category: "React Native", title: "How I fixed a memory leak that was crashing Spindare's social feed", excerpt: "The feed was slowing to a halt after a few minutes of use. Here's how I tracked down the problem and fixed it.", date: "Mar 28, 2026", read: 7 },
         { slug: "auth-flow-48-hours", category: "Architecture", title: "Why I rebuilt Spindare's login system in 48 hours — and don't regret it", excerpt: "The old setup worked fine until it didn't. An honest account of the decision, the rebuild, and what I'd do differently.", date: "Mar 14, 2026", read: 9 },
         { slug: "supabase-vs-firebase", category: "Backend", title: "Supabase vs Firebase for a social feed: what I found after testing both properly", excerpt: "I needed live updates for a large number of users at the same time. Both tools promised it. Only one delivered.", date: "Feb 22, 2026", read: 11 },
-        { slug: "react-native-design-system", category: "Design", title: "How we built a design system for a mobile app with hundreds of screens", excerpt: "When your app has hundreds of components and a small team, having a shared set of rules isn't optional. This is how we did it.", date: "Feb 8, 2026", read: 8 }
+        { slug: "react-native-design-system", category: "Design", title: "How we built a design system for a mobile app with hundreds of screens", excerpt: "When your app has hundreds of components and a small team, having a shared set of rules isn't optional. This is how we did it.", date: "Feb 8, 2026", read: 8 },
+        { slug: "travelme-ai-architecture", category: "AI", title: "Building an AI trip planner: the architecture decisions behind TravelMe", excerpt: "One message, a full itinerary. Here's how I'm designing the system that makes TravelMe feel like talking to a travel expert — not a chatbot.", date: "Jun 2026", read: 8 },
+        { slug: "travelme-single-message-ux", category: "Design", title: "One message. One trip. Designing TravelMe's core UX from scratch", excerpt: "The idea sounds simple. Getting the interaction right took months of thinking about how people actually plan travel.", date: "Jun 2026", read: 6 },
+        { slug: "travelme-llm-comparison", category: "AI", title: "Why I chose OpenAI for TravelMe — and what almost changed my mind", excerpt: "I tested four LLMs for trip planning. The differences were more significant than I expected.", date: "Jun 2026", read: 7 }
       ]
     },
     contact: {
@@ -255,7 +260,7 @@ export const translations = {
         { title: "Porto a termine", desc: "Una volta che prendo un progetto, lo porto alla fine. Non ti chiederai mai dove sono." }
       ]
     },
-    blog: { label: "Articoli", title: "Note dal lavoro", sub: "Storie reali dai progetti su cui ho lavorato — cosa è andato storto, cosa ha funzionato e cosa farei diversamente.", readMore: "Leggi l'articolo", minRead: "min di lettura", categories: ["Tutti", "React Native", "Architettura", "Backend", "Design"], posts: [] },
+    blog: { label: "Articoli", title: "Note dal lavoro", sub: "Storie reali dai progetti su cui ho lavorato — cosa è andato storto, cosa ha funzionato e cosa farei diversamente.", readMore: "Leggi l'articolo", minRead: "min di lettura", comingSoon: "Prossimamente", comingSoonSub: "Il contenuto completo dell'articolo è in lavorazione. Torna presto.", categories: ["Tutti", "React Native", "Architettura", "Backend", "Design", "AI"], posts: [] },
     contact: { label: "Contatti", title: "Scrivimi", sub: "Parlami del tuo progetto e ti rispondo entro 24 ore.", form: { name: "Il tuo nome", namePh: "Nome completo", email: "Email", emailPh: "tu@esempio.com", subject: "Oggetto", subjectPh: "Richiesta progetto", message: "Messaggio", messagePh: "Raccontami del tuo progetto, delle tempistiche e del budget...", send: "Invia messaggio", sending: "Invio in corso...", sent: "Messaggio inviato.", sentSub: "Ti rispondo entro 24 ore.", another: "Invia un altro messaggio" }, info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosovo / Italia", response: "Entro 24 ore" } },
     footer: { tagline: "Lavoro di qualità. Prezzo fisso. Puntuale.", legal: "© 2026 KIQA DEV. Tutti i diritti riservati." }
   },
@@ -325,7 +330,7 @@ export const translations = {
         { title: "E çoj deri në fund", desc: "Pasi marr një projekt, e çoj deri në fund. Nuk do të pyesësh kurrë ku jam." }
       ]
     },
-    blog: { label: "Shkrimet", title: "Shënime nga puna", sub: "Histori reale nga projektet ku kam punuar — çfarë shkoi gabim, çfarë funksionoi dhe çfarë do të bëja ndryshe.", readMore: "Lexo postimin", minRead: "min lexim", categories: ["Të gjitha", "React Native", "Arkitekturë", "Backend", "Dizajn"], posts: [] },
+    blog: { label: "Shkrimet", title: "Shënime nga puna", sub: "Histori reale nga projektet ku kam punuar — çfarë shkoi gabim, çfarë funksionoi dhe çfarë do të bëja ndryshe.", readMore: "Lexo postimin", minRead: "min lexim", comingSoon: "Se shpejti", comingSoonSub: "Përmbajtja e plotë e artikullit është duke u shkruar. Kthehu shpejt.", categories: ["Të gjitha", "React Native", "Arkitekturë", "Backend", "Dizajn", "AI"], posts: [] },
     contact: { label: "Kontakt", title: "Kontaktomë", sub: "Tregomë për projektin tënd dhe do të kthehem brenda 24 orëve.", form: { name: "Emri yt", namePh: "Emri i plote", email: "Adresa email", emailPh: "ti@shembull.com", subject: "Subjekti", subjectPh: "Kerkese projekti", message: "Mesazhi", messagePh: "Tregomë për projektin, afatin kohor dhe buxhetin tënd...", send: "Dërgo mesazhin", sending: "Duke dërguar...", sent: "Mesazhi u dërgua.", sentSub: "Do të kthehem brenda 24 orëve.", another: "Dergoni nje mesazh tjeter" }, info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosove / Itali", response: "Brenda 24 oreve" } },
     footer: { tagline: "Pune cilësore. Çmim fiks. Në kohë.", legal: "© 2026 KIQA DEV. Te gjitha te drejtat te rezervuara." }
   },
@@ -397,7 +402,7 @@ export const translations = {
         { title: "Ich ziehe es durch", desc: "Wenn ich ein Projekt übernehme, führe ich es zu Ende. Du wirst dich nie fragen, wo ich bin." }
       ]
     },
-    blog: { label: "Blog", title: "Notizen aus der Arbeit", sub: "Echte Geschichten aus meinen Projekten — was schiefgelaufen ist, was funktioniert hat und was ich anders machen würde.", readMore: "Artikel lesen", minRead: "Min. Lesezeit", categories: ["Alle", "React Native", "Architektur", "Backend", "Design"], posts: [] },
+    blog: { label: "Blog", title: "Notizen aus der Arbeit", sub: "Echte Geschichten aus meinen Projekten — was schiefgelaufen ist, was funktioniert hat und was ich anders machen würde.", readMore: "Artikel lesen", minRead: "Min. Lesezeit", comingSoon: "Demnächst", comingSoonSub: "Der vollständige Artikel wird noch geschrieben. Schau bald wieder vorbei.", categories: ["Alle", "React Native", "Architektur", "Backend", "Design", "AI"], posts: [] },
     contact: { label: "Kontakt", title: "Schreib mir", sub: "Erzähl mir von deinem Projekt und ich melde mich innerhalb von 24 Stunden.", form: { name: "Dein Name", namePh: "Vollständiger Name", email: "E-Mail-Adresse", emailPh: "du@beispiel.de", subject: "Betreff", subjectPh: "Projektanfrage", message: "Nachricht", messagePh: "Erzähl mir von deinem Projekt, dem Zeitplan und dem Budget...", send: "Nachricht senden", sending: "Wird gesendet...", sent: "Nachricht gesendet.", sentSub: "Ich melde mich innerhalb von 24 Stunden.", another: "Weitere Nachricht senden" }, info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosovo / Italien", response: "Innerhalb von 24 Stunden" } },
     footer: { tagline: "Qualitätsarbeit. Festpreis. Pünktlich.", legal: "© 2026 KIQA DEV. Alle Rechte vorbehalten." }
   }
