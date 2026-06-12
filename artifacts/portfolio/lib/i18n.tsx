@@ -344,10 +344,60 @@ export const translations = {
       ]
     },
     funnel: { label: "Projekt starten", title: "Erzähl mir von deinem Projekt", sub: "Füll das Formular aus und ich melde mich innerhalb von 24 Stunden.", fields: { name: "Dein Name", namePh: "Vollständiger Name", email: "Geschäftliche E-Mail", emailPh: "du@unternehmen.de", company: "Unternehmen oder Projektname", companyPh: "Muster GmbH oder Projektname", service: "Was brauchst du?", serviceOptions: ["Mobile App", "Landing Page", "Web-Plattform", "Individuelles Backend", "Noch unsicher — lass uns reden"], budget: "Budget", budgetOptions: ["Unter €500", "€500 – €1.500", "€1.500 – €3.000", "€3.000+", "Noch unsicher"], timeline: "Wann brauchst du es?", timelineOptions: ["So schnell wie möglich", "Innerhalb eines Monats", "2–3 Monate", "Kein Zeitdruck"], description: "Beschreib mir das Projekt", descriptionPh: "Was baust du, für wen ist es, und wie sieht ein gutes Ergebnis für dich aus?", submit: "Brief absenden", submitting: "Wird gesendet..." }, success: { title: "Erhalten — ich melde mich bald.", sub: "Ich werde dein Brief prüfen und dir innerhalb von 24 Stunden einen klaren Vorschlag schicken." } },
-    work: { label: "Ausgewählte Projekte", title: "Echte Projekte. Echte Ergebnisse.", projects: [] },
-    stats: [], process: { label: "", title: "", steps: [] }, testimonials: [],
-    about: { label: "", title: "", sub: "", bio: [], skills: [], experience: [], values: [] },
-    blog: { label: "", title: "", sub: "", readMore: "Artikel lesen", minRead: "Min. Lesezeit", categories: [], posts: [] },
+    work: {
+      label: "Ausgewählte Projekte", title: "Echte Projekte. Echte Ergebnisse.",
+      projects: [
+        { name: "Spindare", type: "Mobile", status: "In Entwicklung", year: "2025–2026", desc: "Eine Social App, bei der Nutzer Belohnungen für ihre täglichen Gewohnheiten verdienen. Ich leitete das gesamte Produkt — vom ersten Bildschirm bis zur Launch-Vorbereitung. Erscheint im September auf iOS.", stack: ["React Native", "TypeScript", "Supabase", "Clerk", "Expo"] },
+        { name: "TravelMe", type: "Mobile", status: "Demnächst", year: "2026", desc: "Eine App, die deine gesamte Reise aus einer einzigen Nachricht plant. Sag ihr, wohin du willst und was dich interessiert, und sie erledigt den Rest.", stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"] },
+        { name: "KIQA DEV", type: "Web", status: "Live", year: "2026", desc: "Diese Seite — in vier Sprachen gebaut, mit flüssigen Animationen und einem 3D-Hintergrund. Designed, um Kunden dazu zu bringen, sich zu melden.", stack: ["Next.js", "TypeScript", "Three.js", "Framer Motion"] }
+      ]
+    },
+    stats: [
+      { value: "150k+", label: "Zeilen für echte Produkte geschrieben" },
+      { value: "3+", label: "Jahre professionelle Entwicklung" },
+      { value: "4", label: "Gesprochene Sprachen" },
+      { value: "6 Wo.", label: "Von der Idee zum App Store" }
+    ],
+    process: {
+      label: "So läuft es ab", title: "Einfach von Anfang bis Ende",
+      steps: [
+        { n: "01", title: "Wir reden", desc: "Ein 30-minütiges Gespräch, um zu verstehen, was du brauchst, wann du es brauchst und wie ein gutes Ergebnis aussieht. Keine Verpflichtung." },
+        { n: "02", title: "Du bekommst ein Angebot", desc: "Ein schriftliches Dokument — was ich baue, was es kostet und wann es fertig ist. Innerhalb von 24 Stunden in deinem Postfach." },
+        { n: "03", title: "Ich baue es", desc: "Regelmäßige Updates, frühe Vorschauen und direkter Kontakt zu mir. Du wirst nie im Unklaren gelassen." },
+        { n: "04", title: "Du gehst live", desc: "Dein Produkt wird gelauncht. Ich übergebe alles — Code, Zugangsdaten, Dokumentation — plus 30 Tage Support." }
+      ]
+    },
+    testimonials: [
+      { quote: "Kristian lieferte unsere Landing Page in unter einer Woche. Saubere Arbeit, keine Nachbesserungen und klare Kommunikation. Selten für jeden Entwickler.", name: "Marco V.", role: "Startup-Gründer", location: "Mailand, Italien" },
+      { quote: "Die Zusammenarbeit mit Kiqa an Spindare war beeindruckend. Er geht jedes Problem mit Disziplin und Sorgfalt an, die normalerweise Jahre braucht.", name: "Biba W.", role: "Mitgründerin, Spindare", location: "Kosovo" },
+      { quote: "Er hat ein vollständiges Buchungs- und Zahlungssystem für mein Unternehmen in zwei Wochen gebaut. Agenturen konnten nicht annähernd mithalten.", name: "Luca R.", role: "Geschäftsinhaber", location: "Lecco, Italien" }
+    ],
+    about: {
+      label: "Über mich", title: "Kristian Gjergji", sub: "Entwickler · Builder · Gründer",
+      bio: [
+        "Ich bin ein selbstständiger Entwickler mit Sitz zwischen Kosovo und Italien. Ich entwickle mobile Apps, Websites und Web-Plattformen für Startups und Unternehmer, die Dinge richtig gemacht haben wollen — und pünktlich.",
+        "Derzeit leite ich gemeinsam die Produktentwicklung bei Spindare, einer Social App mit Hunderten von Screens und einem geplanten iOS-Launch im September 2026.",
+        "Über KIQA DEV arbeite ich direkt mit Gründern und Unternehmern zusammen — von der ersten Idee bis zum Launch — damit sie keine verschiedenen Agenturen oder Freelancer koordinieren müssen."
+      ],
+      skills: [
+        { name: "Mobile", items: ["React Native", "Expo", "iOS / Android", "EAS Build", "App Store Deployment"] },
+        { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
+        { name: "Backend & Daten", items: ["Supabase", "PostgreSQL", "Node.js", "REST APIs", "Echtzeit-Synchronisation"] },
+        { name: "Tools", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
+      ],
+      experience: [
+        { year: "2025–Heute", role: "Mitgründer & Lead Developer — Spindare", desc: "Ich leite den gesamten Produktaufbau für eine Social App — Hunderte von Screens, ein vollständiges Design-System und ein Launch-Termin im September 2026." },
+        { year: "2024–Heute", role: "Gründer — KIQA DEV", desc: "Ich führe meine eigene Entwicklungspraxis. Ich arbeite direkt mit Startups und Unternehmern in Italien und darüber hinaus." },
+        { year: "2022–Heute", role: "Autodidaktischer Entwickler", desc: "2022 von Null angefangen. Drei Jahre damit verbracht, echte Produkte zu bauen — keine Tutorials." }
+      ],
+      values: [
+        { title: "Ich baue, plane nicht nur", desc: "Ich zeige dir lieber in zwei Wochen etwas Echtes, als monatelang die perfekte Version zu planen." },
+        { title: "Ich liefere pünktlich", desc: "Eine Deadline ist eine Deadline. Ich habe noch nie zu spät geliefert und plane nicht, damit anzufangen." },
+        { title: "Ich halte es einfach", desc: "Saubere Lösungen schlagen clevere. Ich baue Dinge, die leicht zu verstehen, zu warten und zu erweitern sind." },
+        { title: "Ich ziehe es durch", desc: "Wenn ich ein Projekt übernehme, führe ich es zu Ende. Du wirst dich nie fragen, wo ich bin." }
+      ]
+    },
+    blog: { label: "Blog", title: "Notizen aus der Arbeit", sub: "Echte Geschichten aus meinen Projekten — was schiefgelaufen ist, was funktioniert hat und was ich anders machen würde.", readMore: "Artikel lesen", minRead: "Min. Lesezeit", categories: ["Alle", "React Native", "Architektur", "Backend", "Design"], posts: [] },
     contact: { label: "Kontakt", title: "Schreib mir", sub: "Erzähl mir von deinem Projekt und ich melde mich innerhalb von 24 Stunden.", form: { name: "Dein Name", namePh: "Vollständiger Name", email: "E-Mail-Adresse", emailPh: "du@beispiel.de", subject: "Betreff", subjectPh: "Projektanfrage", message: "Nachricht", messagePh: "Erzähl mir von deinem Projekt, dem Zeitplan und dem Budget...", send: "Nachricht senden", sending: "Wird gesendet...", sent: "Nachricht gesendet.", sentSub: "Ich melde mich innerhalb von 24 Stunden.", another: "Weitere Nachricht senden" }, info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosovo / Italien", response: "Innerhalb von 24 Stunden" } },
     footer: { tagline: "Qualitätsarbeit. Festpreis. Pünktlich.", legal: "© 2026 KIQA DEV. Alle Rechte vorbehalten." }
   }
