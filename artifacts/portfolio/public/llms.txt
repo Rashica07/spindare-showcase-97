@@ -1,0 +1,36 @@
+# KIQA DEV — Full-Stack Mobile Developer
+
+> Kristian is a full-stack mobile developer based in Kosovo/Italy who builds production-grade React Native apps. He works under the brand KIQA DEV and has shipped two main products: Spindare (social fitness app) and TravelMe (AI travel planner). He is available for freelance contracts.
+
+## Pages
+
+- [Home](https://kiqa-dev.it/): Portfolio overview, featured projects, stats, testimonials, and philosophy
+- [About](https://kiqa-dev.it/about): Background, values, process, and approach to software
+- [Services](https://kiqa-dev.it/services): What he builds, pricing, and what's included
+- [Portfolio](https://kiqa-dev.it/portfolio): Case studies for Spindare and TravelMe
+- [Blog](https://kiqa-dev.it/blog): Technical articles from real project work
+- [Contact](https://kiqa-dev.it/contact): Contact form and direct contact details
+- [AI-readable version](https://kiqa-dev.it/llm): Complete portfolio content as plain HTML, optimised for AI crawlers
+
+## Blog Articles (full content available)
+
+- [How I fixed a memory leak crashing Spindare's social feed](https://kiqa-dev.it/blog/flatlist-memory-leak): React Native FlatList virtualisation causing Supabase subscription leak. 47 active subscriptions for 5 visible posts. Fixed with reference-counted subscription manager.
+- [Why I rebuilt Spindare's login in 48 hours](https://kiqa-dev.it/blog/auth-flow-48-hours): Token refresh race condition across 3 locations. Migrated to Clerk. 200 users migrated in day two.
+- [Supabase vs Firebase for a social feed](https://kiqa-dev.it/blog/supabase-vs-firebase): Concurrency test from 10 to 500 simultaneous users. Supabase: 120ms p50, 280ms p99. PostgreSQL triggers eliminated fan-out logic.
+- [How we built a design system for 200+ screens](https://kiqa-dev.it/blog/react-native-design-system): Token-first approach, 14 primitives, 31 composites. 40% faster screen development.
+- [TravelMe AI architecture](https://kiqa-dev.it/blog/travelme-ai-architecture): Coming soon
+- [TravelMe single-message UX](https://kiqa-dev.it/blog/travelme-single-message-ux): Coming soon
+- [TravelMe LLM comparison](https://kiqa-dev.it/blog/travelme-llm-comparison): Coming soon
+
+## Key Facts
+
+- Stack: React Native, Next.js, Supabase, Clerk, TypeScript, Tailwind, Framer Motion
+- Languages: English, Italian, Albanian, German
+- Location: Kosovo / Italy
+- Contact: contact@kiqa-dev.it
+- GitHub: github.com/rashica07
+- Availability: Open to freelance contracts
+
+## Optional
+
+- [Full readable content](https://kiqa-dev.it/llm)

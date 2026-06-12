@@ -1,2 +1,47 @@
 User-agent: *
 Allow: /
+
+# AI & LLM crawlers — full readable content at /llm
+User-agent: GPTBot
+Allow: /
+Allow: /llm
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /llm
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llm
+
+User-agent: Claude-Web
+Allow: /
+Allow: /llm
+
+User-agent: anthropic-ai
+Allow: /
+Allow: /llm
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /llm
+
+User-agent: YouBot
+Allow: /
+Allow: /llm
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap
+Sitemap: https://kiqa-dev.it/sitemap.xml
+
+# LLM-readable content index
+LLM-Content: https://kiqa-dev.it/llms.txt
+LLM-Page: https://kiqa-dev.it/llm
