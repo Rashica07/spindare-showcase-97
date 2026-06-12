@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const COLS = 14;
 const ROWS = 9;
-const FILL_MS = 400;
+const FILL_MS = 700;
 
 export function LoadingScreen() {
   const [progress, setProgress]   = useState(0);
@@ -14,17 +14,10 @@ export function LoadingScreen() {
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
-    const cached = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('kd_loaded');
-
-    if (cached) {
-      setProgress(1);
-      const t = setTimeout(() => {
-        setExiting(true);
-        setTimeout(() => setGone(true), 150);
-      }, 280);
-      return () => clearTimeout(t);
+    if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('kd_loaded')) {
+      setGone(true);
+      return;
     }
-
     const start = performance.now();
     const tick = (now: number) => {
       const p = Math.min((now - start) / FILL_MS, 1);
@@ -35,8 +28,8 @@ export function LoadingScreen() {
         setTimeout(() => {
           setExiting(true);
           sessionStorage.setItem('kd_loaded', '1');
-          setTimeout(() => setGone(true), 280);
-        }, 80);
+          setTimeout(() => setGone(true), 450);
+        }, 160);
       }
     };
     rafRef.current = requestAnimationFrame(tick);

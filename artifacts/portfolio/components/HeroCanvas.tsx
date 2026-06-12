@@ -9,7 +9,7 @@ import * as THREE from 'three';
 const NODE_COUNT    = 26;
 const CONNECT_DIST  = 4.6;
 const MAX_LINKS     = 4;
-const MOUSE_EASE    = 0.038;
+const MOUSE_EASE    = 0.032;
 const HUB_SET       = new Set([0, 4, 9, 14, 19, 23]);
 
 const CONTENT: Array<{ title: string; body: string } | null> = [
@@ -78,38 +78,15 @@ function buildEdges(pos: Float32Array): [number, number][] {
   return edges;
 }
 
-function FPSMonitor({ onLowPerf }: { onLowPerf: () => void }) {
-  const deltasRef  = useRef<number[]>([]);
-  const doneRef    = useRef(false);
-
-  useFrame((_, delta) => {
-    if (doneRef.current) return;
-    deltasRef.current.push(delta);
-    if (deltasRef.current.length > 150) deltasRef.current.shift();
-    if (deltasRef.current.length >= 90) {
-      const avg = deltasRef.current.reduce((a, b) => a + b, 0) / deltasRef.current.length;
-      if (1 / avg < 28) {
-        doneRef.current = true;
-        onLowPerf();
-      } else if (deltasRef.current.length >= 150) {
-        doneRef.current = true;
-      }
-    }
-  });
-
-  return null;
-}
-
 interface SceneProps {
   mouse: React.MutableRefObject<[number, number]>;
   scrollImpulse: React.MutableRefObject<number>;
   onDismiss: () => void;
-  onLowPerf: () => void;
 }
 
-function NetworkScene({ mouse, scrollImpulse, onDismiss, onLowPerf }: SceneProps) {
-  const groupRef   = useRef<THREE.Group>(null);
-  const [hovered, setHovered]   = useState<number | null>(null);
+function NetworkScene({ mouse, scrollImpulse, onDismiss }: SceneProps) {
+  const groupRef  = useRef<THREE.Group>(null);
+  const [hovered, setHovered]  = useState<number | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
 
   const { pos, phase }  = useMemo(makeNodes, []);
@@ -134,12 +111,8 @@ function NetworkScene({ mouse, scrollImpulse, onDismiss, onLowPerf }: SceneProps
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
     if (groupRef.current) {
-      const mx = mouse.current[0];
-      const my = mouse.current[1];
-      groupRef.current.rotation.x += (my * 0.52 - groupRef.current.rotation.x) * MOUSE_EASE;
-      groupRef.current.rotation.y += (mx * 0.62 - groupRef.current.rotation.y) * MOUSE_EASE;
-      groupRef.current.position.x += (mx * 1.5  - groupRef.current.position.x) * MOUSE_EASE;
-      groupRef.current.position.y += (my * 1.0  - groupRef.current.position.y) * MOUSE_EASE;
+      groupRef.current.rotation.x += (mouse.current[1] * 0.22 - groupRef.current.rotation.x) * MOUSE_EASE;
+      groupRef.current.rotation.y += (mouse.current[0] * 0.30 - groupRef.current.rotation.y) * MOUSE_EASE;
       groupRef.current.rotation.y += 0.0005;
     }
     const imp = scrollImpulse.current;
@@ -192,7 +165,6 @@ function NetworkScene({ mouse, scrollImpulse, onDismiss, onLowPerf }: SceneProps
 
   return (
     <group ref={groupRef}>
-      <FPSMonitor onLowPerf={onLowPerf} />
       <lineSegments geometry={lineGeo} material={lineMat} frustumCulled={false} />
       {Array.from({ length: NODE_COUNT }, (_, i) => {
         const isHub   = HUB_SET.has(i);
@@ -230,11 +202,9 @@ function NetworkScene({ mouse, scrollImpulse, onDismiss, onLowPerf }: SceneProps
 
 export function HeroCanvas() {
   const [hasWebGL, setHasWebGL] = useState(false);
-  const [lowPerf,  setLowPerf]  = useState(false);
-  const [mounted,  setMounted]  = useState(false);
-  const [gyroState, setGyroState] = useState<'idle' | 'prompt' | 'granted' | 'denied'>('idle');
-  const mouse         = useRef<[number, number]>([0, 0]);
-  const scrollImpulse = useRef(0);
+  const [mounted, setMounted]   = useState(false);
+  const mouse          = useRef<[number, number]>([0, 0]);
+  const scrollImpulse  = useRef(0);
 
   const onMouseMove = useCallback((e: MouseEvent) => {
     mouse.current = [
@@ -246,8 +216,8 @@ export function HeroCanvas() {
   const onDeviceOrientation = useCallback((e: DeviceOrientationEvent) => {
     if (e.gamma !== null && e.beta !== null) {
       mouse.current = [
-        Math.max(-1, Math.min(1, (e.gamma ?? 0) / 18)),
-        Math.max(-1, Math.min(1, ((e.beta ?? 45) - 45) / 18)),
+        Math.max(-1, Math.min(1, (e.gamma ?? 0) / 22)),
+        Math.max(-1, Math.min(1, ((e.beta ?? 45) - 45) / 22)),
       ];
     }
   }, []);
@@ -255,20 +225,6 @@ export function HeroCanvas() {
   const onScroll = useCallback(() => {
     scrollImpulse.current = Math.min(scrollImpulse.current + 0.06, 0.18);
   }, []);
-
-  const requestGyro = useCallback(async () => {
-    try {
-      const result = await (DeviceOrientationEvent as unknown as { requestPermission: () => Promise<string> }).requestPermission();
-      if (result === 'granted') {
-        setGyroState('granted');
-        window.addEventListener('deviceorientation', onDeviceOrientation as EventListener, { passive: true });
-      } else {
-        setGyroState('denied');
-      }
-    } catch {
-      setGyroState('denied');
-    }
-  }, [onDeviceOrientation]);
 
   useEffect(() => {
     try {
@@ -281,13 +237,8 @@ export function HeroCanvas() {
       return;
     }
     window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('deviceorientation', onDeviceOrientation as EventListener, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
-    const needsPermission = typeof (DeviceOrientationEvent as unknown as { requestPermission?: unknown }).requestPermission === 'function';
-    if (needsPermission) {
-      setGyroState('prompt');
-    } else {
-      window.addEventListener('deviceorientation', onDeviceOrientation as EventListener, { passive: true });
-    }
     const t = setTimeout(() => setMounted(true), 80);
     return () => {
       clearTimeout(t);
@@ -297,7 +248,13 @@ export function HeroCanvas() {
     };
   }, [onMouseMove, onDeviceOrientation, onScroll]);
 
-  if (!hasWebGL || lowPerf) return null;
+  if (!hasWebGL) {
+    return (
+      <div className="absolute inset-0 z-0">
+        <div className="w-full h-full bg-[radial-gradient(ellipse_80%_60%_at_60%_40%,hsl(32_98%_54%_/_0.07)_0%,transparent_70%)]" />
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -316,49 +273,8 @@ export function HeroCanvas() {
         onPointerMissed={() => { document.body.style.cursor = 'default'; }}
       >
         <fog attach="fog" args={['#0b0804', 14, 38]} />
-        <NetworkScene
-          mouse={mouse}
-          scrollImpulse={scrollImpulse}
-          onDismiss={() => {}}
-          onLowPerf={() => setLowPerf(true)}
-        />
+        <NetworkScene mouse={mouse} scrollImpulse={scrollImpulse} onDismiss={() => {}} />
       </Canvas>
-      {gyroState === 'prompt' && (
-        <motion.button
-          aria-hidden="false"
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 6 }}
-          transition={{ delay: 1.2, duration: 0.5 }}
-          onClick={requestGyro}
-          style={{
-            position: 'absolute',
-            bottom: '24px',
-            right: '20px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            background: 'hsl(20 8% 7% / 0.72)',
-            border: '1px solid hsl(32 98% 54% / 0.35)',
-            borderRadius: '6px',
-            padding: '7px 12px',
-            color: 'hsl(32 98% 70%)',
-            fontSize: '11px',
-            fontFamily: 'var(--font-dm-mono, monospace)',
-            letterSpacing: '0.08em',
-            cursor: 'pointer',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            zIndex: 30,
-          }}
-        >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2a10 10 0 1 0 10 10" />
-            <path d="M12 6v6l4 2" />
-          </svg>
-          ENABLE TILT
-        </motion.button>
-      )}
     </motion.div>
   );
 }

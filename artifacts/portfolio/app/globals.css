@@ -114,9 +114,9 @@
   --chart-4: 0 72% 51%;
   --chart-5: 270 70% 65%;
 
-  --app-font-sans: var(--font-dm-sans, 'DM Sans'), system-ui, sans-serif;
+  --app-font-sans: 'DM Sans', system-ui, sans-serif;
   --app-font-serif: Georgia, serif;
-  --app-font-mono: var(--font-dm-mono, 'DM Mono'), 'Fira Code', monospace;
+  --app-font-mono: 'DM Mono', 'Fira Code', monospace;
 
   --radius: 0.2rem;
 
