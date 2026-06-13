@@ -51,10 +51,3 @@ Thumbs.db
 # Next.js build output
 **/.next/
 **/out/
-
-# Migration backup (internal Replit tooling, not for GitHub)
-.migration-backup/
-
-# Unused artifacts (only portfolio is active)
-artifacts/api-server/
-artifacts/mockup-sandbox/

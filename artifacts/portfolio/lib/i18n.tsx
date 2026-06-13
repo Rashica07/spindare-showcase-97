@@ -162,17 +162,12 @@ export const translations = {
       sub: "Real stories from projects I've worked on — what went wrong, what worked, and what I'd do differently.",
       readMore: "Read post",
       minRead: "min read",
-      comingSoon: "Coming soon",
-      comingSoonSub: "Full article content is being written. Check back soon.",
-      categories: ["All", "React Native", "Architecture", "Backend", "Design", "AI"],
+      categories: ["All", "React Native", "Architecture", "Backend", "Design"],
       posts: [
         { slug: "flatlist-memory-leak", category: "React Native", title: "How I fixed a memory leak that was crashing Spindare's social feed", excerpt: "The feed was slowing to a halt after a few minutes of use. Here's how I tracked down the problem and fixed it.", date: "Mar 28, 2026", read: 7 },
         { slug: "auth-flow-48-hours", category: "Architecture", title: "Why I rebuilt Spindare's login system in 48 hours — and don't regret it", excerpt: "The old setup worked fine until it didn't. An honest account of the decision, the rebuild, and what I'd do differently.", date: "Mar 14, 2026", read: 9 },
         { slug: "supabase-vs-firebase", category: "Backend", title: "Supabase vs Firebase for a social feed: what I found after testing both properly", excerpt: "I needed live updates for a large number of users at the same time. Both tools promised it. Only one delivered.", date: "Feb 22, 2026", read: 11 },
-        { slug: "react-native-design-system", category: "Design", title: "How we built a design system for a mobile app with hundreds of screens", excerpt: "When your app has hundreds of components and a small team, having a shared set of rules isn't optional. This is how we did it.", date: "Feb 8, 2026", read: 8 },
-        { slug: "travelme-ai-architecture", category: "AI", title: "Building an AI trip planner: the architecture decisions behind TravelMe", excerpt: "One message, a full itinerary. Here's how I'm designing the system that makes TravelMe feel like talking to a travel expert — not a chatbot.", date: "Jun 2026", read: 8 },
-        { slug: "travelme-single-message-ux", category: "Design", title: "One message. One trip. Designing TravelMe's core UX from scratch", excerpt: "The idea sounds simple. Getting the interaction right took months of thinking about how people actually plan travel.", date: "Jun 2026", read: 6 },
-        { slug: "travelme-llm-comparison", category: "AI", title: "Why I chose OpenAI for TravelMe — and what almost changed my mind", excerpt: "I tested four LLMs for trip planning. The differences were more significant than I expected.", date: "Jun 2026", read: 7 }
+        { slug: "react-native-design-system", category: "Design", title: "How we built a design system for a mobile app with hundreds of screens", excerpt: "When your app has hundreds of components and a small team, having a shared set of rules isn't optional. This is how we did it.", date: "Feb 8, 2026", read: 8 }
       ]
     },
     contact: {
@@ -207,60 +202,15 @@ export const translations = {
       ]
     },
     funnel: { label: "Inizia un Progetto", title: "Parlami del tuo progetto", sub: "Compila il modulo e ti rispondo con un piano chiaro entro 24 ore.", fields: { name: "Il tuo nome", namePh: "Nome completo", email: "Email aziendale", emailPh: "tu@azienda.com", company: "Azienda o nome del progetto", companyPh: "Acme Srl o nome del progetto", service: "Cosa ti serve?", serviceOptions: ["App Mobile", "Landing Page", "Piattaforma Web", "Backend Personalizzato", "Non sono sicuro — parliamone"], budget: "Budget", budgetOptions: ["Meno di €500", "€500 – €1.500", "€1.500 – €3.000", "€3.000+", "Non sono sicuro"], timeline: "Quando ne hai bisogno?", timelineOptions: ["Il prima possibile", "Entro un mese", "2–3 mesi", "Nessuna fretta"], description: "Descrivimi il progetto", descriptionPh: "Cosa stai costruendo, per chi è, e come si presenta un buon risultato per te?", submit: "Invia il mio brief", submitting: "Invio in corso..." }, success: { title: "Ricevuto — ti rispondo presto.", sub: "Esaminerò il tuo brief e ti invierò una proposta chiara entro 24 ore." } },
-    work: {
-      label: "Lavori Selezionati", title: "Progetti reali. Risultati reali.",
-      projects: [
-        { name: "Spindare", type: "Mobile", status: "In sviluppo", year: "2025–2026", desc: "Un'app social dove gli utenti guadagnano premi per le loro abitudini quotidiane. Ho guidato l'intero prodotto — dal primo schermo alla preparazione al lancio. In uscita su iOS a settembre.", stack: ["React Native", "TypeScript", "Supabase", "Clerk", "Expo"] },
-        { name: "TravelMe", type: "Mobile", status: "Prossimamente", year: "2026", desc: "Un'app che pianifica il tuo intero viaggio da un singolo messaggio. Dille dove vuoi andare e cosa ti piace, e pensa a tutto il resto.", stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"] },
-        { name: "KIQA DEV", type: "Web", status: "Live", year: "2026", desc: "Questo sito — realizzato in quattro lingue, con animazioni fluide e uno sfondo 3D. Progettato per convincere i clienti a contattarmi.", stack: ["Next.js", "TypeScript", "Three.js", "Framer Motion"] }
-      ]
-    },
-    stats: [
-      { value: "150k+", label: "Righe scritte per prodotti reali" },
-      { value: "3+", label: "Anni di sviluppo professionale" },
-      { value: "4", label: "Lingue parlate" },
-      { value: "6sett", label: "Dall'idea all'App Store" }
-    ],
-    process: {
-      label: "Come funziona", title: "Semplice dall'inizio alla fine",
-      steps: [
-        { n: "01", title: "Parliamo", desc: "Una chiamata di 30 minuti per capire cosa ti serve, quando e come appare un buon risultato. Nessun impegno." },
-        { n: "02", title: "Ricevi una proposta", desc: "Un documento scritto — cosa costruirò, quanto costa e quando sarà pronto. Nella tua casella entro 24 ore." },
-        { n: "03", title: "Costruisco", desc: "Aggiornamenti regolari, anteprime anticipate e un contatto diretto con me per tutta la durata. Non ti lascerai mai in sospeso." },
-        { n: "04", title: "Vai live", desc: "Il tuo prodotto viene lanciato. Ti consegno tutto — codice, account, documentazione — più 30 giorni di supporto." }
-      ]
-    },
+    work: { label: "Lavori Selezionati", title: "Progetti reali. Risultati reali.", projects: [] },
+    stats: [], process: { label: "", title: "", steps: [] },
     testimonials: [
       { quote: "Kristian ha consegnato la nostra landing page in meno di una settimana. Lavoro pulito, zero revisioni, comunicazione chiara.", name: "Marco V.", role: "Founder", location: "Milano, Italia" },
       { quote: "Lavorare con Kiqa su Spindare è stato impressionante. Affronta ogni problema con disciplina e cura.", name: "Biba W.", role: "Co-founder, Spindare", location: "Kosovo" },
       { quote: "Ha costruito un sistema di prenotazioni e pagamenti per la mia attività in due settimane.", name: "Luca R.", role: "Imprenditore", location: "Lecco, Italia" }
     ],
-    about: {
-      label: "Chi sono", title: "Kristian Gjergji", sub: "Sviluppatore · Builder · Fondatore",
-      bio: [
-        "Sono uno sviluppatore autonomo con base tra Kosovo e Italia. Creo app mobile, siti web e piattaforme per startup e imprenditori che hanno bisogno di qualcosa fatto bene — e in tempo.",
-        "Attualmente co-guido lo sviluppo del prodotto su Spindare, un'app social con centinaia di schermate e un lancio su iOS previsto per settembre 2026.",
-        "Tramite KIQA DEV, lavoro direttamente con fondatori e imprenditori — gestendo tutto dal primo design al lancio — così non devono gestire più agenzie o freelancer."
-      ],
-      skills: [
-        { name: "Mobile", items: ["React Native", "Expo", "iOS / Android", "EAS Build", "Pubblicazione App Store"] },
-        { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
-        { name: "Backend & Dati", items: ["Supabase", "PostgreSQL", "Node.js", "REST API", "Sincronizzazione in tempo reale"] },
-        { name: "Strumenti", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
-      ],
-      experience: [
-        { year: "2025–Oggi", role: "Co-Fondatore & Lead Developer — Spindare", desc: "Guido la costruzione completa del prodotto per un'app social — centinaia di schermate, un design system completo e una data di lancio a settembre 2026." },
-        { year: "2024–Oggi", role: "Fondatore — KIQA DEV", desc: "Gestisco la mia attività di sviluppo. Lavoro direttamente con startup e imprenditori in Italia e oltre." },
-        { year: "2022–Oggi", role: "Sviluppatore Autodidatta", desc: "Partito da zero nel 2022. Tre anni passati a costruire prodotti reali — non tutorial." }
-      ],
-      values: [
-        { title: "Costruisco, non solo planifico", desc: "Preferisco mostrarti qualcosa di reale in due settimane piuttosto che trascorrere mesi a pianificare la versione perfetta." },
-        { title: "Consegno in tempo", desc: "Una scadenza è una scadenza. Non ho mai consegnato in ritardo e non ho intenzione di iniziare." },
-        { title: "Mantengo la semplicità", desc: "Le soluzioni pulite battono quelle ingegnose. Costruisco cose facili da capire, mantenere e far crescere." },
-        { title: "Porto a termine", desc: "Una volta che prendo un progetto, lo porto alla fine. Non ti chiederai mai dove sono." }
-      ]
-    },
-    blog: { label: "Articoli", title: "Note dal lavoro", sub: "Storie reali dai progetti su cui ho lavorato — cosa è andato storto, cosa ha funzionato e cosa farei diversamente.", readMore: "Leggi l'articolo", minRead: "min di lettura", comingSoon: "Prossimamente", comingSoonSub: "Il contenuto completo dell'articolo è in lavorazione. Torna presto.", categories: ["Tutti", "React Native", "Architettura", "Backend", "Design", "AI"], posts: [] },
+    about: { label: "", title: "", sub: "", bio: [], skills: [], experience: [], values: [] },
+    blog: { label: "", title: "", sub: "", readMore: "Leggi l'articolo", minRead: "min di lettura", categories: [], posts: [] },
     contact: { label: "Contatti", title: "Scrivimi", sub: "Parlami del tuo progetto e ti rispondo entro 24 ore.", form: { name: "Il tuo nome", namePh: "Nome completo", email: "Email", emailPh: "tu@esempio.com", subject: "Oggetto", subjectPh: "Richiesta progetto", message: "Messaggio", messagePh: "Raccontami del tuo progetto, delle tempistiche e del budget...", send: "Invia messaggio", sending: "Invio in corso...", sent: "Messaggio inviato.", sentSub: "Ti rispondo entro 24 ore.", another: "Invia un altro messaggio" }, info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosovo / Italia", response: "Entro 24 ore" } },
     footer: { tagline: "Lavoro di qualità. Prezzo fisso. Puntuale.", legal: "© 2026 KIQA DEV. Tutti i diritti riservati." }
   },
@@ -268,69 +218,11 @@ export const translations = {
     nav: { home: "Kryefaqja", services: "Sherbime", portfolio: "Punimet", blog: "Shkrimet", about: "Rreth meje", contact: "Kontakt", quote: "Fillo nje projekt" },
     hero: { badge: "I disponueshem per projekte te reja · Kosove / Itali", h1Line1: "Ndertoj produkte dixhitale", h1Line2: "qe klientet tuaj", h1Line3: "i perdorin me te vertete —", h1Line4: "dhe kthehen perseri.", sub: "Kthej idetë ne produkte reale. Aplikacione, faqe interneti dhe platforma — te nderthura per te performuar, te dorezuara ne kohe.", cta1: "Tregomë për projektin tënd", cta2: "Shiko punimet e mia", available: "Duke pranuar projekte te reja nga gushti 2026" },
     funnel: { label: "Fillo nje Projekt", title: "Tregomë për projektin tënd", sub: "Plotëso formularin dhe do të të kthehem me një plan të qartë brenda 24 orëve.", fields: { name: "Emri yt", namePh: "Emri i plotë", email: "Email biznesi", emailPh: "ti@kompania.com", company: "Kompania ose emri i projektit", companyPh: "Emri i kompanise ose projektit", service: "Cfare ke nevoje?", serviceOptions: ["Aplikacion Mobil", "Landing Page", "Platforme Web", "Backend i Personalizuar", "Nuk jam i sigurt — le te flasim"], budget: "Buxheti", budgetOptions: ["Nen €500", "€500 – €1,500", "€1,500 – €3,000", "€3,000+", "Nuk jam i sigurt"], timeline: "Kur ke nevoje?", timelineOptions: ["Sa me shpejt te jete e mundur", "Brenda nje muaji", "2–3 muaj", "Pa ngutje"], description: "Tregomë per projektin", descriptionPh: "Cfare po nderton, per kend eshte dhe si duket nje rezultat i mire per ty?", submit: "Dergo brifin tim", submitting: "Duke derguar..." }, success: { title: "Morra — do te kontaktoj shpejt.", sub: "Do ta shqyrtoj brifin tuaj dhe do ju dergoj nje propozim te qarte brenda 24 oreve." } },
-    services: {
-      label: "Sherbime", title: "Cmim i qarte. Qellim i qarte. Bere.", sub: "Pa kosto te fshehura, pa vonesa. Cdo projekt ka nje cmim fiks dhe nje date dorezimi.",
-      items: [
-        { name: "Aplikacion Mobil", tagline: "Ideja jote, live në App Store dhe Google Play në 6 javë.", price: "Nga €799", timeline: "6 javë", desc: "Ndërtoj aplikacionin tënd nga fillimi deri në fund — dizajn, zhvillim dhe dorëzim në dyqane.", features: ["React Native", "iOS & Android", "Supabase", "Dorëzim App Store & Play Store", "Njoftime push", "30 ditë mbështetje pas lansimit"] },
-        { name: "Landing Page", tagline: "Një faqe interneti që tërheq vëmendjen — në 7 ditë.", price: "Nga €299", timeline: "7 ditë", desc: "Një faqe e shpejtë dhe e bukur, e ndërtuar për të kthyer vizitorët në klientë.", features: ["Next.js", "Grafika 3D & animacione", "E optimizuar për motorët e kërkimit", "E shpejtë në të gjitha pajisjet", "Vercel + Cloudflare", "Gati për sistem përmbajtjeje"] },
-        { name: "Platformë Web", tagline: "Një produkt i plotë në web — llogari, pagesa, panele — në 3 javë.", price: "Nga €1,299", timeline: "3 javë", desc: "Gjithçka që biznesi yt nevojitet në një produkt të vetëm.", features: ["Next.js", "Supabase / PostgreSQL", "Llogari & hyrje", "Panel admin", "Azhurnime në kohë reale", "Vendosja e përfshirë"] },
-        { name: "Backend i Personalizuar", tagline: "Themeli që produkti yt nevojitet — në 2 javë.", price: "Nga €499", timeline: "2 javë", desc: "Një bazë solide dhe e besueshme për aplikacionin ose faqen tënde.", features: ["Node.js", "PostgreSQL", "Hyrje & menaxhim përdoruesish", "Ruajtje skedarësh", "Sinkronizim live", "Dokumentacion i plotë"] }
-      ]
-    },
-    work: {
-      label: "Punime te Zgjedhura", title: "Projekte reale. Rezultate reale.",
-      projects: [
-        { name: "Spindare", type: "Mobil", status: "Në Zhvillim", year: "2025–2026", desc: "Një aplikacion social ku përdoruesit fitojnë shpërblime për zakonet e tyre ditore. Udhëhoqa të gjithë produktin — nga ekrani i parë deri te përgatitja e lansimit. Nis në iOS këtë shtator.", stack: ["React Native", "TypeScript", "Supabase", "Clerk", "Expo"] },
-        { name: "TravelMe", type: "Mobil", status: "Se shpejti", year: "2026", desc: "Një aplikacion që planifikon të gjithë udhëtimin tënd nga një mesazh i vetëm. Thuaji ku dëshiron të shkosh dhe çfarë të pëlqen, dhe ai menaxhon gjithçka tjetër.", stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"] },
-        { name: "KIQA DEV", type: "Web", status: "Live", year: "2026", desc: "Kjo faqe — ndërtuar në katër gjuhë, me animacione të buta dhe sfond 3D. Projektuar për të bërë klientët të kontaktojnë.", stack: ["Next.js", "TypeScript", "Three.js", "Framer Motion"] }
-      ]
-    },
-    stats: [
-      { value: "150k+", label: "Rreshta të shkruar për produkte reale" },
-      { value: "3+", label: "Vjet duke ndërtuar profesionalisht" },
-      { value: "4", label: "Gjuhë të folura" },
-      { value: "6 javë", label: "Nga ideja në App Store" }
-    ],
-    process: {
-      label: "Si funksionon", title: "I thjeshtë nga fillimi në fund",
-      steps: [
-        { n: "01", title: "Flasim", desc: "Një telefonatë 30-minutëshe për të kuptuar çfarë nevojitet, kur dhe si duket një rezultat i mirë. Pa angazhim." },
-        { n: "02", title: "Merr një propozim", desc: "Një dokument i shkruar — çfarë do të ndërtoj, sa kushton dhe kur do të jetë gati. Brenda 24 orëve." },
-        { n: "03", title: "Ndërtoj", desc: "Azhurnime të rregullta, pamje paraprake të hershme dhe kontakt i drejtpërdrejtë me mua gjatë gjithë kohës. Nuk do të mbetesh pa përgjigje." },
-        { n: "04", title: "Shkon live", desc: "Produkti yt lansohet. Dorëzoj gjithçka — kod, llogari, dokumentacion — plus 30 ditë mbështetje." }
-      ]
-    },
-    testimonials: [
-      { quote: "Kristiani dorëzoi faqen tonë të uljes në më pak se një javë. Punë e pastër, zero rishikime dhe komunikim i qartë gjatë gjithë kohës.", name: "Marco V.", role: "Themelues i startup-it", location: "Milano, Itali" },
-      { quote: "Puna me Kiqan në Spindare ka qenë mbresëlënëse. Ai i qëndron çdo problemi me disiplinë dhe kujdes që zakonisht kërkon vite të zhvillohet.", name: "Biba W.", role: "Bashkëthemeluese, Spindare", location: "Kosovë" },
-      { quote: "Ai ndërtoi një sistem të plotë rezervimesh dhe pagesash për biznesin tim në dy javë. Agjencitë me të cilat kam punuar nuk arrinin as afër.", name: "Luca R.", role: "Pronar biznesi", location: "Lecco, Itali" }
-    ],
-    about: {
-      label: "Rreth meje", title: "Kristian Gjergji", sub: "Zhvillues · Ndërtues · Themelues",
-      bio: [
-        "Jam një zhvillues i pavarur me bazë midis Kosovës dhe Italisë. Ndërtoj aplikacione mobile, faqe interneti dhe platforma web për startup-e dhe pronarë biznesi që kanë nevojë për gjëra të bëra siç duhet — dhe në kohë.",
-        "Aktualisht bashkë-drejtoj zhvillimin e produktit në Spindare, një aplikacion social me qindra ekrane dhe lansim në iOS të planifikuar për shtator 2026.",
-        "Nëpërmjet KIQA DEV, punoj drejtpërdrejt me themelues dhe pronarë biznesi — duke menaxhuar gjithçka nga dizajni i parë deri te lansimi — kështu që ata nuk duhet të menaxhojnë shumë agenci ose freelancer."
-      ],
-      skills: [
-        { name: "Mobil", items: ["React Native", "Expo", "iOS / Android", "EAS Build", "Dorëzim App Store"] },
-        { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
-        { name: "Backend & Të dhëna", items: ["Supabase", "PostgreSQL", "Node.js", "REST API", "Sinkronizim në kohë reale"] },
-        { name: "Mjete", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
-      ],
-      experience: [
-        { year: "2025–Tani", role: "Bashkëthemelues & Zhvillues Kryesor — Spindare", desc: "Drejtoj ndërtimin e plotë të produktit për një aplikacion social — qindra ekrane, sistem i plotë dizajni dhe datë lansimi në shtator 2026." },
-        { year: "2024–Tani", role: "Themelues — KIQA DEV", desc: "Drejtoj praktikën time të zhvillimit. Punoj drejtpërdrejt me startup-e dhe pronarë biznesi nëpër Itali dhe gjetiu." },
-        { year: "2022–Tani", role: "Zhvillues Autodidakt", desc: "Fillova nga zero në 2022. Tri vjet të kaluara duke ndërtuar produkte reale — jo tutoriale." }
-      ],
-      values: [
-        { title: "Ndërtoj, jo vetëm planifikoj", desc: "Preferoj të vë diçka reale para teje në dy javë sesa të shpenzoj muaj duke planifikuar versionin perfekt." },
-        { title: "Dorëzoj në kohë", desc: "Një afat është një afat. Nuk kam dorëzuar kurrë me vonesë dhe nuk kam ndërmend të filloj." },
-        { title: "E mbaj të thjeshtë", desc: "Zgjidhjet e pastra fitojnë ndaj atyre të zgjuara. Ndërtoj gjëra të lehta për t'u kuptuar, mirëmbajtur dhe rritur." },
-        { title: "E çoj deri në fund", desc: "Pasi marr një projekt, e çoj deri në fund. Nuk do të pyesësh kurrë ku jam." }
-      ]
-    },
-    blog: { label: "Shkrimet", title: "Shënime nga puna", sub: "Histori reale nga projektet ku kam punuar — çfarë shkoi gabim, çfarë funksionoi dhe çfarë do të bëja ndryshe.", readMore: "Lexo postimin", minRead: "min lexim", comingSoon: "Se shpejti", comingSoonSub: "Përmbajtja e plotë e artikullit është duke u shkruar. Kthehu shpejt.", categories: ["Të gjitha", "React Native", "Arkitekturë", "Backend", "Dizajn", "AI"], posts: [] },
+    services: { label: "Sherbime", title: "Cmim i qarte. Qellim i qarte. Bere.", sub: "Pa kosto te fshehura, pa vonesa. Cdo projekt ka nje cmim fiks dhe nje date dorezimi.", items: [] },
+    work: { label: "Punime te Zgjedhura", title: "Projekte reale. Rezultate reale.", projects: [] },
+    stats: [], process: { label: "", title: "", steps: [] }, testimonials: [],
+    about: { label: "", title: "", sub: "", bio: [], skills: [], experience: [], values: [] },
+    blog: { label: "", title: "", sub: "", readMore: "Lexo postimin", minRead: "min lexim", categories: [], posts: [] },
     contact: { label: "Kontakt", title: "Kontaktomë", sub: "Tregomë për projektin tënd dhe do të kthehem brenda 24 orëve.", form: { name: "Emri yt", namePh: "Emri i plote", email: "Adresa email", emailPh: "ti@shembull.com", subject: "Subjekti", subjectPh: "Kerkese projekti", message: "Mesazhi", messagePh: "Tregomë për projektin, afatin kohor dhe buxhetin tënd...", send: "Dërgo mesazhin", sending: "Duke dërguar...", sent: "Mesazhi u dërgua.", sentSub: "Do të kthehem brenda 24 orëve.", another: "Dergoni nje mesazh tjeter" }, info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosove / Itali", response: "Brenda 24 oreve" } },
     footer: { tagline: "Pune cilësore. Çmim fiks. Në kohë.", legal: "© 2026 KIQA DEV. Te gjitha te drejtat te rezervuara." }
   },
@@ -349,60 +241,10 @@ export const translations = {
       ]
     },
     funnel: { label: "Projekt starten", title: "Erzähl mir von deinem Projekt", sub: "Füll das Formular aus und ich melde mich innerhalb von 24 Stunden.", fields: { name: "Dein Name", namePh: "Vollständiger Name", email: "Geschäftliche E-Mail", emailPh: "du@unternehmen.de", company: "Unternehmen oder Projektname", companyPh: "Muster GmbH oder Projektname", service: "Was brauchst du?", serviceOptions: ["Mobile App", "Landing Page", "Web-Plattform", "Individuelles Backend", "Noch unsicher — lass uns reden"], budget: "Budget", budgetOptions: ["Unter €500", "€500 – €1.500", "€1.500 – €3.000", "€3.000+", "Noch unsicher"], timeline: "Wann brauchst du es?", timelineOptions: ["So schnell wie möglich", "Innerhalb eines Monats", "2–3 Monate", "Kein Zeitdruck"], description: "Beschreib mir das Projekt", descriptionPh: "Was baust du, für wen ist es, und wie sieht ein gutes Ergebnis für dich aus?", submit: "Brief absenden", submitting: "Wird gesendet..." }, success: { title: "Erhalten — ich melde mich bald.", sub: "Ich werde dein Brief prüfen und dir innerhalb von 24 Stunden einen klaren Vorschlag schicken." } },
-    work: {
-      label: "Ausgewählte Projekte", title: "Echte Projekte. Echte Ergebnisse.",
-      projects: [
-        { name: "Spindare", type: "Mobile", status: "In Entwicklung", year: "2025–2026", desc: "Eine Social App, bei der Nutzer Belohnungen für ihre täglichen Gewohnheiten verdienen. Ich leitete das gesamte Produkt — vom ersten Bildschirm bis zur Launch-Vorbereitung. Erscheint im September auf iOS.", stack: ["React Native", "TypeScript", "Supabase", "Clerk", "Expo"] },
-        { name: "TravelMe", type: "Mobile", status: "Demnächst", year: "2026", desc: "Eine App, die deine gesamte Reise aus einer einzigen Nachricht plant. Sag ihr, wohin du willst und was dich interessiert, und sie erledigt den Rest.", stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"] },
-        { name: "KIQA DEV", type: "Web", status: "Live", year: "2026", desc: "Diese Seite — in vier Sprachen gebaut, mit flüssigen Animationen und einem 3D-Hintergrund. Designed, um Kunden dazu zu bringen, sich zu melden.", stack: ["Next.js", "TypeScript", "Three.js", "Framer Motion"] }
-      ]
-    },
-    stats: [
-      { value: "150k+", label: "Zeilen für echte Produkte geschrieben" },
-      { value: "3+", label: "Jahre professionelle Entwicklung" },
-      { value: "4", label: "Gesprochene Sprachen" },
-      { value: "6 Wo.", label: "Von der Idee zum App Store" }
-    ],
-    process: {
-      label: "So läuft es ab", title: "Einfach von Anfang bis Ende",
-      steps: [
-        { n: "01", title: "Wir reden", desc: "Ein 30-minütiges Gespräch, um zu verstehen, was du brauchst, wann du es brauchst und wie ein gutes Ergebnis aussieht. Keine Verpflichtung." },
-        { n: "02", title: "Du bekommst ein Angebot", desc: "Ein schriftliches Dokument — was ich baue, was es kostet und wann es fertig ist. Innerhalb von 24 Stunden in deinem Postfach." },
-        { n: "03", title: "Ich baue es", desc: "Regelmäßige Updates, frühe Vorschauen und direkter Kontakt zu mir. Du wirst nie im Unklaren gelassen." },
-        { n: "04", title: "Du gehst live", desc: "Dein Produkt wird gelauncht. Ich übergebe alles — Code, Zugangsdaten, Dokumentation — plus 30 Tage Support." }
-      ]
-    },
-    testimonials: [
-      { quote: "Kristian lieferte unsere Landing Page in unter einer Woche. Saubere Arbeit, keine Nachbesserungen und klare Kommunikation. Selten für jeden Entwickler.", name: "Marco V.", role: "Startup-Gründer", location: "Mailand, Italien" },
-      { quote: "Die Zusammenarbeit mit Kiqa an Spindare war beeindruckend. Er geht jedes Problem mit Disziplin und Sorgfalt an, die normalerweise Jahre braucht.", name: "Biba W.", role: "Mitgründerin, Spindare", location: "Kosovo" },
-      { quote: "Er hat ein vollständiges Buchungs- und Zahlungssystem für mein Unternehmen in zwei Wochen gebaut. Agenturen konnten nicht annähernd mithalten.", name: "Luca R.", role: "Geschäftsinhaber", location: "Lecco, Italien" }
-    ],
-    about: {
-      label: "Über mich", title: "Kristian Gjergji", sub: "Entwickler · Builder · Gründer",
-      bio: [
-        "Ich bin ein selbstständiger Entwickler mit Sitz zwischen Kosovo und Italien. Ich entwickle mobile Apps, Websites und Web-Plattformen für Startups und Unternehmer, die Dinge richtig gemacht haben wollen — und pünktlich.",
-        "Derzeit leite ich gemeinsam die Produktentwicklung bei Spindare, einer Social App mit Hunderten von Screens und einem geplanten iOS-Launch im September 2026.",
-        "Über KIQA DEV arbeite ich direkt mit Gründern und Unternehmern zusammen — von der ersten Idee bis zum Launch — damit sie keine verschiedenen Agenturen oder Freelancer koordinieren müssen."
-      ],
-      skills: [
-        { name: "Mobile", items: ["React Native", "Expo", "iOS / Android", "EAS Build", "App Store Deployment"] },
-        { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
-        { name: "Backend & Daten", items: ["Supabase", "PostgreSQL", "Node.js", "REST APIs", "Echtzeit-Synchronisation"] },
-        { name: "Tools", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
-      ],
-      experience: [
-        { year: "2025–Heute", role: "Mitgründer & Lead Developer — Spindare", desc: "Ich leite den gesamten Produktaufbau für eine Social App — Hunderte von Screens, ein vollständiges Design-System und ein Launch-Termin im September 2026." },
-        { year: "2024–Heute", role: "Gründer — KIQA DEV", desc: "Ich führe meine eigene Entwicklungspraxis. Ich arbeite direkt mit Startups und Unternehmern in Italien und darüber hinaus." },
-        { year: "2022–Heute", role: "Autodidaktischer Entwickler", desc: "2022 von Null angefangen. Drei Jahre damit verbracht, echte Produkte zu bauen — keine Tutorials." }
-      ],
-      values: [
-        { title: "Ich baue, plane nicht nur", desc: "Ich zeige dir lieber in zwei Wochen etwas Echtes, als monatelang die perfekte Version zu planen." },
-        { title: "Ich liefere pünktlich", desc: "Eine Deadline ist eine Deadline. Ich habe noch nie zu spät geliefert und plane nicht, damit anzufangen." },
-        { title: "Ich halte es einfach", desc: "Saubere Lösungen schlagen clevere. Ich baue Dinge, die leicht zu verstehen, zu warten und zu erweitern sind." },
-        { title: "Ich ziehe es durch", desc: "Wenn ich ein Projekt übernehme, führe ich es zu Ende. Du wirst dich nie fragen, wo ich bin." }
-      ]
-    },
-    blog: { label: "Blog", title: "Notizen aus der Arbeit", sub: "Echte Geschichten aus meinen Projekten — was schiefgelaufen ist, was funktioniert hat und was ich anders machen würde.", readMore: "Artikel lesen", minRead: "Min. Lesezeit", comingSoon: "Demnächst", comingSoonSub: "Der vollständige Artikel wird noch geschrieben. Schau bald wieder vorbei.", categories: ["Alle", "React Native", "Architektur", "Backend", "Design", "AI"], posts: [] },
+    work: { label: "Ausgewählte Projekte", title: "Echte Projekte. Echte Ergebnisse.", projects: [] },
+    stats: [], process: { label: "", title: "", steps: [] }, testimonials: [],
+    about: { label: "", title: "", sub: "", bio: [], skills: [], experience: [], values: [] },
+    blog: { label: "", title: "", sub: "", readMore: "Artikel lesen", minRead: "Min. Lesezeit", categories: [], posts: [] },
     contact: { label: "Kontakt", title: "Schreib mir", sub: "Erzähl mir von deinem Projekt und ich melde mich innerhalb von 24 Stunden.", form: { name: "Dein Name", namePh: "Vollständiger Name", email: "E-Mail-Adresse", emailPh: "du@beispiel.de", subject: "Betreff", subjectPh: "Projektanfrage", message: "Nachricht", messagePh: "Erzähl mir von deinem Projekt, dem Zeitplan und dem Budget...", send: "Nachricht senden", sending: "Wird gesendet...", sent: "Nachricht gesendet.", sentSub: "Ich melde mich innerhalb von 24 Stunden.", another: "Weitere Nachricht senden" }, info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosovo / Italien", response: "Innerhalb von 24 Stunden" } },
     footer: { tagline: "Qualitätsarbeit. Festpreis. Pünktlich.", legal: "© 2026 KIQA DEV. Alle Rechte vorbehalten." }
   }
