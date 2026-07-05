@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# LLM-readable site summary (https://llmstxt.org/)
+LLMs: /llms.txt

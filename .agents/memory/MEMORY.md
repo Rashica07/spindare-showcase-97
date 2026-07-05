@@ -1,0 +1,1 @@
+- [Monorepo /api path collision](monorepo-api-path-collision.md) — Next.js app API routes under `/api/*` get shadowed by a separate `api-server` artifact; use a different route prefix.
