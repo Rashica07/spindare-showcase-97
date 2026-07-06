@@ -1,0 +1,27 @@
+--- Starting non-blocking session at Mon Jul  6 18:26:22 2026 ---
+> . "/Users/user/.eigent/user_38616/spaces/space_0c88294ec8394617b8fbb51d2e255a53/projects/1783354634753-1493/runs/1783354635063-7170/single_agent/.venv/bin/activate" && cd /Users/user/Documents/Punt-Kiqes/spindare-showcase-97-main/artifacts/portfolio && PATH="$HOME/.nvm/versions/node/v24.13.0/bin:$PATH" ./node_modules/.bin/next dev --port 21113 --hostname 0.0.0.0
+
+▲ Next.js 16.2.9 (Turbopack)
+
+- Local:         http://localhost:21113
+
+- Network:       http://0.0.0.0:21113
+
+✓ Ready in 5.9s
+
+
+
+○ Compiling / ...
+
+✓ Finished writing to filesystem cache in 14.4s
+
+ HEAD / 200 in 2.4min (next.js: 2.3min, application-code: 2.2s)
+
+ GET / 200 in 2.5min (next.js: 2.2min, application-code: 13.4s)
+
+ GET / 200 in 1914ms (next.js: 32ms, application-code: 1882ms)
+
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+
+
+
