@@ -30,6 +30,8 @@ export function ContactChat() {
   const answers = useRef<{ service?: string; timeline?: string; description?: string; name?: string; contactValue?: string }>({});
   const bottomRef = useRef<HTMLDivElement>(null);
   const initRan = useRef(false);
+  const summarizerRef = useRef<any>(null);
+  const summarizerPromiseRef = useRef<Promise<any> | null>(null);
 
   const say = (text: string, delay = 550) =>
     new Promise<void>((resolve) => {
@@ -88,7 +90,58 @@ export function ContactChat() {
     }
   }
 
+  function showPhoneUnavailableToast() {
+    toast({
+      title: "Phone unavailable",
+      description: "Phone contact is currently unavailable. Please use email instead.",
+      variant: "destructive",
+    });
+  }
+
+  async function rewriteRequestInBrowser(text: string) {
+    const cleaned = text.trim();
+    if (!cleaned) return "";
+
+    const fallback = cleaned.replace(/\s+/g, " ").trim();
+    const normalized = fallback.replace(/[.!?]+$/g, "").trim();
+
+    if (typeof window === "undefined") {
+      return normalized;
+    }
+
+    try {
+      if (!summarizerRef.current) {
+        if (!summarizerPromiseRef.current) {
+          summarizerPromiseRef.current = import("@xenova/transformers").then(({ pipeline }) =>
+            pipeline("summarization", "Xenova/distilbart-cnn-6-6"),
+          );
+        }
+        summarizerRef.current = await summarizerPromiseRef.current;
+      }
+
+      const result = await summarizerRef.current(normalized, {
+        max_length: 55,
+        min_length: 12,
+        do_sample: false,
+      });
+
+      const output = Array.isArray(result) ? result[0]?.summary_text : result?.summary_text;
+      if (typeof output === "string" && output.trim()) {
+        return output.trim();
+      }
+    } catch (error) {
+      console.warn("Local rewrite failed, using fallback text.", error);
+    }
+
+    return normalized;
+  }
+
   async function chooseMethod(m: Method) {
+    if (m === "phone") {
+      showPhoneUnavailableToast();
+      return;
+    }
+
     setMethod(m);
     setBubbles((prev) => [...prev, { from: "user", text: m === "email" ? c.methodEmail : c.methodPhone }]);
     setStep("contactValue");
@@ -96,6 +149,11 @@ export function ContactChat() {
 
   function switchMethod() {
     const next: Method = method === "email" ? "phone" : "email";
+    if (next === "phone") {
+      showPhoneUnavailableToast();
+      return;
+    }
+
     setMethod(next);
     answers.current.contactValue = undefined;
     setInputValue("");
@@ -103,8 +161,14 @@ export function ContactChat() {
   }
 
   async function handleSubmit() {
+    if (method === "phone") {
+      showPhoneUnavailableToast();
+      return;
+    }
+
     setSubmitting(true);
     try {
+      const rewrittenDescription = await rewriteRequestInBrowser(answers.current.description || "");
       const res = await fetch("/submit-contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -115,6 +179,7 @@ export function ContactChat() {
           service: answers.current.service,
           timeline: answers.current.timeline,
           description: answers.current.description,
+          rewrittenDescription,
         }),
       });
       if (!res.ok) throw new Error("failed");
@@ -141,6 +206,7 @@ export function ContactChat() {
   }
 
   const showTextInput = step === "description" || step === "name" || step === "contactValue";
+  const showPhoneSwitch = false;
   const textPlaceholder =
     step === "description" ? c.descriptionPh :
     step === "name" ? c.namePh :
@@ -320,7 +386,7 @@ export function ContactChat() {
 
       {showTextInput && (
         <div className="border-t border-border/40 shrink-0">
-          {step === "contactValue" && (
+          {step === "contactValue" && showPhoneSwitch && (
             <div className="px-4 pt-2.5 flex justify-end">
               <button
                 type="button"

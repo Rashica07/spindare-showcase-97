@@ -48,3 +48,12 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+
+#Others
+
+.env
+.env*.local
+.replit
+/.agents
+
