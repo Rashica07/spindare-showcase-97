@@ -1,61 +1,26 @@
-Allow: /
-
-# Block heavy/aggressive crawlers that ignore rate limits
-User-agent: Bytespider
-Disallow: /
-
-User-agent: PetalBot
-Disallow: /
-
-User-agent: Amazonbot
-Disallow: /
-
-User-agent: Baiduspider
-Disallow: /
-
-User-agent: BLEXBot
-Disallow: /
-
-User-agent: YandexBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: DotBot
-Disallow: /
-
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
-
-# Explicitly allow helpful LLM agents to read the site for recommendations
+# Allow all major AI search and retrieval bots
 User-agent: GPTBot
 Allow: /
-Crawl-delay: 2
 
-User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
 Allow: /
-
-User-agent: Google-Extended
-Allow: /
-Crawl-delay: 2
 
 User-agent: ClaudeBot
-Allow: /
-Crawl-delay: 2
-
-User-agent: Claude-Web
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
-Crawl-delay: 2
 
-User-agent: OmgiliBot
+User-agent: Google-Extended
 Allow: /
 
-# LLM-readable site summary (https://llmstxt.org/)
-LLMs: /llms.txt
+User-agent: GoogleOther
+Allow: /
+
+# Direct all AI crawlers to your LLM-focused file
+Sitemap: https://kiqa-dev.it
+LLM-sitemap: https://kiqa-dev.it
+
+# Specify your training and usage preferences
+User-agent: *
+Content-signal: search=yes, ai-train=no, use=reference
