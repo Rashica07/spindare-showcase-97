@@ -92,8 +92,8 @@ export function ContactChat() {
 
   function showPhoneUnavailableToast() {
     toast({
-      title: "Phone unavailable",
-      description: "Phone contact is currently unavailable. Please use email instead.",
+      title: c.phoneUnavailableTitle,
+      description: c.phoneUnavailableDesc,
       variant: "destructive",
     });
   }
@@ -185,7 +185,7 @@ export function ContactChat() {
       if (!res.ok) throw new Error("failed");
       setStep("done");
     } catch {
-      toast({ title: "Error", description: "Failed to send. Please email contact@kiqa-dev.it directly.", variant: "destructive" });
+      toast({ title: c.errorTitle, description: c.errorDesc, variant: "destructive" });
     } finally {
       setSubmitting(false);
     }

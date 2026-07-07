@@ -130,7 +130,7 @@ export default function HomePage() {
             </div>
             <Link href="/services" className="hidden md:block">
               <motion.span whileHover={{ x: 4 }} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                All services &amp; pricing <ArrowRight size={13} />
+                {t.page.allServices} <ArrowRight size={13} />
               </motion.span>
             </Link>
           </FadeUp>
@@ -193,7 +193,7 @@ export default function HomePage() {
           <FadeUp className="mt-8 text-center">
             <Link href="/portfolio" data-testid="work-view-all">
               <motion.span whileHover={{ scale: 1.02 }} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/60 rounded-lg px-5 py-3">
-                View all projects <ArrowRight size={14} />
+                {t.page.viewAllProjects} <ArrowRight size={14} />
               </motion.span>
             </Link>
           </FadeUp>
@@ -249,12 +249,12 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <span className="font-mono text-xs text-primary tracking-widest uppercase">Writing</span>
-              <h2 className="mt-4 text-4xl font-bold tracking-tight">Latest Notes.</h2>
+              <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.blog.label}</span>
+              <h2 className="mt-4 text-4xl font-bold tracking-tight">{t.blog.latestNotes}</h2>
             </div>
             <Link href="/blog">
               <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer font-medium">
-                View all writing <ArrowRight size={13} />
+                {t.blog.viewAllWriting} <ArrowRight size={13} />
               </span>
             </Link>
           </div>
@@ -269,14 +269,14 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-4">
                     <span className="font-mono text-xs px-2.5 py-1 rounded-full border border-primary/30 text-primary bg-primary/10">{blogPosts[blogIndex].category}</span>
                     <span className="font-mono text-xs text-muted-foreground/60">{blogPosts[blogIndex].date}</span>
-                    <span className="font-mono text-xs text-muted-foreground/60">· {blogPosts[blogIndex].read} min read</span>
+                    <span className="font-mono text-xs text-muted-foreground/60">· {blogPosts[blogIndex].read} {t.blog.minRead}</span>
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold text-foreground leading-snug">{blogPosts[blogIndex].title}</h3>
                   <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{blogPosts[blogIndex].excerpt}</p>
                   <div className="mt-8">
                     <Link href={`/blog/${blogPosts[blogIndex].slug}`}>
                       <motion.span whileHover={{ x: 4 }} className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary cursor-pointer">
-                        Read article <ArrowRight size={12} />
+                        {t.blog.readArticle} <ArrowRight size={12} />
                       </motion.span>
                     </Link>
                   </div>

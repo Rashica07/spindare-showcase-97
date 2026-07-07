@@ -123,11 +123,11 @@ export default function BlogPostPage() {
         <Navbar />
         <section className="pt-40 pb-20 text-center" data-testid="blog-post-not-found">
           <p className="font-mono text-xs text-primary tracking-widest uppercase mb-4">404</p>
-          <h1 className="text-4xl font-bold text-foreground">Post not found</h1>
-          <p className="mt-3 text-muted-foreground">This article doesn&apos;t exist or hasn&apos;t been published yet.</p>
+          <h1 className="text-4xl font-bold text-foreground">{t.blog.postNotFound}</h1>
+          <p className="mt-3 text-muted-foreground">{t.blog.postNotFoundDesc}</p>
           <Link href="/blog" data-testid="back-to-blog-404">
             <motion.span whileHover={{ x: -4 }} className="inline-flex items-center gap-2 mt-8 text-sm text-primary cursor-pointer">
-              <ArrowLeft size={14} /> Back to writing
+              <ArrowLeft size={14} /> {t.blog.backToWriting}
             </motion.span>
           </Link>
         </section>
@@ -154,7 +154,7 @@ export default function BlogPostPage() {
                 whileHover={{ x: -4 }}
                 className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer mb-8 block"
               >
-                <ArrowLeft size={12} /> Back to writing
+                <ArrowLeft size={12} /> {t.blog.backToWriting}
               </motion.span>
             </Link>
 
@@ -170,7 +170,7 @@ export default function BlogPostPage() {
               </div>
               {content && (
                 <span className="font-mono text-xs text-muted-foreground/50">
-                  by {content.author}
+                  {t.blog.byAuthor} {content.author}
                 </span>
               )}
             </div>
@@ -203,9 +203,9 @@ export default function BlogPostPage() {
               className="border border-primary/30 bg-primary/5 rounded-xl p-10 text-center relative overflow-hidden"
             >
               <div className="absolute inset-0 grid-bg opacity-10 pointer-events-none" />
-              <p className="font-mono text-xs text-primary tracking-widest uppercase mb-3 relative z-10">Coming soon</p>
+              <p className="font-mono text-xs text-primary tracking-widest uppercase mb-3 relative z-10">{t.blog.comingSoon}</p>
               <p className="text-muted-foreground text-sm leading-relaxed relative z-10">
-                Full article content is being written. Check back soon.
+                {t.blog.comingSoonDesc}
               </p>
               <a
                 href="https://github.com/rashica07"
@@ -214,7 +214,7 @@ export default function BlogPostPage() {
                 data-testid="blog-post-github-link"
                 className="inline-flex items-center gap-2 mt-6 text-xs font-medium text-primary border border-primary/30 rounded-lg px-4 py-2 hover:bg-primary/10 transition-colors"
               >
-                Follow on GitHub
+                {t.blog.followGithub}
               </a>
             </motion.div>
           )}
@@ -226,16 +226,16 @@ export default function BlogPostPage() {
             className="mt-16 pt-10 border-t border-border/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
           >
             <div>
-              <p className="text-xs text-muted-foreground/60 font-mono">Written by</p>
+              <p className="text-xs text-muted-foreground/60 font-mono">{t.blog.writtenBy}</p>
               <p className="mt-1 font-semibold text-foreground">Kristian Gjergji</p>
-              <p className="text-sm text-muted-foreground">Developer · Kosovo / Italy</p>
+              <p className="text-sm text-muted-foreground">{t.blog.authorRole}</p>
             </div>
             <Link
               href="/contact"
               data-testid="blog-post-cta"
               className="shrink-0 inline-flex items-center gap-2 px-5 py-3 bg-primary text-primary-foreground text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
             >
-              Work with me →
+              {t.blog.workWithMe}
             </Link>
           </motion.div>
         </div>

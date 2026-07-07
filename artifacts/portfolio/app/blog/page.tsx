@@ -83,7 +83,7 @@ export default function BlogPage() {
             })}
           </div>
           {filtered.length === 0 && (
-            <div className="py-20 text-center text-muted-foreground text-sm" data-testid="blog-empty">No posts in this category yet.</div>
+            <div className="py-20 text-center text-muted-foreground text-sm" data-testid="blog-empty">{t.blog.noPosts}</div>
           )}
         </div>
       </section>

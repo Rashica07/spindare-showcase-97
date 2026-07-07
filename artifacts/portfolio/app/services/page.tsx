@@ -59,7 +59,7 @@ export default function ServicesPage() {
                   </ul>
                   <Link href="/contact">
                     <motion.span whileHover={{ scale: 1.02, x: 4 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary cursor-pointer border border-primary/30 rounded-lg px-5 py-2.5 hover:bg-primary/10 transition-colors self-start" data-testid={`service-detail-cta-${i}`}>
-                      Get a proposal for this service <ArrowRight size={11} />
+                      {t.services.getProposal} <ArrowRight size={11} />
                     </motion.span>
                   </Link>
                 </motion.div>

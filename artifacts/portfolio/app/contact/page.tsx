@@ -46,7 +46,7 @@ export default function ContactPage() {
       <section className="py-20" data-testid="contact-body">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-16">
           <div className="lg:col-span-2 flex flex-col gap-6">
-            <FadeUp><h2 className="font-semibold text-foreground">Contact details</h2></FadeUp>
+            <FadeUp><h2 className="font-semibold text-foreground">{t.contact.detailsTitle}</h2></FadeUp>
             {contactMeta.map(({ icon: Icon, label, value, href }, i) => (
               <FadeUp key={i} delay={i * 0.08}>
                 <motion.div whileHover={{ y: -4, borderColor: "hsl(var(--primary) / 0.35)" }} transition={{ duration: 0.2 }} className="flex items-start gap-4 border border-card-border bg-card/60 backdrop-blur-sm rounded-xl p-5 transition-colors" data-testid={`contact-info-${i}`}>
@@ -65,8 +65,8 @@ export default function ContactPage() {
               </FadeUp>
             ))}
             <FadeUp delay={0.3} className="border border-primary/20 bg-primary/5 rounded-xl p-6">
-              <h3 className="font-semibold text-foreground text-sm mb-2">Prefer to book directly?</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-4">For immediate engagement, Discord is the fastest channel.</p>
+              <h3 className="font-semibold text-foreground text-sm mb-2">{t.contact.bookTitle}</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed mb-4">{t.contact.bookDesc}</p>
               <a href="https://discord.com/users/kodibkfg" target="_blank" rel="noopener noreferrer" data-testid="contact-discord-link" className="inline-flex items-center gap-2 text-xs font-medium text-primary border border-primary/30 rounded-lg px-4 py-2 hover:bg-primary/10 transition-colors">
                 Discord: {t.contact.info.discord} <ArrowRight size={11} />
               </a>

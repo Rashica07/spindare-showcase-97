@@ -49,10 +49,10 @@ export default function AboutPage() {
           <FadeUp delay={0.1}>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "Location", value: "Lecco, Italy · Kosovo" },
-                { label: "Focus", value: "Mobile-first development" },
-                { label: "Available", value: "June 2026" },
-                { label: "Response time", value: "Within 24h" },
+                { label: t.about.metaLocation, value: t.about.metaLocationValue },
+                { label: t.about.metaFocus, value: t.about.metaFocusValue },
+                { label: t.about.metaAvailable, value: t.about.metaAvailableValue },
+                { label: t.about.metaResponse, value: t.about.metaResponseValue },
               ].map(({ label, value }, i) => (
                 <motion.div key={i} whileHover={{ y: -3, borderColor: "hsl(var(--primary) / 0.3)" }} transition={{ duration: 0.2 }} className="glass-card rounded-lg p-4" data-testid={`about-meta-${i}`}>
                   <p className="font-mono text-xs text-muted-foreground tracking-widest uppercase">{label}</p>
@@ -66,8 +66,8 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40 bg-card/20" data-testid="about-skills">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">Stack</span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight">Tech Stack</h2>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.about.stackLabel}</span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight">{t.about.stackTitle}</h2>
           </FadeUp>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.about.skills.map((cat, i) => (
@@ -94,8 +94,8 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40" data-testid="about-experience">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">Experience</span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight">Timeline</h2>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.about.experienceLabel}</span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight">{t.about.experienceTitle}</h2>
           </FadeUp>
           <div className="mt-12 relative">
             <div className="absolute left-0 md:left-32 top-0 bottom-0 w-px bg-border/40" />
@@ -122,8 +122,8 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40 bg-card/20" data-testid="about-values">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">Approach</span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight">How I work</h2>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.about.approachLabel}</span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight">{t.about.approachTitle}</h2>
           </FadeUp>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.about.values.map((v, i) => (
@@ -140,13 +140,13 @@ export default function AboutPage() {
       <section className="py-20" data-testid="about-cta">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
           <FadeUp>
-            <h2 className="text-3xl font-bold text-foreground">Want to work together?</h2>
-            <p className="mt-2 text-muted-foreground">Open to select freelance projects starting June 2026.</p>
+            <h2 className="text-3xl font-bold text-foreground">{t.about.ctaTitle}</h2>
+            <p className="mt-2 text-muted-foreground">{t.about.ctaSub}</p>
           </FadeUp>
           <FadeUp delay={0.1} className="flex gap-4 shrink-0">
             <Link href="/contact" data-testid="about-cta-contact">
               <motion.span whileHover={{ scale: 1.02 }} className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg text-sm hover:bg-primary/90 transition-colors cursor-pointer">
-                Get in touch <ArrowRight size={14} />
+                {t.about.ctaButton} <ArrowRight size={14} />
               </motion.span>
             </Link>
             <a href="https://github.com/rashica07" target="_blank" rel="noopener noreferrer" data-testid="about-cta-github" className="inline-flex items-center gap-2 px-5 py-3.5 border border-border/60 text-muted-foreground hover:text-foreground rounded-lg text-sm transition-colors">

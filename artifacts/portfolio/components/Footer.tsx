@@ -59,7 +59,7 @@ export function Footer() {
 
         <div className="mt-10 pt-6 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-2">
           <p className="text-xs text-muted-foreground/60 font-mono">{t.footer.legal}</p>
-          <p className="text-xs text-muted-foreground/40 font-mono">Lecco, Italy · Kosovo</p>
+          <p className="text-xs text-muted-foreground/40 font-mono">{t.contact.info.location}</p>
         </div>
       </div>
     </footer>
