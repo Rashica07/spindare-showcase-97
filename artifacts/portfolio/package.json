@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
-    "@kiq/novus-pulse": "file:../../../Novus Portal/framework",
+    "@kiq/novus-pulse": "file:./packages/novus-pulse",
     "@radix-ui/react-accordion": "^1.2.4",
     "@radix-ui/react-alert-dialog": "^1.1.7",
     "@radix-ui/react-aspect-ratio": "^1.1.3",
