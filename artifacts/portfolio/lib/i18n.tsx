@@ -870,8 +870,11 @@ function detectBrowserLang(): Lang | null {
   return null;
 }
 
+import { usePulseSync } from "@/components/PulseSyncProvider";
+
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
+  const { pulseData } = usePulseSync();
 
   useEffect(() => {
     try {
@@ -890,8 +893,11 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     try { localStorage.setItem("kiqa_lang", l); } catch {}
   };
 
+  const baseT = merged[lang];
+  const finalT = pulseData ? deepMerge(pulseData as DeepPartial<Translations>, baseT) : baseT;
+
   return (
-    <I18nContext.Provider value={{ t: merged[lang], lang, setLang }}>
+    <I18nContext.Provider value={{ t: finalT, lang, setLang }}>
       {children}
     </I18nContext.Provider>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
+import { PulseSyncProvider } from "@/components/PulseSyncProvider";
 
 export const metadata: Metadata = {
   title: "Kristian & KIQA DEV Portfolio",
@@ -34,7 +35,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <PulseSyncProvider>
+          <Providers>{children}</Providers>
+        </PulseSyncProvider>
       </body>
     </html>
   );

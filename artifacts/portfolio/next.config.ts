@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // Heavily cache all static assets
+        // Static assets are content-hashed by Next — safe to cache forever.
         source: "/_next/static/(.*)",
         headers: [
           {
@@ -14,16 +14,11 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        // Heavily cache all regular routes
-        source: "/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=2592000",
-          },
-        ],
-      },
+      // NOTE: page routes are intentionally NOT cache-controlled here.
+      // This site's content comes from Novus Pulse and changes in real time —
+      // a blanket Cache-Control on "/(.*)" previously froze every page at the
+      // CDN edge for up to a year (s-maxage=31536000), which is why edits
+      // wouldn't show up on Vercel without a manual purge.
     ];
   },
 };
