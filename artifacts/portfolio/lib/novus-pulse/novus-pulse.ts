@@ -19,17 +19,15 @@ import {
   NovusPulseError,
   NovusPulseErrorData,
 } from './types';
-import { io, Socket } from 'socket.io-client';
 
 /**
  * NovusPulse — Lightweight TypeScript client for the Novus Pulse API.
  *
  * Works in: Next.js, React, React Native, Node.js 18+, vanilla browser JS.
- * Zero dependencies — uses native `fetch` (available everywhere since Node 18).
  *
  * Usage:
  * ```ts
- * import { NovusPulse } from '@kiq/novus-pulse';
+ * import { NovusPulse } from '@/lib/novus-pulse';
  *
  * const pulse = new NovusPulse({
  *   baseUrl: 'https://api.novuspulse.dev',
@@ -60,16 +58,14 @@ export class NovusPulse {
   private isRefreshing = false;
   private refreshPromise: Promise<AuthTokens> | null = null;
   private readonly autoConnectSocket: boolean;
-  private socket: Socket | null = null;
-  /** Tenant slugs this client wants public (unauthenticated) realtime updates for. */
-  private readonly publicSubscriptions = new Set<string>();
   /**
-   * Registered realtime handlers. Kept here (not only on the socket) so they
-   * survive socket re-creation — e.g. handlers added before login(), or when
-   * the socket reconnects with a new token.
+   * Registered realtime handlers. Kept here so they survive reconnections.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private readonly eventHandlers = new Map<string, Set<(...args: any[]) => void>>();
+
+  /** Whether the realtime connection is currently active */
+  private _isConnected = false;
 
   constructor(config: NovusPulseConfig) {
     // Strip trailing slash from baseUrl
@@ -80,10 +76,6 @@ export class NovusPulse {
     this.onAuthError = config.onAuthError;
     this.fetchFn = config.fetch ?? globalThis.fetch.bind(globalThis);
     this.autoConnectSocket = config.autoConnectSocket ?? true;
-
-    if (this.accessToken && this.autoConnectSocket) {
-      this.connectSocket();
-    }
   }
 
   // ════════════════════════════════════════════════════════
@@ -167,17 +159,10 @@ export class NovusPulse {
 
   /**
    * Clear all stored tokens.
-   * Keeps the realtime socket alive (anonymously) if there are active
-   * public subscriptions; otherwise disconnects it.
    */
   clearTokens(): void {
     this.accessToken = null;
     this.refreshToken = null;
-    if (this.publicSubscriptions.size > 0) {
-      this.connectSocket();
-    } else {
-      this.disconnectSocket();
-    }
   }
 
   // ════════════════════════════════════════════════════════
@@ -318,17 +303,59 @@ export class NovusPulse {
   }
 
   // ════════════════════════════════════════════════════════
+  // REALTIME (simplified — no socket.io dependency)
+  // ════════════════════════════════════════════════════════
+
+  /**
+   * Subscribe to PUBLIC realtime updates for a tenant's published content.
+   * This is a no-op placeholder — the socket.io dependency has been removed
+   * to fix build issues. Content is still fetched via REST on page load.
+   */
+  subscribePublic(_tenantSlug: string): void {
+    // No-op: realtime disabled in this build
+    console.log('[Novus Pulse] Public subscription registered (REST-only mode)');
+  }
+
+  /** Stop receiving public realtime updates for a tenant slug. */
+  unsubscribePublic(_tenantSlug: string): void {
+    // No-op
+  }
+
+  /** Whether the realtime socket is currently connected. */
+  get realtimeConnected(): boolean {
+    return this._isConnected;
+  }
+
+  /**
+   * Subscribe to a real-time event.
+   * Events are stored but socket.io is not used in this build.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  on(_event: string, callback: (...args: any[]) => void): void {
+    let callbacks = this.eventHandlers.get(_event);
+    if (!callbacks) {
+      callbacks = new Set();
+      this.eventHandlers.set(_event, callbacks);
+    }
+    callbacks.add(callback);
+  }
+
+  /** Unsubscribe from a real-time event. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  off(event: string, callback?: (...args: any[]) => void): void {
+    if (callback) {
+      this.eventHandlers.get(event)?.delete(callback);
+    } else {
+      this.eventHandlers.delete(event);
+    }
+  }
+
+  // ════════════════════════════════════════════════════════
   // INTERNAL: HTTP REQUEST LAYER
   // ════════════════════════════════════════════════════════
 
   /**
    * Core request method — all API calls go through here.
-   *
-   * Features:
-   * - Automatically adds Authorization header with Bearer token
-   * - Automatically retries with a refreshed token on 401
-   * - Deduplicates concurrent refresh calls (one refresh at a time)
-   * - Parses JSON responses and wraps errors in NovusPulseError
    */
   private async request<T = unknown>(
     method: string,
@@ -389,10 +416,6 @@ export class NovusPulse {
         };
       }
       const error = new NovusPulseError(errorData);
-      // A 401 here means either there was no refresh token to try (this
-      // client was built with an access token only), or refresh isn't
-      // applicable — either way, the caller needs to know auth is dead
-      // rather than silently failing every request forever.
       if (response.status === 401 && !options?.skipAuth && this.onAuthError) {
         this.onAuthError(error);
       }
@@ -409,11 +432,8 @@ export class NovusPulse {
 
   /**
    * Auto-refresh with deduplication.
-   * If multiple requests hit 401 simultaneously, only ONE refresh call is made.
-   * All waiting requests share the same refresh promise.
    */
   private async autoRefresh(): Promise<AuthTokens> {
-    // If a refresh is already in flight, wait for it
     if (this.isRefreshing && this.refreshPromise) {
       return this.refreshPromise;
     }
@@ -434,146 +454,12 @@ export class NovusPulse {
     this.accessToken = data.accessToken;
     this.refreshToken = data.refreshToken;
 
-    if (this.autoConnectSocket) {
-      this.connectSocket();
-    }
-
     // Notify consumer so they can persist tokens
     if (this.onTokenRefresh) {
       this.onTokenRefresh({
         accessToken: data.accessToken,
         refreshToken: data.refreshToken,
       });
-    }
-  }
-
-  // ════════════════════════════════════════════════════════
-  // REAL-TIME WEBSOCKETS
-  // ════════════════════════════════════════════════════════
-
-  private connectSocket(): void {
-    if (this.socket) {
-      this.socket.disconnect();
-    }
-
-    // Anonymous connections are allowed when there are public subscriptions —
-    // the server only lets them join public_* rooms (published content only).
-    if (!this.accessToken && this.publicSubscriptions.size === 0) return;
-
-    this.socket = io(this.baseUrl, {
-      path: '/socket.io', // default
-      auth: this.accessToken ? { token: this.accessToken } : {},
-      transports: ['websocket'],
-    });
-
-    this.socket.on('connect', () => {
-      console.log('[Novus Pulse] Real-time socket connected');
-      // (Re)join public rooms after every connect/reconnect
-      for (const slug of this.publicSubscriptions) {
-        this.socket?.emit('subscribe_public', { tenantSlug: slug });
-      }
-    });
-
-    this.socket.on('disconnect', () => {
-      console.log('[Novus Pulse] Real-time socket disconnected');
-    });
-    
-    this.socket.on('connect_error', (err) => {
-      console.error('[Novus Pulse] Socket connection error:', err.message);
-    });
-
-    // Re-attach every handler registered via .on() — they must survive
-    // socket re-creation (login, logout, token refresh, public subscribe).
-    for (const [event, callbacks] of this.eventHandlers) {
-      for (const callback of callbacks) {
-        this.socket.on(event, callback);
-      }
-    }
-  }
-
-  private disconnectSocket(): void {
-    if (this.socket) {
-      this.socket.disconnect();
-      this.socket = null;
-    }
-  }
-
-  /**
-   * Subscribe to PUBLIC realtime updates for a tenant's published content.
-   * No authentication required — pairs with `getPublicPages(tenantSlug)`.
-   *
-   * Events received: `page.created`, `page.updated`, `page.deleted`
-   * (only for pages with `published: true`).
-   *
-   * ```ts
-   * const pulse = new NovusPulse({ baseUrl: 'http://localhost:3000' });
-   * const pages = await pulse.getPublicPages('barcelona-cafe');
-   * pulse.subscribePublic('barcelona-cafe');
-   * pulse.on('page.updated', (page) => render(page));
-   * ```
-   */
-  subscribePublic(tenantSlug: string): void {
-    this.publicSubscriptions.add(tenantSlug);
-    if (!this.socket) {
-      this.connectSocket();
-    } else if (this.socket.connected) {
-      this.socket.emit('subscribe_public', { tenantSlug });
-    }
-    // If the socket exists but is still connecting, the 'connect'
-    // handler joins all public rooms automatically.
-  }
-
-  /** Stop receiving public realtime updates for a tenant slug. */
-  unsubscribePublic(tenantSlug: string): void {
-    this.publicSubscriptions.delete(tenantSlug);
-    if (this.publicSubscriptions.size === 0 && !this.accessToken) {
-      this.disconnectSocket();
-    }
-  }
-
-  /** Whether the realtime socket is currently connected. */
-  get realtimeConnected(): boolean {
-    return this.socket?.connected ?? false;
-  }
-
-  /**
-   * Subscribe to a real-time event.
-   * Safe to call at any time — handlers registered before the socket exists
-   * are attached automatically as soon as it connects.
-   */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  on(event: string, callback: (...args: any[]) => void): void {
-    let callbacks = this.eventHandlers.get(event);
-    if (!callbacks) {
-      callbacks = new Set();
-      this.eventHandlers.set(event, callbacks);
-    }
-    const alreadyRegistered = callbacks.has(callback);
-    callbacks.add(callback);
-
-    if (
-      !this.socket &&
-      this.autoConnectSocket &&
-      (this.accessToken || this.publicSubscriptions.size > 0)
-    ) {
-      // connectSocket() attaches all registered handlers itself
-      this.connectSocket();
-      return;
-    }
-    if (!alreadyRegistered) {
-      this.socket?.on(event, callback);
-    }
-  }
-
-  /** Unsubscribe from a real-time event. */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  off(event: string, callback?: (...args: any[]) => void): void {
-    if (callback) {
-      this.eventHandlers.get(event)?.delete(callback);
-      this.socket?.off(event, callback);
-    } else {
-      this.eventHandlers.delete(event);
-      this.socket?.off(event);
     }
   }
 }

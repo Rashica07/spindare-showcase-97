@@ -1,12 +1,11 @@
 /**
  * @kiq/novus-pulse — Lightweight TypeScript client for the Novus Pulse API.
  *
- * Works in: Next.js, React, React Native, Node.js 18+, vanilla browser JS.
- * Zero runtime dependencies.
+ * Inlined into the project to avoid external package resolution issues.
  *
  * @example
  * ```ts
- * import { NovusPulse } from '@kiq/novus-pulse';
+ * import { NovusPulse } from '@/lib/novus-pulse';
  *
  * const pulse = new NovusPulse({
  *   baseUrl: 'https://api.novuspulse.dev',

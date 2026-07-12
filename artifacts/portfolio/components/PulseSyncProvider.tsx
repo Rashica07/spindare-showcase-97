@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { NovusPulse } from '@kiq/novus-pulse';
+import { NovusPulse } from '@/lib/novus-pulse';
 
 // Public content pipeline — no credentials needed.
 // The site reads published content via the public endpoint and stays in
