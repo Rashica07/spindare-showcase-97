@@ -1,3 +1,4 @@
+import { io, Socket } from 'socket.io-client';
 import {
   NovusPulseConfig,
   AuthTokens,
@@ -24,28 +25,6 @@ import {
  * NovusPulse — Lightweight TypeScript client for the Novus Pulse API.
  *
  * Works in: Next.js, React, React Native, Node.js 18+, vanilla browser JS.
- *
- * Usage:
- * ```ts
- * import { NovusPulse } from '@/lib/novus-pulse';
- *
- * const pulse = new NovusPulse({
- *   baseUrl: 'https://api.novuspulse.dev',
- *   onTokenRefresh: (tokens) => {
- *     localStorage.setItem('accessToken', tokens.accessToken);
- *     localStorage.setItem('refreshToken', tokens.refreshToken);
- *   },
- * });
- *
- * // Login
- * const { user } = await pulse.login({ email: '...', password: '...' });
- *
- * // Fetch pages (automatically scoped to user's tenant)
- * const pages = await pulse.getPages();
- *
- * // Fetch public pages (no auth needed)
- * const publicPages = await pulse.getPublicPages('barcelona-cafe');
- * ```
  */
 export class NovusPulse {
   private readonly baseUrl: string;
@@ -58,11 +37,9 @@ export class NovusPulse {
   private isRefreshing = false;
   private refreshPromise: Promise<AuthTokens> | null = null;
   private readonly autoConnectSocket: boolean;
-  /**
-   * Registered realtime handlers. Kept here so they survive reconnections.
-   */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private socket: Socket | null = null;
   private readonly eventHandlers = new Map<string, Set<(...args: any[]) => void>>();
+  private readonly publicSubscriptions = new Set<string>();
 
   /** Whether the realtime connection is currently active */
   private _isConnected = false;
@@ -76,6 +53,10 @@ export class NovusPulse {
     this.onAuthError = config.onAuthError;
     this.fetchFn = config.fetch ?? globalThis.fetch.bind(globalThis);
     this.autoConnectSocket = config.autoConnectSocket ?? true;
+
+    if (this.accessToken && this.autoConnectSocket) {
+      this.connectSocket();
+    }
   }
 
   // ════════════════════════════════════════════════════════
@@ -273,6 +254,17 @@ export class NovusPulse {
     });
   }
 
+  /** PUBLIC: fetch a tenant's visual theme by slug — no auth required. */
+  async getPublicTheme(tenantSlug: string): Promise<Record<string, unknown> | null> {
+    const data = await this.request<{ theme: Record<string, unknown> | null }>(
+      'GET',
+      `/public/${tenantSlug}/theme`,
+      undefined,
+      { skipAuth: true },
+    );
+    return data.theme;
+  }
+
   // ════════════════════════════════════════════════════════
   // PHOTOS
   // ════════════════════════════════════════════════════════
@@ -303,50 +295,127 @@ export class NovusPulse {
   }
 
   // ════════════════════════════════════════════════════════
-  // REALTIME (simplified — no socket.io dependency)
+  // REAL-TIME WEBSOCKETS
   // ════════════════════════════════════════════════════════
 
-  /**
-   * Subscribe to PUBLIC realtime updates for a tenant's published content.
-   * This is a no-op placeholder — the socket.io dependency has been removed
-   * to fix build issues. Content is still fetched via REST on page load.
-   */
-  subscribePublic(_tenantSlug: string): void {
-    // No-op: realtime disabled in this build
-    console.log('[Novus Pulse] Public subscription registered (REST-only mode)');
+  private connectSocket(): void {
+    if (this.socket) {
+      this.socket.disconnect();
+    }
+
+    // Anonymous connections are allowed when there are public subscriptions
+    if (!this.accessToken && this.publicSubscriptions.size === 0) return;
+
+    this.socket = io(this.baseUrl, {
+      path: '/socket.io', // default
+      auth: this.accessToken ? { token: this.accessToken } : {},
+      transports: ['websocket'],
+    });
+
+    this.socket.on('connect', () => {
+      console.log('[Novus Pulse] Real-time socket connected');
+      this._isConnected = true;
+      for (const slug of this.publicSubscriptions) {
+        this.socket?.emit('subscribe_public', { tenantSlug: slug });
+      }
+      this.triggerEvent('connect');
+    });
+
+    this.socket.on('disconnect', () => {
+      console.log('[Novus Pulse] Real-time socket disconnected');
+      this._isConnected = false;
+      this.triggerEvent('disconnect');
+    });
+    
+    this.socket.on('connect_error', (err) => {
+      console.error('[Novus Pulse] Socket connection error:', err.message);
+      this._isConnected = false;
+      this.triggerEvent('connect_error', err);
+    });
+
+    for (const [event, callbacks] of this.eventHandlers) {
+      for (const callback of callbacks) {
+        this.socket.on(event, callback);
+      }
+    }
   }
 
-  /** Stop receiving public realtime updates for a tenant slug. */
-  unsubscribePublic(_tenantSlug: string): void {
-    // No-op
+  private disconnectSocket(): void {
+    if (this.socket) {
+      this.socket.disconnect();
+      this.socket = null;
+    }
+    this._isConnected = false;
   }
 
-  /** Whether the realtime socket is currently connected. */
-  get realtimeConnected(): boolean {
-    return this._isConnected;
-  }
-
-  /**
-   * Subscribe to a real-time event.
-   * Events are stored but socket.io is not used in this build.
-   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  on(_event: string, callback: (...args: any[]) => void): void {
-    let callbacks = this.eventHandlers.get(_event);
+  private triggerEvent(event: string, ...args: any[]): void {
+    const callbacks = this.eventHandlers.get(event);
+    if (callbacks) {
+      for (const callback of callbacks) {
+        try {
+          callback(...args);
+        } catch (err) {
+          console.error(`Error in event callback for ${event}:`, err);
+        }
+      }
+    }
+  }
+
+  subscribePublic(tenantSlug: string): void {
+    this.publicSubscriptions.add(tenantSlug);
+    if (!this.socket) {
+      this.connectSocket();
+    } else if (this.socket.connected) {
+      this.socket.emit('subscribe_public', { tenantSlug });
+    }
+  }
+
+  unsubscribePublic(tenantSlug: string): void {
+    this.publicSubscriptions.delete(tenantSlug);
+    if (this.publicSubscriptions.size === 0 && !this.accessToken) {
+      this.disconnectSocket();
+    }
+  }
+
+  get realtimeConnected(): boolean {
+    return this.socket?.connected ?? false;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  on(event: string, callback: (...args: any[]) => void): void {
+    let callbacks = this.eventHandlers.get(event);
     if (!callbacks) {
       callbacks = new Set();
-      this.eventHandlers.set(_event, callbacks);
+      this.eventHandlers.set(event, callbacks);
     }
+    const alreadyRegistered = callbacks.has(callback);
     callbacks.add(callback);
+
+    if (this.socket) {
+      if (!alreadyRegistered) {
+        this.socket.on(event, callback);
+      }
+    } else if (
+      this.autoConnectSocket &&
+      (this.accessToken || this.publicSubscriptions.size > 0)
+    ) {
+      this.connectSocket();
+    }
   }
 
-  /** Unsubscribe from a real-time event. */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   off(event: string, callback?: (...args: any[]) => void): void {
     if (callback) {
       this.eventHandlers.get(event)?.delete(callback);
+      if (this.socket) {
+        this.socket.off(event, callback);
+      }
     } else {
       this.eventHandlers.delete(event);
+      if (this.socket) {
+        this.socket.off(event);
+      }
     }
   }
 
