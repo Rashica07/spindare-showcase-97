@@ -9,6 +9,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql, SiExpo, SiGithub } from "react-icons/si";
 import type { IconType } from "react-icons";
+import { usePageOverride, pick, pickList, type BlockOverrides } from "@/components/PulseSyncProvider";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,6 +27,7 @@ const SKILL_ICONS: Record<string, IconType> = {
 
 export default function AboutPage() {
   const { t } = useLanguage();
+  const overrides = usePageOverride('about') as BlockOverrides;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -33,9 +35,9 @@ export default function AboutPage() {
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="about-hero">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.about.label}</span>
-            <h1 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight">{t.about.title}</h1>
-            <p className="mt-3 text-muted-foreground text-lg">{t.about.sub}</p>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'label', t.about.label)}</span>
+            <h1 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.about.title)}</h1>
+            <p className="mt-3 text-muted-foreground text-lg">{pick(overrides, 'sub', t.about.sub)}</p>
           </motion.div>
         </div>
       </section>
@@ -43,16 +45,16 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
           <FadeUp>
             <div className="flex flex-col gap-5">
-              {t.about.bio.map((para, i) => (<p key={i} className="text-muted-foreground leading-relaxed">{para}</p>))}
+              {pickList(overrides, 'bio', t.about.bio).map((para: any, i: number) => (<p key={i} className="text-muted-foreground leading-relaxed">{para}</p>))}
             </div>
           </FadeUp>
           <FadeUp delay={0.1}>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: t.about.metaLocation, value: t.about.metaLocationValue },
-                { label: t.about.metaFocus, value: t.about.metaFocusValue },
-                { label: t.about.metaAvailable, value: t.about.metaAvailableValue },
-                { label: t.about.metaResponse, value: t.about.metaResponseValue },
+                { label: pick(overrides, 'metaLocation', t.about.metaLocation), value: pick(overrides, 'metaLocationValue', t.about.metaLocationValue) },
+                { label: pick(overrides, 'metaFocus', t.about.metaFocus), value: pick(overrides, 'metaFocusValue', t.about.metaFocusValue) },
+                { label: pick(overrides, 'metaAvailable', t.about.metaAvailable), value: pick(overrides, 'metaAvailableValue', t.about.metaAvailableValue) },
+                { label: pick(overrides, 'metaResponse', t.about.metaResponse), value: pick(overrides, 'metaResponseValue', t.about.metaResponseValue) },
               ].map(({ label, value }, i) => (
                 <motion.div key={i} whileHover={{ y: -3, borderColor: "hsl(var(--primary) / 0.3)" }} transition={{ duration: 0.2 }} className="glass-card rounded-lg p-4" data-testid={`about-meta-${i}`}>
                   <p className="font-mono text-xs text-muted-foreground tracking-widest uppercase">{label}</p>
@@ -66,8 +68,8 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40 bg-card/20" data-testid="about-skills">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.about.stackLabel}</span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight">{t.about.stackTitle}</h2>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'stackLabel', t.about.stackLabel)}</span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight">{pick(overrides, 'stackTitle', t.about.stackTitle)}</h2>
           </FadeUp>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.about.skills.map((cat, i) => (
@@ -94,8 +96,8 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40" data-testid="about-experience">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.about.experienceLabel}</span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight">{t.about.experienceTitle}</h2>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'experienceLabel', t.about.experienceLabel)}</span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight">{pick(overrides, 'experienceTitle', t.about.experienceTitle)}</h2>
           </FadeUp>
           <div className="mt-12 relative">
             <div className="absolute left-0 md:left-32 top-0 bottom-0 w-px bg-border/40" />
@@ -122,8 +124,8 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40 bg-card/20" data-testid="about-values">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.about.approachLabel}</span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight">{t.about.approachTitle}</h2>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'approachLabel', t.about.approachLabel)}</span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight">{pick(overrides, 'approachTitle', t.about.approachTitle)}</h2>
           </FadeUp>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.about.values.map((v, i) => (
@@ -140,13 +142,13 @@ export default function AboutPage() {
       <section className="py-20" data-testid="about-cta">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
           <FadeUp>
-            <h2 className="text-3xl font-bold text-foreground">{t.about.ctaTitle}</h2>
-            <p className="mt-2 text-muted-foreground">{t.about.ctaSub}</p>
+            <h2 className="text-3xl font-bold text-foreground">{pick(overrides, 'ctaTitle', t.about.ctaTitle)}</h2>
+            <p className="mt-2 text-muted-foreground">{pick(overrides, 'ctaSub', t.about.ctaSub)}</p>
           </FadeUp>
           <FadeUp delay={0.1} className="flex gap-4 shrink-0">
             <Link href="/contact" data-testid="about-cta-contact">
               <motion.span whileHover={{ scale: 1.02 }} className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg text-sm hover:bg-primary/90 transition-colors cursor-pointer">
-                {t.about.ctaButton} <ArrowRight size={14} />
+                {pick(overrides, 'ctaButton', t.about.ctaButton)} <ArrowRight size={14} />
               </motion.span>
             </Link>
             <a href="https://github.com/rashica07" target="_blank" rel="noopener noreferrer" data-testid="about-cta-github" className="inline-flex items-center gap-2 px-5 py-3.5 border border-border/60 text-muted-foreground hover:text-foreground rounded-lg text-sm transition-colors">

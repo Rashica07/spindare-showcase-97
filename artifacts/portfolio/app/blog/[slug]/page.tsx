@@ -47,7 +47,7 @@ function Renderer({ sections }: { sections: Section[] }) {
                 <p className="text-foreground italic leading-relaxed text-[15px]">&ldquo;{s.text}&rdquo;</p>
                 {s.by && (
                   <cite className="mt-2 block font-mono text-xs text-muted-foreground/60 not-italic">
-                    — {s.by}
+                    {s.by}
                   </cite>
                 )}
               </blockquote>

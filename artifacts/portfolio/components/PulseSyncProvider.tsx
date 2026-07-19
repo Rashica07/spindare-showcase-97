@@ -11,16 +11,70 @@ const PULSE_TENANT = process.env.NEXT_PUBLIC_PULSE_TENANT || 'admin-workspace';
 const HOME_SLUG = 'home';
 
 interface PulseContextType {
-  pulseData: any;
+  pages: Record<string, any>;
   isConnected: boolean;
 }
 
 const PulseContext = createContext<PulseContextType>({
-  pulseData: null,
+  pages: {},
   isConnected: false,
 });
 
 export const usePulseSync = () => useContext(PulseContext);
+
+export function usePageOverride(slug: string) {
+  const { pages } = usePulseSync();
+  return pages[slug] || null;
+}
+
+export type BlockOverrides = Record<string, unknown> | undefined;
+
+export interface SiteBlock {
+  id: string;
+  type: string;
+  props?: BlockOverrides;
+  hidden?: boolean;
+}
+
+/**
+ * CMS copy is authored outside this repo, so it can reintroduce the em dashes
+ * the site copy deliberately avoids. Normalise them on the way in: " — " reads
+ * as a comma, a bare "—" as a colon-free break.
+ */
+function stripEmDashes(value: string): string {
+  if (!value.includes('—')) return value;
+  return value
+    // Spaced or unspaced, an em dash becomes a comma break rather than nothing,
+    // so "a—b" does not collapse into "ab".
+    .replace(/\s*—\s*/g, ', ')
+    .replace(/^,\s*/, '')
+    .replace(/,\s*,/g, ',')
+    .replace(/\s+([.,;:!?])/g, '$1')
+    .trim();
+}
+
+function normaliseContent<T>(value: T): T {
+  if (typeof value === 'string') return stripEmDashes(value) as unknown as T;
+  if (Array.isArray(value)) return value.map(normaliseContent) as unknown as T;
+  if (value && typeof value === 'object') {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      out[k] = normaliseContent(v);
+    }
+    return out as unknown as T;
+  }
+  return value;
+}
+
+export function pick<T>(overrides: BlockOverrides, key: string, fallback: T): T {
+  const v = overrides?.[key];
+  return v === undefined || v === null || v === "" ? fallback : (v as T);
+}
+
+export function pickList<T>(overrides: BlockOverrides, key: string, fallback: T[]): T[] {
+  const v = overrides?.[key];
+  return Array.isArray(v) && v.length > 0 ? (v as T[]) : fallback;
+}
 
 /** "#ff8c00" → "32 98% 54%" (the "H S% L%" triplet the CSS vars expect). */
 function hexToHslTriplet(hex: string): string | null {
@@ -76,7 +130,7 @@ function applyTheme(theme: any) {
 }
 
 export function PulseSyncProvider({ children }: { children: React.ReactNode }) {
-  const [pulseData, setPulseData] = useState<any>(null);
+  const [pages, setPages] = useState<Record<string, any>>({});
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
@@ -94,26 +148,35 @@ export function PulseSyncProvider({ children }: { children: React.ReactNode }) {
     // 1. Initial published content (public REST endpoint)
     pulse
       .getPublicPages(tenantSlug)
-      .then((pages) => {
-        const homePage = pages.find((p: any) => p.slug === HOME_SLUG);
-        if (homePage?.content) {
-          setPulseData(homePage.content);
+      .then((pagesData) => {
+        const pagesMap: Record<string, any> = {};
+        for (const p of pagesData) {
+          if (p.slug && p.content) {
+            pagesMap[p.slug] = normaliseContent(p.content);
+          }
         }
+        setPages(pagesMap);
       })
-      .catch((err) => console.error('Failed to fetch initial pulse data', err));
+      .catch(() => {
+        // Non-fatal: every page has bundled copy to fall back to.
+        console.warn('[Novus Pulse] Content unavailable, using bundled copy.');
+      });
 
     // 1b. Initial theme (public REST endpoint) — apply the CMS palette on load.
     pulse
       .getPublicTheme(tenantSlug)
       .then((theme) => applyTheme(theme))
-      .catch((err) => console.error('Failed to fetch initial theme', err));
+      .catch(() => {
+        // Non-fatal: the default palette in globals.css stays in effect.
+        console.warn('[Novus Pulse] Theme unavailable, using default palette.');
+      });
 
     // 2. Live updates (public realtime room — published pages only)
     pulse.subscribePublic(tenantSlug);
 
     const onPage = (payload: any) => {
-      if (payload?.slug === HOME_SLUG && payload.content) {
-        setPulseData(payload.content);
+      if (payload?.slug && payload.content) {
+        setPages(prev => ({ ...prev, [payload.slug]: normaliseContent(payload.content) }));
       }
     };
     const onTheme = (payload: any) => applyTheme(payload?.theme);
@@ -126,6 +189,10 @@ export function PulseSyncProvider({ children }: { children: React.ReactNode }) {
     pulse.on('connect', onConnect);
     pulse.on('disconnect', onDisconnect);
 
+    if (pulse.realtimeConnected) {
+      setIsConnected(true);
+    }
+
     return () => {
       pulse.off('page.updated', onPage);
       pulse.off('page.created', onPage);
@@ -137,7 +204,7 @@ export function PulseSyncProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <PulseContext.Provider value={{ pulseData, isConnected }}>
+    <PulseContext.Provider value={{ pages, isConnected }}>
       {children}
     </PulseContext.Provider>
   );

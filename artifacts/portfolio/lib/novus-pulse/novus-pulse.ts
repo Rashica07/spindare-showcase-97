@@ -43,6 +43,7 @@ export class NovusPulse {
 
   /** Whether the realtime connection is currently active */
   private _isConnected = false;
+  private socketErrorLogged = false;
 
   constructor(config: NovusPulseConfig) {
     // Strip trailing slash from baseUrl
@@ -310,6 +311,13 @@ export class NovusPulse {
       path: '/socket.io', // default
       auth: this.accessToken ? { token: this.accessToken } : {},
       transports: ['websocket'],
+      // Live sync is an enhancement, not a requirement: give up after a few
+      // tries instead of reconnecting forever and burning CPU on every client
+      // whenever the CMS is unreachable.
+      reconnectionAttempts: 5,
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 10000,
+      timeout: 8000,
     });
 
     this.socket.on('connect', () => {
@@ -328,7 +336,12 @@ export class NovusPulse {
     });
     
     this.socket.on('connect_error', (err) => {
-      console.error('[Novus Pulse] Socket connection error:', err.message);
+      // Warn once per client. Repeating this for every retry floods the console
+      // and shows up as a wall of errors in the Next.js dev overlay.
+      if (!this.socketErrorLogged) {
+        this.socketErrorLogged = true;
+        console.warn('[Novus Pulse] Realtime unavailable, continuing without live sync:', err.message);
+      }
       this._isConnected = false;
       this.triggerEvent('connect_error', err);
     });

@@ -3,10 +3,11 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-const FILL_MS  = 600;
-const TICK_MS  = 16;
-const COLS     = 14;
-const ROWS     = 9;
+// Hard ceiling: the overlay can never outlive this, however slow the page is.
+const MAX_MS  = 2500;
+const EXIT_MS = 300;
+const COLS    = 14;
+const ROWS    = 9;
 
 export function LoadingScreen() {
   const [progress, setProgress] = useState(0);
@@ -19,29 +20,33 @@ export function LoadingScreen() {
       return;
     }
 
-    const startedAt = Date.now();
+    let settled = false;
+    let exitTimer: ReturnType<typeof setTimeout>;
 
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - startedAt;
-      const p = Math.min(elapsed / FILL_MS, 1);
-      setProgress(p);
-      if (p >= 1) {
-        clearInterval(interval);
-        sessionStorage.setItem('kd_loaded', '1');
-        setExiting(true);
-        setTimeout(() => setGone(true), 420);
-      }
-    }, TICK_MS);
+    // Tied to real readiness, not a fixed timer: when there is nothing left to
+    // wait for this resolves on the next frame and the overlay is gone almost
+    // immediately. It only lingers when the page genuinely is not ready yet.
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      try { sessionStorage.setItem('kd_loaded', '1'); } catch {}
+      setProgress(1);
+      setExiting(true);
+      exitTimer = setTimeout(() => setGone(true), EXIT_MS);
+    };
 
-    const safety = setTimeout(() => {
-      clearInterval(interval);
-      sessionStorage.setItem('kd_loaded', '1');
-      setGone(true);
-    }, FILL_MS + 1200);
+    const painted = new Promise<void>((resolve) => {
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+    });
+    const fonts = document.fonts ? document.fonts.ready.then(() => undefined) : Promise.resolve();
+
+    Promise.all([painted, fonts]).then(finish).catch(finish);
+
+    const cap = setTimeout(finish, MAX_MS);
 
     return () => {
-      clearInterval(interval);
-      clearTimeout(safety);
+      clearTimeout(cap);
+      clearTimeout(exitTimer);
     };
   }, []);
 
@@ -130,7 +135,7 @@ export function LoadingScreen() {
               style={{
                 width: `${progress * 100}%`,
                 background: 'linear-gradient(90deg, hsl(32 95% 38%), hsl(32 98% 58%))',
-                transition: `width ${TICK_MS}ms linear`,
+                transition: 'width 200ms ease-out',
               }}
             />
           </div>

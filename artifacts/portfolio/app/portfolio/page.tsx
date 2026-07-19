@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
@@ -8,6 +9,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo } from "react-icons/si";
 import type { IconType } from "react-icons";
+import { usePageOverride, pick, type BlockOverrides } from "@/components/PulseSyncProvider";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -42,6 +44,7 @@ const TORRE_SCREENS = [
 
 export default function PortfolioPage() {
   const { t } = useLanguage();
+  const overrides = usePageOverride('portfolio') as BlockOverrides;
   const [active, setActive] = useState("All");
   const [spindareActiveIdx, setSpindareActiveIdx] = useState(0);
   const [torreActiveIdx, setTorreActiveIdx] = useState(0);
@@ -55,8 +58,8 @@ export default function PortfolioPage() {
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="portfolio-hero">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.work.label}</span>
-            <h1 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight">{t.work.title}</h1>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'label', t.work.label)}</span>
+            <h1 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.work.title)}</h1>
           </motion.div>
         </div>
       </section>
@@ -98,7 +101,7 @@ export default function PortfolioPage() {
 
                         <div className="relative mt-8 w-[170px] h-[310px] rounded-[24px] border-4 border-card-border bg-background shadow-2xl overflow-hidden flex items-center justify-center">
                           <div className="absolute top-0 w-16 h-3 bg-card-border rounded-b-lg z-20" />
-                          <motion.img key={spindareActiveIdx} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.25 }} src={SPINDARE_SCREENS[spindareActiveIdx].src} alt={SPINDARE_SCREENS[spindareActiveIdx].name} className="w-full h-full object-cover z-10" />
+                          <Image key={spindareActiveIdx} src={SPINDARE_SCREENS[spindareActiveIdx].src} alt={SPINDARE_SCREENS[spindareActiveIdx].name} fill sizes="170px" className="object-cover z-10" />
                         </div>
                       </div>
                     ) : project.name === "Torre Group" ? (
@@ -127,7 +130,7 @@ export default function PortfolioPage() {
                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
                           </div>
-                          <motion.img key={torreActiveIdx} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.25 }} src={TORRE_SCREENS[torreActiveIdx].src} alt={TORRE_SCREENS[torreActiveIdx].name} className="w-full h-full object-cover z-10 object-top" />
+                          <Image key={torreActiveIdx} src={TORRE_SCREENS[torreActiveIdx].src} alt={TORRE_SCREENS[torreActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover object-top z-10" />
                         </div>
                       </div>
                     ) : (

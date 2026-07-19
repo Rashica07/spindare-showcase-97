@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@workspace/portfolio", "run", "dev"],
+      "port": 21113
+    }
+  ]
+}

@@ -3,9 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["*.replit.dev", "*.spock.replit.dev", "*.repl.co"],
   async headers() {
+    // In dev, Turbopack reuses chunk filenames across edits, so an immutable
+    // Cache-Control freezes stale bundles in the browser for a year and code
+    // changes silently never appear. Only send it for production builds.
+    if (process.env.NODE_ENV !== "production") return [];
+
     return [
       {
-        // Static assets are content-hashed by Next — safe to cache forever.
+        // Production static assets are content-hashed, so caching forever is safe.
         source: "/_next/static/(.*)",
         headers: [
           {
