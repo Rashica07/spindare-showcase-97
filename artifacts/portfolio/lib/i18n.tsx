@@ -23,6 +23,8 @@ export const translations = {
       title: "What I build, and what it costs",
       sub: "Every project is quoted upfront with a delivery date. If the scope changes mid-build, I tell you what it costs before I do the work.",
       getProposal: "Get a proposal for this service",
+      ctaTitle: "Not sure which one fits?",
+      ctaSub: "Tell me about your project and I'll recommend the right scope and price.",
       items: [
         {
           name: "Mobile App",
@@ -261,6 +263,8 @@ export const translations = {
     services: {
       label: "Servizi", title: "Cosa costruisco e quanto costa", sub: "Ogni progetto viene preventivato in anticipo con una data di consegna. Se durante il lavoro cambia lo scopo, ti dico quanto costa prima di procedere.",
       getProposal: "Richiedi un preventivo per questo servizio",
+      ctaTitle: "Non sai quale scegliere?",
+      ctaSub: "Raccontami il tuo progetto e ti consiglio l'ambito e il prezzo giusti.",
       items: [
         { name: "App Mobile", tagline: "Dalla prima schermata a entrambi gli store in 6 settimane.", price: "Da €799", timeline: "6 settimane", desc: "Design, sviluppo e pubblicazione gestiti dall'inizio alla fine. Un prezzo fisso e un unico referente per tutte e sei le settimane.", features: ["React Native", "iOS & Android", "Supabase", "Pubblicazione App Store & Play Store", "Notifiche push", "30 giorni di supporto post-lancio"] },
         { name: "Landing Page", tagline: "Una pagina costruita per trasformare le visite in richieste. Online in 7 giorni.", price: "Da €299", timeline: "7 giorni", desc: "Una pagina singola e veloce con i tuoi testi, il tuo brand e un modulo di contatto funzionante. Consegnata in 7 giorni sul tuo dominio.", features: ["Next.js", "Grafica 3D & animazioni", "Ottimizzata per i motori di ricerca", "Veloce su ogni dispositivo", "Vercel + Cloudflare", "Pronta per un CMS"] },
@@ -423,6 +427,8 @@ export const translations = {
       title: "Çfarë ndërtoj dhe sa kushton",
       sub: "Çdo projekt kuotohet që në fillim me një datë dorëzimi. Nëse qëllimi ndryshon gjatë punës, të them sa kushton para se ta bëj.",
       getProposal: "Merr një ofertë për këtë shërbim",
+      ctaTitle: "Nuk je i sigurt cilin të zgjedhësh?",
+      ctaSub: "Më trego për projektin tënd dhe do të të rekomandoj fushëveprimin dhe çmimin e duhur.",
       items: [
         { name: "Aplikacion Mobil", tagline: "Nga ekrani i parë te të dy dyqanet për 6 javë.", price: "Nga €799", timeline: "6 javë", desc: "Dizajni, zhvillimi dhe dorëzimi në dyqane, të trajtuara nga fillimi në fund. Një çmim fiks dhe një pikë kontakti për të gjashtë javët.", features: ["React Native", "iOS & Android", "Supabase", "Dorëzim në App Store & Play Store", "Njoftime push", "30 ditë mbështetje pas lansimit"] },
         { name: "Landing Page", tagline: "Një faqe e ndërtuar për të kthyer vizitat në kërkesa. Online për 7 ditë.", price: "Nga €299", timeline: "7 ditë", desc: "Një faqe e vetme dhe e shpejtë me tekstet e tua, markën tënde dhe një formular kontakti funksional. Dorëzuar për 7 ditë në domenin tënd.", features: ["Next.js", "Vizualizime 3D & animacione", "Optimizuar për motorët e kërkimit", "E shpejtë në çdo pajisje", "Vercel + Cloudflare", "E gatshme për CMS"] },
@@ -583,6 +589,8 @@ export const translations = {
     services: {
       label: "Leistungen", title: "Was ich baue und was es kostet", sub: "Jedes Projekt wird vorab mit einem Liefertermin kalkuliert. Ändert sich der Umfang während der Arbeit, sage ich dir vorher, was es kostet.",
       getProposal: "Angebot für diese Leistung anfordern",
+      ctaTitle: "Nicht sicher, was passt?",
+      ctaSub: "Erzähl mir von deinem Projekt und ich empfehle dir den passenden Umfang und Preis.",
       items: [
         { name: "Mobile App", tagline: "Vom ersten Screen in beide App Stores in 6 Wochen.", price: "Ab €799", timeline: "6 Wochen", desc: "Design, Entwicklung und Store-Einreichung von Anfang bis Ende. Ein Festpreis und ein Ansprechpartner für alle sechs Wochen.", features: ["React Native", "iOS & Android", "Supabase", "App Store & Play Store Einreichung", "Push-Benachrichtigungen", "30 Tage Support nach Launch"] },
         { name: "Landing Page", tagline: "Eine Seite, die Besucher zu Anfragen macht. Live in 7 Tagen.", price: "Ab €299", timeline: "7 Tage", desc: "Eine schnelle Einzelseite mit deinen Texten, deiner Marke und einem funktionierenden Kontaktformular. In 7 Tagen auf deiner eigenen Domain.", features: ["Next.js", "3D-Grafik & Animationen", "Suchmaschinenoptimiert", "Schnell auf allen Geräten", "Vercel + Cloudflare", "CMS-bereit"] },

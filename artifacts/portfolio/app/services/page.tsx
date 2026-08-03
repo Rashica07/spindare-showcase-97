@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { usePageOverride, pick, type BlockOverrides } from "@/components/PulseSyncProvider";
 
@@ -25,7 +24,6 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="services-hero">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
@@ -59,15 +57,21 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/contact">
-                    <motion.span whileHover={{ scale: 1.02, x: 4 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary cursor-pointer border border-primary/30 rounded-lg px-5 py-2.5 hover:bg-primary/10 transition-colors self-start" data-testid={`service-detail-cta-${i}`}>
-                      {pick(overrides, 'getProposal', t.services.getProposal)} <ArrowRight size={11} />
-                    </motion.span>
-                  </Link>
                 </motion.div>
               </FadeUp>
             ))}
           </div>
+          <FadeUp className="mt-14 text-center">
+            <h2 className="text-2xl font-bold text-foreground">{t.services.ctaTitle}</h2>
+            <p className="mt-2 text-muted-foreground">{t.services.ctaSub}</p>
+            <div className="mt-6 flex justify-center">
+              <Link href="/contact">
+                <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg text-sm hover:bg-primary/90 transition-colors cursor-pointer" data-testid="services-cta-link">
+                  {pick(overrides, 'getProposal', t.services.getProposal)} <ArrowRight size={14} />
+                </motion.span>
+              </Link>
+            </div>
+          </FadeUp>
         </div>
       </section>
       <section className="py-20 border-t border-border/40 bg-card/20" data-testid="services-process">

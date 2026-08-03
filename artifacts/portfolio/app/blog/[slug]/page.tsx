@@ -7,7 +7,6 @@ import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { getBlogPost } from "@/lib/blog-posts";
 import type { Section } from "@/lib/blog-posts";
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -120,7 +119,6 @@ export default function BlogPostPage() {
   if (!meta) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <Navbar />
         <section className="pt-40 pb-20 text-center" data-testid="blog-post-not-found">
           <p className="font-mono text-xs text-primary tracking-widest uppercase mb-4">404</p>
           <h1 className="text-4xl font-bold text-foreground">{t.blog.postNotFound}</h1>
@@ -140,8 +138,6 @@ export default function BlogPostPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-
       <section className="page-hero-glow pt-32 pb-12 border-b border-border/40" data-testid="blog-post-hero">
         <div className="max-w-3xl mx-auto px-6">
           <motion.div

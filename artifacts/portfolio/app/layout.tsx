@@ -17,8 +17,11 @@ const dmMono = DM_Mono({
   variable: "--font-dm-mono",
   display: "swap",
 });
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "@/components/Providers";
 import { PulseSyncProvider } from "@/components/PulseSyncProvider";
+import { Navbar } from "@/components/Navbar";
 
 const DESCRIPTION =
   "Freelance developer building mobile apps, landing pages, and web platforms. Fixed price, fixed delivery date.";
@@ -55,8 +58,13 @@ export default function RootLayout({
     <html lang="en" className={`${dmSans.variable} ${dmMono.variable}`}>
       <body>
         <PulseSyncProvider>
-          <Providers>{children}</Providers>
+          <Providers>
+            <Navbar />
+            {children}
+          </Providers>
         </PulseSyncProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

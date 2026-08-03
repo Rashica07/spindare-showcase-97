@@ -18,15 +18,14 @@ export function WhatsAppButton() {
       rel="noopener noreferrer"
       data-testid="button-whatsapp-float"
       aria-label={t.whatsapp.aria}
-      initial={{ opacity: 0, scale: 0.6, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 right-6 z-40 flex items-center justify-center w-14 h-14 rounded-full bg-black border-2 border-primary shadow-lg glow-orange group"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.96 }}
+      className="fixed bottom-6 right-6 z-40 flex items-center justify-center w-12 h-12 rounded-full bg-black border border-primary/40 shadow-md hover:border-primary/70 transition-colors group"
     >
-      <span className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
-      <SiWhatsapp size={26} className="relative text-primary group-hover:text-primary/90 transition-colors" />
+      <SiWhatsapp size={20} className="text-primary group-hover:text-primary/90 transition-colors" />
       <span className="pointer-events-none absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-black text-primary text-xs font-mono px-3 py-1.5 border border-primary/30 opacity-0 group-hover:opacity-100 transition-opacity">
         {t.whatsapp.tooltip}
       </span>

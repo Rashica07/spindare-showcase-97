@@ -5,7 +5,6 @@ import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo } from "react-icons/si";
 import type { IconType } from "react-icons";
@@ -54,7 +53,6 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="portfolio-hero">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>

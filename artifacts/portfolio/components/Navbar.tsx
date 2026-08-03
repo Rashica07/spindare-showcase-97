@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,6 +20,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [indicator, setIndicator] = useState<{ left: number; width: number } | null>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
@@ -42,6 +45,30 @@ export function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? location === "/" : location.startsWith(href);
 
+  const activeHref = navLinks.find((link) => isActive(link.href))?.href;
+
+  const measureIndicator = () => {
+    const activeEl = activeHref ? linkRefs.current[activeHref] : null;
+    if (!activeEl || !navRef.current) {
+      setIndicator(null);
+      return;
+    }
+    const navRect = navRef.current.getBoundingClientRect();
+    const linkRect = activeEl.getBoundingClientRect();
+    setIndicator({ left: linkRect.left - navRect.left, width: linkRect.width });
+  };
+
+  useLayoutEffect(() => {
+    measureIndicator();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeHref, lang]);
+
+  useEffect(() => {
+    window.addEventListener("resize", measureIndicator);
+    return () => window.removeEventListener("resize", measureIndicator);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeHref]);
+
   return (
     <>
       <motion.header
@@ -61,11 +88,12 @@ export function Navbar() {
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8" data-testid="nav-links">
+          <nav ref={navRef} className="hidden md:flex items-center gap-8 relative" data-testid="nav-links">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
+                ref={(el) => { linkRefs.current[link.href] = el; }}
                 data-testid={`nav-link-${link.href.replace("/", "") || "home"}`}
                 className={`text-xs font-medium tracking-widest uppercase transition-colors ${
                   isActive(link.href)
@@ -74,14 +102,16 @@ export function Navbar() {
                 }`}
               >
                 {link.label}
-                {isActive(link.href) && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className="h-px bg-primary mt-0.5"
-                  />
-                )}
               </Link>
             ))}
+            {indicator && (
+              <motion.div
+                className="absolute -bottom-1.5 h-px bg-primary"
+                initial={false}
+                animate={{ left: indicator.left, width: indicator.width }}
+                transition={{ type: "spring", stiffness: 500, damping: 40 }}
+              />
+            )}
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
