@@ -1,6 +1,7 @@
 # See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # compiled output
+**/.next/
 dist
 tmp
 out-tsc
@@ -48,6 +49,11 @@ Thumbs.db
 .cache/
 .local/
 
-# Next.js build output
-**/.next/
-**/out/
+
+#Others
+
+.env
+.env*.local
+.replit
+/.agents
+

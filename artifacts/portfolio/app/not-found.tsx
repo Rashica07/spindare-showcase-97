@@ -1,20 +1,21 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
+'use client';
+
+import Link from "next/link";
+import { useLanguage } from "@/lib/i18n";
 
 export default function NotFound() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-background">
-      <Card className="w-full max-w-md mx-4">
-        <CardContent className="pt-6">
-          <div className="flex mb-4 gap-2">
-            <AlertCircle className="h-8 w-8 text-red-500" />
-            <h1 className="text-2xl font-bold text-foreground">404 Page Not Found</h1>
-          </div>
-          <p className="mt-4 text-sm text-muted-foreground">
-            The page you are looking for does not exist.
-          </p>
-        </CardContent>
-      </Card>
+      <div className="text-center">
+        <p className="font-mono text-xs text-primary tracking-widest uppercase mb-4">404</p>
+        <h1 className="text-4xl font-bold text-foreground">{t.notFound.title}</h1>
+        <p className="mt-3 text-sm text-muted-foreground">{t.notFound.description}</p>
+        <Link href="/" className="inline-flex items-center gap-2 mt-8 text-sm text-primary hover:underline">
+          {t.notFound.backHome}
+        </Link>
+      </div>
     </div>
   );
 }

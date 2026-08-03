@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "KIQA DEV Portfolio"
+version = "1.0.0"
+id = "portfolio_KiqaDevZkN9mPqRxT8v"
+
+[[services]]
+localPort = 3000
+name = "Portfolio"
+paths = ["/"]
+
+[services.env]
+PORT = "3000"
+
+[services.development]
+run = "pnpm --filter @workspace/portfolio run dev"
+
+[services.production]
+
+[services.production.build]
+args = ["pnpm", "--filter", "@workspace/portfolio", "run", "build"]
+
+[services.production.build.env]
+NODE_ENV = "production"
+
+[services.production.run]
+args = ["pnpm", "--filter", "@workspace/portfolio", "run", "start"]
+
+[services.production.run.env]
+PORT = "3000"
+NODE_ENV = "production"
