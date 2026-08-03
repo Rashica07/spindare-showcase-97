@@ -17,6 +17,8 @@ const dmMono = DM_Mono({
   variable: "--font-dm-mono",
   display: "swap",
 });
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "@/components/Providers";
 import { PulseSyncProvider } from "@/components/PulseSyncProvider";
 import { Navbar } from "@/components/Navbar";
@@ -61,6 +63,8 @@ export default function RootLayout({
             {children}
           </Providers>
         </PulseSyncProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
