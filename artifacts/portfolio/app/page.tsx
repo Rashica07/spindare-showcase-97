@@ -286,7 +286,7 @@ export default function HomePage() {
               <div className="mt-10 flex justify-center">
                 <Link href="/contact" data-testid="hero-cta-funnel-btn">
                   <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg text-sm tracking-wide hover:bg-primary/90 transition-all glow-orange-sm cursor-pointer shadow-lg">
-                    {t.hero.cta1} <ArrowRight size={16} />
+                    {t.funnel.cta} <ArrowRight size={16} />
                   </motion.span>
                 </Link>
               </div>
