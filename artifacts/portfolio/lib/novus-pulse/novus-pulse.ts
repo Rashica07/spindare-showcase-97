@@ -1,0 +1,547 @@
+import { io, Socket } from 'socket.io-client';
+import {
+  NovusPulseConfig,
+  AuthTokens,
+  RegisterInput,
+  LoginInput,
+  RegisterResponse,
+  LoginResponse,
+  User,
+  UpdateUserInput,
+  Tenant,
+  CreateTenantInput,
+  UpdateTenantInput,
+  Page,
+  CreatePageInput,
+  UpdatePageInput,
+  Photo,
+  CreatePhotoInput,
+  UpdatePhotoInput,
+  NovusPulseError,
+  NovusPulseErrorData,
+} from './types';
+
+/**
+ * NovusPulse — Lightweight TypeScript client for the Novus Pulse API.
+ *
+ * Works in: Next.js, React, React Native, Node.js 18+, vanilla browser JS.
+ */
+export class NovusPulse {
+  private readonly baseUrl: string;
+  private readonly apiPrefix = '/api/v1';
+  private accessToken: string | null;
+  private refreshToken: string | null;
+  private readonly onTokenRefresh?: (tokens: AuthTokens) => void;
+  private readonly onAuthError?: (error: NovusPulseError) => void;
+  private readonly fetchFn: typeof globalThis.fetch;
+  private isRefreshing = false;
+  private refreshPromise: Promise<AuthTokens> | null = null;
+  private readonly autoConnectSocket: boolean;
+  private socket: Socket | null = null;
+  private readonly eventHandlers = new Map<string, Set<(...args: any[]) => void>>();
+  private readonly publicSubscriptions = new Set<string>();
+
+  /** Whether the realtime connection is currently active */
+  private _isConnected = false;
+  private socketErrorLogged = false;
+
+  constructor(config: NovusPulseConfig) {
+    // Strip trailing slash from baseUrl
+    this.baseUrl = config.baseUrl.replace(/\/+$/, '');
+    this.accessToken = config.accessToken ?? null;
+    this.refreshToken = config.refreshToken ?? null;
+    this.onTokenRefresh = config.onTokenRefresh;
+    this.onAuthError = config.onAuthError;
+    this.fetchFn = config.fetch ?? globalThis.fetch.bind(globalThis);
+    this.autoConnectSocket = config.autoConnectSocket ?? true;
+
+    if (this.accessToken && this.autoConnectSocket) {
+      this.connectSocket();
+    }
+  }
+
+  // ════════════════════════════════════════════════════════
+  // AUTH
+  // ════════════════════════════════════════════════════════
+
+  /**
+   * Register a new tenant and owner account.
+   * Automatically stores tokens after registration.
+   */
+  async register(input: RegisterInput): Promise<RegisterResponse> {
+    const data = await this.request<RegisterResponse>('POST', '/auth/register', input, {
+      skipAuth: true,
+    });
+    this.setTokens(data);
+    return data;
+  }
+
+  /**
+   * Login with email and password.
+   * Automatically stores tokens after login.
+   */
+  async login(input: LoginInput): Promise<LoginResponse> {
+    const data = await this.request<LoginResponse>('POST', '/auth/login', input, {
+      skipAuth: true,
+    });
+    this.setTokens(data);
+    return data;
+  }
+
+  /**
+   * Refresh tokens using the stored refresh token.
+   * Called automatically when a request gets a 401 — you rarely need to call this manually.
+   */
+  async refresh(): Promise<AuthTokens> {
+    if (!this.refreshToken) {
+      throw new NovusPulseError({
+        statusCode: 401,
+        message: 'No refresh token available. Please login first.',
+        error: 'Unauthorized',
+      });
+    }
+
+    const data = await this.request<AuthTokens>(
+      'POST',
+      '/auth/refresh',
+      { refreshToken: this.refreshToken },
+      { skipAuth: true, skipAutoRefresh: true },
+    );
+    this.setTokens(data);
+    return data;
+  }
+
+  /**
+   * Logout — invalidates the refresh token on the server.
+   * Clears stored tokens locally.
+   */
+  async logout(): Promise<void> {
+    try {
+      await this.request('POST', '/auth/logout');
+    } finally {
+      // Clear tokens even if the logout request fails
+      this.clearTokens();
+    }
+  }
+
+  /**
+   * Check if the client currently has tokens set.
+   * Note: tokens may be expired — this doesn't verify them.
+   */
+  get isAuthenticated(): boolean {
+    return this.accessToken !== null;
+  }
+
+  /**
+   * Manually set tokens (e.g., restored from localStorage on app init).
+   */
+  setAuthTokens(tokens: AuthTokens): void {
+    this.setTokens(tokens);
+  }
+
+  /**
+   * Clear all stored tokens.
+   */
+  clearTokens(): void {
+    this.accessToken = null;
+    this.refreshToken = null;
+  }
+
+  // ════════════════════════════════════════════════════════
+  // USERS
+  // ════════════════════════════════════════════════════════
+
+  /** Get the current authenticated user's profile. */
+  async getProfile(): Promise<User> {
+    return this.request<User>('GET', '/users/me');
+  }
+
+  /** List all users (scoped to your tenant, or all if super_admin). */
+  async getUsers(): Promise<User[]> {
+    return this.request<User[]>('GET', '/users');
+  }
+
+  /** Get a user by ID. */
+  async getUser(id: string): Promise<User> {
+    return this.request<User>('GET', `/users/${id}`);
+  }
+
+  /** Update a user by ID. Requires tenant_owner or super_admin role. */
+  async updateUser(id: string, input: UpdateUserInput): Promise<User> {
+    return this.request<User>('PUT', `/users/${id}`, input);
+  }
+
+  /** Delete a user by ID. Requires tenant_owner or super_admin role. */
+  async deleteUser(id: string): Promise<void> {
+    await this.request('DELETE', `/users/${id}`);
+  }
+
+  // ════════════════════════════════════════════════════════
+  // TENANTS (super_admin only)
+  // ════════════════════════════════════════════════════════
+
+  /** List all tenants. Requires super_admin role. */
+  async getTenants(): Promise<Tenant[]> {
+    return this.request<Tenant[]>('GET', '/tenants');
+  }
+
+  /** Get a tenant by ID. Requires super_admin role. */
+  async getTenant(id: string): Promise<Tenant> {
+    return this.request<Tenant>('GET', `/tenants/${id}`);
+  }
+
+  /** Create a new tenant. Requires super_admin role. */
+  async createTenant(input: CreateTenantInput): Promise<Tenant> {
+    return this.request<Tenant>('POST', '/tenants', input);
+  }
+
+  /** Update a tenant. Requires super_admin role. */
+  async updateTenant(id: string, input: UpdateTenantInput): Promise<Tenant> {
+    return this.request<Tenant>('PUT', `/tenants/${id}`, input);
+  }
+
+  /** Delete a tenant. Requires super_admin role. */
+  async deleteTenant(id: string): Promise<void> {
+    await this.request('DELETE', `/tenants/${id}`);
+  }
+
+  // ════════════════════════════════════════════════════════
+  // PAGES
+  // ════════════════════════════════════════════════════════
+
+  /**
+   * List all pages (scoped to your tenant, or all if super_admin).
+   * Pass a content type ('product', 'article', 'event', …) to list only
+   * that type — the same data model, filtered.
+   */
+  async getPages(type?: string): Promise<Page[]> {
+    const query = type ? `?type=${encodeURIComponent(type)}` : '';
+    return this.request<Page[]>('GET', `/pages${query}`);
+  }
+
+  /** Get a single page by ID. */
+  async getPage(id: string): Promise<Page> {
+    return this.request<Page>('GET', `/pages/${id}`);
+  }
+
+  /** Create a new page in your tenant. */
+  async createPage(input: CreatePageInput): Promise<Page> {
+    return this.request<Page>('POST', '/pages', input);
+  }
+
+  /** Update a page by ID. */
+  async updatePage(id: string, input: UpdatePageInput): Promise<Page> {
+    return this.request<Page>('PUT', `/pages/${id}`, input);
+  }
+
+  /** Delete a page by ID. */
+  async deletePage(id: string): Promise<void> {
+    await this.request('DELETE', `/pages/${id}`);
+  }
+
+  /**
+   * PUBLIC: Fetch published pages for a tenant by slug.
+   * No authentication required — designed for frontend content display.
+   *
+   * Usage:
+   * ```ts
+   * const pages = await pulse.getPublicPages('barcelona-cafe');
+   * ```
+   */
+  async getPublicPages(tenantSlug: string, type?: string): Promise<Page[]> {
+    const query = type ? `?type=${encodeURIComponent(type)}` : '';
+    return this.request<Page[]>('GET', `/public/${tenantSlug}/pages${query}`, undefined, {
+      skipAuth: true,
+    });
+  }
+
+  /** PUBLIC: fetch a tenant's visual theme by slug — no auth required. */
+  async getPublicTheme(tenantSlug: string): Promise<Record<string, unknown> | null> {
+    const data = await this.request<{ theme: Record<string, unknown> | null }>(
+      'GET',
+      `/public/${tenantSlug}/theme`,
+      undefined,
+      { skipAuth: true },
+    );
+    return data.theme;
+  }
+
+  // ════════════════════════════════════════════════════════
+  // PHOTOS
+  // ════════════════════════════════════════════════════════
+
+  /** List all photos (scoped to your tenant, or all if super_admin). */
+  async getPhotos(): Promise<Photo[]> {
+    return this.request<Photo[]>('GET', '/photos');
+  }
+
+  /** Get a single photo by ID. */
+  async getPhoto(id: string): Promise<Photo> {
+    return this.request<Photo>('GET', `/photos/${id}`);
+  }
+
+  /** Create photo metadata in your tenant. */
+  async createPhoto(input: CreatePhotoInput): Promise<Photo> {
+    return this.request<Photo>('POST', '/photos', input);
+  }
+
+  /** Update photo metadata by ID. */
+  async updatePhoto(id: string, input: UpdatePhotoInput): Promise<Photo> {
+    return this.request<Photo>('PUT', `/photos/${id}`, input);
+  }
+
+  /** Delete a photo by ID. */
+  async deletePhoto(id: string): Promise<void> {
+    await this.request('DELETE', `/photos/${id}`);
+  }
+
+  // ════════════════════════════════════════════════════════
+  // REAL-TIME WEBSOCKETS
+  // ════════════════════════════════════════════════════════
+
+  private connectSocket(): void {
+    if (this.socket) {
+      this.socket.disconnect();
+    }
+
+    // Anonymous connections are allowed when there are public subscriptions
+    if (!this.accessToken && this.publicSubscriptions.size === 0) return;
+
+    this.socket = io(this.baseUrl, {
+      path: '/socket.io', // default
+      auth: this.accessToken ? { token: this.accessToken } : {},
+      transports: ['websocket'],
+      // Live sync is an enhancement, not a requirement: give up after a few
+      // tries instead of reconnecting forever and burning CPU on every client
+      // whenever the CMS is unreachable.
+      reconnectionAttempts: 5,
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 10000,
+      timeout: 8000,
+    });
+
+    this.socket.on('connect', () => {
+      console.log('[Novus Pulse] Real-time socket connected');
+      this._isConnected = true;
+      for (const slug of this.publicSubscriptions) {
+        this.socket?.emit('subscribe_public', { tenantSlug: slug });
+      }
+      this.triggerEvent('connect');
+    });
+
+    this.socket.on('disconnect', () => {
+      console.log('[Novus Pulse] Real-time socket disconnected');
+      this._isConnected = false;
+      this.triggerEvent('disconnect');
+    });
+    
+    this.socket.on('connect_error', (err) => {
+      // Warn once per client. Repeating this for every retry floods the console
+      // and shows up as a wall of errors in the Next.js dev overlay.
+      if (!this.socketErrorLogged) {
+        this.socketErrorLogged = true;
+        console.warn('[Novus Pulse] Realtime unavailable, continuing without live sync:', err.message);
+      }
+      this._isConnected = false;
+      this.triggerEvent('connect_error', err);
+    });
+
+    for (const [event, callbacks] of this.eventHandlers) {
+      for (const callback of callbacks) {
+        this.socket.on(event, callback);
+      }
+    }
+  }
+
+  private disconnectSocket(): void {
+    if (this.socket) {
+      this.socket.disconnect();
+      this.socket = null;
+    }
+    this._isConnected = false;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private triggerEvent(event: string, ...args: any[]): void {
+    const callbacks = this.eventHandlers.get(event);
+    if (callbacks) {
+      for (const callback of callbacks) {
+        try {
+          callback(...args);
+        } catch (err) {
+          console.error(`Error in event callback for ${event}:`, err);
+        }
+      }
+    }
+  }
+
+  subscribePublic(tenantSlug: string): void {
+    this.publicSubscriptions.add(tenantSlug);
+    if (!this.socket) {
+      this.connectSocket();
+    } else if (this.socket.connected) {
+      this.socket.emit('subscribe_public', { tenantSlug });
+    }
+  }
+
+  unsubscribePublic(tenantSlug: string): void {
+    this.publicSubscriptions.delete(tenantSlug);
+    if (this.publicSubscriptions.size === 0 && !this.accessToken) {
+      this.disconnectSocket();
+    }
+  }
+
+  get realtimeConnected(): boolean {
+    return this.socket?.connected ?? false;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  on(event: string, callback: (...args: any[]) => void): void {
+    let callbacks = this.eventHandlers.get(event);
+    if (!callbacks) {
+      callbacks = new Set();
+      this.eventHandlers.set(event, callbacks);
+    }
+    const alreadyRegistered = callbacks.has(callback);
+    callbacks.add(callback);
+
+    if (this.socket) {
+      if (!alreadyRegistered) {
+        this.socket.on(event, callback);
+      }
+    } else if (
+      this.autoConnectSocket &&
+      (this.accessToken || this.publicSubscriptions.size > 0)
+    ) {
+      this.connectSocket();
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  off(event: string, callback?: (...args: any[]) => void): void {
+    if (callback) {
+      this.eventHandlers.get(event)?.delete(callback);
+      if (this.socket) {
+        this.socket.off(event, callback);
+      }
+    } else {
+      this.eventHandlers.delete(event);
+      if (this.socket) {
+        this.socket.off(event);
+      }
+    }
+  }
+
+  // ════════════════════════════════════════════════════════
+  // INTERNAL: HTTP REQUEST LAYER
+  // ════════════════════════════════════════════════════════
+
+  /**
+   * Core request method — all API calls go through here.
+   */
+  private async request<T = unknown>(
+    method: string,
+    path: string,
+    body?: unknown,
+    options?: { skipAuth?: boolean; skipAutoRefresh?: boolean },
+  ): Promise<T> {
+    const url = `${this.baseUrl}${this.apiPrefix}${path}`;
+
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+
+    // Add auth header unless this is a public/auth endpoint
+    if (!options?.skipAuth && this.accessToken) {
+      headers['Authorization'] = `Bearer ${this.accessToken}`;
+    }
+
+    const response = await this.fetchFn(url, {
+      method,
+      headers,
+      body: body ? JSON.stringify(body) : undefined,
+    });
+
+    // Handle 401 — attempt auto-refresh if we have a refresh token
+    if (
+      response.status === 401 &&
+      !options?.skipAuth &&
+      !options?.skipAutoRefresh &&
+      this.refreshToken
+    ) {
+      try {
+        await this.autoRefresh();
+        // Retry the original request with the new token
+        return this.request<T>(method, path, body, {
+          ...options,
+          skipAutoRefresh: true, // Don't infinitely loop
+        });
+      } catch (refreshError) {
+        // Refresh failed — notify the consumer and throw
+        if (this.onAuthError && refreshError instanceof NovusPulseError) {
+          this.onAuthError(refreshError);
+        }
+        throw refreshError;
+      }
+    }
+
+    // Handle non-2xx responses
+    if (!response.ok) {
+      let errorData: NovusPulseErrorData;
+      try {
+        errorData = await response.json();
+      } catch {
+        errorData = {
+          statusCode: response.status,
+          message: response.statusText || 'Unknown error',
+          error: 'UnknownError',
+        };
+      }
+      const error = new NovusPulseError(errorData);
+      if (response.status === 401 && !options?.skipAuth && this.onAuthError) {
+        this.onAuthError(error);
+      }
+      throw error;
+    }
+
+    // Handle 204 No Content (e.g., DELETE responses)
+    if (response.status === 204) {
+      return undefined as T;
+    }
+
+    return response.json();
+  }
+
+  /**
+   * Auto-refresh with deduplication.
+   */
+  private async autoRefresh(): Promise<AuthTokens> {
+    if (this.isRefreshing && this.refreshPromise) {
+      return this.refreshPromise;
+    }
+
+    this.isRefreshing = true;
+    this.refreshPromise = this.refresh().finally(() => {
+      this.isRefreshing = false;
+      this.refreshPromise = null;
+    });
+
+    return this.refreshPromise;
+  }
+
+  /**
+   * Store tokens internally and notify the consumer.
+   */
+  private setTokens(data: AuthTokens): void {
+    this.accessToken = data.accessToken;
+    this.refreshToken = data.refreshToken;
+
+    // Notify consumer so they can persist tokens
+    if (this.onTokenRefresh) {
+      this.onTokenRefresh({
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+      });
+    }
+  }
+}

@@ -1,0 +1,18 @@
+KIQA DEV Portfolio — Changes Summary
+
+Stack: Next.js 15 App Router + Tailwind CSS v4 + Framer Motion, running as next build && next start (production mode). Deployed to GitHub at Rashica07/spindare-showcase-97.
+
+1. Loading Screen (components/LoadingScreen.tsx)
+A full-screen intro that covers the site on first visit (once per browser session via sessionStorage). Design: 14×9 grid of near-black squares with 1px orange-hued gaps between them, a custom SVG logo in the centre (four concentric circles — the outer two dashed rings rotate CW/CCW, inner rings static, orange dot at centre), and a 260px thin orange progress bar below it with a shimmer effect and "KIQA.DEV" label in mono. The bar fills in 700ms, then the squares animate outward from centre to edges and disappear in 450ms, revealing the site. Integrated into components/Providers.tsx.
+
+2. Page Transition Bar (components/PageTransitionLoader.tsx)
+A 3px orange top bar that fires on every internal link click. Built entirely with raw DOM manipulation (bypasses React's render cycle so it can't be deferred by startTransition). On click: bar appears, fills to 84% over 450ms via requestAnimationFrame. After a minimum 380ms of visibility, snaps to 100% and fades out. Has a tiny spinning dual-arc SVG at the leading edge (same concentric-ring style as the main loader but 14px). Also calls router.prefetch() on all 6 routes on mount for instant page swaps. Integrated into components/Providers.tsx.
+
+3. Availability date (lib/i18n.tsx)
+Changed "June 2026" → "August 2026" in all four languages: English, Italian, Albanian (Shqip), German.
+
+4. LinkedIn on Contact page (app/contact/page.tsx)
+Added a LinkedIn card (using FaLinkedinIn from react-icons/fa) as the second contact detail, linking to https://www.linkedin.com/in/kristian-gjergji. Sits between Email and GitHub in the contact details list. Note: SiLinkedin from react-icons/si was removed from Simple Icons in the installed version — FaLinkedinIn from react-icons/fa was used instead.
+
+5. Build artifact cleanup (.gitignore)
+Changed .next/ → **/.next/ in the root .gitignore so nested build directories (e.g. artifacts/portfolio/.next/) are properly excluded from git. Deleted the previously-tracked .next folder so the auto-commit removed those files from git history.

@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, useReducedMotion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql, SiExpo } from "react-icons/si";
 import { useLanguage } from "@/lib/i18n";
@@ -12,12 +12,16 @@ const HeroCanvas = dynamic(
   { ssr: false, loading: () => null }
 );
 import { Footer } from "@/components/Footer";
+import { usePageOverride, type SiteBlock, type BlockOverrides, pick, pickList } from "@/components/PulseSyncProvider";
+import { useIsActive, useSkipDecorativeMotion } from "@/lib/device";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const reduced = useReducedMotion();
+  if (reduced) return <div className={className}>{children}</div>;
   return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }} className={className}>
+    <motion.div ref={ref} initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.35, delay, ease: [0.22, 1, 0.36, 1] }} className={className}>
       {children}
     </motion.div>
   );
@@ -33,38 +37,32 @@ const STACK_ICONS = [
   { Icon: SiExpo, label: "Expo", color: "#ffffff" },
 ];
 
+// Live URLs keyed by project name. A project with a URL here renders as a link;
+// one without renders as a plain card with no clickable affordance.
+const PROJECT_URLS: Record<string, string> = {
+  "Torre Group": "https://torre-ks.com",
+};
+
+const DEFAULT_SECTION_ORDER = [
+  "kiqa-hero",
+  "kiqa-services",
+  "kiqa-work",
+  "kiqa-process",
+  "kiqa-stack",
+  "kiqa-blog",
+  "kiqa-funnel",
+] as const;
+
 export default function HomePage() {
   const { t } = useLanguage();
   const [blogIndex, setBlogIndex] = useState(0);
+  const tickerRef = useRef<HTMLElement>(null);
+  const tickerActive = useIsActive(tickerRef);
+  const skipMotion = useSkipDecorativeMotion();
+  const tickerRunning = tickerActive && !skipMotion;
   const blogPosts = t.blog.posts;
   const nextBlog = () => setBlogIndex((prev) => (prev + 1) % blogPosts.length);
   const prevBlog = () => setBlogIndex((prev) => (prev - 1 + blogPosts.length) % blogPosts.length);
-
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const [activeStep, setActiveStep] = useState(0);
-  const [stepProgress, setStepProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!timelineRef.current) return;
-      const rect = timelineRef.current.getBoundingClientRect();
-      const containerHeight = rect.height;
-      const windowHeight = window.innerHeight;
-      const totalScrollable = containerHeight - windowHeight;
-      const scrolled = -rect.top;
-      if (scrolled < 0) { setActiveStep(0); setStepProgress(0); return; }
-      if (scrolled > totalScrollable) { setActiveStep(3); setStepProgress(1); return; }
-      const pct = scrolled / totalScrollable;
-      const step = Math.min(Math.floor(pct * 4), 3);
-      setActiveStep(step);
-      const stepStart = step * 0.25;
-      const progressInStep = (pct - stepStart) / 0.25;
-      setStepProgress(Math.max(0, Math.min(1, progressInStep)));
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -72,24 +70,26 @@ export default function HomePage() {
       <section className="relative min-h-screen flex items-center overflow-hidden" data-testid="section-hero">
         <HeroCanvas />
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background pointer-events-none z-10" />
+        {/* Keeps the contour field from running through the headline column. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/75 to-transparent pointer-events-none z-10" />
         <div className="relative z-20 max-w-7xl mx-auto px-6 pt-24 pb-16 w-full">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
             <span className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground tracking-widest uppercase border border-border/60 rounded px-4 py-1.5 mb-10" data-testid="hero-badge">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               {t.hero.badge}
             </span>
           </motion.div>
-          <motion.h1 initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }} className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.02] tracking-tight max-w-5xl" data-testid="hero-headline">
+          <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.05, ease: [0.22, 1, 0.36, 1] }} className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.02] tracking-tight max-w-5xl" data-testid="hero-headline">
             <span className="text-foreground">{t.hero.h1Line1} </span>
             <span className="text-gradient">{t.hero.h1Line2}</span>
             <br />
             <span className="text-foreground">{t.hero.h1Line3} </span>
             <span className="text-foreground">{t.hero.h1Line4}</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }} className="mt-8 text-lg text-muted-foreground max-w-2xl leading-relaxed" data-testid="hero-sub">
+          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.12, ease: [0.22, 1, 0.36, 1] }} className="mt-8 text-lg text-muted-foreground max-w-2xl leading-relaxed" data-testid="hero-sub">
             {t.hero.sub}
           </motion.p>
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }} className="mt-10 flex flex-col sm:flex-row gap-4">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }} className="mt-10 flex flex-col sm:flex-row gap-4">
             <Link href="/contact" data-testid="hero-cta-primary">
               <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground text-sm font-semibold rounded glow-orange-sm hover:bg-primary/90 transition-all cursor-pointer">
                 {t.hero.cta1} <ArrowRight size={16} />
@@ -101,19 +101,9 @@ export default function HomePage() {
               </motion.span>
             </Link>
           </motion.div>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.5 }} className="mt-6 font-mono text-xs text-muted-foreground/60 tracking-widest" data-testid="hero-available">
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.24, duration: 0.4 }} className="mt-6 font-mono text-xs text-muted-foreground/60 tracking-widest" data-testid="hero-available">
             {t.hero.available}
           </motion.p>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-border/30 bg-background/60 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {t.stats.map((s, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 + i * 0.08, duration: 0.5 }} className="flex flex-col" data-testid={`stat-${i}`}>
-                <span className="font-mono text-2xl font-bold text-foreground tracking-tight">{s.value}</span>
-                <span className="text-xs text-muted-foreground mt-0.5">{s.label}</span>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -127,7 +117,7 @@ export default function HomePage() {
             </div>
             <Link href="/services" className="hidden md:block">
               <motion.span whileHover={{ x: 4 }} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                All services &amp; pricing <ArrowRight size={13} />
+                {t.page.allServices} <ArrowRight size={13} />
               </motion.span>
             </Link>
           </FadeUp>
@@ -163,11 +153,12 @@ export default function HomePage() {
             <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight">{t.work.title}</h2>
           </FadeUp>
           <div className="mt-16 flex flex-col gap-4">
-            {t.work.projects.map((project, i) => (
-              <FadeUp key={i} delay={i * 0.1}>
-                <motion.div whileHover={{ x: 8 }} transition={{ duration: 0.2 }} className="group border border-card-border bg-card rounded-xl p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-primary/30 transition-all duration-300 cursor-pointer" data-testid={`project-card-${i}`}>
+            {t.work.projects.map((project, i) => {
+              const url = PROJECT_URLS[project.name];
+              const body = (
+                <div className={`border border-card-border bg-card rounded-xl p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors duration-200 ${url ? "group hover:border-primary/30" : ""}`} data-testid={`project-card-${i}`}>
                   <div className="flex items-start gap-6">
-                    <div className="font-mono text-4xl font-black text-muted-foreground/20 group-hover:text-primary/30 transition-colors leading-none select-none w-16">{String(i + 1).padStart(2, "0")}</div>
+                    <div className="font-mono text-4xl font-black text-muted-foreground/20 leading-none select-none w-16">{String(i + 1).padStart(2, "0")}</div>
                     <div>
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-xl font-semibold text-foreground">{project.name}</h3>
@@ -182,55 +173,55 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                  <ChevronRight size={20} className="text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0 hidden md:block" />
-                </motion.div>
-              </FadeUp>
-            ))}
+                  {url && <ChevronRight size={20} className="text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0 hidden md:block" />}
+                </div>
+              );
+              return (
+                <FadeUp key={i} delay={i * 0.04}>
+                  {url ? (
+                    <a href={url} target="_blank" rel="noopener noreferrer" className="block">{body}</a>
+                  ) : body}
+                </FadeUp>
+              );
+            })}
           </div>
           <FadeUp className="mt-8 text-center">
             <Link href="/portfolio" data-testid="work-view-all">
               <motion.span whileHover={{ scale: 1.02 }} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/60 rounded-lg px-5 py-3">
-                View all projects <ArrowRight size={14} />
+                {t.page.viewAllProjects} <ArrowRight size={14} />
               </motion.span>
             </Link>
           </FadeUp>
         </div>
       </section>
 
-      {/* PROCESS */}
-      <section ref={timelineRef} className="timeline-sticky-section relative border-t border-border/40 bg-card/10 md:h-[300vh]" data-testid="section-process">
-        <div className="md:sticky md:top-0 md:h-screen flex flex-col justify-center py-16 md:py-0 md:overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6 w-full">
-            <div>
-              <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.process.label}</span>
-              <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight">{t.process.title}</h2>
-            </div>
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {t.process.steps.map((step, i) => {
-                const isActive = activeStep === i;
-                const isCompleted = activeStep > i;
-                const progress = isActive ? stepProgress : isCompleted ? 1 : 0;
-                const stepState = isActive ? "timeline-step--active" : isCompleted ? "timeline-step--completed" : "timeline-step--pending";
-                return (
-                  <div key={i} className={`timeline-step glass-card rounded-xl p-6 flex flex-col gap-4 relative ${stepState}`} data-testid={`process-step-${i}`}>
-                    <span className={`timeline-step-number font-mono text-3xl font-black transition-colors duration-300 ${isActive ? "" : "text-muted-foreground/30"}`}>{step.n}</span>
-                    <h3 className={`timeline-step-title font-semibold transition-colors duration-300 ${isActive ? "" : "text-muted-foreground"}`}>{step.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{step.desc}</p>
-                    <div className="timeline-progress"><div className="timeline-progress__fill" style={{ width: `${progress * 100}%` }} /></div>
-                  </div>
-                );
-              })}
-            </div>
+      {/* PROCESS TIMELINE */}
+      <section className="py-24 border-t border-border/40 bg-card/10" data-testid="section-process">
+        <div className="max-w-7xl mx-auto px-6">
+          <FadeUp>
+            <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.process.label}</span>
+            <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight">{t.process.title}</h2>
+          </FadeUp>
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {t.process.steps.map((step, i) => (
+              <FadeUp key={i} delay={i * 0.04}>
+                <div className="glass-card rounded-xl p-6 flex flex-col gap-4 h-full" data-testid={`process-step-${i}`}>
+                  <span className="font-mono text-3xl font-black text-primary/70">{step.n}</span>
+                  <h3 className="font-semibold text-foreground">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                </div>
+              </FadeUp>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* TECH STACK TICKER */}
-      <section className="py-16 border-t border-border/40 overflow-hidden" data-testid="section-stack">
+      {/* STACK TICKER */}
+      <section ref={tickerRef} className="py-16 border-t border-border/40 overflow-hidden" data-testid="section-stack">
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-          <motion.div animate={{ x: ["0%", "-50%"] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="flex gap-10 w-max">
+          <motion.div animate={tickerRunning ? { x: ["0%", "-50%"] } : { x: "0%" }} transition={tickerRunning ? { duration: 25, repeat: Infinity, ease: "linear" } : { duration: 0 }} className="flex gap-10 w-max">
             {[...STACK_ICONS, ...STACK_ICONS].map((item, i) => (
               <div key={i} className="flex items-center gap-2.5 opacity-40 hover:opacity-80 transition-opacity">
                 <item.Icon size={20} style={{ color: item.color }} />
@@ -241,17 +232,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* LATEST WRITING */}
+      {/* BLOG CAROUSEL */}
       <section className="py-28 border-t border-border/40 bg-background/5" data-testid="section-blog-carousel">
         <div className="max-w-4xl mx-auto px-6">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <span className="font-mono text-xs text-primary tracking-widest uppercase">Writing</span>
-              <h2 className="mt-4 text-4xl font-bold tracking-tight">Latest Notes.</h2>
+              <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.blog.label}</span>
+              <h2 className="mt-4 text-4xl font-bold tracking-tight">{t.blog.latestNotes}</h2>
             </div>
             <Link href="/blog">
               <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer font-medium">
-                View all writing <ArrowRight size={13} />
+                {t.blog.viewAllWriting} <ArrowRight size={13} />
               </span>
             </Link>
           </div>
@@ -266,14 +257,14 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-4">
                     <span className="font-mono text-xs px-2.5 py-1 rounded-full border border-primary/30 text-primary bg-primary/10">{blogPosts[blogIndex].category}</span>
                     <span className="font-mono text-xs text-muted-foreground/60">{blogPosts[blogIndex].date}</span>
-                    <span className="font-mono text-xs text-muted-foreground/60">· {blogPosts[blogIndex].read} min read</span>
+                    <span className="font-mono text-xs text-muted-foreground/60">· {blogPosts[blogIndex].read} {t.blog.minRead}</span>
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold text-foreground leading-snug">{blogPosts[blogIndex].title}</h3>
                   <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{blogPosts[blogIndex].excerpt}</p>
                   <div className="mt-8">
                     <Link href={`/blog/${blogPosts[blogIndex].slug}`}>
                       <motion.span whileHover={{ x: 4 }} className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary cursor-pointer">
-                        Read article <ArrowRight size={12} />
+                        {t.blog.readArticle} <ArrowRight size={12} />
                       </motion.span>
                     </Link>
                   </div>

@@ -1,2 +1,26 @@
-User-agent: *
+# Allow all major AI search and retrieval bots
+User-agent: GPTBot
 Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Direct all AI crawlers to your LLM-focused file
+Sitemap: https://kiqa-dev.it
+LLM-sitemap: https://kiqa-dev.it
+
+# Specify your training and usage preferences
+User-agent: *
+Content-signal: search=yes, ai-train=no, use=reference

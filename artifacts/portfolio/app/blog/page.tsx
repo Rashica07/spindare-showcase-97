@@ -43,7 +43,6 @@ export default function BlogPage() {
           </motion.div>
         </div>
       </section>
-
       <section className="py-16" data-testid="blog-grid">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="flex flex-wrap gap-2 mb-12" data-testid="blog-filters">
@@ -54,14 +53,13 @@ export default function BlogPage() {
               </button>
             ))}
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filtered.map((post, i) => {
               const catColor = CATEGORY_COLORS[post.category] ?? "text-muted-foreground border-muted-foreground/30";
               return (
                 <FadeUp key={post.slug} delay={i * 0.08}>
                   <Link href={`/blog/${post.slug}`} data-testid={`blog-post-link-${i}`}>
-                    <motion.article whileHover={{ y: -6, borderColor: "hsl(var(--primary) / 0.35)", boxShadow: "0 10px 30px -10px hsl(var(--primary) / 0.1)" }} transition={{ duration: 0.2 }} className="group border border-card-border bg-card/70 backdrop-blur-sm rounded-xl p-8 flex flex-col gap-5 transition-all cursor-pointer" data-testid={`blog-post-${i}`}>
+                    <motion.article whileHover={{ y: -6, borderColor: "hsl(var(--primary) / 0.35)" }} transition={{ duration: 0.2 }} className="group border border-card-border bg-card/70 backdrop-blur-sm rounded-xl p-8 flex flex-col gap-5 transition-all cursor-pointer" data-testid={`blog-post-${i}`}>
                       <div className="flex items-center justify-between">
                         <span className={`font-mono text-xs px-2.5 py-1 rounded-full border ${catColor}`}>{post.category}</span>
                         <div className="flex items-center gap-1.5 text-xs text-muted-foreground"><Clock size={11} />{post.read} {t.blog.minRead}</div>
@@ -82,13 +80,11 @@ export default function BlogPage() {
               );
             })}
           </div>
-
           {filtered.length === 0 && (
-            <div className="py-20 text-center text-muted-foreground text-sm" data-testid="blog-empty">No posts in this category yet.</div>
+            <div className="py-20 text-center text-muted-foreground text-sm" data-testid="blog-empty">{t.blog.noPosts}</div>
           )}
         </div>
       </section>
-
       <Footer />
     </div>
   );

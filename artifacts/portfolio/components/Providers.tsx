@@ -7,6 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { I18nProvider } from "@/lib/i18n";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { PageTransitionLoader } from "@/components/PageTransitionLoader";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { PulseStatusDot } from "@/components/PulseStatusDot";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
@@ -18,6 +20,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <LoadingScreen />
           <PageTransitionLoader />
           {children}
+          <WhatsAppButton />
+          <PulseStatusDot />
           <Toaster />
         </I18nProvider>
       </TooltipProvider>
