@@ -11,7 +11,6 @@ const HeroCanvas = dynamic(
   () => import("@/components/HeroCanvas").then(m => ({ default: m.HeroCanvas })),
   { ssr: false, loading: () => null }
 );
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -69,8 +68,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-
       {/* HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden" data-testid="section-hero">
         <HeroCanvas />

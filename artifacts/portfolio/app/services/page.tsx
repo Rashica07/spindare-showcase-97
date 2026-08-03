@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -23,8 +22,6 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="services-hero">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
