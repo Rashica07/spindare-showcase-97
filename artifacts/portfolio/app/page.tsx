@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useInView, useReducedMotion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql, SiExpo } from "react-icons/si";
+import { SiReact, SiSwift, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql, SiExpo } from "react-icons/si";
 import { useLanguage } from "@/lib/i18n";
 import dynamic from "next/dynamic";
 const HeroCanvas = dynamic(
@@ -28,6 +28,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 }
 
 const STACK_ICONS = [
+  { Icon: SiSwift, label: "Swift", color: "#F05138" },
   { Icon: SiReact, label: "React Native", color: "#61DAFB" },
   { Icon: SiTypescript, label: "TypeScript", color: "#3178C6" },
   { Icon: SiNextdotjs, label: "Next.js", color: "#ffffff" },
@@ -67,29 +68,29 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center overflow-hidden" data-testid="section-hero">
+      <section className="relative min-h-[85vh] sm:min-h-screen flex items-center overflow-hidden" data-testid="section-hero">
         {!skipMotion && <HeroCanvas />}
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background pointer-events-none z-10" />
         {/* Keeps the contour field from running through the headline column. */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/75 to-transparent pointer-events-none z-10" />
-        <div className="relative z-20 max-w-7xl mx-auto px-6 pt-24 pb-16 w-full">
+        <div className="relative z-20 max-w-7xl mx-auto px-6 py-6 sm:pt-24 sm:pb-16 w-full">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
-            <span className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground tracking-widest uppercase border border-border/60 rounded px-4 py-1.5 mb-10" data-testid="hero-badge">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground tracking-widest uppercase border border-border/60 rounded px-4 py-1.5 mb-4 sm:mb-10" data-testid="hero-badge">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               {t.hero.badge}
             </span>
           </motion.div>
-          <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.05, ease: [0.22, 1, 0.36, 1] }} className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.02] tracking-tight max-w-5xl" data-testid="hero-headline">
+          <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.05, ease: [0.22, 1, 0.36, 1] }} className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.08] sm:leading-[1.02] tracking-tight max-w-5xl" data-testid="hero-headline">
             <span className="text-foreground">{t.hero.h1Line1} </span>
             <span className="text-gradient">{t.hero.h1Line2}</span>
             <br />
             <span className="text-foreground">{t.hero.h1Line3} </span>
             <span className="text-foreground">{t.hero.h1Line4}</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.12, ease: [0.22, 1, 0.36, 1] }} className="mt-8 text-lg text-muted-foreground max-w-2xl leading-relaxed" data-testid="hero-sub">
+          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.12, ease: [0.22, 1, 0.36, 1] }} className="mt-4 sm:mt-8 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed" data-testid="hero-sub">
             {t.hero.sub}
           </motion.p>
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }} className="mt-10 flex flex-col sm:flex-row gap-4">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }} className="mt-6 sm:mt-10 flex flex-col sm:flex-row gap-4">
             <Link href="/contact" data-testid="hero-cta-primary">
               <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground text-sm font-semibold rounded glow-orange-sm hover:bg-primary/90 transition-all cursor-pointer">
                 {t.hero.cta1} <ArrowRight size={16} />

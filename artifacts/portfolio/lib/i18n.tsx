@@ -69,7 +69,7 @@ export const translations = {
           type: "Web",
           status: "Live",
           year: "2024",
-          desc: "A corporate site covering the group's four companies: MAGFA GROUP, SWISSTECH, TORRE DI UMBRIA, and TORRE HOME. Built so a construction and real estate group could present all four brands in one place.",
+          desc: "Engineered the 2026 platform redesign for Torre Group, creating a unified corporate digital presence and an upgraded layout for Torre Home to streamline client engagement and property showcases.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"]
         },
         {
@@ -77,8 +77,8 @@ export const translations = {
           type: "Mobile",
           status: "In Development",
           year: "2025–2026",
-          desc: "A social app where users earn rewards for daily habits. I co-lead the product and built the feed, authentication, profiles, and the rewards system. iOS launch planned for September 2026.",
-          stack: ["React Native", "TypeScript", "Supabase", "Clerk", "Expo"]
+          desc: "Co-founding and leading product development for Spindare, a native iOS social app built entirely in Swift and SwiftUI. iOS launch planned for September 2026.",
+          stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
           name: "TravelMe",
@@ -132,7 +132,8 @@ export const translations = {
         "Through KIQA DEV I work directly with founders and business owners, handling the whole build from first design to launch, so they don't have to coordinate several agencies or freelancers."
       ],
       skills: [
-        { name: "Mobile", items: ["React Native", "Expo", "iOS / Android", "EAS Build", "App Store Deployment"] },
+        { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
+        { name: "Client Mobile Services", items: ["React Native", "Expo", "EAS Build", "iOS / Android"] },
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
         { name: "Backend & Data", items: ["Supabase", "PostgreSQL", "Node.js", "REST APIs", "Real-time sync"] },
         { name: "Tools", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
@@ -282,7 +283,7 @@ export const translations = {
           type: "Web",
           status: "Live",
           year: "2024",
-          desc: "Un sito aziendale che copre le quattro società del gruppo: MAGFA GROUP, SWISSTECH, TORRE DI UMBRIA e TORRE HOME. Realizzato per permettere a un gruppo edile e immobiliare di presentare tutti e quattro i marchi in un unico posto.",
+          desc: "Ho progettato il redesign 2026 della piattaforma di Torre Group, creando una presenza digitale aziendale unificata e un layout aggiornato per Torre Home per semplificare il coinvolgimento dei clienti e la presentazione degli immobili.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"]
         },
         {
@@ -290,8 +291,8 @@ export const translations = {
           type: "Mobile",
           status: "In Sviluppo",
           year: "2025–2026",
-          desc: "Un'app social dove gli utenti guadagnano ricompense per le abitudini quotidiane. Co-dirigo il prodotto e ho costruito il feed, l'autenticazione, i profili e il sistema di ricompense. Lancio iOS previsto per settembre 2026.",
-          stack: ["React Native", "TypeScript", "Supabase", "Clerk", "Expo"]
+          desc: "Co-fondatore e responsabile dello sviluppo prodotto per Spindare, un'app social nativa iOS costruita interamente in Swift e SwiftUI. Lancio iOS previsto per settembre 2026.",
+          stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
           name: "TravelMe",
@@ -324,7 +325,8 @@ export const translations = {
         "Attraverso KIQA DEV lavoro direttamente con fondatori e imprenditori, gestendo l'intera realizzazione dal primo design alla messa online, così non devono coordinare più agenzie o freelancer."
       ],
       skills: [
-        { name: "Mobile", items: ["React Native", "Expo", "iOS / Android", "EAS Build", "App Store Deployment"] },
+        { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
+        { name: "Servizi Mobile per Clienti", items: ["React Native", "Expo", "EAS Build", "iOS / Android"] },
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
         { name: "Backend & Dati", items: ["Supabase", "PostgreSQL", "Node.js", "REST APIs", "Sincronizzazione real-time"] },
         { name: "Strumenti", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
@@ -446,7 +448,7 @@ export const translations = {
           type: "Web",
           status: "Live",
           year: "2024",
-          desc: "Një faqe korporative që mbulon të katër kompanitë e grupit: MAGFA GROUP, SWISSTECH, TORRE DI UMBRIA dhe TORRE HOME. E ndërtuar që një grup ndërtimi dhe patundshmërie të paraqesë të katër markat në një vend të vetëm.",
+          desc: "Projektova ridizajnimin 2026 të platformës për Torre Group, duke krijuar një prani të unifikuar dixhitale korporative dhe një dizajn të përmirësuar për Torre Home për të thjeshtuar angazhimin e klientëve dhe prezantimin e pronave.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"]
         },
         {
@@ -454,8 +456,8 @@ export const translations = {
           type: "Mobile",
           status: "Në Zhvillim",
           year: "2025–2026",
-          desc: "Një aplikacion social ku përdoruesit fitojnë shpërblime për zakonet e përditshme. Bashkëdrejtoj produktin dhe kam ndërtuar feed-in, autentikimin, profilet dhe sistemin e shpërblimeve. Lansimi në iOS parashikohet për shtator 2026.",
-          stack: ["React Native", "TypeScript", "Supabase", "Clerk", "Expo"]
+          desc: "Bashkë-themelues dhe udhëheqës i zhvillimit të produktit për Spindare, një aplikacion social nativ për iOS i ndërtuar tërësisht në Swift dhe SwiftUI. Lansimi në iOS parashikohet për shtator 2026.",
+          stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
           name: "TravelMe",
@@ -488,7 +490,8 @@ export const translations = {
         "Përmes KIQA DEV punoj drejtpërdrejt me themelues dhe pronarë biznesi, duke trajtuar të gjithë ndërtimin nga dizajni i parë deri te publikimi, kështu që nuk u duhet të koordinojnë disa agjenci apo freelancer-ë."
       ],
       skills: [
-        { name: "Mobile", items: ["React Native", "Expo", "iOS / Android", "EAS Build", "App Store Deployment"] },
+        { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
+        { name: "Shërbime Mobile për Klientë", items: ["React Native", "Expo", "EAS Build", "iOS / Android"] },
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
         { name: "Backend & Të dhëna", items: ["Supabase", "PostgreSQL", "Node.js", "REST APIs", "Sinkronizim real-time"] },
         { name: "Mjete", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
@@ -608,7 +611,7 @@ export const translations = {
           type: "Web",
           status: "Live",
           year: "2024",
-          desc: "Eine Unternehmensseite für alle vier Firmen der Gruppe: MAGFA GROUP, SWISSTECH, TORRE DI UMBRIA und TORRE HOME. Gebaut, damit eine Bau- und Immobiliengruppe alle vier Marken an einem Ort präsentieren kann.",
+          desc: "Habe das 2026er Plattform-Redesign für Torre Group umgesetzt: ein einheitlicher digitaler Unternehmensauftritt und ein überarbeitetes Layout für Torre Home, um Kundenkontakt und Immobilienpräsentation zu vereinfachen.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"]
         },
         {
@@ -616,8 +619,8 @@ export const translations = {
           type: "Mobile",
           status: "In Entwicklung",
           year: "2025–2026",
-          desc: "Eine Social-App, bei der Nutzer Belohnungen für tägliche Gewohnheiten verdienen. Ich leite das Produkt mit und habe Feed, Authentifizierung, Profile und das Belohnungssystem gebaut. iOS-Launch geplant für September 2026.",
-          stack: ["React Native", "TypeScript", "Supabase", "Clerk", "Expo"]
+          desc: "Mitgründer und Produktverantwortlicher für Spindare, eine native iOS-Social-App, vollständig in Swift und SwiftUI gebaut. iOS-Launch geplant für September 2026.",
+          stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
           name: "TravelMe",
@@ -650,7 +653,8 @@ export const translations = {
         "Über KIQA DEV arbeite ich direkt mit Gründern und Unternehmern und übernehme den gesamten Bau vom ersten Design bis zum Go-Live, damit sie nicht mehrere Agenturen oder Freelancer koordinieren müssen."
       ],
       skills: [
-        { name: "Mobile", items: ["React Native", "Expo", "iOS / Android", "EAS Build", "App Store Deployment"] },
+        { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
+        { name: "Mobile Kundenprojekte", items: ["React Native", "Expo", "EAS Build", "iOS / Android"] },
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
         { name: "Backend & Daten", items: ["Supabase", "PostgreSQL", "Node.js", "REST APIs", "Echtzeit-Synchronisation"] },
         { name: "Werkzeuge", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
