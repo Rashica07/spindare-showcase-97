@@ -6,7 +6,12 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
-import { SiReact, SiSwift, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql, SiExpo, SiGithub } from "react-icons/si";
+import {
+  SiReact, SiSwift, SiApple, SiXcode, SiAppstore, SiAndroid,
+  SiTypescript, SiJavascript, SiTailwindcss,
+  SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql,
+  SiExpo, SiGit, SiVercel, SiCloudflare, SiFigma, SiGithub,
+} from "react-icons/si";
 import type { IconType } from "react-icons";
 import { usePageOverride, pick, pickList, type BlockOverrides } from "@/components/PulseSyncProvider";
 
@@ -21,7 +26,11 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 }
 
 const SKILL_ICONS: Record<string, IconType> = {
-  "Swift": SiSwift, "React Native": SiReact, "TypeScript": SiTypescript, "Supabase": SiSupabase, "Next.js": SiNextdotjs, "Node.js": SiNodedotjs, "PostgreSQL": SiPostgresql, "Expo": SiExpo,
+  "Swift": SiSwift, "SwiftUI": SiApple, "iOS": SiApple, "Xcode": SiXcode, "App Store Deployment": SiAppstore,
+  "React Native": SiReact, "EAS Build": SiExpo, "iOS / Android": SiAndroid,
+  "TypeScript": SiTypescript, "JavaScript": SiJavascript, "React": SiReact, "Tailwind CSS": SiTailwindcss,
+  "Supabase": SiSupabase, "Next.js": SiNextdotjs, "Node.js": SiNodedotjs, "PostgreSQL": SiPostgresql, "Expo": SiExpo,
+  "Git": SiGit, "Vercel": SiVercel, "Cloudflare": SiCloudflare, "Figma": SiFigma,
 };
 
 export default function AboutPage() {
