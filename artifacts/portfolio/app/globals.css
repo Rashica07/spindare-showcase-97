@@ -133,7 +133,7 @@
     font-weight: 700;
     letter-spacing: -0.02em;
   }
-  ::selection { background: hsl(var(--primary) / 0.25); color: hsl(var(--foreground)); }
+  ::selection { background: hsl(var(--primary)); color: #fff; }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: hsl(var(--background)); }
   ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 2px; }

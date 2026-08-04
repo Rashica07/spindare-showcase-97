@@ -23,6 +23,8 @@ const posts: BlogPostContent[] = [
       { type: "p", text: "Spindare's social feed worked perfectly during development. A few dozen mock posts, fast scrolls, clean renders. Then we got to a proper test build with real data (a few hundred posts, real images, real timestamps) and after about four minutes of scrolling the app would slow to a crawl. On older Android devices it would crash completely." },
       { type: "p", text: "This is the story of how I tracked it down, why it took longer than it should have, and what I'd check first if it happened again." },
 
+      { type: "callout", emoji: "🔄", text: "Note: Spindare has since been completely rewritten natively in Swift for maximum iOS performance. This React Native-era postmortem is kept here for reference." },
+
       { type: "h2", text: "The symptom" },
       { type: "p", text: "Memory climbed steadily the longer the feed was open. JavaScript heap would sit at around 40 MB on launch and creep toward 200 MB after ten minutes. The performance monitor in Flipper made it obvious something was accumulating, but it wasn't obvious what." },
       { type: "p", text: "I ran the standard checks first. No massive images being stored in state. No obvious re-renders from incorrect useCallback dependencies. Redux slices looked clean. The feed component itself was straightforward: a FlatList rendering PostCard components, each with an image, some text, and an interaction row." },

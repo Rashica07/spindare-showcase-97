@@ -6,7 +6,7 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
-import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql, SiExpo, SiGithub } from "react-icons/si";
+import { SiReact, SiSwift, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql, SiExpo, SiGithub } from "react-icons/si";
 import type { IconType } from "react-icons";
 import { usePageOverride, pick, pickList, type BlockOverrides } from "@/components/PulseSyncProvider";
 
@@ -21,7 +21,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 }
 
 const SKILL_ICONS: Record<string, IconType> = {
-  "React Native": SiReact, "TypeScript": SiTypescript, "Supabase": SiSupabase, "Next.js": SiNextdotjs, "Node.js": SiNodedotjs, "PostgreSQL": SiPostgresql, "Expo": SiExpo,
+  "Swift": SiSwift, "React Native": SiReact, "TypeScript": SiTypescript, "Supabase": SiSupabase, "Next.js": SiNextdotjs, "Node.js": SiNodedotjs, "PostgreSQL": SiPostgresql, "Expo": SiExpo,
 };
 
 export default function AboutPage() {
