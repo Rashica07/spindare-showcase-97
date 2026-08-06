@@ -915,7 +915,11 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("kiqa_lang") as Lang;
+      let stored = localStorage.getItem("kiqa_lang") as Lang;
+      if (!stored) {
+        const match = document.cookie.match(/(^| )kiqa_lang=([^;]+)/);
+        if (match) stored = match[2] as Lang;
+      }
       if (stored && ["en","it","sq","de"].includes(stored)) {
         setLangState(stored);
         return;
