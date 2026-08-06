@@ -85,7 +85,7 @@ export const translations = {
           type: "Web SaaS",
           status: "Live",
           year: "2026",
-          desc: "A modern hotel management system interface, powered by an external backend API. Built in partnership with my uncle, Daniel Frrokaj.",
+          desc: "A modern hotel management system interface, powered by an external backend API. Built in partnership with Daniel Frrokaj, BlueSquare AI.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
@@ -324,7 +324,7 @@ export const translations = {
           type: "Web SaaS",
           status: "Live",
           year: "2026",
-          desc: "Una moderna interfaccia di sistema gestionale alberghiero, alimentata da un'API backend esterna. Realizzato in partnership con mio zio, Daniel Frrokaj.",
+          desc: "Una moderna interfaccia di sistema gestionale alberghiero, alimentata da un'API backend esterna. Realizzato in partnership con Daniel Frrokaj, BlueSquare AI.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
@@ -514,7 +514,7 @@ export const translations = {
           type: "Web SaaS",
           status: "Live",
           year: "2026",
-          desc: "Një ndërfaqe moderne për menaxhimin e hoteleve, fuqizuar nga një API e jashtme backend. Ndërtuar në bashkëpunim me xhaxhain tim, Daniel Frrokaj.",
+          desc: "Një ndërfaqe moderne për menaxhimin e hoteleve, fuqizuar nga një API e jashtme backend. Ndërtuar në bashkëpunim me Daniel Frrokaj, BlueSquare AI.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
@@ -702,7 +702,7 @@ export const translations = {
           type: "Web SaaS",
           status: "Live",
           year: "2026",
-          desc: "Ein modernes Hotel-Management-System-Interface, betrieben von einer externen Backend-API. Entwickelt in Partnerschaft mit meinem Onkel, Daniel Frrokaj.",
+          desc: "Ein modernes Hotel-Management-System-Interface, betrieben von einer externen Backend-API. Entwickelt in Partnerschaft mit Daniel Frrokaj, BlueSquare AI.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
