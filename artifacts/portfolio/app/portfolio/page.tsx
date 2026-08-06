@@ -163,13 +163,13 @@ export default function PortfolioPage() {
                           <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLuxActiveIdx((prev) => (prev + 1) % LUXHOTEL_SCREENS.length); }} className="pointer-events-auto bg-slate-900/90 text-slate-400 hover:text-slate-100 rounded-full p-1 border border-slate-700/50 hover:bg-slate-800 transition-colors"><ChevronRight size={16} /></button>
                         </div>
 
-                        <div className="relative mt-8 w-[95%] max-w-[340px] h-[170px] rounded-t-lg border-x-4 border-t-4 border-slate-800 bg-slate-900 shadow-2xl overflow-hidden flex flex-col">
+                        <div className="relative mt-8 w-full max-w-[280px] h-[170px] rounded-t-lg border-x-4 border-t-4 border-slate-800 bg-slate-900 shadow-2xl overflow-hidden flex flex-col">
                           <div className="h-4 bg-slate-800 w-full flex items-center px-1.5 gap-1 shrink-0">
                             <div className="w-1.5 h-1.5 rounded-full bg-red-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
                           </div>
-                          <Image key={luxActiveIdx} src={LUXHOTEL_SCREENS[luxActiveIdx].src} alt={LUXHOTEL_SCREENS[luxActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover object-top z-10" />
+                          <Image key={luxActiveIdx} src={LUXHOTEL_SCREENS[luxActiveIdx].src} alt={LUXHOTEL_SCREENS[luxActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top z-10" />
                         </div>
                       </div>
                     ) : (
