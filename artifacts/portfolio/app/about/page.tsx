@@ -11,7 +11,9 @@ import {
   SiTypescript, SiJavascript, SiTailwindcss,
   SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql,
   SiExpo, SiGit, SiVercel, SiCloudflare, SiFigma, SiGithub,
+  SiTauri, SiElectron, SiRust, SiLua
 } from "react-icons/si";
+import { Gamepad2, Settings2 } from "lucide-react";
 import type { IconType } from "react-icons";
 import { usePageOverride, pick, pickList, type BlockOverrides } from "@/components/PulseSyncProvider";
 
@@ -25,12 +27,13 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
-const SKILL_ICONS: Record<string, IconType> = {
+const SKILL_ICONS: Record<string, IconType | any> = {
   "Swift": SiSwift, "SwiftUI": SiApple, "iOS": SiApple, "Xcode": SiXcode, "App Store Deployment": SiAppstore,
   "React Native": SiReact, "EAS Build": SiExpo, "iOS / Android": SiAndroid,
   "TypeScript": SiTypescript, "JavaScript": SiJavascript, "React": SiReact, "Tailwind CSS": SiTailwindcss,
   "Supabase": SiSupabase, "Next.js": SiNextdotjs, "Node.js": SiNodedotjs, "PostgreSQL": SiPostgresql, "Expo": SiExpo,
   "Git": SiGit, "Vercel": SiVercel, "Cloudflare": SiCloudflare, "Figma": SiFigma,
+  "Tauri": SiTauri, "Electron": SiElectron, "Rust": SiRust, "Neon Database": SiPostgresql, "FiveM": Gamepad2, "Lua": SiLua, "CFG": Settings2
 };
 
 export default function AboutPage() {

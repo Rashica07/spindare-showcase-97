@@ -159,7 +159,8 @@ export const translations = {
         { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
         { name: "Client Mobile Services", items: ["React Native", "Expo", "EAS Build", "iOS / Android"] },
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
-        { name: "Backend & Data", items: ["Supabase", "PostgreSQL", "Node.js", "REST APIs", "Real-time sync"] },
+        { name: "Backend & Data", items: ["Supabase", "PostgreSQL", "Neon Database", "Node.js", "Rust", "REST APIs", "Real-time sync"] },
+        { name: "Desktop & Games", items: ["Tauri", "Electron", "FiveM", "Lua", "CFG"] },
         { name: "Tools", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
       ],
       experience: [
@@ -376,7 +377,8 @@ export const translations = {
         { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
         { name: "Servizi Mobile per Clienti", items: ["React Native", "Expo", "EAS Build", "iOS / Android"] },
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
-        { name: "Backend & Dati", items: ["Supabase", "PostgreSQL", "Node.js", "REST APIs", "Sincronizzazione real-time"] },
+        { name: "Backend & Dati", items: ["Supabase", "PostgreSQL", "Neon Database", "Node.js", "Rust", "REST APIs", "Sincronizzazione real-time"] },
+        { name: "Desktop & Giochi", items: ["Tauri", "Electron", "FiveM", "Lua", "CFG"] },
         { name: "Strumenti", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
       ],
       experience: [
@@ -565,7 +567,8 @@ export const translations = {
         { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
         { name: "Shërbime Mobile për Klientë", items: ["React Native", "Expo", "EAS Build", "iOS / Android"] },
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
-        { name: "Backend & Të dhëna", items: ["Supabase", "PostgreSQL", "Node.js", "REST APIs", "Sinkronizim real-time"] },
+        { name: "Backend & Të dhëna", items: ["Supabase", "PostgreSQL", "Neon Database", "Node.js", "Rust", "REST APIs", "Sinkronizim real-time"] },
+        { name: "Desktop & Lojëra", items: ["Tauri", "Electron", "FiveM", "Lua", "CFG"] },
         { name: "Mjete", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
       ],
       experience: [
@@ -752,7 +755,8 @@ export const translations = {
         { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
         { name: "Mobile Kundenprojekte", items: ["React Native", "Expo", "EAS Build", "iOS / Android"] },
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
-        { name: "Backend & Daten", items: ["Supabase", "PostgreSQL", "Node.js", "REST APIs", "Echtzeit-Synchronisation"] },
+        { name: "Backend & Daten", items: ["Supabase", "PostgreSQL", "Neon Database", "Node.js", "Rust", "REST APIs", "Echtzeit-Synchronisation"] },
+        { name: "Desktop & Spiele", items: ["Tauri", "Electron", "FiveM", "Lua", "CFG"] },
         { name: "Werkzeuge", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
       ],
       experience: [
