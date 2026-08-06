@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Inspect project package setup",
+    "active_form": "Inspecting project package setup",
+    "status": "completed"
+  },
+  {
+    "content": "Restore missing native dependency",
+    "active_form": "Restoring missing native dependency",
+    "status": "completed"
+  },
+  {
+    "content": "Verify build/dev compiles",
+    "active_form": "Verifying build/dev compiles",
+    "status": "completed"
+  },
+  {
+    "content": "Restart dev server cleanly",
+    "active_form": "Restarting dev server cleanly",
+    "status": "completed"
+  }
+]
