@@ -42,6 +42,7 @@ const STACK_ICONS = [
 // one without renders as a plain card with no clickable affordance.
 const PROJECT_URLS: Record<string, string> = {
   "Torre Group": "https://torre-ks.com",
+  "LuxHotelSystem": "https://luxhotelsystem.com",
 };
 
 const DEFAULT_SECTION_ORDER = [
@@ -154,7 +155,7 @@ export default function HomePage() {
             <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight">{t.work.title}</h2>
           </FadeUp>
           <div className="mt-16 flex flex-col gap-4">
-            {t.work.projects.map((project, i) => {
+            {t.work.projects.slice(0, 4).map((project, i) => {
               const url = PROJECT_URLS[project.name];
               const body = (
                 <div className={`border border-card-border bg-card rounded-xl p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors duration-200 ${url ? "group hover:border-primary/30" : ""}`} data-testid={`project-card-${i}`}>

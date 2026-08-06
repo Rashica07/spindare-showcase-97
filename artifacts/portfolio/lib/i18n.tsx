@@ -85,7 +85,7 @@ export const translations = {
           type: "Web SaaS",
           status: "Live",
           year: "2026",
-          desc: "A modern hotel management system and channel manager built in co-partnership with Daniel Frrokaj and BlueSquare AI Albania.",
+          desc: "A modern hotel management system interface, powered by an external backend API. Built in partnership with my uncle, Daniel Frrokaj.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
@@ -94,7 +94,7 @@ export const translations = {
           status: "Live",
           year: "2026",
           desc: "Realistic, high-performance FiveM server based on Qbox with an ETS2-style trucking system and a 30+ job economy.",
-          stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
+          stack: ["FiveM", "Qbox", "Lua", "MariaDB", "oxmysql"]
         },
         {
           name: "TravelMe",
@@ -110,7 +110,7 @@ export const translations = {
           status: "Early Dev",
           year: "2026",
           desc: "A companion travel application in early development phase, working in tandem with TravelMe to deliver seamless trip planning.",
-          stack: ["React Native", "TypeScript", "Node.js"]
+          stack: ["Swift", "Neon Database"]
         }
       ]
     },
@@ -323,7 +323,7 @@ export const translations = {
           type: "Web SaaS",
           status: "Live",
           year: "2026",
-          desc: "Un moderno sistema di gestione alberghiera e channel manager realizzato in partnership con Daniel Frrokaj e BlueSquare AI Albania.",
+          desc: "Una moderna interfaccia di sistema gestionale alberghiero, alimentata da un'API backend esterna. Realizzato in partnership con mio zio, Daniel Frrokaj.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
@@ -332,7 +332,7 @@ export const translations = {
           status: "Live",
           year: "2026",
           desc: "Server FiveM realistico e ad alte prestazioni basato su Qbox, con un sistema di autotrasporto in stile ETS2 e un'economia di oltre 30 lavori.",
-          stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
+          stack: ["FiveM", "Qbox", "Lua", "MariaDB", "oxmysql"]
         },
         {
           name: "TravelMe",
@@ -348,7 +348,7 @@ export const translations = {
           status: "Early Dev",
           year: "2026",
           desc: "Un'applicazione di viaggio in fase di sviluppo iniziale, che lavora in tandem con TravelMe per offrire una pianificazione del viaggio senza interruzioni.",
-          stack: ["React Native", "TypeScript", "Node.js"]
+          stack: ["Swift", "Neon Database"]
         }
       ]
     },
@@ -512,7 +512,7 @@ export const translations = {
           type: "Web SaaS",
           status: "Live",
           year: "2026",
-          desc: "Një sistem modern për menaxhimin e hoteleve dhe channel manager, i ndërtuar në bashkëpunim me Daniel Frrokaj dhe BlueSquare AI Albania.",
+          desc: "Një ndërfaqe moderne për menaxhimin e hoteleve, fuqizuar nga një API e jashtme backend. Ndërtuar në bashkëpunim me xhaxhain tim, Daniel Frrokaj.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
@@ -521,7 +521,7 @@ export const translations = {
           status: "Live",
           year: "2026",
           desc: "Server FiveM realist me performancë të lartë, i bazuar në Qbox me një sistem transporti si ETS2 dhe një ekonomi me mbi 30 punë.",
-          stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
+          stack: ["FiveM", "Qbox", "Lua", "MariaDB", "oxmysql"]
         },
         {
           name: "TravelMe",
@@ -537,7 +537,7 @@ export const translations = {
           status: "Early Dev",
           year: "2026",
           desc: "Një aplikacion udhëtimi në fazat e hershme të zhvillimit, që punon në tandem me TravelMe për të ofruar planifikim të përsosur udhëtimesh.",
-          stack: ["React Native", "TypeScript", "Node.js"]
+          stack: ["Swift", "Neon Database"]
         }
       ]
     },
@@ -699,7 +699,7 @@ export const translations = {
           type: "Web SaaS",
           status: "Live",
           year: "2026",
-          desc: "Ein modernes Hotel-Management-System und Channel-Manager, entwickelt in Partnerschaft mit Daniel Frrokaj und BlueSquare AI Albania.",
+          desc: "Ein modernes Hotel-Management-System-Interface, betrieben von einer externen Backend-API. Entwickelt in Partnerschaft mit meinem Onkel, Daniel Frrokaj.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
@@ -708,7 +708,7 @@ export const translations = {
           status: "Live",
           year: "2026",
           desc: "Realistischer, leistungsstarker FiveM-Server basierend auf Qbox mit einem Lkw-System im ETS2-Stil und einer Wirtschaft mit über 30 Jobs.",
-          stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
+          stack: ["FiveM", "Qbox", "Lua", "MariaDB", "oxmysql"]
         },
         {
           name: "TravelMe",
@@ -724,7 +724,7 @@ export const translations = {
           status: "Early Dev",
           year: "2026",
           desc: "Eine Reise-App in einer frühen Entwicklungsphase, die zusammen mit TravelMe für eine nahtlose Reiseplanung sorgt.",
-          stack: ["React Native", "TypeScript", "Node.js"]
+          stack: ["Swift", "Neon Database"]
         }
       ]
     },
