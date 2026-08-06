@@ -41,12 +41,21 @@ const TORRE_SCREENS = [
   { id: "home", name: "Torre Home", src: "/torre-group-5.webp" },
 ];
 
+const LUXHOTEL_SCREENS = [
+  { id: "home", name: "Landing Page", src: "/luxhotel-1.webp" },
+  { id: "features", name: "Features", src: "/luxhotel-2.webp" },
+  { id: "dashboard", name: "Dashboard", src: "/luxhotel-3.webp" },
+  { id: "calendar", name: "Calendar", src: "/luxhotel-4.webp" },
+];
+
+
 export default function PortfolioPage() {
   const { t } = useLanguage();
   const overrides = usePageOverride('portfolio') as BlockOverrides;
   const [active, setActive] = useState("All");
   const [spindareActiveIdx, setSpindareActiveIdx] = useState(0);
   const [torreActiveIdx, setTorreActiveIdx] = useState(0);
+  const [luxActiveIdx, setLuxActiveIdx] = useState(0);
 
   const allFilters = ["All", "Mobile", "Web"];
   const filtered = active === "All" ? t.work.projects : t.work.projects.filter((p) => p.type === active);
@@ -136,6 +145,29 @@ export default function PortfolioPage() {
                         <div className="absolute inset-0 grid-bg opacity-15" />
                         <div className="relative mt-4 w-full max-w-[320px] h-[200px] rounded-lg border-2 border-card-border shadow-2xl overflow-hidden flex flex-col">
                           <Image src="/truckserv-1.webp" alt="Onyx Freight Co." fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover z-10" />
+                        </div>
+                      </div>
+                    ) : project.name === "LuxHotelSystem" ? (
+                      <div className="relative h-[380px] bg-gradient-to-br from-[#0f172a] to-[#1e293b] flex flex-col items-center justify-center border-b border-card-border overflow-hidden">
+                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+                        
+                        <div className="absolute top-7 left-4 right-4 flex justify-between items-center z-10 pointer-events-none">
+                          <span className="font-mono text-[9px] text-slate-400/80 tracking-widest uppercase">luxhotelsystem.com</span>
+                          <span className="font-mono text-[9px] text-blue-400 tracking-widest uppercase font-semibold">{LUXHOTEL_SCREENS[luxActiveIdx].name}</span>
+                        </div>
+                        
+                        <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between z-20 pointer-events-none">
+                          <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLuxActiveIdx((prev) => (prev - 1 + LUXHOTEL_SCREENS.length) % LUXHOTEL_SCREENS.length); }} className="pointer-events-auto bg-slate-900/90 text-slate-400 hover:text-slate-100 rounded-full p-1 border border-slate-700/50 hover:bg-slate-800 transition-colors"><ChevronLeft size={16} /></button>
+                          <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLuxActiveIdx((prev) => (prev + 1) % LUXHOTEL_SCREENS.length); }} className="pointer-events-auto bg-slate-900/90 text-slate-400 hover:text-slate-100 rounded-full p-1 border border-slate-700/50 hover:bg-slate-800 transition-colors"><ChevronRight size={16} /></button>
+                        </div>
+
+                        <div className="relative mt-8 w-full max-w-[280px] h-[170px] rounded-t-lg border-x-4 border-t-4 border-slate-800 bg-slate-900 shadow-2xl overflow-hidden flex flex-col">
+                          <div className="h-4 bg-slate-800 w-full flex items-center px-1.5 gap-1 shrink-0">
+                            <div className="w-1.5 h-1.5 rounded-full bg-red-500/80" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
+                          </div>
+                          <Image key={luxActiveIdx} src={LUXHOTEL_SCREENS[luxActiveIdx].src} alt={LUXHOTEL_SCREENS[luxActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover object-top z-10" />
                         </div>
                       </div>
                     ) : (

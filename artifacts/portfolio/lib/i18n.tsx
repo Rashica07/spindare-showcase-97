@@ -68,7 +68,7 @@ export const translations = {
           name: "Torre Group",
           type: "Web",
           status: "Live",
-          year: "2024",
+          year: "2026",
           desc: "Engineered the 2026 platform redesign for Torre Group, creating a unified corporate digital presence and an upgraded layout for Torre Home to streamline client engagement and property showcases.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"]
         },
@@ -81,12 +81,12 @@ export const translations = {
           stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
-          name: "TravelMe",
-          type: "Mobile",
-          status: "Coming Soon",
+          name: "LuxHotelSystem",
+          type: "Web SaaS",
+          status: "Live",
           year: "2026",
-          desc: "An app that turns a single message into a full trip itinerary. Currently in development.",
-          stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+          desc: "A modern hotel management system and channel manager built in co-partnership with Daniel Frrokaj and BlueSquare AI Albania.",
+          stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
           name: "Onyx Freight Co.",
@@ -95,6 +95,22 @@ export const translations = {
           year: "2026",
           desc: "Realistic, high-performance FiveM server based on Qbox with an ETS2-style trucking system and a 30+ job economy.",
           stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
+        },
+        {
+          name: "TravelMe",
+          type: "Mobile",
+          status: "Early Dev",
+          year: "2026",
+          desc: "An app that turns a single message into a full trip itinerary. Property of Traversar and integrates directly with Lario Go.",
+          stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+        },
+        {
+          name: "Lario Go",
+          type: "Mobile",
+          status: "Early Dev",
+          year: "2026",
+          desc: "A companion travel application in early development phase, working in tandem with TravelMe to deliver seamless trip planning.",
+          stack: ["React Native", "TypeScript", "Node.js"]
         }
       ]
     },
@@ -290,7 +306,7 @@ export const translations = {
           name: "Torre Group",
           type: "Web",
           status: "Live",
-          year: "2024",
+          year: "2026",
           desc: "Ho progettato il redesign 2026 della piattaforma di Torre Group, creando una presenza digitale aziendale unificata e un layout aggiornato per Torre Home per semplificare il coinvolgimento dei clienti e la presentazione degli immobili.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"]
         },
@@ -303,12 +319,12 @@ export const translations = {
           stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
-          name: "TravelMe",
-          type: "Mobile",
-          status: "In Arrivo",
+          name: "LuxHotelSystem",
+          type: "Web SaaS",
+          status: "Live",
           year: "2026",
-          desc: "Un'app che trasforma un singolo messaggio in un itinerario di viaggio completo. Attualmente in sviluppo.",
-          stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+          desc: "Un moderno sistema di gestione alberghiera e channel manager realizzato in partnership con Daniel Frrokaj e BlueSquare AI Albania.",
+          stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
           name: "Onyx Freight Co.",
@@ -317,6 +333,22 @@ export const translations = {
           year: "2026",
           desc: "Server FiveM realistico e ad alte prestazioni basato su Qbox, con un sistema di autotrasporto in stile ETS2 e un'economia di oltre 30 lavori.",
           stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
+        },
+        {
+          name: "TravelMe",
+          type: "Mobile",
+          status: "Early Dev",
+          year: "2026",
+          desc: "Un'app che trasforma un singolo messaggio in un itinerario di viaggio completo. Proprietà di Traversar e si integra direttamente con Lario Go.",
+          stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+        },
+        {
+          name: "Lario Go",
+          type: "Mobile",
+          status: "Early Dev",
+          year: "2026",
+          desc: "Un'applicazione di viaggio in fase di sviluppo iniziale, che lavora in tandem con TravelMe per offrire una pianificazione del viaggio senza interruzioni.",
+          stack: ["React Native", "TypeScript", "Node.js"]
         }
       ]
     },
@@ -463,8 +495,8 @@ export const translations = {
           name: "Torre Group",
           type: "Web",
           status: "Live",
-          year: "2024",
-          desc: "Projektova ridizajnimin 2026 të platformës për Torre Group, duke krijuar një prani të unifikuar dixhitale korporative dhe një dizajn të përmirësuar për Torre Home për të thjeshtuar angazhimin e klientëve dhe prezantimin e pronave.",
+          year: "2026",
+          desc: "Krijova ridizajnimin e platformës 2026 për Torre Group, duke krijuar një prani dixhitale të unifikuar të korporatës dhe një plan urbanistik të përditësuar për Torre Home për të përmirësuar angazhimin e klientëve dhe shfaqjet e pronave.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"]
         },
         {
@@ -472,16 +504,16 @@ export const translations = {
           type: "Mobile",
           status: "Në Zhvillim",
           year: "2025–2026",
-          desc: "Bashkë-themelues dhe udhëheqës i zhvillimit të produktit për Spindare, një aplikacion social nativ për iOS i ndërtuar tërësisht në Swift dhe SwiftUI. Lansimi në iOS parashikohet për shtator 2026.",
+          desc: "Bashkëthemelues dhe drejtues i zhvillimit të produktit për Spindare, një aplikacion social nativ iOS i ndërtuar plotësisht në Swift dhe SwiftUI. Nisja për iOS planifikuar për në shtator 2026.",
           stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
-          name: "TravelMe",
-          type: "Mobile",
-          status: "Së Shpejti",
+          name: "LuxHotelSystem",
+          type: "Web SaaS",
+          status: "Live",
           year: "2026",
-          desc: "Një aplikacion që e kthen një mesazh të vetëm në një itinerar të plotë udhëtimi. Aktualisht në zhvillim.",
-          stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+          desc: "Një sistem modern për menaxhimin e hoteleve dhe channel manager, i ndërtuar në bashkëpunim me Daniel Frrokaj dhe BlueSquare AI Albania.",
+          stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
           name: "Onyx Freight Co.",
@@ -490,6 +522,22 @@ export const translations = {
           year: "2026",
           desc: "Server FiveM realist me performancë të lartë, i bazuar në Qbox me një sistem transporti si ETS2 dhe një ekonomi me mbi 30 punë.",
           stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
+        },
+        {
+          name: "TravelMe",
+          type: "Mobile",
+          status: "Early Dev",
+          year: "2026",
+          desc: "Një aplikacion që e kthen një mesazh të vetëm në një itinerar të plotë udhëtimi. Pronë e Traversar dhe integrohet drejtpërdrejt me Lario Go.",
+          stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+        },
+        {
+          name: "Lario Go",
+          type: "Mobile",
+          status: "Early Dev",
+          year: "2026",
+          desc: "Një aplikacion udhëtimi në fazat e hershme të zhvillimit, që punon në tandem me TravelMe për të ofruar planifikim të përsosur udhëtimesh.",
+          stack: ["React Native", "TypeScript", "Node.js"]
         }
       ]
     },
@@ -634,7 +682,7 @@ export const translations = {
           name: "Torre Group",
           type: "Web",
           status: "Live",
-          year: "2024",
+          year: "2026",
           desc: "Habe das 2026er Plattform-Redesign für Torre Group umgesetzt: ein einheitlicher digitaler Unternehmensauftritt und ein überarbeitetes Layout für Torre Home, um Kundenkontakt und Immobilienpräsentation zu vereinfachen.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"]
         },
@@ -647,12 +695,12 @@ export const translations = {
           stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
-          name: "TravelMe",
-          type: "Mobile",
-          status: "Demnächst",
+          name: "LuxHotelSystem",
+          type: "Web SaaS",
+          status: "Live",
           year: "2026",
-          desc: "Eine App, die aus einer einzigen Nachricht eine vollständige Reiseroute macht. Aktuell in Entwicklung.",
-          stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+          desc: "Ein modernes Hotel-Management-System und Channel-Manager, entwickelt in Partnerschaft mit Daniel Frrokaj und BlueSquare AI Albania.",
+          stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]
         },
         {
           name: "Onyx Freight Co.",
@@ -661,6 +709,22 @@ export const translations = {
           year: "2026",
           desc: "Realistischer, leistungsstarker FiveM-Server basierend auf Qbox mit einem Lkw-System im ETS2-Stil und einer Wirtschaft mit über 30 Jobs.",
           stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
+        },
+        {
+          name: "TravelMe",
+          type: "Mobile",
+          status: "Early Dev",
+          year: "2026",
+          desc: "Eine App, die aus einer einzigen Nachricht eine vollständige Reiseroute macht. Eigentum von Traversar und lässt sich direkt in Lario Go integrieren.",
+          stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+        },
+        {
+          name: "Lario Go",
+          type: "Mobile",
+          status: "Early Dev",
+          year: "2026",
+          desc: "Eine Reise-App in einer frühen Entwicklungsphase, die zusammen mit TravelMe für eine nahtlose Reiseplanung sorgt.",
+          stack: ["React Native", "TypeScript", "Node.js"]
         }
       ]
     },
