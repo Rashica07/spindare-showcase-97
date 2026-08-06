@@ -131,6 +131,13 @@ export default function PortfolioPage() {
                           <Image key={torreActiveIdx} src={TORRE_SCREENS[torreActiveIdx].src} alt={TORRE_SCREENS[torreActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover object-top z-10" />
                         </div>
                       </div>
+                    ) : project.name === "Onyx Freight Co." ? (
+                      <div className="relative h-[380px] bg-card flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
+                        <div className="absolute inset-0 grid-bg opacity-15" />
+                        <div className="relative mt-4 w-full max-w-[320px] h-[200px] rounded-lg border-2 border-card-border shadow-2xl overflow-hidden flex flex-col">
+                          <Image src="/truckserv-1.webp" alt="Onyx Freight Co." fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover z-10" />
+                        </div>
+                      </div>
                     ) : (
                       <div className="h-48 bg-gradient-to-br from-card to-muted/20 flex items-center justify-center relative overflow-hidden">
                         <div className="absolute inset-0 grid-bg opacity-30" />

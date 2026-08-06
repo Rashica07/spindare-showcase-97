@@ -87,6 +87,14 @@ export const translations = {
           year: "2026",
           desc: "An app that turns a single message into a full trip itinerary. Currently in development.",
           stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+        },
+        {
+          name: "Onyx Freight Co.",
+          type: "FiveM Server",
+          status: "Live",
+          year: "2026",
+          desc: "Realistic, high-performance FiveM server based on Qbox with an ETS2-style trucking system and a 30+ job economy.",
+          stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
         }
       ]
     },
@@ -301,6 +309,14 @@ export const translations = {
           year: "2026",
           desc: "Un'app che trasforma un singolo messaggio in un itinerario di viaggio completo. Attualmente in sviluppo.",
           stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+        },
+        {
+          name: "Onyx Freight Co.",
+          type: "FiveM Server",
+          status: "Live",
+          year: "2026",
+          desc: "Server FiveM realistico e ad alte prestazioni basato su Qbox, con un sistema di autotrasporto in stile ETS2 e un'economia di oltre 30 lavori.",
+          stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
         }
       ]
     },
@@ -466,6 +482,14 @@ export const translations = {
           year: "2026",
           desc: "Një aplikacion që e kthen një mesazh të vetëm në një itinerar të plotë udhëtimi. Aktualisht në zhvillim.",
           stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+        },
+        {
+          name: "Onyx Freight Co.",
+          type: "FiveM Server",
+          status: "Live",
+          year: "2026",
+          desc: "Server FiveM realist me performancë të lartë, i bazuar në Qbox me një sistem transporti si ETS2 dhe një ekonomi me mbi 30 punë.",
+          stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
         }
       ]
     },
@@ -629,6 +653,14 @@ export const translations = {
           year: "2026",
           desc: "Eine App, die aus einer einzigen Nachricht eine vollständige Reiseroute macht. Aktuell in Entwicklung.",
           stack: ["React Native", "OpenAI API", "Node.js", "MongoDB"]
+        },
+        {
+          name: "Onyx Freight Co.",
+          type: "FiveM Server",
+          status: "Live",
+          year: "2026",
+          desc: "Realistischer, leistungsstarker FiveM-Server basierend auf Qbox mit einem Lkw-System im ETS2-Stil und einer Wirtschaft mit über 30 Jobs.",
+          stack: ["Qbox", "Lua", "MariaDB", "oxmysql"]
         }
       ]
     },
