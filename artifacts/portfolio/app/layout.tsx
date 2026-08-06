@@ -32,11 +32,11 @@ const OG_IMAGE = "/opengraph.webp";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kiqa-dev.it"),
-  title: "Kristian Gjergji & KIQA DEV",
+  title: "Kristian Gjergji | Kiqa DEV | Software Engineer",
   description: DESCRIPTION,
   robots: "index, follow",
   openGraph: {
-    title: "Kristian Gjergji & KIQA DEV",
+    title: "Kristian Gjergji | Kiqa DEV | Software Engineer",
     description: DESCRIPTION,
     type: "website",
     url: "/",
