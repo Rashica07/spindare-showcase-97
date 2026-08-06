@@ -120,7 +120,7 @@
 }
 
 @layer base {
-  * { @apply border-border; box-sizing: border-box; }
+  * { @apply border-border; box-sizing: border-box; cursor: none !important; }
   html { scroll-behavior: smooth; }
   body {
     @apply font-sans antialiased bg-background text-foreground;
