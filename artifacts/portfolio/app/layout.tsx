@@ -22,6 +22,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "@/components/Providers";
 import { PulseSyncProvider } from "@/components/PulseSyncProvider";
 import { Navbar } from "@/components/Navbar";
+import { CustomCursor } from "@/components/CustomCursor";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 const DESCRIPTION =
   "Freelance developer building mobile apps, landing pages, and web platforms. Fixed price, fixed delivery date.";
@@ -57,6 +59,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${dmMono.variable}`}>
       <body>
+        <CustomCursor />
+        <ScrollProgress />
         <PulseSyncProvider>
           <Providers>
             <Navbar />

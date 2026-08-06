@@ -11,8 +11,8 @@ export const translations = {
       badge: "Available for new projects · Kosovo / Italy",
       h1Line1: "Apps and websites,",
       h1Line2: "live in weeks.",
-      h1Line3: "Fixed price,",
-      h1Line4: "agreed upfront.",
+      h1Line3: "Fixed-price development without compromises.",
+      h1Line4: "Guaranteed delivery dates.",
       sub: "I'm Kristian, a freelance developer working between Kosovo and Italy. I build mobile apps, landing pages, and web platforms for founders and small businesses. You get one point of contact and a delivery date in writing.",
       cta1: "Tell me about your project",
       cta2: "See my work",
@@ -286,7 +286,8 @@ export const translations = {
   },
   it: {
     nav: { home: "Home", services: "Servizi", portfolio: "Lavori", blog: "Articoli", about: "Chi sono", contact: "Contatti", quote: "Inizia un progetto" },
-    hero: { badge: "Disponibile per nuovi progetti · Kosovo / Italia", h1Line1: "App e siti web,", h1Line2: "online in poche settimane.", h1Line3: "Prezzo fisso,", h1Line4: "concordato in anticipo.", sub: "Sono Kristian, sviluppatore freelance tra Kosovo e Italia. Creo app mobile, landing page e piattaforme web per fondatori e piccole imprese. Hai un unico referente e una data di consegna messa per iscritto.", cta1: "Parlami del tuo progetto", cta2: "Guarda i miei lavori", available: "Disponibile per nuovi progetti da agosto 2026" },
+    hero: { badge: "Disponibile per nuovi progetti · Kosovo / Italia", h1Line1: "App e siti web,", h1Line2: "online in poche settimane.", h1Line3: "Sviluppo a prezzo fisso senza compromessi.",
+      h1Line4: "Date di consegna garantite.", sub: "Sono Kristian, sviluppatore freelance tra Kosovo e Italia. Creo app mobile, landing page e piattaforme web per fondatori e piccole imprese. Hai un unico referente e una data di consegna messa per iscritto.", cta1: "Parlami del tuo progetto", cta2: "Guarda i miei lavori", available: "Disponibile per nuovi progetti da agosto 2026" },
     services: {
       label: "Servizi", title: "Cosa costruisco e quanto costa", sub: "Ogni progetto viene preventivato in anticipo con una data di consegna. Se durante il lavoro cambia lo scopo, ti dico quanto costa prima di procedere.",
       getProposal: "Richiedi un preventivo per questo servizio",
@@ -664,7 +665,8 @@ export const translations = {
   },
   de: {
     nav: { home: "Start", services: "Leistungen", portfolio: "Projekte", blog: "Blog", about: "Über mich", contact: "Kontakt", quote: "Projekt starten" },
-    hero: { badge: "Verfügbar für neue Projekte · Kosovo / Italien", h1Line1: "Apps und Websites,", h1Line2: "live in wenigen Wochen.", h1Line3: "Festpreis,", h1Line4: "vorab vereinbart.", sub: "Ich bin Kristian, freiberuflicher Entwickler zwischen Kosovo und Italien. Ich baue mobile Apps, Landing Pages und Web-Plattformen für Gründer und kleine Unternehmen. Du hast einen Ansprechpartner und einen schriftlich zugesagten Liefertermin.", cta1: "Erzähl mir von deinem Projekt", cta2: "Meine Projekte ansehen", available: "Neue Projekte ab August 2026" },
+    hero: { badge: "Verfügbar für neue Projekte · Kosovo / Italien", h1Line1: "Apps und Websites,", h1Line2: "live in wenigen Wochen.", h1Line3: "Festpreis-Entwicklung ohne Kompromisse.",
+      h1Line4: "Garantierte Liefertermine.", sub: "Ich bin Kristian, freiberuflicher Entwickler zwischen Kosovo und Italien. Ich baue mobile Apps, Landing Pages und Web-Plattformen für Gründer und kleine Unternehmen. Du hast einen Ansprechpartner und einen schriftlich zugesagten Liefertermin.", cta1: "Erzähl mir von deinem Projekt", cta2: "Meine Projekte ansehen", available: "Neue Projekte ab August 2026" },
     services: {
       label: "Leistungen", title: "Was ich baue und was es kostet", sub: "Jedes Projekt wird vorab mit einem Liefertermin kalkuliert. Ändert sich der Umfang während der Arbeit, sage ich dir vorher, was es kostet.",
       getProposal: "Angebot für diese Leistung anfordern",
@@ -929,6 +931,22 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   };
 
   const finalT = merged[lang];
+  
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    if ((finalT as any).seo) {
+      document.title = (finalT as any).seo.title;
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', (finalT as any).seo.desc);
+      } else {
+        metaDesc = document.createElement('meta');
+        metaDesc.setAttribute('name', 'description');
+        metaDesc.setAttribute('content', (finalT as any).seo.desc);
+        document.head.appendChild(metaDesc);
+      }
+    }
+  }, [lang, finalT]);
 
   return (
     <I18nContext.Provider value={{ t: finalT, lang, setLang }}>

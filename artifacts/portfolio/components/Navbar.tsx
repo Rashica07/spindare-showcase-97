@@ -119,6 +119,7 @@ export function Navbar() {
               <button
                 onClick={() => setLangOpen((v) => !v)}
                 data-testid="button-lang-toggle"
+                aria-label="Toggle language"
                 className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors tracking-widest flex items-center gap-1.5 border border-border/60 rounded px-2.5 py-1.5"
               >
                 {lang.toUpperCase()}
@@ -140,6 +141,7 @@ export function Navbar() {
                         key={code}
                         onClick={() => { setLang(code); setLangOpen(false); }}
                         data-testid={`button-lang-${code}`}
+                        aria-label={`Select language ${label}`}
                         className={`w-full text-left px-3 py-2 text-xs font-mono tracking-widest transition-colors ${
                           lang === code
                             ? "text-primary bg-primary/10"

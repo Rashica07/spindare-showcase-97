@@ -10,6 +10,26 @@ import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo } f
 import type { IconType } from "react-icons";
 import { usePageOverride, pick, type BlockOverrides } from "@/components/PulseSyncProvider";
 
+import spindareFeedImg from "@/public/spindare-feed.webp";
+import spindareProfileImg from "@/public/spindare-profile.webp";
+import spindareDarkFeedImg from "@/public/spindare-dark-feed.webp";
+import spindareChallengeImg from "@/public/spindare-challenge.webp";
+import spindareSettingsImg from "@/public/spindare-settings.webp";
+import spindareWheelImg from "@/public/spindare-wheel.webp";
+
+import torreGroup1Img from "@/public/torre-group-1.webp";
+import torreGroup2Img from "@/public/torre-group-2.webp";
+import torreGroup3Img from "@/public/torre-group-3.webp";
+import torreGroup4Img from "@/public/torre-group-4.webp";
+import torreGroup5Img from "@/public/torre-group-5.webp";
+
+import luxhotel1Img from "@/public/luxhotel-1.webp";
+import luxhotel2Img from "@/public/luxhotel-2.webp";
+import luxhotel3Img from "@/public/luxhotel-3.webp";
+import luxhotel4Img from "@/public/luxhotel-4.webp";
+
+import truckserv1Img from "@/public/truckserv-1.webp";
+
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -25,27 +45,27 @@ const ICON_MAP: Record<string, IconType> = {
 };
 
 const SPINDARE_SCREENS = [
-  { id: "feed", name: "Feed", src: "/spindare-feed.webp" },
-  { id: "profile", name: "Profile Screen", src: "/spindare-profile.webp" },
-  { id: "notification", name: "Notification Screen", src: "/spindare-dark-feed.webp" },
-  { id: "challenge", name: "Challenge", src: "/spindare-challenge.webp" },
-  { id: "settings", name: "Settings", src: "/spindare-settings.webp" },
-  { id: "wheel", name: "Wheel", src: "/spindare-wheel.webp" },
+  { id: "feed", name: "Feed", src: spindareFeedImg },
+  { id: "profile", name: "Profile Screen", src: spindareProfileImg },
+  { id: "notification", name: "Notification Screen", src: spindareDarkFeedImg },
+  { id: "challenge", name: "Challenge", src: spindareChallengeImg },
+  { id: "settings", name: "Settings", src: spindareSettingsImg },
+  { id: "wheel", name: "Wheel", src: spindareWheelImg },
 ];
 
 const TORRE_SCREENS = [
-  { id: "torre", name: "Torre Group", src: "/torre-group-1.webp" },
-  { id: "magfa", name: "Magfa Group", src: "/torre-group-2.webp" },
-  { id: "swisstech", name: "Swisstech", src: "/torre-group-3.webp" },
-  { id: "umbria", name: "Torre di Umbria", src: "/torre-group-4.webp" },
-  { id: "home", name: "Torre Home", src: "/torre-group-5.webp" },
+  { id: "torre", name: "Torre Group", src: torreGroup1Img },
+  { id: "magfa", name: "Magfa Group", src: torreGroup2Img },
+  { id: "swisstech", name: "Swisstech", src: torreGroup3Img },
+  { id: "umbria", name: "Torre di Umbria", src: torreGroup4Img },
+  { id: "home", name: "Torre Home", src: torreGroup5Img },
 ];
 
 const LUXHOTEL_SCREENS = [
-  { id: "home", name: "Landing Page", src: "/luxhotel-1.webp" },
-  { id: "features", name: "Features", src: "/luxhotel-2.webp" },
-  { id: "dashboard", name: "Dashboard", src: "/luxhotel-3.webp" },
-  { id: "calendar", name: "Calendar", src: "/luxhotel-4.webp" },
+  { id: "home", name: "Landing Page", src: luxhotel1Img },
+  { id: "features", name: "Features", src: luxhotel2Img },
+  { id: "dashboard", name: "Dashboard", src: luxhotel3Img },
+  { id: "calendar", name: "Calendar", src: luxhotel4Img },
 ];
 
 
@@ -108,7 +128,7 @@ export default function PortfolioPage() {
 
                         <div className="relative mt-8 w-[170px] h-[310px] rounded-[24px] border-4 border-card-border bg-background shadow-2xl overflow-hidden flex items-center justify-center">
                           <div className="absolute top-0 w-16 h-3 bg-card-border rounded-b-lg z-20" />
-                          <Image key={spindareActiveIdx} src={SPINDARE_SCREENS[spindareActiveIdx].src} alt={SPINDARE_SCREENS[spindareActiveIdx].name} fill sizes="170px" className="object-cover z-10" />
+                          <Image placeholder="blur" key={spindareActiveIdx} src={SPINDARE_SCREENS[spindareActiveIdx].src} alt={SPINDARE_SCREENS[spindareActiveIdx].name} fill sizes="170px" className="object-cover z-10" />
                         </div>
                       </div>
                     ) : project.name === "Torre Group" ? (
@@ -137,14 +157,14 @@ export default function PortfolioPage() {
                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
                           </div>
-                          <Image key={torreActiveIdx} src={TORRE_SCREENS[torreActiveIdx].src} alt={TORRE_SCREENS[torreActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top z-10" />
+                          <Image placeholder="blur" key={torreActiveIdx} src={TORRE_SCREENS[torreActiveIdx].src} alt={TORRE_SCREENS[torreActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top z-10" />
                         </div>
                       </div>
                     ) : project.name === "Onyx Freight Co." ? (
                       <div className="relative h-[380px] bg-gradient-to-br from-primary/20 to-card flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
                         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
                         <div className="relative mt-4 w-[95%] max-w-[340px] h-[170px] rounded-lg border-2 border-primary/20 shadow-2xl overflow-hidden flex flex-col bg-black">
-                          <Image src="/truckserv-1.webp" alt="Onyx Freight Co." fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain z-10" />
+                          <Image placeholder="blur" src={truckserv1Img} alt="Onyx Freight Co." fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain z-10" />
                         </div>
                       </div>
                     ) : project.name === "LuxHotelSystem" ? (
@@ -169,7 +189,7 @@ export default function PortfolioPage() {
                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
                           </div>
-                          <Image key={luxActiveIdx} src={LUXHOTEL_SCREENS[luxActiveIdx].src} alt={LUXHOTEL_SCREENS[luxActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top z-10" />
+                          <Image placeholder="blur" key={luxActiveIdx} src={LUXHOTEL_SCREENS[luxActiveIdx].src} alt={LUXHOTEL_SCREENS[luxActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top z-10" />
                         </div>
                       </div>
                     ) : (

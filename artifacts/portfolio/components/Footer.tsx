@@ -57,9 +57,19 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-muted-foreground/60 font-mono">{t.footer.legal}</p>
-          <p className="text-xs text-muted-foreground/40 font-mono">{t.contact.info.location}</p>
+        <div className="mt-10 pt-6 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground/60 tracking-widest font-mono">
+            &copy; {new Date().getFullYear()} KIQA.DEV
+          </p>
+          <div className="flex items-center gap-4 text-xs text-muted-foreground/60 font-mono tracking-widest">
+            <Link href="/tos" className="hover:text-foreground transition-colors">
+              {(t.footer as any).tos || "Terms"}
+            </Link>
+            <span className="text-muted-foreground/30">|</span>
+            <Link href="/privacy" className="hover:text-foreground transition-colors">
+              {(t.footer as any).privacy || "Privacy"}
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
