@@ -108,7 +108,7 @@ export default function PortfolioPage() {
 
                         <div className="relative mt-8 w-[170px] h-[310px] rounded-[24px] border-4 border-card-border bg-background shadow-2xl overflow-hidden flex items-center justify-center">
                           <div className="absolute top-0 w-16 h-3 bg-card-border rounded-b-lg z-20" />
-                          <Image key={spindareActiveIdx} src={SPINDARE_SCREENS[spindareActiveIdx].src} alt={SPINDARE_SCREENS[spindareActiveIdx].name} fill sizes="170px" className="object-contain z-10" />
+                          <Image key={spindareActiveIdx} src={SPINDARE_SCREENS[spindareActiveIdx].src} alt={SPINDARE_SCREENS[spindareActiveIdx].name} fill sizes="170px" className="object-cover z-10" />
                         </div>
                       </div>
                     ) : project.name === "Torre Group" ? (
@@ -137,14 +137,14 @@ export default function PortfolioPage() {
                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
                           </div>
-                          <Image key={torreActiveIdx} src={TORRE_SCREENS[torreActiveIdx].src} alt={TORRE_SCREENS[torreActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top z-10" />
+                          <Image key={torreActiveIdx} src={TORRE_SCREENS[torreActiveIdx].src} alt={TORRE_SCREENS[torreActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover object-top z-10" />
                         </div>
                       </div>
                     ) : project.name === "Onyx Freight Co." ? (
-                      <div className="relative h-[380px] bg-gradient-to-br from-[#0f172a] to-[#1e293b] flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
+                      <div className="relative h-[380px] bg-gradient-to-br from-orange-950 to-orange-900 flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
                         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-                        <div className="relative mt-4 w-full max-w-[320px] h-[200px] rounded-lg border-2 border-slate-700 shadow-2xl overflow-hidden flex flex-col">
-                          <Image src="/truckserv-1.webp" alt="Onyx Freight Co." fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain z-10" />
+                        <div className="relative mt-4 w-full max-w-[320px] h-[200px] rounded-lg border-2 border-orange-800/50 shadow-2xl overflow-hidden flex flex-col">
+                          <Image src="/truckserv-1.webp" alt="Onyx Freight Co." fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover z-10" />
                         </div>
                       </div>
                     ) : project.name === "LuxHotelSystem" ? (
@@ -169,7 +169,7 @@ export default function PortfolioPage() {
                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
                           </div>
-                          <Image key={luxActiveIdx} src={LUXHOTEL_SCREENS[luxActiveIdx].src} alt={LUXHOTEL_SCREENS[luxActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top z-10" />
+                          <Image key={luxActiveIdx} src={LUXHOTEL_SCREENS[luxActiveIdx].src} alt={LUXHOTEL_SCREENS[luxActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover object-top z-10" />
                         </div>
                       </div>
                     ) : (
