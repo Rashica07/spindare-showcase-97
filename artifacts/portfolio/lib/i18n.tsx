@@ -267,6 +267,7 @@ export const translations = {
       info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosovo / Italy", response: "Within 24 hours" }
     },
     footer: { tagline: "Fixed prices and fixed delivery dates.", legal: "© 2026 KIQA DEV. All rights reserved." },
+    seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Chat on WhatsApp", aria: "Message us on WhatsApp", prefill: "Hi Kristian, I'd like to talk about a project." },
     notFound: {
       title: "Page Not Found",
@@ -456,6 +457,7 @@ export const translations = {
       info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosovo / Italia", response: "Entro 24 ore" }
     },
     footer: { tagline: "Lavoro di qualità. Prezzo fisso. Puntuale.", legal: "© 2026 KIQA DEV. Tutti i diritti riservati." },
+    seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Chatta su WhatsApp", aria: "Scrivici su WhatsApp", prefill: "Ciao Kristian, vorrei parlarti di un progetto." },
     notFound: {
       title: "Pagina non trovata",
@@ -646,6 +648,7 @@ export const translations = {
       info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosovë / Itali", response: "Brenda 24 orëve" }
     },
     footer: { tagline: "Punë cilësore. Çmim fiks. Në kohë.", legal: "© 2026 KIQA DEV. Të gjitha të drejtat të rezervuara." },
+    seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Bisedo në WhatsApp", aria: "Na shkruaj në WhatsApp", prefill: "Përshëndetje Kristian, dua të flasim për një projekt." },
     notFound: {
       title: "Faqja nuk u gjet",
@@ -835,6 +838,7 @@ export const translations = {
       info: { email: "contact@kiqa-dev.it", discord: "@kodibkfg", github: "github.com/rashica07", location: "Kosovo / Italien", response: "Innerhalb von 24 Stunden" }
     },
     footer: { tagline: "Qualitätsarbeit. Festpreis. Pünktlich.", legal: "© 2026 KIQA DEV. Alle Rechte vorbehalten." },
+    seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Auf WhatsApp chatten", aria: "Schreib uns auf WhatsApp", prefill: "Hallo Kristian, ich möchte über ein Projekt sprechen." },
     notFound: {
       title: "Seite nicht gefunden",
