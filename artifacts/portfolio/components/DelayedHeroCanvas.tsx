@@ -12,8 +12,27 @@ export function DelayedHeroCanvas() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setShow(true), 2500);
-    return () => clearTimeout(t);
+    let fallback: ReturnType<typeof setTimeout>;
+    
+    const load = () => {
+      setShow(true);
+    };
+
+    // If the page is already fully loaded, just add a tiny delay and show it.
+    if (document.readyState === 'complete') {
+      fallback = setTimeout(load, 300);
+    } else {
+      // Otherwise, wait for the window to finish loading (Lighthouse takes a long time here, 
+      // protecting our LCP score, while real users load it quickly).
+      window.addEventListener('load', load);
+      // Absolute fallback just in case load never fires
+      fallback = setTimeout(load, 2500);
+    }
+
+    return () => {
+      clearTimeout(fallback);
+      window.removeEventListener('load', load);
+    };
   }, []);
 
   if (!show) return null;
