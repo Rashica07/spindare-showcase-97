@@ -54,8 +54,7 @@ export function useSkipDecorativeMotion(): boolean {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const lowEnd = detectLowEnd();
     const apply = () => {
-      const isMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
-      setSkip(media.matches || lowEnd || isMobile);
+      setSkip(media.matches || lowEnd);
     };
     apply();
     media.addEventListener('change', apply);

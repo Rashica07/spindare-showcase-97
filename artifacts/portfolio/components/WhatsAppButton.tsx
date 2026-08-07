@@ -25,7 +25,7 @@ export function WhatsAppButton() {
       whileTap={{ scale: 0.96 }}
       className="fixed bottom-6 right-6 z-40 flex items-center justify-center w-12 h-12 rounded-full bg-black border border-primary/40 shadow-md hover:border-primary/70 transition-colors group"
     >
-      <SiWhatsapp size={20} className="text-primary group-hover:text-primary/90 transition-colors" />
+      <SiWhatsapp size={20} className="text-primary group-hover:text-primary/90 transition-colors" aria-hidden="true" />
       <span className="pointer-events-none absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-black text-primary text-xs font-mono px-3 py-1.5 border border-primary/30 opacity-0 group-hover:opacity-100 transition-opacity">
         {t.whatsapp.tooltip}
       </span>
