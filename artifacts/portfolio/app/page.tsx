@@ -74,7 +74,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background pointer-events-none z-10" />
         {/* Keeps the contour field from running through the headline column. */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/75 to-transparent pointer-events-none z-10" />
-        <div className="relative z-20 max-w-7xl mx-auto px-6 py-6 sm:pt-24 sm:pb-16 w-full">
+        <div className="relative z-20 max-w-7xl mx-auto px-6 pt-24 pb-12 sm:pt-32 sm:pb-16 w-full">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
             <span className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground tracking-widest uppercase border border-border/60 rounded px-4 py-1.5 mb-4 sm:mb-10" data-testid="hero-badge">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />

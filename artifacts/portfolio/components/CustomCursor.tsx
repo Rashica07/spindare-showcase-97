@@ -7,8 +7,14 @@ export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [variant, setVariant] = useState<'default' | 'pointer' | 'text' | 'disabled'>('default');
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768) {
+      return;
+    }
+    setIsMobile(false);
+    
     document.body.style.cursor = 'none';
 
     const updateMousePosition = (e: MouseEvent | TouchEvent) => {
@@ -107,6 +113,8 @@ export function CustomCursor() {
     text: { opacity: 0 },
     disabled: { opacity: isVisible ? 1 : 0, backgroundColor: "var(--color-destructive)" }
   };
+
+  if (isMobile) return null;
 
   return (
     <>

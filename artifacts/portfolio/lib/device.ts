@@ -53,7 +53,10 @@ export function useSkipDecorativeMotion(): boolean {
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const lowEnd = detectLowEnd();
-    const apply = () => setSkip(media.matches || lowEnd);
+    const apply = () => {
+      const isMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
+      setSkip(media.matches || lowEnd || isMobile);
+    };
     apply();
     media.addEventListener('change', apply);
     return () => media.removeEventListener('change', apply);
