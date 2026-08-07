@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock, Calendar } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, Lightbulb } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { getBlogPost } from "@/lib/blog-posts";
 import type { Section } from "@/lib/blog-posts";
@@ -54,7 +54,9 @@ function Renderer({ sections }: { sections: Section[] }) {
           case "callout":
             return (
               <div key={i} className="my-7 flex gap-4 rounded-xl border border-primary/20 bg-primary/5 px-5 py-4">
-                <span className="mt-0.5 shrink-0 text-lg leading-none">{s.emoji}</span>
+                <div className="mt-0.5 shrink-0 text-primary">
+                  <Lightbulb size={20} className="opacity-80" />
+                </div>
                 <p className="text-sm text-foreground/80 leading-relaxed">{s.text}</p>
               </div>
             );

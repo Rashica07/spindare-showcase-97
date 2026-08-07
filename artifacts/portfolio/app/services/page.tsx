@@ -45,7 +45,7 @@ export default function ServicesPage() {
                       <p className="mt-1 text-sm text-muted-foreground">{svc.tagline}</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <div className="font-mono text-xl font-bold text-primary drop-shadow-[0_0_12px_rgba(249,115,22,0.25)]">{svc.price}</div>
+                      <div className="font-mono text-xl font-bold text-primary">{svc.price}</div>
                       <div className="font-mono text-xs text-muted-foreground mt-0.5">{svc.timeline}</div>
                     </div>
                   </div>
