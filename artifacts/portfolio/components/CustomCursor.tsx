@@ -1,13 +1,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [variant, setVariant] = useState<'default' | 'pointer' | 'text' | 'disabled'>('default');
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
+
+  // Framer motion values that bypass React state for 60/144fps tracking
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // The outer ring has a slight smooth spring delay
+  const springConfig = { damping: 25, stiffness: 700, mass: 0.1 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768) {
@@ -28,7 +36,11 @@ export function CustomCursor() {
         clientY = e.clientY;
         target = e.target as HTMLElement;
       }
-      setMousePosition({ x: clientX, y: clientY });
+      
+      // Update motion values directly without causing React re-renders!
+      mouseX.set(clientX);
+      mouseY.set(clientY);
+
       if (!isVisible) setIsVisible(true);
 
       if (target) {
@@ -58,12 +70,11 @@ export function CustomCursor() {
       window.removeEventListener('mouseout', handleMouseLeave);
       window.removeEventListener('mouseover', handleMouseEnter);
     };
-  }, [isVisible]);
+  }, [isVisible, mouseX, mouseY]);
 
+  // We only animate scale, opacity, and styles via variants.
   const variants = {
     default: {
-      x: mousePosition.x - 8,
-      y: mousePosition.y - 8,
       height: 16,
       width: 16,
       borderRadius: "50%",
@@ -71,10 +82,10 @@ export function CustomCursor() {
       backgroundColor: "transparent",
       opacity: isVisible ? 1 : 0,
       scale: 1,
+      x: "-50%",
+      y: "-50%"
     },
     pointer: {
-      x: mousePosition.x - 8,
-      y: mousePosition.y - 8,
       height: 16,
       width: 16,
       borderRadius: "50%",
@@ -82,10 +93,10 @@ export function CustomCursor() {
       backgroundColor: "transparent",
       opacity: isVisible ? 1 : 0,
       scale: 2.5,
+      x: "-50%",
+      y: "-50%"
     },
     text: {
-      x: mousePosition.x - 2,
-      y: mousePosition.y - 12,
       height: 24,
       width: 4,
       borderRadius: "2px",
@@ -93,10 +104,10 @@ export function CustomCursor() {
       backgroundColor: "var(--color-primary)",
       opacity: isVisible ? 1 : 0,
       scale: 1,
+      x: "-50%",
+      y: "-50%"
     },
     disabled: {
-      x: mousePosition.x - 8,
-      y: mousePosition.y - 8,
       height: 16,
       width: 16,
       borderRadius: "50%",
@@ -104,14 +115,16 @@ export function CustomCursor() {
       backgroundColor: "transparent",
       opacity: isVisible ? 1 : 0,
       scale: 1.5,
+      x: "-50%",
+      y: "-50%"
     }
   };
 
   const dotVariants = {
-    default: { opacity: isVisible ? 1 : 0, backgroundColor: "var(--color-primary)" },
-    pointer: { opacity: 0 },
-    text: { opacity: 0 },
-    disabled: { opacity: isVisible ? 1 : 0, backgroundColor: "var(--color-destructive)" }
+    default: { opacity: isVisible ? 1 : 0, backgroundColor: "var(--color-primary)", x: "-50%", y: "-50%" },
+    pointer: { opacity: 0, x: "-50%", y: "-50%" },
+    text: { opacity: 0, x: "-50%", y: "-50%" },
+    disabled: { opacity: isVisible ? 1 : 0, backgroundColor: "var(--color-destructive)", x: "-50%", y: "-50%" }
   };
 
   if (isMobile) return null;
@@ -120,7 +133,9 @@ export function CustomCursor() {
     <>
       <motion.div
         className="fixed top-0 left-0 border pointer-events-none z-[9999] mix-blend-difference"
-        animate={variants[variant]}
+        style={{ left: smoothX, top: smoothY }}
+        variants={variants}
+        animate={variant}
         transition={{
           type: "spring",
           stiffness: 800,
@@ -130,11 +145,9 @@ export function CustomCursor() {
       />
       <motion.div
         className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none z-[9999] mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 3,
-          y: mousePosition.y - 3,
-          ...dotVariants[variant]
-        }}
+        style={{ left: mouseX, top: mouseY }}
+        variants={dotVariants}
+        animate={variant}
         transition={{
           type: "spring",
           stiffness: 1000,
