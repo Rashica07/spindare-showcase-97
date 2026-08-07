@@ -15,10 +15,11 @@ export function LoadingScreen() {
   const [gone, setGone]         = useState(false);
 
   useEffect(() => {
-    if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('kd_loaded')) {
-      setGone(true);
-      return;
-    }
+    // Show loading screen on every load as requested by user
+    // if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('kd_loaded')) {
+    //   setGone(true);
+    //   return;
+    // }
 
     let settled = false;
     let exitTimer: ReturnType<typeof setTimeout>;
