@@ -8,22 +8,17 @@ export function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
 
-  // Framer motion values that bypass React state for 60/144fps tracking
+  // We only need the precise mouse position for the single minimal dot
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
-
-  // The outer ring has a slight smooth spring delay
-  const springConfig = { damping: 25, stiffness: 700, mass: 0.1 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768) {
       return;
     }
     setIsMobile(false);
-    
-    document.body.style.cursor = 'none';
+    // Keep native cursor visible, dot acts as an underlay highlight
+    // document.body.style.cursor = 'none';
 
     const updateMousePosition = (e: MouseEvent | TouchEvent) => {
       let clientX, clientY, target;
@@ -64,7 +59,7 @@ export function CustomCursor() {
     window.addEventListener('mouseover', handleMouseEnter);
 
     return () => {
-      document.body.style.cursor = 'auto';
+      // document.body.style.cursor = 'auto';
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('touchmove', updateMousePosition);
       window.removeEventListener('mouseout', handleMouseLeave);
@@ -72,89 +67,63 @@ export function CustomCursor() {
     };
   }, [isVisible, mouseX, mouseY]);
 
-  // We only animate scale, opacity, and styles via variants.
-  const variants = {
-    default: {
-      height: 16,
-      width: 16,
-      borderRadius: "50%",
-      borderColor: "var(--color-primary)",
-      backgroundColor: "transparent",
-      opacity: isVisible ? 1 : 0,
-      scale: 1,
-      x: "-50%",
-      y: "-50%"
-    },
-    pointer: {
-      height: 16,
-      width: 16,
-      borderRadius: "50%",
-      borderColor: "var(--color-primary)",
-      backgroundColor: "transparent",
-      opacity: isVisible ? 1 : 0,
-      scale: 2.5,
-      x: "-50%",
-      y: "-50%"
-    },
-    text: {
-      height: 24,
-      width: 4,
-      borderRadius: "2px",
-      borderColor: "transparent",
-      backgroundColor: "var(--color-primary)",
-      opacity: isVisible ? 1 : 0,
-      scale: 1,
-      x: "-50%",
-      y: "-50%"
-    },
-    disabled: {
-      height: 16,
-      width: 16,
-      borderRadius: "50%",
-      borderColor: "var(--color-destructive)",
-      backgroundColor: "transparent",
-      opacity: isVisible ? 1 : 0,
-      scale: 1.5,
-      x: "-50%",
-      y: "-50%"
-    }
-  };
-
   const dotVariants = {
-    default: { opacity: isVisible ? 1 : 0, backgroundColor: "var(--color-primary)", x: "-50%", y: "-50%" },
-    pointer: { opacity: 0, x: "-50%", y: "-50%" },
-    text: { opacity: 0, x: "-50%", y: "-50%" },
-    disabled: { opacity: isVisible ? 1 : 0, backgroundColor: "var(--color-destructive)", x: "-50%", y: "-50%" }
+    default: { 
+      opacity: isVisible ? 1 : 0, 
+      scale: 1,
+      backgroundColor: "var(--color-primary)", 
+      x: "-50%", 
+      y: "-50%",
+      width: 8,
+      height: 8,
+      borderRadius: "50%"
+    },
+    pointer: { 
+      opacity: isVisible ? 0.7 : 0, 
+      scale: 2.5,
+      backgroundColor: "var(--color-primary)", 
+      x: "-50%", 
+      y: "-50%",
+      width: 8,
+      height: 8,
+      borderRadius: "50%"
+    },
+    text: { 
+      opacity: isVisible ? 0.8 : 0, 
+      scale: 1,
+      backgroundColor: "var(--color-primary)", 
+      x: "-50%", 
+      y: "-50%",
+      width: 4,
+      height: 24,
+      borderRadius: "2px"
+    },
+    disabled: { 
+      opacity: isVisible ? 1 : 0, 
+      scale: 1,
+      backgroundColor: "var(--color-destructive)", 
+      x: "-50%", 
+      y: "-50%",
+      width: 8,
+      height: 8,
+      borderRadius: "50%"
+    }
   };
 
   if (isMobile) return null;
 
   return (
-    <>
-      <motion.div
-        className="fixed top-0 left-0 border pointer-events-none z-[9999] mix-blend-difference"
-        style={{ left: smoothX, top: smoothY }}
-        variants={variants}
-        animate={variant}
-        transition={{
-          type: "spring",
-          stiffness: 800,
-          damping: 28,
-          mass: 0.1
-        }}
-      />
-      <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none z-[9999] mix-blend-difference"
-        style={{ left: mouseX, top: mouseY }}
-        variants={dotVariants}
-        animate={variant}
-        transition={{
-          type: "spring",
-          stiffness: 1000,
-          damping: 28,
-          mass: 0.1
-        }}
-      />
-    </>
+    <motion.div
+      className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+      style={{ left: mouseX, top: mouseY }}
+      variants={dotVariants}
+      animate={variant}
+      transition={{
+        type: "spring",
+        stiffness: 1000,
+        damping: 28,
+        mass: 0.1
+      }}
+    />
   );
 }
