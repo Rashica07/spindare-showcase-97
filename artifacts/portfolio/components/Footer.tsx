@@ -41,10 +41,11 @@ export function Footer() {
               href="https://github.com/rashica07"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub Profile"
               data-testid="footer-link-github"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              <SiGithub size={16} />
+              <SiGithub size={16} aria-hidden="true" />
             </a>
             <span className="text-muted-foreground/30 text-xs">|</span>
             <a
@@ -58,10 +59,10 @@ export function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground/60 tracking-widest font-mono">
+          <p className="text-xs text-muted-foreground tracking-widest font-mono">
             &copy; {new Date().getFullYear()} KIQA.DEV
           </p>
-          <div className="flex items-center gap-4 text-xs text-muted-foreground/60 font-mono tracking-widest">
+          <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono tracking-widest">
             <Link href="/tos" className="hover:text-foreground transition-colors">
               {(t.footer as any).tos || "Terms"}
             </Link>

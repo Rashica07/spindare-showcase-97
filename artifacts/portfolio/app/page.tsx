@@ -67,7 +67,7 @@ export default function HomePage() {
   const prevBlog = () => setBlogIndex((prev) => (prev - 1 + blogPosts.length) % blogPosts.length);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground">
       {/* HERO */}
       <section className="relative min-h-[85vh] sm:min-h-screen flex items-center overflow-hidden" data-testid="section-hero">
         {!skipMotion && <HeroCanvas />}
@@ -103,7 +103,7 @@ export default function HomePage() {
               </motion.span>
             </Link>
           </motion.div>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.24, duration: 0.4 }} className="mt-6 font-mono text-xs text-muted-foreground/60 tracking-widest" data-testid="hero-available">
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.24, duration: 0.4 }} className="mt-6 font-mono text-xs text-muted-foreground tracking-widest" data-testid="hero-available">
             {t.hero.available}
           </motion.p>
         </div>
@@ -136,7 +136,7 @@ export default function HomePage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-5 shrink-0">
-                      <span className="font-mono text-xs text-muted-foreground/60 hidden sm:block">{svc.timeline}</span>
+                      <span className="font-mono text-xs text-muted-foreground hidden sm:block">{svc.timeline}</span>
                       <ChevronRight size={15} className="text-muted-foreground/30 group-hover:text-primary transition-colors" />
                     </div>
                   </motion.div>
@@ -165,7 +165,7 @@ export default function HomePage() {
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-xl font-semibold text-foreground">{project.name}</h3>
                         <span className={`font-mono text-xs px-2 py-0.5 rounded-full border ${project.status === "Live" ? "border-primary/30 text-primary bg-primary/10" : project.status.includes("Development") ? "border-accent/30 text-accent bg-accent/10" : "border-muted-foreground/30 text-muted-foreground"}`}>{project.status}</span>
-                        <span className="font-mono text-xs text-muted-foreground/60">{project.year}</span>
+                        <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
                       </div>
                       <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">{project.desc}</p>
                       <div className="mt-3 flex flex-wrap gap-2">
@@ -225,8 +225,8 @@ export default function HomePage() {
           <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
           <motion.div animate={tickerRunning ? { x: ["0%", "-50%"] } : { x: "0%" }} transition={tickerRunning ? { duration: 25, repeat: Infinity, ease: "linear" } : { duration: 0 }} className="flex gap-10 w-max">
             {[...STACK_ICONS, ...STACK_ICONS].map((item, i) => (
-              <div key={i} className="flex items-center gap-2.5 opacity-40 hover:opacity-80 transition-opacity">
-                <item.Icon size={20} style={{ color: item.color }} />
+              <div key={i} className="flex items-center gap-2.5 opacity-60 hover:opacity-100 transition-opacity">
+                <item.Icon size={20} style={{ color: item.color }} title={item.label} aria-hidden="true" />
                 <span className="font-mono text-xs text-muted-foreground whitespace-nowrap">{item.label}</span>
               </div>
             ))}
@@ -258,8 +258,8 @@ export default function HomePage() {
                 <motion.div key={blogIndex} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25, ease: "easeInOut" }} className="w-full pr-16">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="font-mono text-xs px-2.5 py-1 rounded-full border border-primary/30 text-primary bg-primary/10">{blogPosts[blogIndex].category}</span>
-                    <span className="font-mono text-xs text-muted-foreground/60">{blogPosts[blogIndex].date}</span>
-                    <span className="font-mono text-xs text-muted-foreground/60">· {blogPosts[blogIndex].read} {t.blog.minRead}</span>
+                    <span className="font-mono text-xs text-muted-foreground">{blogPosts[blogIndex].date}</span>
+                    <span className="font-mono text-xs text-muted-foreground">· {blogPosts[blogIndex].read} {t.blog.minRead}</span>
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold text-foreground leading-snug">{blogPosts[blogIndex].title}</h3>
                   <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{blogPosts[blogIndex].excerpt}</p>
@@ -298,6 +298,6 @@ export default function HomePage() {
       </section>
 
       <Footer />
-    </div>
+    </main>
   );
 }
