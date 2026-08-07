@@ -66,7 +66,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-background text-foreground">
       {/* HERO */}
       <section className="relative min-h-[85vh] sm:min-h-screen flex items-center overflow-hidden" data-testid="section-hero">
-        {!skipMotion && <DelayedHeroCanvas />}
+        <DelayedHeroCanvas />
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background pointer-events-none z-10" />
         {/* Keeps the contour field from running through the headline column. */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/75 to-transparent pointer-events-none z-10" />

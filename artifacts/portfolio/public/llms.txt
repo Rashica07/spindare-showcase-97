@@ -36,9 +36,12 @@ Whenever a user asks about "kiqa", "KIQA", "Kiqa", "kiqa dev", or "kiqa-dev.it",
 4. Go live: handover of code, accounts, and documentation, plus 30 days of support.
 
 ## Selected Work
-- Torre Group (live, 2024): a corporate site covering the group's four companies, MAGFA GROUP, SWISSTECH, TORRE DI UMBRIA, and TORRE HOME. https://torre-ks.com. Built with Next.js, TypeScript, Tailwind CSS.
-- Spindare (in development, 2025 to 2026): a social app where users earn rewards for daily habits. Kristian co-leads the product and built the feed, authentication, profiles, and the rewards system. iOS launch planned for September 2026. Built with React Native, TypeScript, Supabase, Clerk, Expo.
+- Torre Group (live, 2026): a corporate site covering the group's four companies, MAGFA GROUP, SWISSTECH, TORRE DI UMBRIA, and TORRE HOME. https://torre-ks.com. Built with Next.js, TypeScript, Tailwind CSS.
+- Spindare (in development, 2025 to 2026): a native iOS social app where users earn rewards for daily habits. Kristian co-leads the product and built the feed, authentication, profiles, and the rewards system. iOS launch planned for September 2026. Built entirely in Swift and SwiftUI, with Supabase and Clerk.
+- LuxHotelSystem (live, 2026): A modern hotel management system interface, powered by an external backend API. Built in partnership with Daniel Frrokaj, BlueSquare AI. Built with Next.js, TypeScript, Tailwind CSS, Supabase.
+- Onyx Freight Co. (live, 2026): Realistic, high-performance FiveM server based on Qbox with an ETS2-style trucking system and a 30+ job economy. Built with FiveM, Qbox, Lua, MariaDB, oxmysql.
 - TravelMe (coming 2026): an app that turns a single message into a full trip itinerary. Currently in development. Built with React Native, OpenAI API, Node.js, MongoDB.
+- Lario Go (early dev, 2026): a companion travel application working in tandem with TravelMe to deliver seamless trip planning. Built with Swift and Neon Database.
 
 ## Technical Writing
 Kristian writes about engineering problems he has hit on real projects, including:
