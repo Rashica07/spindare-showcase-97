@@ -155,15 +155,6 @@ export function HeroCanvas() {
     ];
   }, []);
 
-  const onDeviceOrientation = useCallback((e: DeviceOrientationEvent) => {
-    if (e.gamma !== null && e.beta !== null) {
-      mouse.current = [
-        Math.max(-1, Math.min(1, (e.gamma ?? 0) / 22)),
-        Math.max(-1, Math.min(1, ((e.beta ?? 45) - 45) / 22)),
-      ];
-    }
-  }, []);
-
   useEffect(() => {
     try {
       const c = document.createElement('canvas');
@@ -184,15 +175,13 @@ export function HeroCanvas() {
     rm.addEventListener('change', applyMotion);
 
     window.addEventListener('mousemove', onMouseMove, { passive: true });
-    window.addEventListener('deviceorientation', onDeviceOrientation as EventListener, { passive: true });
     const t = setTimeout(() => setMounted(true), 80);
     return () => {
       clearTimeout(t);
       rm.removeEventListener('change', applyMotion);
       window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('deviceorientation', onDeviceOrientation as EventListener);
     };
-  }, [onMouseMove, onDeviceOrientation]);
+  }, [onMouseMove]);
 
   // Animate only while the hero is on screen and the tab is focused.
   const running = animate && onScreen;
