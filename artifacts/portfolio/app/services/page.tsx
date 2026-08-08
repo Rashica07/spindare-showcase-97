@@ -8,6 +8,38 @@ import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
 import { usePageOverride, pick, type BlockOverrides } from "@/components/PulseSyncProvider";
 
+const SERVICES_FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How much does a mobile app cost, and how long does it take?",
+      acceptedAnswer: { "@type": "Answer", text: "A mobile app with KIQA DEV starts from €799, delivered in 6 weeks. It includes design, build, and store submission handled end to end, with one fixed price and one point of contact for the whole six weeks." },
+    },
+    {
+      "@type": "Question",
+      name: "How much does a landing page cost, and how long does it take?",
+      acceptedAnswer: { "@type": "Answer", text: "A landing page starts from €299, delivered in 7 days. It's a fast single page with your copy, your brand, and a working contact form, on your own domain." },
+    },
+    {
+      "@type": "Question",
+      name: "How much does a web platform cost, and how long does it take?",
+      acceptedAnswer: { "@type": "Answer", text: "A web platform starts from €1,299, delivered in 3 weeks. It includes user accounts, billing, an admin dashboard, and a database built to hold up under real traffic." },
+    },
+    {
+      "@type": "Question",
+      name: "How much does a custom backend cost, and how long does it take?",
+      acceptedAnswer: { "@type": "Answer", text: "A custom backend starts from €499, delivered in 2 weeks. It includes a documented API, a Postgres database, and authentication, ready for your existing frontend to plug into." },
+    },
+    {
+      "@type": "Question",
+      name: "Does KIQA DEV offer fixed-price quotes?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. Every project is quoted upfront with a fixed price and a delivery date in writing, before any work begins. If scope changes mid-build, the cost is communicated before the work is done, not after." },
+    },
+  ],
+};
+
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -24,6 +56,10 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_FAQ_JSON_LD) }}
+      />
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="services-hero">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
