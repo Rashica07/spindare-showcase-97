@@ -30,6 +30,46 @@ const DESCRIPTION =
 
 const OG_IMAGE = "/opengraph.webp";
 
+const JSON_LD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Kristian Gjergji",
+    alternateName: "KIQA DEV",
+    url: "https://kiqa-dev.it",
+    jobTitle: "Freelance Software Developer",
+    description: DESCRIPTION,
+    worksFor: { "@type": "Organization", name: "KIQA DEV" },
+    knowsAbout: ["Swift", "SwiftUI", "iOS Development", "React Native", "Next.js", "TypeScript", "Supabase", "Node.js"],
+    knowsLanguage: ["English", "Italian", "Albanian", "German"],
+    sameAs: ["https://github.com/rashica07", "https://discord.com/users/871100378299654194"],
+    email: "mailto:contact@kiqa-dev.it",
+    address: [
+      { "@type": "PostalAddress", addressRegion: "Kosovo" },
+      { "@type": "PostalAddress", addressLocality: "Lecco", addressCountry: "IT" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "KIQA DEV",
+    url: "https://kiqa-dev.it",
+    description: DESCRIPTION,
+    founder: { "@type": "Person", name: "Kristian Gjergji" },
+    areaServed: ["IT", "XK", "Europe"],
+    priceRange: "€299-€1,299+",
+    email: "contact@kiqa-dev.it",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "KIQA DEV",
+    url: "https://kiqa-dev.it",
+    description: DESCRIPTION,
+    inLanguage: ["en", "it", "sq", "de"],
+  },
+];
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://kiqa-dev.it"),
   title: "Kristian Gjergji | Kiqa DEV | Software Engineer",
@@ -59,6 +99,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${dmMono.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <CustomCursor />
         <ScrollProgress />
         <PulseSyncProvider>
