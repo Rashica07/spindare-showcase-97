@@ -1,9 +1,9 @@
 'use client';
 
-import Image from "next/image";
-import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import Image, { type StaticImageData } from "next/image";
+import { useState, useRef, useEffect } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
 import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo } from "react-icons/si";
@@ -76,6 +76,14 @@ export default function PortfolioPage() {
   const [spindareActiveIdx, setSpindareActiveIdx] = useState(0);
   const [torreActiveIdx, setTorreActiveIdx] = useState(0);
   const [luxActiveIdx, setLuxActiveIdx] = useState(0);
+  const [lightbox, setLightbox] = useState<{ src: StaticImageData; alt: string } | null>(null);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightbox]);
 
   const allFilters = ["All", "Mobile", "Web"];
   const filtered = active === "All" ? t.work.projects : t.work.projects.filter((p) => p.type === active);
@@ -128,7 +136,9 @@ export default function PortfolioPage() {
 
                         <div className="relative mt-8 w-[170px] h-[310px] rounded-[24px] border-4 border-card-border bg-background shadow-2xl overflow-hidden flex items-center justify-center">
                           <div className="absolute top-0 w-16 h-3 bg-card-border rounded-b-lg z-20" />
-                          <Image placeholder="blur" key={spindareActiveIdx} src={SPINDARE_SCREENS[spindareActiveIdx].src} alt={SPINDARE_SCREENS[spindareActiveIdx].name} fill sizes="170px" className="object-cover z-10" />
+                          <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLightbox({ src: SPINDARE_SCREENS[spindareActiveIdx].src, alt: SPINDARE_SCREENS[spindareActiveIdx].name }); }} className="absolute inset-0 z-10 cursor-zoom-in" aria-label={`Zoom in on ${SPINDARE_SCREENS[spindareActiveIdx].name}`}>
+                            <Image placeholder="blur" key={spindareActiveIdx} src={SPINDARE_SCREENS[spindareActiveIdx].src} alt={SPINDARE_SCREENS[spindareActiveIdx].name} fill sizes="170px" className="object-cover" />
+                          </button>
                         </div>
                       </div>
                     ) : project.name === "Torre Group" ? (
@@ -157,14 +167,18 @@ export default function PortfolioPage() {
                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
                           </div>
-                          <Image placeholder="blur" key={torreActiveIdx} src={TORRE_SCREENS[torreActiveIdx].src} alt={TORRE_SCREENS[torreActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top z-10" />
+                          <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLightbox({ src: TORRE_SCREENS[torreActiveIdx].src, alt: TORRE_SCREENS[torreActiveIdx].name }); }} className="absolute inset-0 z-10 cursor-zoom-in" aria-label={`Zoom in on ${TORRE_SCREENS[torreActiveIdx].name}`}>
+                            <Image placeholder="blur" key={torreActiveIdx} src={TORRE_SCREENS[torreActiveIdx].src} alt={TORRE_SCREENS[torreActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top" />
+                          </button>
                         </div>
                       </div>
                     ) : project.name === "Onyx Freight Co." ? (
                       <div className="relative h-[380px] bg-gradient-to-br from-primary/20 to-card flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
                         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
                         <div className="relative mt-4 w-[95%] max-w-[340px] h-[170px] rounded-lg border-2 border-primary/20 shadow-2xl overflow-hidden flex flex-col bg-black">
-                          <Image placeholder="blur" src={truckserv1Img} alt="Onyx Freight Co." fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain z-10" />
+                          <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLightbox({ src: truckserv1Img, alt: "Onyx Freight Co." }); }} className="absolute inset-0 z-10 cursor-zoom-in" aria-label="Zoom in on Onyx Freight Co.">
+                            <Image placeholder="blur" src={truckserv1Img} alt="Onyx Freight Co." fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain" />
+                          </button>
                         </div>
                       </div>
                     ) : project.name === "LuxHotelSystem" ? (
@@ -189,7 +203,9 @@ export default function PortfolioPage() {
                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
                           </div>
-                          <Image placeholder="blur" key={luxActiveIdx} src={LUXHOTEL_SCREENS[luxActiveIdx].src} alt={LUXHOTEL_SCREENS[luxActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top z-10" />
+                          <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLightbox({ src: LUXHOTEL_SCREENS[luxActiveIdx].src, alt: LUXHOTEL_SCREENS[luxActiveIdx].name }); }} className="absolute inset-0 z-10 cursor-zoom-in" aria-label={`Zoom in on ${LUXHOTEL_SCREENS[luxActiveIdx].name}`}>
+                            <Image placeholder="blur" key={luxActiveIdx} src={LUXHOTEL_SCREENS[luxActiveIdx].src} alt={LUXHOTEL_SCREENS[luxActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top" />
+                          </button>
                         </div>
                       </div>
                     ) : (
@@ -245,6 +261,38 @@ export default function PortfolioPage() {
         </div>
       </section>
       <Footer />
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex items-center justify-center p-6 cursor-zoom-out"
+            onClick={() => setLightbox(null)}
+            data-testid="screenshot-lightbox"
+          >
+            <button
+              type="button"
+              onClick={() => setLightbox(null)}
+              className="absolute top-6 right-6 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Close"
+            >
+              <X size={28} />
+            </button>
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className="relative max-w-4xl max-h-[85vh] w-full h-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image src={lightbox.src} alt={lightbox.alt} fill sizes="90vw" className="object-contain" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
