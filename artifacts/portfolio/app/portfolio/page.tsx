@@ -151,7 +151,7 @@ export default function PortfolioPage() {
                           <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); setTorreActiveIdx((prev) => (prev + 1) % TORRE_SCREENS.length); }} className="pointer-events-auto bg-background/90 text-muted-foreground hover:text-foreground rounded-full p-1 border border-border/50 hover:bg-background transition-colors"><ChevronRight size={16} /></button>
                         </div>
 
-                        <div className="relative mt-8 w-[95%] max-w-[340px] h-[170px] rounded-t-lg border-x-4 border-t-4 border-card-border bg-white shadow-2xl overflow-hidden flex flex-col">
+                        <div className="relative mt-8 w-[95%] max-w-[340px] h-[170px] rounded-lg border-4 border-card-border bg-white shadow-2xl overflow-hidden flex flex-col">
                           <div className="h-4 bg-card-border w-full flex items-center px-1.5 gap-1 shrink-0">
                             <div className="w-1.5 h-1.5 rounded-full bg-red-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
@@ -183,7 +183,7 @@ export default function PortfolioPage() {
                           <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLuxActiveIdx((prev) => (prev + 1) % LUXHOTEL_SCREENS.length); }} className="pointer-events-auto bg-slate-900/90 text-slate-400 hover:text-slate-100 rounded-full p-1 border border-slate-700/50 hover:bg-slate-800 transition-colors"><ChevronRight size={16} /></button>
                         </div>
 
-                        <div className="relative mt-8 w-[95%] max-w-[340px] h-[170px] rounded-t-lg border-x-4 border-t-4 border-slate-800 bg-[#0f172a] shadow-2xl overflow-hidden flex flex-col">
+                        <div className="relative mt-8 w-[95%] max-w-[340px] h-[170px] rounded-lg border-4 border-slate-800 bg-[#0f172a] shadow-2xl overflow-hidden flex flex-col">
                           <div className="h-4 bg-slate-800 w-full flex items-center px-1.5 gap-1 shrink-0">
                             <div className="w-1.5 h-1.5 rounded-full bg-red-500/80" />
                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
