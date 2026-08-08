@@ -54,13 +54,14 @@ const DEFAULT_SECTION_ORDER = [
 export default function HomePage() {
   const { t } = useLanguage();
   const [blogIndex, setBlogIndex] = useState(0);
+  const [blogDirection, setBlogDirection] = useState(1);
   const tickerRef = useRef<HTMLElement>(null);
   const tickerActive = useIsActive(tickerRef);
   const skipMotion = useSkipDecorativeMotion();
   const tickerRunning = tickerActive && !skipMotion;
   const blogPosts = t.blog.posts;
-  const nextBlog = () => setBlogIndex((prev) => (prev + 1) % blogPosts.length);
-  const prevBlog = () => setBlogIndex((prev) => (prev - 1 + blogPosts.length) % blogPosts.length);
+  const nextBlog = () => { setBlogDirection(1); setBlogIndex((prev) => (prev + 1) % blogPosts.length); };
+  const prevBlog = () => { setBlogDirection(-1); setBlogIndex((prev) => (prev - 1 + blogPosts.length) % blogPosts.length); };
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -249,13 +250,13 @@ export default function HomePage() {
               <button onClick={prevBlog} className="w-10 h-10 rounded-lg border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all cursor-pointer bg-card/60 backdrop-blur-sm" aria-label="Previous Post"><ChevronLeft size={18} /></button>
               <button onClick={nextBlog} className="w-10 h-10 rounded-lg border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all cursor-pointer bg-card/60 backdrop-blur-sm" aria-label="Next Post"><ChevronRight size={18} /></button>
             </div>
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" custom={blogDirection}>
               {blogPosts && blogPosts.length > 0 && (
-                <motion.div key={blogIndex} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25, ease: "easeInOut" }} className="w-full pr-16">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="font-mono text-xs px-2.5 py-1 rounded-full border border-primary/30 text-primary bg-primary/10">{blogPosts[blogIndex].category}</span>
-                    <span className="font-mono text-xs text-muted-foreground">{blogPosts[blogIndex].date}</span>
-                    <span className="font-mono text-xs text-muted-foreground">· {blogPosts[blogIndex].read} {t.blog.minRead}</span>
+                <motion.div key={blogIndex} custom={blogDirection} initial={{ opacity: 0, x: blogDirection * 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: blogDirection * -20 }} transition={{ duration: 0.25, ease: "easeInOut" }} className="w-full pr-24">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4">
+                    <span className="font-mono text-xs px-2.5 py-1 rounded-full border border-primary/30 text-primary bg-primary/10 whitespace-nowrap shrink-0">{blogPosts[blogIndex].category}</span>
+                    <span className="font-mono text-xs text-muted-foreground whitespace-nowrap">{blogPosts[blogIndex].date}</span>
+                    <span className="font-mono text-xs text-muted-foreground whitespace-nowrap">· {blogPosts[blogIndex].read} {t.blog.minRead}</span>
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold text-foreground leading-snug">{blogPosts[blogIndex].title}</h3>
                   <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{blogPosts[blogIndex].excerpt}</p>
