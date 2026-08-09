@@ -6,7 +6,14 @@ import { NovusPulse } from '@/lib/novus-pulse';
 // Public content pipeline — no credentials needed.
 // The site reads published content via the public endpoint and stays in
 // sync through the public realtime room for this tenant.
-const PULSE_URL = process.env.NEXT_PUBLIC_PULSE_URL || 'http://localhost:3000';
+//
+// NEXT_PUBLIC_PULSE_URL must point at a real CMS host to opt in. There is no
+// localhost fallback: a browser default of http://localhost:3000 would make
+// every visitor's own machine the fetch/WebSocket target, which is what
+// triggers Chrome's "wants to access other apps and services on this
+// device" (Local Network Access) prompt on any deployment where the CMS
+// isn't configured.
+const PULSE_URL = process.env.NEXT_PUBLIC_PULSE_URL || '';
 const PULSE_TENANT = process.env.NEXT_PUBLIC_PULSE_TENANT || 'admin-workspace';
 const HOME_SLUG = 'home';
 
@@ -134,6 +141,8 @@ export function PulseSyncProvider({ children }: { children: React.ReactNode }) {
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
+    if (!PULSE_URL) return;
+
     let tenantSlug = PULSE_TENANT;
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
