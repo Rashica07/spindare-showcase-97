@@ -2,6 +2,8 @@
 
 # compiled output
 **/.next/
+**/.open-next/
+**/.wrangler/
 dist
 tmp
 out-tsc
