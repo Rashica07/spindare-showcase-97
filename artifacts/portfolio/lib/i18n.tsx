@@ -77,7 +77,7 @@ export const translations = {
           type: "Mobile",
           status: "In Development",
           year: "2025–2026",
-          desc: "Co-founding and leading product development for Spindare, a native iOS social app built entirely in Swift and SwiftUI. iOS launch planned for September 2026.",
+          desc: "Co-founding and leading product development for Spindare, a native iOS social app built entirely in Swift and SwiftUI. Latest release adds map-based challenge discovery with sponsored local businesses worldwide. iOS launch planned for September 2026.",
           stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
@@ -153,6 +153,7 @@ export const translations = {
       bio: [
         "I'm a self-employed developer based between Kosovo and Italy. I build mobile apps, websites, and web platforms for startups and business owners.",
         "Right now I'm co-leading product development on Spindare, a social app with hundreds of screens and an iOS launch planned for September 2026.",
+        "A growing part of my work is tourism and hospitality tech: LuxHotelSystem for hotel management, and Traversar's TravelMe and Lario Go for trip planning. Spindare's latest release adds a map-based challenge discovery feature with sponsored local businesses worldwide. I'm actively open to new co-partnerships in this space.",
         "Through KIQA DEV I work directly with founders and business owners, handling the whole build from first design to launch, so they don't have to coordinate several agencies or freelancers."
       ],
       skills: [
@@ -318,7 +319,7 @@ export const translations = {
           type: "Mobile",
           status: "In Sviluppo",
           year: "2025–2026",
-          desc: "Co-fondatore e responsabile dello sviluppo prodotto per Spindare, un'app social nativa iOS costruita interamente in Swift e SwiftUI. Lancio iOS previsto per settembre 2026.",
+          desc: "Co-fondatore e responsabile dello sviluppo prodotto per Spindare, un'app social nativa iOS costruita interamente in Swift e SwiftUI. L'ultima versione aggiunge la scoperta delle sfide basata su mappa, con attività locali sponsorizzate in tutto il mondo. Lancio iOS previsto per settembre 2026.",
           stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
@@ -373,6 +374,7 @@ export const translations = {
       bio: [
         "Sono uno sviluppatore freelance con base tra il Kosovo e l'Italia. Creo app mobile, siti web e piattaforme web per startup e imprenditori.",
         "In questo momento sto co-guidando lo sviluppo di Spindare, un'app social con centinaia di schermate e un lancio su iOS previsto per settembre 2026.",
+        "Una parte crescente del mio lavoro riguarda la tecnologia per il turismo e l'ospitalità: LuxHotelSystem per la gestione alberghiera, e TravelMe e Lario Go di Traversar per la pianificazione dei viaggi. L'ultima versione di Spindare aggiunge una funzione di scoperta delle sfide basata su mappa, con attività locali sponsorizzate in tutto il mondo. Sono aperto a nuove collaborazioni in questo ambito.",
         "Attraverso KIQA DEV lavoro direttamente con fondatori e imprenditori, gestendo l'intera realizzazione dal primo design alla messa online, così non devono coordinare più agenzie o freelancer."
       ],
       skills: [
@@ -509,7 +511,7 @@ export const translations = {
           type: "Mobile",
           status: "Në Zhvillim",
           year: "2025–2026",
-          desc: "Bashkëthemelues dhe drejtues i zhvillimit të produktit për Spindare, një aplikacion social nativ iOS i ndërtuar plotësisht në Swift dhe SwiftUI. Nisja për iOS planifikuar për në shtator 2026.",
+          desc: "Bashkëthemelues dhe drejtues i zhvillimit të produktit për Spindare, një aplikacion social nativ iOS i ndërtuar plotësisht në Swift dhe SwiftUI. Versioni më i fundit shton zbulimin e sfidave bazuar në hartë, me biznese lokale të sponsorizuara në mbarë botën. Nisja për iOS planifikuar për në shtator 2026.",
           stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
@@ -564,6 +566,7 @@ export const translations = {
       bio: [
         "Jam një zhvillues i pavarur me bazë mes Kosovës dhe Italisë. Ndërtoj aplikacione mobile, faqe web dhe platforma web për startup-e dhe pronarë biznesi.",
         "Tani jam duke bashkë-udhëhequr zhvillimin e produktit në Spindare, një aplikacion social me qindra ekrane dhe lansim në iOS të planifikuar për shtator 2026.",
+        "Një pjesë në rritje e punës sime është teknologjia për turizmin dhe mikpritjen: LuxHotelSystem për menaxhimin e hoteleve, dhe TravelMe e Lario Go të Traversar për planifikimin e udhëtimeve. Versioni më i fundit i Spindare shton një funksion zbulimi sfidash bazuar në hartë, me biznese lokale të sponsorizuara në mbarë botën. Jam i hapur për bashkëpunime të reja në këtë fushë.",
         "Përmes KIQA DEV punoj drejtpërdrejt me themelues dhe pronarë biznesi, duke trajtuar të gjithë ndërtimin nga dizajni i parë deri te publikimi, kështu që nuk u duhet të koordinojnë disa agjenci apo freelancer-ë."
       ],
       skills: [
@@ -699,7 +702,7 @@ export const translations = {
           type: "Mobile",
           status: "In Entwicklung",
           year: "2025–2026",
-          desc: "Mitgründer und Produktverantwortlicher für Spindare, eine native iOS-Social-App, vollständig in Swift und SwiftUI gebaut. iOS-Launch geplant für September 2026.",
+          desc: "Mitgründer und Produktverantwortlicher für Spindare, eine native iOS-Social-App, vollständig in Swift und SwiftUI gebaut. Das neueste Update fügt eine kartenbasierte Challenge-Entdeckung mit gesponserten lokalen Unternehmen weltweit hinzu. iOS-Launch geplant für September 2026.",
           stack: ["Swift", "SwiftUI", "iOS", "Supabase", "Clerk"]
         },
         {
@@ -754,6 +757,7 @@ export const translations = {
       bio: [
         "Ich bin ein selbstständiger Entwickler mit Basis zwischen Kosovo und Italien. Ich baue mobile Apps, Websites und Web-Plattformen für Startups und Unternehmer.",
         "Gerade leite ich gemeinsam die Produktentwicklung bei Spindare, einer Social-App mit hunderten Bildschirmen und einem geplanten iOS-Launch im September 2026.",
+        "Ein wachsender Teil meiner Arbeit ist Tourismus- und Hospitality-Technologie: LuxHotelSystem für Hotelmanagement sowie TravelMe und Lario Go von Traversar für die Reiseplanung. Das neueste Spindare-Update fügt eine kartenbasierte Challenge-Entdeckung mit gesponserten lokalen Unternehmen weltweit hinzu. Ich bin offen für neue Partnerschaften in diesem Bereich.",
         "Über KIQA DEV arbeite ich direkt mit Gründern und Unternehmern und übernehme den gesamten Bau vom ersten Design bis zum Go-Live, damit sie nicht mehrere Agenturen oder Freelancer koordinieren müssen."
       ],
       skills: [
