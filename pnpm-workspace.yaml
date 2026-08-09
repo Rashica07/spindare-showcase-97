@@ -75,6 +75,7 @@ allowBuilds:
   protobufjs: true
   sharp: true
   unrs-resolver: true
+  workerd: true
 
 overrides:
   # Keep native optional dependencies available for each install platform

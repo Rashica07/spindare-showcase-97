@@ -11,9 +11,10 @@ export function middleware(request: NextRequest) {
   const hasLangCookie = request.cookies.has(cookieName);
 
   if (!hasLangCookie) {
-    // Vercel populates x-vercel-ip-country on Edge
-    const country = request.headers.get('x-vercel-ip-country') || '';
-    
+    // Vercel populates x-vercel-ip-country on Edge; Cloudflare Workers populates
+    // cf-ipcountry instead. Check both so this works on either platform.
+    const country = request.headers.get('x-vercel-ip-country') || request.headers.get('cf-ipcountry') || '';
+
     let lang = 'en';
     if (country === 'IT') lang = 'it';
     else if (country === 'AL' || country === 'XK') lang = 'sq'; // XK is Kosovo
