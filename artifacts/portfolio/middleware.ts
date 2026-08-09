@@ -2,16 +2,11 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  // Markdown for Agents: Serve llms.txt if AI bot is detected or if requested via text/markdown
-  const userAgent = request.headers.get('user-agent') || '';
-  const acceptHeader = request.headers.get('accept') || '';
-  const isAIBot = /GPTBot|ChatGPT-User|ClaudeBot|Claude-Web|Anthropic-ai|PerplexityBot|OAI-SearchBot/i.test(userAgent);
-  const wantsMarkdown = acceptHeader.includes('text/markdown');
-  
-  if ((isAIBot || wantsMarkdown) && request.nextUrl.pathname === '/') {
-    return NextResponse.rewrite(new URL('/llms.txt', request.url));
-  }
-
+  // llms.txt is served as a plain file at /llms.txt (linked from robots.txt) and
+  // is not swapped in for "/" based on User-Agent. Serving different content at
+  // the same URL depending on who's asking is cloaking — it looks the same to a
+  // crawler's abuse detection whether the intent is malicious or not, and it's
+  // exactly the kind of behavior AI fetch tools' safety layers are built to flag.
   const cookieName = 'kiqa_lang';
   const hasLangCookie = request.cookies.has(cookieName);
 
