@@ -6,7 +6,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
-import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo } from "react-icons/si";
+import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo, SiFivem, SiLua, SiJavascript, SiMariadb } from "react-icons/si";
 import type { IconType } from "react-icons";
 import { usePageOverride, pick, type BlockOverrides } from "@/components/PulseSyncProvider";
 
@@ -28,8 +28,6 @@ import luxhotel2Img from "@/public/luxhotel-2.webp";
 import luxhotel3Img from "@/public/luxhotel-3.webp";
 import luxhotel4Img from "@/public/luxhotel-4.webp";
 
-import truckserv1Img from "@/public/truckserv-1.webp";
-
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -42,6 +40,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 
 const ICON_MAP: Record<string, IconType> = {
   "React Native": SiReact, "TypeScript": SiTypescript, "Supabase": SiSupabase, "Next.js": SiNextdotjs, "Node.js": SiNodedotjs, "Expo": SiExpo,
+  "FiveM": SiFivem, "Lua": SiLua, "JavaScript": SiJavascript, "MariaDB": SiMariadb,
 };
 
 const SPINDARE_SCREENS = [
@@ -172,13 +171,23 @@ export default function PortfolioPage() {
                           </button>
                         </div>
                       </div>
-                    ) : project.name === "Onyx Freight Co." ? (
-                      <div className="relative h-[380px] bg-gradient-to-br from-primary/20 to-card flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
-                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-                        <div className="relative mt-4 w-[95%] max-w-[340px] h-[170px] rounded-lg border-2 border-primary/20 shadow-2xl overflow-hidden flex flex-col bg-black">
-                          <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLightbox({ src: truckserv1Img, alt: "Onyx Freight Co." }); }} className="absolute inset-0 z-10 cursor-zoom-in" aria-label="Zoom in on Onyx Freight Co.">
-                            <Image placeholder="blur" src={truckserv1Img} alt="Onyx Freight Co." fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain" />
-                          </button>
+                    ) : project.name === "Carrier" ? (
+                      <div className="relative h-[380px] bg-gradient-to-br from-[#0a0a0a] to-[#171717] flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
+                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-25 mix-blend-overlay"></div>
+                        <div className="absolute top-5 right-5 flex items-center gap-1.5 font-mono text-[8px] text-lime-400/80 tracking-widest uppercase">
+                          <span className="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse" /> live
+                        </div>
+                        <div className="relative z-10 flex flex-col items-center text-center gap-5">
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono text-3xl md:text-4xl tracking-[0.3em] text-neutral-100 lowercase">carr</span>
+                            <span className="w-1.5 h-1.5 rounded-sm bg-primary -translate-y-2.5" />
+                            <span className="font-mono text-3xl md:text-4xl tracking-[0.3em] text-neutral-100 lowercase">ier</span>
+                          </div>
+                          <div className="w-40 h-px bg-neutral-700/60" />
+                          <p className="font-mono text-[10px] text-neutral-500 tracking-wide max-w-[260px]">
+                            the city transmits &middot; what you take, everyone hears
+                          </p>
+                          <span className="font-mono text-[10px] px-2.5 py-1 rounded-full border text-primary border-primary/30 bg-primary/10">Public Beta</span>
                         </div>
                       </div>
                     ) : project.name === "LuxHotelSystem" ? (
