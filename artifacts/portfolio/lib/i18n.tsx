@@ -93,7 +93,7 @@ export const translations = {
           type: "FiveM Server",
           status: "Live",
           year: "2026",
-          desc: "An entirely original multiplayer game built on the FiveM runtime rather than another RP server — a directional-audio game where players triangulate persistent sound sources across Los Santos by ear and body movement alone, with no minimap, no HUD text, and no conventional jobs or economy. Custom framework built from zero across ten resources, with a fully synthesized runtime audio engine (Web Audio, zero streamed sound assets), server-authoritative world simulation, and a hidden \"uncanny\" layer of deterministic, unexplained anomalies. Live in public beta.",
+          desc: "An entirely original multiplayer game on FiveM, not another RP server — players triangulate hidden sound sources across Los Santos by ear alone, no minimap or HUD. Custom framework, synthesized runtime audio, hidden anomalies. Live in public beta.",
           stack: ["FiveM", "Lua", "Web Audio API", "JavaScript", "MariaDB", "oxmysql"]
         },
         {
@@ -335,7 +335,7 @@ export const translations = {
           type: "FiveM Server",
           status: "Live",
           year: "2026",
-          desc: "Un gioco multiplayer interamente originale costruito sul runtime di FiveM anziché un altro server RP — un gioco ad audio direzionale in cui i giocatori triangolano sorgenti sonore persistenti in tutta Los Santos usando solo l'udito e il movimento del corpo, senza minimappa, senza testo HUD e senza lavori o economia convenzionali. Framework personalizzato costruito da zero su dieci risorse, con un motore audio runtime completamente sintetizzato (Web Audio, zero asset sonori in streaming), simulazione del mondo server-autoritativa e un livello nascosto \"inquietante\" di anomalie deterministiche e inspiegate. Live in beta pubblica.",
+          desc: "Un gioco multiplayer interamente originale su FiveM, non un altro server RP — i giocatori triangolano sorgenti sonore nascoste per Los Santos solo a orecchio, senza minimappa né HUD. Framework personalizzato, audio runtime sintetizzato, anomalie nascoste. Live in beta pubblica.",
           stack: ["FiveM", "Lua", "Web Audio API", "JavaScript", "MariaDB", "oxmysql"]
         },
         {
@@ -527,7 +527,7 @@ export const translations = {
           type: "FiveM Server",
           status: "Live",
           year: "2026",
-          desc: "Një lojë multiplayer krejtësisht origjinale e ndërtuar mbi runtime-in e FiveM në vend të një serveri tjetër RP — një lojë me audio drejtimor ku lojtarët gjejnë burime zanore të vazhdueshme nëpër Los Santos vetëm me dëgjim dhe lëvizje trupore, pa minihartë, pa tekst HUD dhe pa punë apo ekonomi konvencionale. Framework i ndërtuar nga zero në dhjetë burime, me një motor audio runtime plotësisht të sintetizuar (Web Audio, zero asete zanore të transmetuara), simulim bote server-autoritar, dhe një shtresë e fshehur \"e çuditshme\" me anomali deterministike të pashpjegueshme. Live në beta publike.",
+          desc: "Një lojë multiplayer krejtësisht origjinale mbi FiveM, jo një server tjetër RP — lojtarët gjejnë burime zanore të fshehura nëpër Los Santos vetëm me dëgjim, pa minihartë apo HUD. Framework i personalizuar, audio runtime i sintetizuar, anomali të fshehura. Live në beta publike.",
           stack: ["FiveM", "Lua", "Web Audio API", "JavaScript", "MariaDB", "oxmysql"]
         },
         {
@@ -718,7 +718,7 @@ export const translations = {
           type: "FiveM Server",
           status: "Live",
           year: "2026",
-          desc: "Ein völlig eigenständiges Multiplayer-Spiel auf der FiveM-Runtime statt ein weiterer RP-Server — ein Richtungsaudio-Spiel, bei dem Spieler allein durch Gehör und Körperbewegung dauerhafte Klangquellen in ganz Los Santos triangulieren, ganz ohne Minimap, HUD-Text oder klassische Jobs und Wirtschaft. Ein von Grund auf neu entwickeltes Framework über zehn Ressourcen, mit einer vollständig synthetisierten Runtime-Audio-Engine (Web Audio, keine gestreamten Sound-Assets), serverautoritativer Weltsimulation und einer verborgenen „unheimlichen\" Ebene deterministischer, unerklärter Anomalien. Live in der offenen Beta.",
+          desc: "Ein völlig eigenständiges Multiplayer-Spiel auf FiveM, kein weiterer RP-Server — Spieler orten verborgene Klangquellen in Los Santos allein per Gehör, ganz ohne Minimap oder HUD. Eigenes Framework, synthetisierte Runtime-Audio-Engine, verborgene Anomalien. Live in der offenen Beta.",
           stack: ["FiveM", "Lua", "Web Audio API", "JavaScript", "MariaDB", "oxmysql"]
         },
         {
