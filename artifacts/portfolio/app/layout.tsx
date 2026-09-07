@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Mono } from "next/font/google";
+import { DM_Sans, DM_Mono, Pixelify_Sans } from "next/font/google";
 import "./globals.css";
 
 // Self-hosted at build time: no render-blocking request to fonts.googleapis.com
@@ -15,6 +15,15 @@ const dmMono = DM_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-dm-mono",
+  display: "swap",
+});
+
+// Pixel/blocky display face, used only for the CraftPanel project card's
+// title — a Minecraft-look-alike without touching the trademarked font.
+const pixelifySans = Pixelify_Sans({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-pixelify",
   display: "swap",
 });
 import { Analytics } from "@vercel/analytics/next";
@@ -97,7 +106,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${dmMono.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${dmMono.variable} ${pixelifySans.variable}`}>
       <body>
         <script
           type="application/ld+json"

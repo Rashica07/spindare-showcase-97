@@ -65,6 +65,14 @@ export const translations = {
       title: "Recent projects",
       projects: [
         {
+          name: "CraftPanel",
+          type: "Desktop App",
+          status: "Live",
+          year: "2026",
+          desc: "A self-hosted Minecraft server manager built with Tauri (Rust + React). One-click setup for Vanilla, Paper, Spigot, Fabric, Forge, NeoForge, Bedrock, or a Modrinth modpack, plus a live console, RCON, scheduled backups, and signed auto-updates. Free core app, optional Premium tier. Actively shipping, currently v3.1.0.",
+          stack: ["Tauri", "Rust", "React", "TypeScript", "Tailwind CSS"]
+        },
+        {
           name: "Torre Group",
           type: "Web",
           status: "Live",
@@ -307,6 +315,14 @@ export const translations = {
       title: "Progetti recenti",
       projects: [
         {
+          name: "CraftPanel",
+          type: "Desktop App",
+          status: "Live",
+          year: "2026",
+          desc: "Un gestore di server Minecraft self-hosted realizzato con Tauri (Rust + React). Configurazione in un clic per Vanilla, Paper, Spigot, Fabric, Forge, NeoForge, Bedrock o un modpack da Modrinth, più console live, RCON, backup pianificati e aggiornamenti automatici firmati. App gratuita con un livello Premium opzionale. In sviluppo attivo, attualmente v3.1.0.",
+          stack: ["Tauri", "Rust", "React", "TypeScript", "Tailwind CSS"]
+        },
+        {
           name: "Torre Group",
           type: "Web",
           status: "Live",
@@ -499,6 +515,14 @@ export const translations = {
       title: "Projekte të fundit",
       projects: [
         {
+          name: "CraftPanel",
+          type: "Desktop App",
+          status: "Live",
+          year: "2026",
+          desc: "Një menaxhues serveri Minecraft i vetë-hostuar, ndërtuar me Tauri (Rust + React). Konfigurim me një klikim për Vanilla, Paper, Spigot, Fabric, Forge, NeoForge, Bedrock, ose një modpack nga Modrinth, plus konsolë live, RCON, backup të planifikuar dhe përditësime automatike të nënshkruara. Aplikacion bazë falas, me një nivel Premium opsional. Në zhvillim aktiv, aktualisht v3.1.0.",
+          stack: ["Tauri", "Rust", "React", "TypeScript", "Tailwind CSS"]
+        },
+        {
           name: "Torre Group",
           type: "Web",
           status: "Live",
@@ -689,6 +713,14 @@ export const translations = {
       label: "Ausgewählte Projekte",
       title: "Aktuelle Projekte",
       projects: [
+        {
+          name: "CraftPanel",
+          type: "Desktop App",
+          status: "Live",
+          year: "2026",
+          desc: "Ein selbstgehosteter Minecraft-Server-Manager, gebaut mit Tauri (Rust + React). Ein-Klick-Setup für Vanilla, Paper, Spigot, Fabric, Forge, NeoForge, Bedrock oder ein Modrinth-Modpack, dazu Live-Konsole, RCON, geplante Backups und signierte Auto-Updates. Kostenlose Kernapp mit optionalem Premium-Tarif. Aktiv in Entwicklung, derzeit v3.1.0.",
+          stack: ["Tauri", "Rust", "React", "TypeScript", "Tailwind CSS"]
+        },
         {
           name: "Torre Group",
           type: "Web",

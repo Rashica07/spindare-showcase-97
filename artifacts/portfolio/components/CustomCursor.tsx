@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useSkipDecorativeMotion } from '@/lib/device';
 
 export function CustomCursor() {
+  const skipDecorative = useSkipDecorativeMotion();
   const [variant, setVariant] = useState<'default' | 'pointer' | 'text' | 'disabled'>('default');
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
@@ -13,7 +15,7 @@ export function CustomCursor() {
   const mouseY = useMotionValue(-100);
 
   useEffect(() => {
-    if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768) {
+    if (skipDecorative || window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768) {
       return;
     }
     setIsMobile(false);
@@ -65,7 +67,7 @@ export function CustomCursor() {
       window.removeEventListener('mouseout', handleMouseLeave);
       window.removeEventListener('mouseover', handleMouseEnter);
     };
-  }, [isVisible, mouseX, mouseY]);
+  }, [isVisible, mouseX, mouseY, skipDecorative]);
 
   const dotVariants = {
     default: { 
@@ -110,7 +112,7 @@ export function CustomCursor() {
     }
   };
 
-  if (isMobile) return null;
+  if (isMobile || skipDecorative) return null;
 
   return (
     <motion.div
