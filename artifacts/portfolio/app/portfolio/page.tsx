@@ -6,9 +6,11 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
-import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo, SiFivem, SiLua, SiJavascript, SiMariadb } from "react-icons/si";
+import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo, SiFivem, SiLua, SiJavascript, SiMariadb, SiRust, SiTauri, SiTailwindcss } from "react-icons/si";
 import type { IconType } from "react-icons";
 import { usePageOverride, pick, type BlockOverrides } from "@/components/PulseSyncProvider";
+
+import craftpanelIconImg from "@/public/craftpanel-icon.webp";
 
 import spindareFeedImg from "@/public/spindare-feed.webp";
 import spindareProfileImg from "@/public/spindare-profile.webp";
@@ -41,6 +43,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 const ICON_MAP: Record<string, IconType> = {
   "React Native": SiReact, "TypeScript": SiTypescript, "Supabase": SiSupabase, "Next.js": SiNextdotjs, "Node.js": SiNodedotjs, "Expo": SiExpo,
   "FiveM": SiFivem, "Lua": SiLua, "JavaScript": SiJavascript, "MariaDB": SiMariadb,
+  "Rust": SiRust, "Tauri": SiTauri, "Tailwind CSS": SiTailwindcss, "React": SiReact,
 };
 
 const SPINDARE_SCREENS = [
@@ -110,10 +113,75 @@ export default function PortfolioPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((project, i) => {
               const StatusColor = project.status === "Live" ? "text-green-400 border-green-400/30 bg-green-400/10" : project.status === "In Development" ? "text-primary border-primary/30 bg-primary/10" : "text-muted-foreground border-muted-foreground/30";
+              const isCraftPanel = project.name === "CraftPanel";
               return (
-                <FadeUp key={project.name} delay={i * 0.08}>
-                  <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.2 }} className="group glass-card rounded-xl overflow-hidden flex flex-col hover:border-primary/30 transition-all duration-300" data-testid={`portfolio-project-${i}`}>
-                    {project.name === "Spindare" ? (
+                <FadeUp key={project.name} delay={i * 0.08} className={isCraftPanel ? "md:col-span-2" : ""}>
+                  <motion.div
+                    whileHover={{ y: -6 }}
+                    transition={{ duration: 0.2 }}
+                    className={`group glass-card overflow-hidden flex flex-col hover:border-primary/30 transition-all duration-300 ${isCraftPanel ? "" : "rounded-xl"}`}
+                    style={isCraftPanel ? {
+                      clipPath: "polygon(0 10px, 10px 10px, 10px 0, calc(100% - 10px) 0, calc(100% - 10px) 10px, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 10px calc(100% - 10px), 0 calc(100% - 10px))",
+                    } : undefined}
+                    data-testid={`portfolio-project-${i}`}
+                  >
+                    {project.name === "CraftPanel" ? (
+                      <div className="relative h-[420px] bg-gradient-to-br from-[#0a0908] to-[#1a1613] flex flex-col items-center justify-center border-b border-[#27231f] overflow-hidden p-4">
+                        {/* Restrained pixel-grid motif, in CraftPanel's own accent color */}
+                        <div
+                          className="absolute inset-0 opacity-[0.12] pointer-events-none"
+                          style={{
+                            backgroundImage: "linear-gradient(#fd9117 1px, transparent 1px), linear-gradient(90deg, #fd9117 1px, transparent 1px)",
+                            backgroundSize: "16px 16px",
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay" />
+
+                        <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+                          <div className="flex items-center gap-2">
+                            <Image src={craftpanelIconImg} alt="" width={22} height={22} className="rounded-[6px]" />
+                            <span style={{ fontFamily: "var(--font-pixelify)", color: "#f7f4f1" }} className="text-sm tracking-wide">CRAFTPANEL</span>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <a href="https://github.com/Rashica07/craftpanel" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="font-mono text-[9px] tracking-widest uppercase transition-colors inline-flex items-center gap-1" style={{ color: "#a89f92" }}>
+                              GitHub <ExternalLink size={8} />
+                            </a>
+                            <a href="https://rashica07.github.io/craftpanel-site/" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="font-mono text-[9px] tracking-widest uppercase transition-colors inline-flex items-center gap-1" style={{ color: "#fd9117" }}>
+                              Live Site <ExternalLink size={8} />
+                            </a>
+                          </div>
+                        </div>
+
+                        {/* Recreation of CraftPanel's own hero console mockup */}
+                        <div className="relative mt-11 w-[95%] max-w-[420px] rounded-md border overflow-hidden flex flex-col shadow-2xl" style={{ borderColor: "#27231f", backgroundColor: "#141210" }}>
+                          <div className="h-7 w-full flex items-center px-2.5 gap-1.5 shrink-0" style={{ backgroundColor: "#1a1613", borderBottom: "1px solid #27231f" }}>
+                            <div className="w-2 h-2 rounded-full bg-red-500/80" />
+                            <div className="w-2 h-2 rounded-full bg-yellow-500/80" />
+                            <div className="w-2 h-2 rounded-full bg-green-500/80" />
+                            <span className="ml-2 font-mono text-[9px]" style={{ color: "#756c60" }}>craftpanel &mdash; Skyblock Sunday</span>
+                          </div>
+                          <div className="flex text-[9px] font-mono" style={{ minHeight: 168 }}>
+                            <div className="w-[64px] shrink-0 flex flex-col gap-2.5 p-2.5" style={{ borderRight: "1px solid #201c19" }}>
+                              <div className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: "#fd9117" }} /><span className="h-1 rounded-full flex-1" style={{ backgroundColor: "#27231f" }} /></div>
+                              <div className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: "#3a342e" }} /><span className="h-1 rounded-full flex-1" style={{ backgroundColor: "#201c19" }} /></div>
+                              <div className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: "#3a342e" }} /><span className="h-1 rounded-full flex-1" style={{ backgroundColor: "#201c19" }} /></div>
+                            </div>
+                            <div className="flex-1 p-2.5 flex flex-col gap-1.5" style={{ color: "#a89f92" }}>
+                              <div>Starting Paper 1.21.4&hellip;</div>
+                              <div>Preparing spawn area: <span style={{ color: "#fd9117" }}>100%</span></div>
+                              <div><span style={{ color: "#4ade80" }}>Done</span> (9.4s)! For help, type &quot;help&quot;</div>
+                              <div>mossyPixel joined the game</div>
+                              <div><span style={{ color: "#fbc02d" }}>[!]</span> world backed up &mdash; scheduled</div>
+                              <div>&gt; <span className="inline-block w-1.5 h-3 align-middle animate-pulse" style={{ backgroundColor: "#f7f4f1" }} /></div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="mt-4 flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase" style={{ color: "#fd9117" }}>
+                          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: "#fd9117" }} /> v3.1.0 &middot; Live
+                        </div>
+                      </div>
+                    ) : project.name === "Spindare" ? (
                       <div className="relative h-[380px] bg-card flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
                         <div className="absolute inset-0 grid-bg opacity-15" />
                         <div className="absolute top-4 left-4 right-4 flex gap-1.5 z-10">
