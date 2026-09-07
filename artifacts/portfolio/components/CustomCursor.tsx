@@ -19,8 +19,9 @@ export function CustomCursor() {
       return;
     }
     setIsMobile(false);
-    // Keep native cursor visible, dot acts as an underlay highlight
-    // document.body.style.cursor = 'none';
+    // Only now is the dot actually rendering, so only now can the native
+    // cursor be hidden in its place (see the matching CSS rule).
+    document.body.classList.add('custom-cursor-active');
 
     const updateMousePosition = (e: MouseEvent | TouchEvent) => {
       let clientX, clientY, target;
@@ -61,7 +62,7 @@ export function CustomCursor() {
     window.addEventListener('mouseover', handleMouseEnter);
 
     return () => {
-      // document.body.style.cursor = 'auto';
+      document.body.classList.remove('custom-cursor-active');
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('touchmove', updateMousePosition);
       window.removeEventListener('mouseout', handleMouseLeave);
