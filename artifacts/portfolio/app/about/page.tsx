@@ -11,7 +11,7 @@ import {
   SiTypescript, SiJavascript, SiTailwindcss,
   SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql,
   SiExpo, SiGit, SiVercel, SiCloudflare, SiFigma, SiGithub,
-  SiTauri, SiElectron, SiRust, SiLua
+  SiTauri, SiElectron, SiRust, SiLua, SiCss, SiCplusplus
 } from "react-icons/si";
 import { Gamepad2, Settings2 } from "lucide-react";
 import type { IconType } from "react-icons";
@@ -33,7 +33,8 @@ const SKILL_ICONS: Record<string, IconType | any> = {
   "TypeScript": SiTypescript, "JavaScript": SiJavascript, "React": SiReact, "Tailwind CSS": SiTailwindcss,
   "Supabase": SiSupabase, "Next.js": SiNextdotjs, "Node.js": SiNodedotjs, "PostgreSQL": SiPostgresql, "Expo": SiExpo,
   "Git": SiGit, "Vercel": SiVercel, "Cloudflare": SiCloudflare, "Figma": SiFigma,
-  "Tauri": SiTauri, "Electron": SiElectron, "Rust": SiRust, "Neon Database": SiPostgresql, "FiveM": Gamepad2, "Lua": SiLua, "CFG": Settings2
+  "Tauri": SiTauri, "Electron": SiElectron, "Rust": SiRust, "Neon Database": SiPostgresql, "FiveM": Gamepad2, "Lua": SiLua, "CFG": Settings2,
+  "CSS": SiCss, "C++": SiCplusplus
 };
 
 export default function AboutPage() {
