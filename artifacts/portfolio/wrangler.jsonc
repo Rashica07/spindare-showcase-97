@@ -7,5 +7,9 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
-  }
+  },
+  "routes": [
+    { "pattern": "kiqa-dev.it", "custom_domain": true },
+    { "pattern": "www.kiqa-dev.it", "custom_domain": true }
+  ]
 }
