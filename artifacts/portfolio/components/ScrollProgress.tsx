@@ -1,13 +1,15 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { motion, useScroll } from 'framer-motion';
 import { useSkipDecorativeMotion } from '@/lib/device';
 
 export function ScrollProgress() {
   const skipDecorative = useSkipDecorativeMotion();
+  const isUnbrandedVariant = usePathname()?.startsWith('/site-test');
   const { scrollYProgress } = useScroll();
 
-  if (skipDecorative) return null;
+  if (skipDecorative || isUnbrandedVariant) return null;
 
   return (
     <motion.div

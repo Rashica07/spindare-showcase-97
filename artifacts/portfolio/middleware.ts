@@ -1,7 +1,25 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+// Design-preview subdomains: same Worker, same deployment, routed by hostname
+// to a separate internal route tree. This is host-based routing (every host
+// still gets its own distinct HTML at "/"), not cloaking — cloaking is
+// serving different content to the same URL depending on who's asking.
+const SUBDOMAIN_ROUTES: Record<string, string> = {
+  'new.kiqa-dev.it': '/site-new',
+  'test.kiqa-dev.it': '/site-test',
+};
+
 export function middleware(request: NextRequest) {
+  const host = (request.headers.get('host') || '').split(':')[0];
+  const routePrefix = SUBDOMAIN_ROUTES[host];
+
+  if (routePrefix && !request.nextUrl.pathname.startsWith(routePrefix)) {
+    const url = request.nextUrl.clone();
+    url.pathname = `${routePrefix}${url.pathname === '/' ? '' : url.pathname}`;
+    return NextResponse.rewrite(url);
+  }
+
   // llms.txt is served as a plain file at /llms.txt (linked from robots.txt) and
   // is not swapped in for "/" based on User-Agent. Serving different content at
   // the same URL depending on who's asking is cloaking — it looks the same to a
