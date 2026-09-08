@@ -17,6 +17,11 @@ const LANGS: { code: Lang; label: string }[] = [
 export function Navbar() {
   const { t, lang, setLang } = useLanguage();
   const location = usePathname();
+  // The design-preview subdomains (new.*, test.*) route to their own
+  // internal tree and ship their own nav — the default chrome would give
+  // away the trick and, for test.kiqa-dev.it, actively clash with a
+  // deliberately different visual language.
+  const isPreviewVariant = location?.startsWith('/site-new') || location?.startsWith('/site-test');
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -68,6 +73,8 @@ export function Navbar() {
     return () => window.removeEventListener("resize", measureIndicator);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeHref]);
+
+  if (isPreviewVariant) return null;
 
   return (
     <>

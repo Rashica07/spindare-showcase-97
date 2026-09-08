@@ -1,11 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useSkipDecorativeMotion } from '@/lib/device';
 
 export function CustomCursor() {
   const skipDecorative = useSkipDecorativeMotion();
+  // test.kiqa-dev.it is a deliberately different visual language — the
+  // brand-orange dot cursor would clash with it.
+  const isUnbrandedVariant = usePathname()?.startsWith('/site-test');
   const [variant, setVariant] = useState<'default' | 'pointer' | 'text' | 'disabled'>('default');
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
@@ -15,7 +19,7 @@ export function CustomCursor() {
   const mouseY = useMotionValue(-100);
 
   useEffect(() => {
-    if (skipDecorative || window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768) {
+    if (skipDecorative || isUnbrandedVariant || window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768) {
       return;
     }
     setIsMobile(false);
@@ -68,7 +72,7 @@ export function CustomCursor() {
       window.removeEventListener('mouseout', handleMouseLeave);
       window.removeEventListener('mouseover', handleMouseEnter);
     };
-  }, [isVisible, mouseX, mouseY, skipDecorative]);
+  }, [isVisible, mouseX, mouseY, skipDecorative, isUnbrandedVariant]);
 
   const dotVariants = {
     default: { 
@@ -113,7 +117,7 @@ export function CustomCursor() {
     }
   };
 
-  if (isMobile || skipDecorative) return null;
+  if (isMobile || skipDecorative || isUnbrandedVariant) return null;
 
   return (
     <motion.div
