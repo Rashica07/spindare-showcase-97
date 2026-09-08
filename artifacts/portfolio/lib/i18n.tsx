@@ -162,7 +162,8 @@ export const translations = {
         "I'm a self-employed developer based between Kosovo and Italy. I build mobile apps, websites, and web platforms for startups and business owners.",
         "Right now I'm co-leading product development on Spindare, a social app with hundreds of screens and an iOS launch planned for September 2026.",
         "A growing part of my work is tourism and hospitality tech: LuxHotelSystem for hotel management, and Traversar's TravelMe and Lario Go for trip planning. Spindare's latest release adds a map-based challenge discovery feature with sponsored local businesses worldwide. I'm actively open to new co-partnerships in this space.",
-        "Through KIQA DEV I work directly with founders and business owners, handling the whole build from first design to launch, so they don't have to coordinate several agencies or freelancers."
+        "Through KIQA DEV I work directly with founders and business owners, handling the whole build from first design to launch, so they don't have to coordinate several agencies or freelancers.",
+        "I'm also actively going professional in Swift, Tauri, Rust, Lua, CSS, and C++, deepening my native and systems-level skills alongside my usual web and mobile work."
       ],
       skills: [
         { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
@@ -170,7 +171,8 @@ export const translations = {
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
         { name: "Backend & Data", items: ["Supabase", "PostgreSQL", "Neon Database", "Node.js", "Rust", "REST APIs", "Real-time sync"] },
         { name: "Desktop & Games", items: ["Tauri", "Electron", "FiveM", "Lua", "CFG"] },
-        { name: "Tools", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
+        { name: "Tools", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] },
+        { name: "Currently Going Pro In", items: ["Swift", "Tauri", "Rust", "Lua", "CSS", "C++"] }
       ],
       experience: [
         { year: "2025–Now", role: "Co-Founder & Lead Developer, Spindare", desc: "Co-leading the product build for a social rewards app: hundreds of screens, a shared design system, and an iOS launch set for September 2026." },
@@ -391,7 +393,8 @@ export const translations = {
         "Sono uno sviluppatore freelance con base tra il Kosovo e l'Italia. Creo app mobile, siti web e piattaforme web per startup e imprenditori.",
         "In questo momento sto co-guidando lo sviluppo di Spindare, un'app social con centinaia di schermate e un lancio su iOS previsto per settembre 2026.",
         "Una parte crescente del mio lavoro riguarda la tecnologia per il turismo e l'ospitalità: LuxHotelSystem per la gestione alberghiera, e TravelMe e Lario Go di Traversar per la pianificazione dei viaggi. L'ultima versione di Spindare aggiunge una funzione di scoperta delle sfide basata su mappa, con attività locali sponsorizzate in tutto il mondo. Sono aperto a nuove collaborazioni in questo ambito.",
-        "Attraverso KIQA DEV lavoro direttamente con fondatori e imprenditori, gestendo l'intera realizzazione dal primo design alla messa online, così non devono coordinare più agenzie o freelancer."
+        "Attraverso KIQA DEV lavoro direttamente con fondatori e imprenditori, gestendo l'intera realizzazione dal primo design alla messa online, così non devono coordinare più agenzie o freelancer.",
+        "Sto anche diventando professionale in Swift, Tauri, Rust, Lua, CSS e C++, approfondendo le mie competenze native e a basso livello accanto al consueto lavoro web e mobile."
       ],
       skills: [
         { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
@@ -399,7 +402,8 @@ export const translations = {
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
         { name: "Backend & Dati", items: ["Supabase", "PostgreSQL", "Neon Database", "Node.js", "Rust", "REST APIs", "Sincronizzazione real-time"] },
         { name: "Desktop & Giochi", items: ["Tauri", "Electron", "FiveM", "Lua", "CFG"] },
-        { name: "Strumenti", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
+        { name: "Strumenti", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] },
+        { name: "Sto Diventando Professionista In", items: ["Swift", "Tauri", "Rust", "Lua", "CSS", "C++"] }
       ],
       experience: [
         { year: "2025–Oggi", role: "Co-Fondatore & Lead Developer, Spindare", desc: "Co-guida dello sviluppo prodotto per un'app social di ricompense: centinaia di schermate, un design system condiviso e lancio iOS previsto a settembre 2026." },
@@ -591,7 +595,8 @@ export const translations = {
         "Jam një zhvillues i pavarur me bazë mes Kosovës dhe Italisë. Ndërtoj aplikacione mobile, faqe web dhe platforma web për startup-e dhe pronarë biznesi.",
         "Tani jam duke bashkë-udhëhequr zhvillimin e produktit në Spindare, një aplikacion social me qindra ekrane dhe lansim në iOS të planifikuar për shtator 2026.",
         "Një pjesë në rritje e punës sime është teknologjia për turizmin dhe mikpritjen: LuxHotelSystem për menaxhimin e hoteleve, dhe TravelMe e Lario Go të Traversar për planifikimin e udhëtimeve. Versioni më i fundit i Spindare shton një funksion zbulimi sfidash bazuar në hartë, me biznese lokale të sponsorizuara në mbarë botën. Jam i hapur për bashkëpunime të reja në këtë fushë.",
-        "Përmes KIQA DEV punoj drejtpërdrejt me themelues dhe pronarë biznesi, duke trajtuar të gjithë ndërtimin nga dizajni i parë deri te publikimi, kështu që nuk u duhet të koordinojnë disa agjenci apo freelancer-ë."
+        "Përmes KIQA DEV punoj drejtpërdrejt me themelues dhe pronarë biznesi, duke trajtuar të gjithë ndërtimin nga dizajni i parë deri te publikimi, kështu që nuk u duhet të koordinojnë disa agjenci apo freelancer-ë.",
+        "Gjithashtu jam duke u bërë profesionist në Swift, Tauri, Rust, Lua, CSS dhe C++, duke thelluar aftësitë e mia native dhe në nivel sistemi krahas punës sime të zakonshme në web dhe mobile."
       ],
       skills: [
         { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
@@ -599,7 +604,8 @@ export const translations = {
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
         { name: "Backend & Të dhëna", items: ["Supabase", "PostgreSQL", "Neon Database", "Node.js", "Rust", "REST APIs", "Sinkronizim real-time"] },
         { name: "Desktop & Lojëra", items: ["Tauri", "Electron", "FiveM", "Lua", "CFG"] },
-        { name: "Mjete", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
+        { name: "Mjete", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] },
+        { name: "Duke u Bërë Profesionist Në", items: ["Swift", "Tauri", "Rust", "Lua", "CSS", "C++"] }
       ],
       experience: [
         { year: "2025–Tani", role: "Bashkë-themelues & Zhvillues kryesor, Spindare", desc: "Bashkëdrejtim i ndërtimit të produktit për një aplikacion social shpërblimesh: qindra ekrane, një design system i përbashkët dhe lansim në iOS në shtator 2026." },
@@ -790,7 +796,8 @@ export const translations = {
         "Ich bin ein selbstständiger Entwickler mit Basis zwischen Kosovo und Italien. Ich baue mobile Apps, Websites und Web-Plattformen für Startups und Unternehmer.",
         "Gerade leite ich gemeinsam die Produktentwicklung bei Spindare, einer Social-App mit hunderten Bildschirmen und einem geplanten iOS-Launch im September 2026.",
         "Ein wachsender Teil meiner Arbeit ist Tourismus- und Hospitality-Technologie: LuxHotelSystem für Hotelmanagement sowie TravelMe und Lario Go von Traversar für die Reiseplanung. Das neueste Spindare-Update fügt eine kartenbasierte Challenge-Entdeckung mit gesponserten lokalen Unternehmen weltweit hinzu. Ich bin offen für neue Partnerschaften in diesem Bereich.",
-        "Über KIQA DEV arbeite ich direkt mit Gründern und Unternehmern und übernehme den gesamten Bau vom ersten Design bis zum Go-Live, damit sie nicht mehrere Agenturen oder Freelancer koordinieren müssen."
+        "Über KIQA DEV arbeite ich direkt mit Gründern und Unternehmern und übernehme den gesamten Bau vom ersten Design bis zum Go-Live, damit sie nicht mehrere Agenturen oder Freelancer koordinieren müssen.",
+        "Außerdem werde ich gerade professionell in Swift, Tauri, Rust, Lua, CSS und C++, und vertiefe meine nativen und systemnahen Fähigkeiten neben meiner üblichen Web- und Mobile-Arbeit."
       ],
       skills: [
         { name: "Mobile", items: ["Swift", "SwiftUI", "iOS", "Xcode", "App Store Deployment"] },
@@ -798,7 +805,8 @@ export const translations = {
         { name: "Frontend", items: ["TypeScript", "JavaScript", "React", "Next.js", "Tailwind CSS"] },
         { name: "Backend & Daten", items: ["Supabase", "PostgreSQL", "Neon Database", "Node.js", "Rust", "REST APIs", "Echtzeit-Synchronisation"] },
         { name: "Desktop & Spiele", items: ["Tauri", "Electron", "FiveM", "Lua", "CFG"] },
-        { name: "Werkzeuge", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] }
+        { name: "Werkzeuge", items: ["Git", "Vercel", "Cloudflare", "Figma", "Stream Chat"] },
+        { name: "Werde Gerade Professionell In", items: ["Swift", "Tauri", "Rust", "Lua", "CSS", "C++"] }
       ],
       experience: [
         { year: "2025–Jetzt", role: "Mitgründer & Lead Developer, Spindare", desc: "Mitleitung des Produktbaus für eine Social-Rewards-App: hunderte Screens, ein gemeinsames Design-System und iOS-Launch im September 2026." },
