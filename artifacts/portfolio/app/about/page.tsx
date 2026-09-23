@@ -1,8 +1,7 @@
 'use client';
 
-import { useRef } from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
@@ -16,16 +15,8 @@ import {
 import { Gamepad2, Settings2 } from "lucide-react";
 import type { IconType } from "react-icons";
 import { usePageOverride, pick, pickList, type BlockOverrides } from "@/components/PulseSyncProvider";
+import { FadeUp } from "@/components/FadeUp";
 
-function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.35, delay, ease: [0.22, 1, 0.36, 1] }} className={className}>
-      {children}
-    </motion.div>
-  );
-}
 
 const SKILL_ICONS: Record<string, IconType | any> = {
   "Swift": SiSwift, "SwiftUI": SiApple, "iOS": SiApple, "Xcode": SiXcode, "App Store Deployment": SiAppstore,
@@ -45,11 +36,11 @@ export default function AboutPage() {
     <div className="min-h-screen bg-background text-foreground">
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="about-hero">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
+          <div className="hero-in">
             <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'label', t.about.label)}</span>
             <h1 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.about.title)}</h1>
             <p className="mt-3 text-muted-foreground text-lg">{pick(overrides, 'sub', t.about.sub)}</p>
-          </motion.div>
+          </div>
         </div>
       </section>
       <section className="py-20 border-b border-border/40" data-testid="about-bio">

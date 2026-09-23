@@ -1,8 +1,8 @@
 'use client';
 
 import Image, { type StaticImageData } from "next/image";
-import { useState, useRef, useEffect } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
@@ -29,16 +29,8 @@ import luxhotel1Img from "@/public/luxhotel-1.webp";
 import luxhotel2Img from "@/public/luxhotel-2.webp";
 import luxhotel3Img from "@/public/luxhotel-3.webp";
 import luxhotel4Img from "@/public/luxhotel-4.webp";
+import { FadeUp } from "@/components/FadeUp";
 
-function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.35, delay, ease: [0.22, 1, 0.36, 1] }} className={className}>
-      {children}
-    </motion.div>
-  );
-}
 
 const ICON_MAP: Record<string, IconType> = {
   "React Native": SiReact, "TypeScript": SiTypescript, "Supabase": SiSupabase, "Next.js": SiNextdotjs, "Node.js": SiNodedotjs, "Expo": SiExpo,
@@ -94,22 +86,22 @@ export default function PortfolioPage() {
     <div className="min-h-screen bg-background text-foreground">
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="portfolio-hero">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
+          <div className="hero-in">
             <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'label', t.work.label)}</span>
             <h1 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.work.title)}</h1>
-          </motion.div>
+          </div>
         </div>
       </section>
       <section className="py-16" data-testid="portfolio-grid">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="flex gap-2 mb-12" data-testid="portfolio-filters">
+          <div className="js-only flex flex-wrap gap-2 mb-12" data-testid="portfolio-filters">
             {allFilters.map((f) => (
               <button key={f} onClick={() => setActive(f)} data-testid={`filter-${f.toLowerCase()}`}
                 className={`font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-lg border transition-all duration-200 ${active === f ? "bg-primary text-primary-foreground border-primary" : "text-muted-foreground border-border/60 hover:text-foreground hover:border-border"}`}>
                 {f}
               </button>
             ))}
-          </motion.div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((project, i) => {
               const StatusColor = project.status === "Live" ? "text-green-400 border-green-400/30 bg-green-400/10" : project.status === "In Development" ? "text-primary border-primary/30 bg-primary/10" : "text-muted-foreground border-muted-foreground/30";

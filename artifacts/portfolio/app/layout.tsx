@@ -79,10 +79,19 @@ const JSON_LD = [
   },
 ];
 
+// Runs before first paint. Plain ES5 on purpose: it has to work in browsers
+// too old to run the app bundle. See the progressive-enhancement block at the
+// end of globals.css for what the classes do; <Providers> marks hydration.
+const JS_DETECT = `(function(){var d=document.documentElement;d.className+=' js';setTimeout(function(){if(!window.__kiqaHydrated){d.className+=' js-failed js-reveal';}},4000);})();`;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://kiqa-dev.it"),
-  title: "Kristian Gjergji | Kiqa DEV | Software Engineer",
+  title: {
+    default: "Kristian Gjergji | Kiqa DEV | Software Engineer",
+    template: "%s | KIQA DEV",
+  },
   description: DESCRIPTION,
+  alternates: { canonical: "/" },
   robots: "index, follow",
   openGraph: {
     title: "Kristian Gjergji | Kiqa DEV | Software Engineer",
@@ -106,7 +115,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${dmMono.variable} ${pixelifySans.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${dmMono.variable} ${pixelifySans.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: JS_DETECT }} />
+      </head>
       <body>
         <script
           type="application/ld+json"

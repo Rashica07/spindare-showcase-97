@@ -1,12 +1,12 @@
 'use client';
 
-import { useRef } from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
 import { usePageOverride, pick, type BlockOverrides } from "@/components/PulseSyncProvider";
+import { FadeUp } from "@/components/FadeUp";
 
 const SERVICES_FAQ_JSON_LD = {
   "@context": "https://schema.org",
@@ -40,15 +40,6 @@ const SERVICES_FAQ_JSON_LD = {
   ],
 };
 
-function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.35, delay, ease: [0.22, 1, 0.36, 1] }} className={className}>
-      {children}
-    </motion.div>
-  );
-}
 
 export default function ServicesPage() {
   const { t } = useLanguage();
@@ -62,11 +53,11 @@ export default function ServicesPage() {
       />
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="services-hero">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
+          <div className="hero-in">
             <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'label', t.services.label)}</span>
             <h1 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.services.title)}</h1>
             <p className="mt-4 text-muted-foreground text-lg max-w-xl leading-relaxed">{pick(overrides, 'sub', t.services.sub)}</p>
-          </motion.div>
+          </div>
         </div>
       </section>
       <section className="py-20" data-testid="services-grid">
