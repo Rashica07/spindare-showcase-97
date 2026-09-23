@@ -1,7 +1,6 @@
 'use client';
 
 import { Footer } from "@/components/Footer";
-import { motion } from "framer-motion";
 import { PolicyAccordion } from "@/components/PolicyAccordion";
 import { useLanguage } from "@/lib/i18n";
 import { legalTranslations } from "@/lib/legal-translations";
@@ -13,11 +12,7 @@ export default function TosPage() {
   return (
     <main className="min-h-screen bg-background">
       <div className="pt-32 pb-20 max-w-3xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
+        <div className="hero-in">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
             {content.title}
           </h1>
@@ -42,7 +37,7 @@ export default function TosPage() {
               </PolicyAccordion>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
       <Footer />
     </main>

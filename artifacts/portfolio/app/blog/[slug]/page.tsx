@@ -142,11 +142,7 @@ export default function BlogPostPage() {
     <div className="min-h-screen bg-background text-foreground">
       <section className="page-hero-glow pt-32 pb-12 border-b border-border/40" data-testid="blog-post-hero">
         <div className="max-w-3xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <div className="hero-in">
             <Link href="/blog" data-testid="back-to-blog">
               <motion.span
                 whileHover={{ x: -4 }}
@@ -179,7 +175,7 @@ export default function BlogPostPage() {
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
               {meta.excerpt}
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

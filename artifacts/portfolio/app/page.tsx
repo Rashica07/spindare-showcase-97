@@ -1,27 +1,16 @@
 'use client';
 
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import Link from "next/link";
-import { motion, useInView, useReducedMotion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { SiReact, SiSwift, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql, SiExpo } from "react-icons/si";
 import { useLanguage } from "@/lib/i18n";
 import { DelayedHeroCanvas } from "@/components/DelayedHeroCanvas";
 import { Footer } from "@/components/Footer";
-import { usePageOverride, type SiteBlock, type BlockOverrides, pick, pickList } from "@/components/PulseSyncProvider";
 import { useIsActive, useSkipDecorativeMotion } from "@/lib/device";
+import { FadeUp } from "@/components/FadeUp";
 
-function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-  const reduced = useReducedMotion();
-  if (reduced) return <div className={className}>{children}</div>;
-  return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.35, delay, ease: [0.22, 1, 0.36, 1] }} className={className}>
-      {children}
-    </motion.div>
-  );
-}
 
 const STACK_ICONS = [
   { Icon: SiSwift, label: "Swift", color: "#F05138" },
@@ -41,27 +30,17 @@ const PROJECT_URLS: Record<string, string> = {
   "LuxHotelSystem": "https://luxhotelsystem.com",
 };
 
-const DEFAULT_SECTION_ORDER = [
-  "kiqa-hero",
-  "kiqa-services",
-  "kiqa-work",
-  "kiqa-process",
-  "kiqa-stack",
-  "kiqa-blog",
-  "kiqa-funnel",
-] as const;
+
+const primaryBtn = "inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground text-sm font-semibold rounded-lg glow-orange-sm hover:bg-primary/90 transition-colors";
+const secondaryBtn = "inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3.5 border border-border/60 text-foreground text-sm font-medium rounded-lg hover:bg-card transition-colors";
 
 export default function HomePage() {
   const { t } = useLanguage();
-  const [blogIndex, setBlogIndex] = useState(0);
-  const [blogDirection, setBlogDirection] = useState(1);
   const tickerRef = useRef<HTMLElement>(null);
   const tickerActive = useIsActive(tickerRef);
   const skipMotion = useSkipDecorativeMotion();
   const tickerRunning = tickerActive && !skipMotion;
   const blogPosts = t.blog.posts;
-  const nextBlog = () => { setBlogDirection(1); setBlogIndex((prev) => (prev + 1) % blogPosts.length); };
-  const prevBlog = () => { setBlogDirection(-1); setBlogIndex((prev) => (prev - 1 + blogPosts.length) % blogPosts.length); };
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -72,37 +51,33 @@ export default function HomePage() {
         {/* Keeps the contour field from running through the headline column. */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/75 to-transparent pointer-events-none z-10" />
         <div className="relative z-20 max-w-7xl mx-auto px-6 pt-24 pb-12 sm:pt-32 sm:pb-16 w-full">
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
-            <span className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground tracking-widest uppercase border border-border/60 rounded px-4 py-1.5 mb-4 sm:mb-10" data-testid="hero-badge">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="hero-in">
+            <span className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-medium text-muted-foreground tracking-wider sm:tracking-widest uppercase border border-border/60 rounded-lg px-3 sm:px-4 py-1.5 mb-5 sm:mb-10" data-testid="hero-badge">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
               {t.hero.badge}
             </span>
-          </motion.div>
-          <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.05, ease: [0.22, 1, 0.36, 1] }} className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.08] sm:leading-[1.02] tracking-tight max-w-5xl" data-testid="hero-headline">
+          </div>
+          <h1 className="hero-in text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.05] sm:leading-[1.02] tracking-tight max-w-5xl" style={{ animationDelay: "50ms" }} data-testid="hero-headline">
             <span className="text-foreground">{t.hero.h1Line1} </span>
             <span className="text-gradient">{t.hero.h1Line2}</span>
             <br />
             <span className="text-foreground">{t.hero.h1Line3} </span>
             <span className="text-foreground">{t.hero.h1Line4}</span>
-          </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.12, ease: [0.22, 1, 0.36, 1] }} className="mt-4 sm:mt-8 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed" data-testid="hero-sub">
+          </h1>
+          <p className="hero-in mt-5 sm:mt-8 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed" style={{ animationDelay: "120ms" }} data-testid="hero-sub">
             {t.hero.sub}
-          </motion.p>
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }} className="mt-6 sm:mt-10 flex flex-col sm:flex-row gap-4">
-            <Link href="/contact" data-testid="hero-cta-primary">
-              <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground text-sm font-semibold rounded glow-orange-sm hover:bg-primary/90 transition-all cursor-pointer">
-                {t.hero.cta1} <ArrowRight size={16} />
-              </motion.span>
+          </p>
+          <div className="hero-in mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4" style={{ animationDelay: "180ms" }}>
+            <Link href="/contact" data-testid="hero-cta-primary" className={primaryBtn}>
+              {t.hero.cta1} <ArrowRight size={16} aria-hidden="true" />
             </Link>
-            <Link href="/portfolio" data-testid="hero-cta-secondary">
-              <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center gap-2 px-6 py-3.5 border border-border/60 text-foreground text-sm font-medium rounded-lg hover:bg-card transition-all cursor-pointer">
-                {t.hero.cta2} <ChevronRight size={16} className="text-muted-foreground" />
-              </motion.span>
+            <Link href="/portfolio" data-testid="hero-cta-secondary" className={secondaryBtn}>
+              {t.hero.cta2} <ChevronRight size={16} className="text-muted-foreground" aria-hidden="true" />
             </Link>
-          </motion.div>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.24, duration: 0.4 }} className="mt-6 font-mono text-xs text-muted-foreground tracking-widest" data-testid="hero-available">
+          </div>
+          <p className="hero-in mt-6 font-mono text-xs text-muted-foreground tracking-widest" style={{ animationDelay: "240ms" }} data-testid="hero-available">
             {t.hero.available}
-          </motion.p>
+          </p>
         </div>
       </section>
 
@@ -115,18 +90,18 @@ export default function HomePage() {
               <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">{t.services.title}</h2>
             </div>
             <Link href="/services" className="hidden md:block">
-              <motion.span whileHover={{ x: 4 }} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                {t.page.allServices} <ArrowRight size={13} />
-              </motion.span>
+              <span className="inline-flex items-center gap-1.5 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {t.page.allServices} <ArrowRight size={13} aria-hidden="true" />
+              </span>
             </Link>
           </FadeUp>
           <div className="divide-y divide-border/40">
             {t.services.items.map((svc, i) => (
               <FadeUp key={i} delay={i * 0.06}>
                 <Link href="/services">
-                  <motion.div whileHover={{ x: 6 }} transition={{ duration: 0.18 }} className="group flex items-center justify-between gap-6 py-6 cursor-pointer" data-testid={`service-row-${i}`}>
+                  <div className="group flex items-center justify-between gap-6 py-6 transition-transform duration-200 hover:translate-x-1.5" data-testid={`service-row-${i}`}>
                     <div className="flex items-center gap-6">
-                      <span className="font-mono text-xs text-muted-foreground/30 w-6 shrink-0 select-none">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="font-mono text-xs text-muted-foreground/70 w-6 shrink-0 select-none">{String(i + 1).padStart(2, "0")}</span>
                       <div>
                         <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{svc.name}</h3>
                         <p className="text-sm text-muted-foreground mt-0.5">{svc.tagline}</p>
@@ -134,9 +109,9 @@ export default function HomePage() {
                     </div>
                     <div className="flex items-center gap-5 shrink-0">
                       <span className="font-mono text-xs text-muted-foreground hidden sm:block">{svc.timeline}</span>
-                      <ChevronRight size={15} className="text-muted-foreground/30 group-hover:text-primary transition-colors" />
+                      <ChevronRight size={15} className="text-muted-foreground/60 group-hover:text-primary transition-colors" aria-hidden="true" />
                     </div>
-                  </motion.div>
+                  </div>
                 </Link>
               </FadeUp>
             ))}
@@ -186,9 +161,9 @@ export default function HomePage() {
           </div>
           <FadeUp className="mt-8 text-center">
             <Link href="/portfolio" data-testid="work-view-all">
-              <motion.span whileHover={{ scale: 1.02 }} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/60 rounded-lg px-5 py-3">
-                {t.page.viewAllProjects} <ArrowRight size={14} />
-              </motion.span>
+              <span className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground hover:bg-card transition-colors border border-border/60 rounded-lg px-5 py-3">
+                {t.page.viewAllProjects} <ArrowRight size={14} aria-hidden="true" />
+              </span>
             </Link>
           </FadeUp>
         </div>
@@ -221,9 +196,9 @@ export default function HomePage() {
           <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
           <motion.div animate={tickerRunning ? { x: ["0%", "-50%"] } : { x: "0%" }} transition={tickerRunning ? { duration: 50, repeat: Infinity, ease: "linear" } : { duration: 0 }} className="flex gap-10 w-max">
-            {[...Array(12)].flatMap(() => STACK_ICONS).map((item, i) => (
+            {[...Array(4)].flatMap(() => STACK_ICONS).map((item, i) => (
               <div key={i} className="flex items-center gap-2.5 opacity-60 hover:opacity-100 transition-opacity">
-                <item.Icon size={20} style={{ color: item.color }} title={item.label} aria-hidden="true" />
+                <item.Icon size={20} style={{ color: item.color }} aria-hidden="true" />
                 <span className="font-mono text-xs text-muted-foreground whitespace-nowrap">{item.label}</span>
               </div>
             ))}
@@ -239,37 +214,24 @@ export default function HomePage() {
               <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.blog.label}</span>
               <h2 className="mt-4 text-4xl font-bold tracking-tight">{t.blog.latestNotes}</h2>
             </div>
-            <Link href="/blog">
-              <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer font-medium">
-                {t.blog.viewAllWriting} <ArrowRight size={13} />
-              </span>
+            <Link href="/blog" className="inline-flex items-center gap-1.5 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors font-medium">
+              {t.blog.viewAllWriting} <ArrowRight size={13} aria-hidden="true" />
             </Link>
           </div>
-          <div className="relative glass-card rounded-xl p-8 md:p-10 min-h-[300px] overflow-hidden flex flex-col justify-center">
-            <div className="absolute right-6 top-6 flex gap-2 z-20">
-              <button onClick={prevBlog} className="w-10 h-10 rounded-lg border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all cursor-pointer bg-card/60 backdrop-blur-sm" aria-label="Previous Post"><ChevronLeft size={18} /></button>
-              <button onClick={nextBlog} className="w-10 h-10 rounded-lg border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all cursor-pointer bg-card/60 backdrop-blur-sm" aria-label="Next Post"><ChevronRight size={18} /></button>
-            </div>
-            <AnimatePresence mode="wait" custom={blogDirection}>
-              {blogPosts && blogPosts.length > 0 && (
-                <motion.div key={blogIndex} custom={blogDirection} initial={{ opacity: 0, x: blogDirection * 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: blogDirection * -20 }} transition={{ duration: 0.25, ease: "easeInOut" }} className="w-full pr-24">
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4">
-                    <span className="font-mono text-xs px-2.5 py-1 rounded-full border border-primary/30 text-primary bg-primary/10 whitespace-nowrap shrink-0">{blogPosts[blogIndex].category}</span>
-                    <span className="font-mono text-xs text-muted-foreground whitespace-nowrap">{blogPosts[blogIndex].date}</span>
-                    <span className="font-mono text-xs text-muted-foreground whitespace-nowrap">· {blogPosts[blogIndex].read} {t.blog.minRead}</span>
+          <div className="divide-y divide-border/40 border-y border-border/40">
+            {blogPosts.slice(0, 3).map((post, i) => (
+              <FadeUp key={post.slug} delay={i * 0.05}>
+                <Link href={`/blog/${post.slug}`} className="group block py-7" data-testid={`home-blog-${i}`}>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3">
+                    <span className="font-mono text-xs px-2.5 py-1 rounded-full border border-primary/30 text-primary bg-primary/10 whitespace-nowrap">{post.category}</span>
+                    <span className="font-mono text-xs text-muted-foreground whitespace-nowrap">{post.date}</span>
+                    <span className="font-mono text-xs text-muted-foreground whitespace-nowrap">· {post.read} {t.blog.minRead}</span>
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-snug">{blogPosts[blogIndex].title}</h3>
-                  <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{blogPosts[blogIndex].excerpt}</p>
-                  <div className="mt-8">
-                    <Link href={`/blog/${blogPosts[blogIndex].slug}`}>
-                      <motion.span whileHover={{ x: 4 }} className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary cursor-pointer">
-                        {t.blog.readArticle} <ArrowRight size={12} />
-                      </motion.span>
-                    </Link>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  <h3 className="text-lg md:text-xl font-semibold text-foreground leading-snug group-hover:text-primary transition-colors">{post.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed max-w-2xl">{post.excerpt}</p>
+                </Link>
+              </FadeUp>
+            ))}
           </div>
         </div>
       </section>
@@ -278,15 +240,13 @@ export default function HomePage() {
       <section className="py-28 border-t border-border/40 bg-card/20" data-testid="section-funnel">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <FadeUp>
-            <div className="glass-card rounded-2xl p-12 md:p-16 border-glow">
+            <div className="glass-card rounded-2xl px-6 py-12 sm:p-12 md:p-16 border-glow">
               <span className="font-mono text-xs text-primary tracking-widest uppercase">{t.funnel.label}</span>
               <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight">{t.funnel.title}</h2>
               <p className="mt-6 text-muted-foreground leading-relaxed text-lg max-w-xl mx-auto">{t.funnel.sub}</p>
               <div className="mt-10 flex justify-center">
-                <Link href="/contact" data-testid="hero-cta-funnel-btn">
-                  <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg text-sm tracking-wide hover:bg-primary/90 transition-all glow-orange-sm cursor-pointer shadow-lg">
-                    {t.funnel.cta} <ArrowRight size={16} />
-                  </motion.span>
+                <Link href="/contact" data-testid="hero-cta-funnel-btn" className={primaryBtn}>
+                  {t.funnel.cta} <ArrowRight size={16} aria-hidden="true" />
                 </Link>
               </div>
             </div>

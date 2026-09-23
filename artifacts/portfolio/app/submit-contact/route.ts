@@ -3,113 +3,102 @@ import { Resend } from "resend";
 
 const resendApiKey = process.env.RESEND_KEY || process.env.RESEND_API_KEY;
 const resendFrom = process.env.RESEND_FROM || "onboarding@resend.dev";
-const defaultRecipient = process.env.RESEND_TO || process.env.CONTACT_EMAIL || "newkiqaa@gmail.com";
-const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
-const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
-const twilioFrom = process.env.TWILIO_FROM;
+const recipient = process.env.RESEND_TO || process.env.CONTACT_EMAIL || "newkiqaa@gmail.com";
 
-function isEmail(value: unknown): value is string {
-  return typeof value === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+const LIMITS = { name: 120, email: 200, service: 80, timeline: 80, description: 5000 } as const;
+type Field = keyof typeof LIMITS;
+
+function isEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-function isPhone(value: unknown): value is string {
-  return typeof value === "string" && /^\+?[0-9\s().-]{7,15}$/.test(value);
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
-async function sendSms(phone: string, message: string) {
-  if (!twilioAccountSid || !twilioAuthToken || !twilioFrom) {
-    return false;
-  }
-
-  const body = new URLSearchParams({
-    From: twilioFrom,
-    To: phone,
-    Body: message,
-  });
-
-  const response = await fetch(
-    `https://api.twilio.com/2010-04-01/Accounts/${twilioAccountSid}/Messages.json`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${Buffer.from(`${twilioAccountSid}:${twilioAuthToken}`).toString("base64")}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: body.toString(),
-    },
-  );
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Twilio SMS failed: ${response.status} ${errorText}`);
-  }
-
-  return true;
+function clean(value: unknown, field: Field) {
+  return typeof value === "string" ? value.trim().slice(0, LIMITS[field]) : "";
 }
 
+/**
+ * Accepts JSON from the intake chat and a plain urlencoded/multipart POST
+ * from <ContactForm>, the no-JavaScript fallback. Form posts get a redirect
+ * to a result page instead of a JSON body.
+ */
 export async function POST(req: NextRequest) {
+  const isJson = (req.headers.get("content-type") || "").includes("application/json");
+
+  const respond = (ok: boolean, status = 200) => {
+    if (isJson) {
+      return ok
+        ? NextResponse.json({ success: true })
+        : NextResponse.json({ error: "Unable to send contact message" }, { status });
+    }
+    // Relative Location: req.url can carry the bind address (0.0.0.0) rather
+    // than the public host, depending on how the server is started.
+    return new NextResponse(null, { status: 303, headers: { Location: `/contact/sent${ok ? "" : "?error=1"}` } });
+  };
+
+  let body: Record<string, unknown>;
   try {
-    const body = await req.json();
-    const name = typeof body.name === "string" ? body.name.trim() : "";
-    const contactMethod = body.contactMethod === "phone" ? "phone" : "email";
-    const contactValue = typeof body.contactValue === "string" ? body.contactValue.trim() : "";
-    const service = typeof body.service === "string" ? body.service : "";
-    const timeline = typeof body.timeline === "string" ? body.timeline : "";
-    const description = typeof body.description === "string" ? body.description : "";
-    const rewrittenDescription = typeof body.rewrittenDescription === "string" && body.rewrittenDescription.trim()
-      ? body.rewrittenDescription.trim()
-      : description;
+    body = isJson ? await req.json() : Object.fromEntries(await req.formData());
+  } catch {
+    return respond(false, 400);
+  }
 
-    const recipient = defaultRecipient;
+  // Honeypot: a field real visitors never see. Pretend it worked so bots
+  // don't learn to skip it.
+  if (typeof body.website === "string" && body.website.trim()) {
+    return respond(true);
+  }
 
-    const subject = `New website contact from ${name || "a visitor"}`;
-    const text = [
-      `Name: ${name || "Not provided"}`,
-      `Preferred contact: ${contactMethod}`,
-      `Contact value: ${contactValue || "Not provided"}`,
-      `Service: ${service || "Not provided"}`,
-      `Timeline: ${timeline || "Not provided"}`,
-      `Original request: ${description || "Not provided"}`,
-      `Clarified request: ${rewrittenDescription}`,
-    ].join("\n");
+  const data = {
+    name: clean(body.name, "name"),
+    // `contactValue` is what older versions of the chat sent.
+    email: clean(body.email ?? body.contactValue, "email"),
+    service: clean(body.service, "service"),
+    timeline: clean(body.timeline, "timeline"),
+    description: clean(body.description, "description"),
+  };
 
-    const html = `
-      <div style="font-family: sans-serif; line-height: 1.5;">
-        <h3>New website contact</h3>
-        <p><strong>Name:</strong> ${name || "Not provided"}</p>
-        <p><strong>Preferred contact:</strong> ${contactMethod}</p>
-        <p><strong>Contact value:</strong> ${contactValue || "Not provided"}</p>
-        <p><strong>Service:</strong> ${service || "Not provided"}</p>
-        <p><strong>Timeline:</strong> ${timeline || "Not provided"}</p>
-        <p><strong>Original request:</strong> ${description || "Not provided"}</p>
-        <p><strong>Clarified request:</strong> ${rewrittenDescription}</p>
-      </div>
-    `;
+  if (!isEmail(data.email) || !data.description) {
+    return respond(false, 400);
+  }
 
-    let emailSent = false;
-    let smsSent = false;
+  if (!resendApiKey) {
+    console.error("RESEND_KEY is not configured; contact message dropped.");
+    return respond(false, 503);
+  }
 
-    if (resendApiKey) {
-      const resend = new Resend(resendApiKey);
-      const response = await resend.emails.send({
-        from: resendFrom,
-        to: [recipient],
-        subject,
-        text,
-        html,
-      });
-      emailSent = Boolean(response.data?.id);
-    } else {
-      console.warn("RESEND_KEY is not configured; skipping email delivery.");
-    }
+  const rows: [string, string][] = [
+    ["Name", data.name || "Not provided"],
+    ["Email", data.email],
+    ["Service", data.service || "Not provided"],
+    ["Timeline", data.timeline || "Not provided"],
+    ["Request", data.description],
+  ];
 
-    if (contactMethod === "phone" && isPhone(contactValue)) {
-      smsSent = await sendSms(contactValue, `New website contact from ${name || "a visitor"}: ${service || "general inquiry"}`);
-    }
-
-    return NextResponse.json({ success: true, emailSent, smsSent });
+  try {
+    const resend = new Resend(resendApiKey);
+    const { data: sent, error } = await resend.emails.send({
+      from: resendFrom,
+      to: [recipient],
+      replyTo: data.email,
+      subject: `New website contact from ${data.name || "a visitor"}`,
+      text: rows.map(([k, v]) => `${k}: ${v}`).join("\n"),
+      html: `<div style="font-family: sans-serif; line-height: 1.5;"><h3>New website contact</h3>${rows
+        .map(([k, v]) => `<p><strong>${k}:</strong> ${escapeHtml(v).replace(/\n/g, "<br>")}</p>`)
+        .join("")}</div>`,
+    });
+    if (error || !sent?.id) throw error ?? new Error("No message id returned");
+    return respond(true);
   } catch (error) {
     console.error("Contact submission failed:", error);
-    return NextResponse.json({ error: "Unable to send contact message" }, { status: 500 });
+    return respond(false, 500);
   }
 }
