@@ -5,12 +5,10 @@ import { translations } from "@/lib/translations";
 
 type Props = { children: React.ReactNode; params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
-}
-
-// Unknown slugs are real 404s, not an empty article page with status 200.
-export const dynamicParams = false;
+// Rendered on demand, not prerendered with generateStaticParams: the
+// Cloudflare (OpenNext) deployment has no incremental cache configured, so
+// prerendered dynamic-route pages can't be served there and 404 instead.
+// Unknown slugs get a real 404 from notFound() below.
 
 export async function generateMetadata({ params }: Omit<Props, "children">): Promise<Metadata> {
   const { slug } = await params;
