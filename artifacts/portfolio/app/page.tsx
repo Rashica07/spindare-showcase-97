@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import Image, { type StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { SiReact, SiSwift, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiPostgresql, SiExpo } from "react-icons/si";
@@ -11,10 +10,6 @@ import { DelayedHeroCanvas } from "@/components/DelayedHeroCanvas";
 import { Footer } from "@/components/Footer";
 import { useIsActive, useSkipDecorativeMotion } from "@/lib/device";
 import { FadeUp } from "@/components/FadeUp";
-import craftpanelIcon from "@/public/craftpanel-icon.webp";
-import torreShot from "@/public/torre-group-1.webp";
-import spindareShot from "@/public/spindare-feed.webp";
-import luxhotelShot from "@/public/luxhotel-1.webp";
 
 
 const STACK_ICONS = [
@@ -35,13 +30,6 @@ const PROJECT_URLS: Record<string, string> = {
   "LuxHotelSystem": "https://luxhotelsystem.com",
 };
 
-// Screenshot shown on each Home project card ("icon" = small logo tile).
-const PROJECT_THUMBS: Record<string, { src: StaticImageData; kind: "shot" | "phone" | "icon" }> = {
-  "CraftPanel": { src: craftpanelIcon, kind: "icon" },
-  "Torre Group": { src: torreShot, kind: "shot" },
-  "Spindare": { src: spindareShot, kind: "phone" },
-  "LuxHotelSystem": { src: luxhotelShot, kind: "shot" },
-};
 
 const primaryBtn = "inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground text-sm font-semibold rounded-lg glow-orange-sm hover:bg-primary/90 transition-colors";
 const secondaryBtn = "inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3.5 border border-border/60 text-foreground text-sm font-medium rounded-lg hover:bg-card transition-colors";
@@ -141,44 +129,25 @@ export default function HomePage() {
           <div className="mt-16 flex flex-col gap-4">
             {t.work.projects.slice(0, 4).map((project, i) => {
               const url = PROJECT_URLS[project.name];
-              const thumb = PROJECT_THUMBS[project.name];
               const body = (
-                <div className={`border border-card-border bg-card rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_300px] transition-colors duration-200 ${url ? "group hover:border-primary/40" : ""}`} data-testid={`project-card-${i}`}>
-                  <div className="p-6 sm:p-8 flex flex-col justify-center">
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-3">
-                      <h3 className="text-xl font-semibold text-foreground">{project.name}</h3>
-                      <span className={`font-mono text-xs px-2 py-0.5 rounded-full border ${project.status === "Live" ? "border-primary/30 text-primary bg-primary/10" : project.status.includes("Development") ? "border-accent/30 text-accent bg-accent/10" : "border-muted-foreground/30 text-muted-foreground"}`}>{project.status}</span>
-                      <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
+                <div className={`border border-card-border bg-card rounded-xl p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors duration-200 ${url ? "group hover:border-primary/30" : ""}`} data-testid={`project-card-${i}`}>
+                  <div className="flex items-start gap-6">
+                    <div className="font-mono text-4xl font-black text-muted-foreground/20 leading-none select-none w-16">{String(i + 1).padStart(2, "0")}</div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="text-xl font-semibold text-foreground">{project.name}</h3>
+                        <span className={`font-mono text-xs px-2 py-0.5 rounded-full border ${project.status === "Live" ? "border-primary/30 text-primary bg-primary/10" : project.status.includes("Development") ? "border-accent/30 text-accent bg-accent/10" : "border-muted-foreground/30 text-muted-foreground"}`}>{project.status}</span>
+                        <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">{project.desc}</p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {project.stack.map((s, j) => (
+                          <span key={j} className="font-mono text-xs text-muted-foreground border border-border/50 rounded px-2 py-0.5">{s}</span>
+                        ))}
+                      </div>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">{project.desc}</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {project.stack.map((s, j) => (
-                        <span key={j} className="font-mono text-xs text-muted-foreground border border-border/50 rounded px-2 py-0.5">{s}</span>
-                      ))}
-                    </div>
-                    {url && (
-                      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                        {url.replace(/^https?:\/\//, "")} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                      </span>
-                    )}
                   </div>
-                  {thumb && (
-                    <div className="relative order-first md:order-none h-44 md:h-auto min-h-[180px] border-b md:border-b-0 md:border-l border-card-border bg-background/60 overflow-hidden">
-                      {thumb.kind === "icon" ? (
-                        <div className="absolute inset-0 flex items-center justify-center" style={{ backgroundImage: "linear-gradient(hsl(var(--primary) / 0.08) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / 0.08) 1px, transparent 1px)", backgroundSize: "16px 16px" }}>
-                          <Image src={thumb.src} alt="" width={88} height={88} className="rounded-2xl shadow-lg" />
-                        </div>
-                      ) : thumb.kind === "phone" ? (
-                        <div className="absolute inset-x-0 top-6 bottom-0 flex justify-center">
-                          <div className="relative w-36 h-full rounded-t-2xl border border-b-0 border-border/60 overflow-hidden">
-                            <Image src={thumb.src} alt={`${project.name} screenshot`} fill sizes="144px" className="object-cover object-top" />
-                          </div>
-                        </div>
-                      ) : (
-                        <Image src={thumb.src} alt={`${project.name} screenshot`} fill sizes="(max-width: 768px) 100vw, 300px" placeholder="blur" className="object-cover object-left-top transition-transform duration-500 group-hover:scale-[1.03]" />
-                      )}
-                    </div>
-                  )}
+                  {url && <ChevronRight size={20} className="text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0 hidden md:block" />}
                 </div>
               );
               return (
