@@ -95,7 +95,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav ref={navRef} className="hidden md:flex items-center gap-8 relative" data-testid="nav-links" aria-label="Main">
+        <nav ref={navRef} className="hidden md:flex items-center gap-5 lg:gap-8 relative" data-testid="nav-links" aria-label="Main">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -103,7 +103,7 @@ export function Navbar() {
               ref={(el) => { linkRefs.current[link.href] = el; }}
               aria-current={isActive(link.href) ? "page" : undefined}
               data-testid={`nav-link-${link.href.replace("/", "") || "home"}`}
-              className={`py-2 text-xs font-medium tracking-widest uppercase transition-colors ${
+              className={`py-2 text-xs font-medium tracking-wider lg:tracking-widest uppercase whitespace-nowrap transition-colors ${
                 isActive(link.href)
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -122,7 +122,7 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3 lg:gap-4">
           {/* Language switching is client-side, so it only exists with JS. */}
           <div className="relative js-only" data-testid="lang-switcher">
             <button
@@ -169,7 +169,7 @@ export function Navbar() {
           <Link
             href="/contact"
             data-testid="nav-cta-quote"
-            className="text-xs font-semibold tracking-widest uppercase px-4 py-2.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="text-xs font-semibold tracking-wider lg:tracking-widest uppercase whitespace-nowrap px-3 lg:px-4 py-2.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             {t.nav.quote}
           </Link>
@@ -190,7 +190,7 @@ export function Navbar() {
             <X size={22} className="hidden group-open:block" aria-hidden="true" />
           </summary>
           <div
-            className="fixed inset-x-0 top-16 z-40 bg-background/95 backdrop-blur-xl border-b border-border/60"
+            className="menu-panel fixed inset-x-0 top-16 z-40 bg-background border-b border-border/60 shadow-lg"
             data-testid="mobile-menu"
           >
             <nav className="max-w-7xl mx-auto px-6 py-4 flex flex-col" aria-label="Main">

@@ -272,3 +272,58 @@ html.js:not(.js-failed) .nojs-only { display: none !important; }
    JS keep it solid so page content never shows through the nav text. */
 html:not(.js) .nav-header,
 html.js-failed .nav-header { background: hsl(var(--background) / 0.92); }
+
+/* Once the fallback has revealed the page (hydration took > 4s), never
+   bring the loading overlay back on top of content people are reading. */
+html.js-reveal .loader-slot { display: none !important; }
+
+/* Mobile menu: quick, slight drop-in. Pure CSS, so it works without JS.
+   The panel is solid on purpose: it sits inside the header, and a
+   backdrop-filter nested in the header's own backdrop-filter can't blur the
+   page behind it, so a translucent panel let the hero text show through. */
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+.disclosure[open] > .menu-panel { animation: menu-in 160ms cubic-bezier(0.22, 1, 0.36, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .disclosure[open] > .menu-panel { animation: none; }
+}
+
+/* Footer signature (components/Signature.tsx). The ink is revealed by
+   sliding a soft-edged mask across it; the letters start slightly apart and
+   blurred and merge together as it's "written". Script glyphs swing well
+   outside their box, hence the padding (the mask clips at the border box). */
+.signature {
+  color: #fff;
+  font-size: clamp(3.25rem, 8vw, 6rem);
+  line-height: 1.1;
+}
+.signature-ink {
+  display: inline-block;
+  padding: 0.15em 0.4em 0.3em 0.3em;
+  -webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+          mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+  -webkit-mask-size: 250% 100%;
+          mask-size: 250% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: 0 0;
+          mask-position: 0 0;
+}
+html.js:not(.js-reveal) .signature:not([data-signed]) .signature-ink {
+  -webkit-mask-position: 100% 0;
+          mask-position: 100% 0;
+  letter-spacing: 0.12em;
+  filter: blur(3px);
+}
+html.js .signature[data-signed] .signature-ink {
+  transition:
+    -webkit-mask-position 1.9s cubic-bezier(0.55, 0.1, 0.35, 1),
+    mask-position 1.9s cubic-bezier(0.55, 0.1, 0.35, 1),
+    letter-spacing 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.3s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .signature-ink { transition: none !important; }
+}

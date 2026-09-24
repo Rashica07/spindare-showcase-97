@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { I18nProvider } from "@/lib/i18n";
+import { LoadingScreen } from "@/components/LoadingScreen";
+import { PageTransitionLoader } from "@/components/PageTransitionLoader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PulseStatusDot } from "@/components/PulseStatusDot";
 
@@ -21,6 +23,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <I18nProvider>
+      {/* js-only: the overlay is server-rendered and only JS can dismiss it,
+          so without working JS (off, blocked, too-old browser) skip it
+          instead of covering the page forever. */}
+      <div className="js-only loader-slot"><LoadingScreen /></div>
+      <PageTransitionLoader />
       {children}
       <WhatsAppButton />
       <PulseStatusDot />

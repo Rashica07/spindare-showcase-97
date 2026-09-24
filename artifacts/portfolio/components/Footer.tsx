@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { SiGithub } from "react-icons/si";
 import { useLanguage } from "@/lib/i18n";
+import { Signature } from "@/components/Signature";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -58,7 +59,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-12 flex justify-center md:justify-end">
+          <Signature />
+        </div>
+
+        <div className="mt-6 pt-6 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground tracking-widest font-mono">
             &copy; {new Date().getFullYear()} KIQA.DEV
           </p>
