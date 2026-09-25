@@ -4,6 +4,9 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-06-05",
   "compatibility_flags": ["nodejs_compat"],
+  // Keep variables set in the Cloudflare dashboard (e.g. RESEND_KEY) when
+  // deploying; by default wrangler deletes any var not listed in this file.
+  "keep_vars": true,
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"

@@ -1,0 +1,65 @@
+name: Deploy to Cloudflare
+
+# Builds the portfolio with OpenNext and deploys it to the kiqa-dev Worker
+# (kiqa-dev.it) on every push to main. Can also be started by hand from the
+# Actions tab ("Run workflow"), which works from a phone.
+#
+# Needs two repository secrets (Settings > Secrets and variables > Actions):
+#   CLOUDFLARE_API_TOKEN   - token from the "Edit Cloudflare Workers" template
+#   CLOUDFLARE_ACCOUNT_ID  - shown on the Workers & Pages overview page
+# Until they exist the job skips with a warning instead of failing.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check Cloudflare secrets
+        id: secrets
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$TOKEN" ] || [ -z "$ACCOUNT" ]; then
+            echo "::warning::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID not set; skipping deploy."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.secrets.outputs.ok == 'true'
+
+      # Version comes from "packageManager" in the root package.json.
+      - uses: pnpm/action-setup@v4
+        if: steps.secrets.outputs.ok == 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.secrets.outputs.ok == 'true'
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        if: steps.secrets.outputs.ok == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build (OpenNext)
+        if: steps.secrets.outputs.ok == 'true'
+        run: pnpm --filter @workspace/portfolio exec opennextjs-cloudflare build
+
+      - name: Deploy
+        if: steps.secrets.outputs.ok == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: pnpm --filter @workspace/portfolio exec opennextjs-cloudflare deploy
