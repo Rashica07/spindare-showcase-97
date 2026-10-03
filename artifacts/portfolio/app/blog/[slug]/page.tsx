@@ -2,20 +2,11 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { motion } from "framer-motion";
 import { ArrowLeft, Clock, Calendar, Lightbulb } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { getBlogPost } from "@/lib/blog-posts";
 import type { Section } from "@/lib/blog-posts";
 import { Footer } from "@/components/Footer";
-
-const CATEGORY_COLORS: Record<string, string> = {
-  "React Native": "text-blue-400 border-blue-400/30 bg-blue-400/10",
-  "Architecture":  "text-purple-400 border-purple-400/30 bg-purple-400/10",
-  "Backend":       "text-green-400 border-green-400/30 bg-green-400/10",
-  "Design":        "text-pink-400 border-pink-400/30 bg-pink-400/10",
-  "AI":            "text-amber-400 border-amber-400/30 bg-amber-400/10",
-};
 
 function Renderer({ sections }: { sections: Section[] }) {
   return (
@@ -42,7 +33,7 @@ function Renderer({ sections }: { sections: Section[] }) {
             );
           case "quote":
             return (
-              <blockquote key={i} className="my-6 border-l-2 border-primary pl-5">
+              <blockquote key={i} className="my-6 border-l-2 border-foreground/30 pl-5">
                 <p className="text-foreground italic leading-relaxed text-[15px]">&ldquo;{s.text}&rdquo;</p>
                 {s.by && (
                   <cite className="mt-2 block font-mono text-xs text-muted-foreground/60 not-italic">
@@ -53,8 +44,8 @@ function Renderer({ sections }: { sections: Section[] }) {
             );
           case "callout":
             return (
-              <div key={i} className="my-7 flex gap-4 rounded-xl border border-primary/20 bg-primary/5 px-5 py-4">
-                <div className="mt-0.5 shrink-0 text-primary">
+              <div key={i} className="my-7 flex gap-4 rounded-xl border border-border bg-card px-5 py-4">
+                <div className="mt-0.5 shrink-0 text-muted-foreground">
                   <Lightbulb size={20} className="opacity-80" />
                 </div>
                 <p className="text-sm text-foreground/80 leading-relaxed">{s.text}</p>
@@ -65,7 +56,7 @@ function Renderer({ sections }: { sections: Section[] }) {
               <ul key={i} className="mb-5 space-y-2 pl-1">
                 {s.items.map((item, j) => (
                   <li key={j} className="flex gap-3 text-[15px] text-muted-foreground leading-relaxed">
-                    <span className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/70" />
                     {item}
                   </li>
                 ))}
@@ -76,7 +67,7 @@ function Renderer({ sections }: { sections: Section[] }) {
               <ol key={i} className="mb-5 space-y-3 pl-1">
                 {s.items.map((item, j) => (
                   <li key={j} className="flex gap-3 text-[15px] text-muted-foreground leading-relaxed">
-                    <span className="shrink-0 font-mono text-xs text-primary mt-[3px] w-5">{j + 1}.</span>
+                    <span className="shrink-0 tabular-nums text-sm text-muted-foreground mt-[2px] w-5">{j + 1}.</span>
                     {item}
                   </li>
                 ))}
@@ -84,12 +75,12 @@ function Renderer({ sections }: { sections: Section[] }) {
             );
           case "code":
             return (
-              <div key={i} className="my-6 overflow-hidden rounded-xl border border-border/60 bg-[#0d0a07]">
+              <div key={i} className="my-6 overflow-hidden rounded-xl border border-border bg-background">
                 <div className="flex items-center gap-2 border-b border-border/40 px-4 py-2.5">
                   <div className="flex gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-red-500/40" />
-                    <span className="w-3 h-3 rounded-full bg-yellow-500/40" />
-                    <span className="w-3 h-3 rounded-full bg-green-500/40" />
+                    <span className="w-3 h-3 rounded-full bg-muted-foreground/30" />
+                    <span className="w-3 h-3 rounded-full bg-muted-foreground/30" />
+                    <span className="w-3 h-3 rounded-full bg-muted-foreground/30" />
                   </div>
                   <span className="ml-2 font-mono text-xs text-muted-foreground/50">{s.lang}</span>
                 </div>
@@ -122,13 +113,11 @@ export default function BlogPostPage() {
     return (
       <div className="min-h-screen bg-background text-foreground">
         <section className="pt-40 pb-20 text-center" data-testid="blog-post-not-found">
-          <p className="font-mono text-xs text-primary tracking-widest uppercase mb-4">404</p>
+          <p className="font-mono text-sm text-muted-foreground mb-4">404</p>
           <h1 className="text-4xl font-bold text-foreground">{t.blog.postNotFound}</h1>
           <p className="mt-3 text-muted-foreground">{t.blog.postNotFoundDesc}</p>
-          <Link href="/blog" data-testid="back-to-blog-404">
-            <motion.span whileHover={{ x: -4 }} className="inline-flex items-center gap-2 mt-8 text-sm text-primary cursor-pointer">
-              <ArrowLeft size={14} /> {t.blog.backToWriting}
-            </motion.span>
+          <Link href="/blog" data-testid="back-to-blog-404" className="inline-flex items-center gap-2 mt-8 text-sm text-primary hover:underline underline-offset-4">
+            <ArrowLeft size={14} aria-hidden="true" /> {t.blog.backToWriting}
           </Link>
         </section>
         <Footer />
@@ -136,24 +125,17 @@ export default function BlogPostPage() {
     );
   }
 
-  const catColor = CATEGORY_COLORS[meta.category] ?? "text-muted-foreground border-muted-foreground/30";
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       <section className="page-hero-glow pt-32 pb-12 border-b border-border/40" data-testid="blog-post-hero">
         <div className="max-w-3xl mx-auto px-6">
           <div className="hero-in">
-            <Link href="/blog" data-testid="back-to-blog">
-              <motion.span
-                whileHover={{ x: -4 }}
-                className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer mb-8 block"
-              >
-                <ArrowLeft size={12} /> {t.blog.backToWriting}
-              </motion.span>
+            <Link href="/blog" data-testid="back-to-blog" className="mb-8 inline-flex items-center gap-2 py-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
+              <ArrowLeft size={12} aria-hidden="true" /> {t.blog.backToWriting}
             </Link>
 
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className={`font-mono text-xs px-2.5 py-1 rounded-full border ${catColor}`}>
+              <span className="font-mono text-xs px-2.5 py-1 rounded-full border text-muted-foreground border-border">
                 {meta.category}
               </span>
               <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -182,22 +164,11 @@ export default function BlogPostPage() {
       <section className="py-16" data-testid="blog-post-body">
         <div className="max-w-3xl mx-auto px-6">
           {content ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Renderer sections={content.sections} />
-            </motion.div>
+            <Renderer sections={content.sections} />
           ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="border border-primary/30 bg-primary/5 rounded-xl p-10 text-center relative overflow-hidden"
-            >
+            <div className="border border-border bg-card rounded-xl p-10 text-center relative overflow-hidden">
               <div className="absolute inset-0 grid-bg opacity-10 pointer-events-none" />
-              <p className="font-mono text-xs text-primary tracking-widest uppercase mb-3 relative z-10">{t.blog.comingSoon}</p>
+              <p className="font-semibold text-foreground mb-3 relative z-10">{t.blog.comingSoon}</p>
               <p className="text-muted-foreground text-sm leading-relaxed relative z-10">
                 {t.blog.comingSoonDesc}
               </p>
@@ -206,17 +177,14 @@ export default function BlogPostPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="blog-post-github-link"
-                className="inline-flex items-center gap-2 mt-6 text-xs font-medium text-primary border border-primary/30 rounded-lg px-4 py-2 hover:bg-primary/10 transition-colors"
+                className="inline-flex items-center gap-2 mt-6 text-xs font-medium text-foreground border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors"
               >
                 {t.blog.followGithub}
               </a>
-            </motion.div>
+            </div>
           )}
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="mt-16 pt-10 border-t border-border/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
           >
             <div>
@@ -231,7 +199,7 @@ export default function BlogPostPage() {
             >
               {t.blog.workWithMe}
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 

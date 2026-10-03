@@ -3,7 +3,8 @@
 import Image, { type StaticImageData } from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
 import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo, SiFivem, SiLua, SiJavascript, SiMariadb, SiRust, SiTauri, SiTailwindcss } from "react-icons/si";
@@ -30,6 +31,7 @@ import luxhotel2Img from "@/public/luxhotel-2.webp";
 import luxhotel3Img from "@/public/luxhotel-3.webp";
 import luxhotel4Img from "@/public/luxhotel-4.webp";
 import { FadeUp } from "@/components/FadeUp";
+import { CraftPanelWindow } from "@/components/CraftPanelWindow";
 
 
 const ICON_MAP: Record<string, IconType> = {
@@ -87,8 +89,7 @@ export default function PortfolioPage() {
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="portfolio-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="hero-in">
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'label', t.work.label)}</span>
-            <h1 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.work.title)}</h1>
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.work.title)}</h1>
           </div>
         </div>
       </section>
@@ -104,74 +105,36 @@ export default function PortfolioPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((project, i) => {
-              const StatusColor = project.status === "Live" ? "text-green-400 border-green-400/30 bg-green-400/10" : project.status === "In Development" ? "text-primary border-primary/30 bg-primary/10" : "text-muted-foreground border-muted-foreground/30";
+              const statusDot = project.status === "Live" ? "bg-emerald-500" : project.status.includes("Development") ? "bg-amber-400/80" : "bg-muted-foreground";
               const isCraftPanel = project.name === "CraftPanel";
               return (
-                <FadeUp key={project.name} delay={i * 0.08} className={isCraftPanel ? "md:col-span-2" : ""}>
-                  <motion.div
-                    whileHover={{ y: -6 }}
-                    transition={{ duration: 0.2 }}
-                    className={`group glass-card overflow-hidden flex flex-col hover:border-primary/30 transition-all duration-300 ${isCraftPanel ? "" : "rounded-xl"}`}
-                    style={isCraftPanel ? {
-                      clipPath: "polygon(0 10px, 10px 10px, 10px 0, calc(100% - 10px) 0, calc(100% - 10px) 10px, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 10px calc(100% - 10px), 0 calc(100% - 10px))",
-                    } : undefined}
+                <FadeUp key={project.name} delay={i * 0.08} className={isCraftPanel ? "h-full md:col-span-2" : "h-full"}>
+                  <div
+                    className="group h-full rounded-xl border border-card-border bg-card overflow-hidden flex flex-col transition-colors hover:border-foreground/20"
                     data-testid={`portfolio-project-${i}`}
                   >
                     {project.name === "CraftPanel" ? (
-                      <div className="relative h-[420px] bg-gradient-to-br from-[#0a0908] to-[#1a1613] flex flex-col items-center justify-center border-b border-[#27231f] overflow-hidden p-4">
-                        {/* Restrained pixel-grid motif, in CraftPanel's own accent color */}
-                        <div
-                          className="absolute inset-0 opacity-[0.12] pointer-events-none"
-                          style={{
-                            backgroundImage: "linear-gradient(#fd9117 1px, transparent 1px), linear-gradient(90deg, #fd9117 1px, transparent 1px)",
-                            backgroundSize: "16px 16px",
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay" />
-
-                        <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                          <div className="flex items-center gap-2">
-                            <Image src={craftpanelIconImg} alt="" width={22} height={22} className="rounded-[6px]" />
-                            <span style={{ fontFamily: "var(--font-pixelify)", color: "#f7f4f1" }} className="text-sm tracking-wide">CRAFTPANEL</span>
+                      <div className="relative flex min-h-[420px] flex-col justify-center gap-6 overflow-hidden border-b border-card-border bg-background/40 p-5 sm:p-8">
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-2.5">
+                            <Image src={craftpanelIconImg} alt="" width={24} height={24} className="rounded-md" />
+                            <span className="text-sm font-semibold">CraftPanel</span>
                           </div>
-                          <div className="flex items-center gap-3">
-                            <a href="https://github.com/Rashica07/craftpanel" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="font-mono text-[9px] tracking-widest uppercase transition-colors inline-flex items-center gap-1" style={{ color: "#a89f92" }}>
-                              GitHub <ExternalLink size={8} />
+                          <div className="flex items-center gap-4 text-xs">
+                            <a href="https://github.com/Rashica07/craftpanel" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 py-1 text-muted-foreground transition-colors hover:text-foreground">
+                              GitHub <ExternalLink size={11} aria-hidden="true" />
                             </a>
-                            <a href="https://rashica07.github.io/craftpanel-site/" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="font-mono text-[9px] tracking-widest uppercase transition-colors inline-flex items-center gap-1" style={{ color: "#fd9117" }}>
-                              Live Site <ExternalLink size={8} />
+                            <a href="https://rashica07.github.io/craftpanel-site/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 py-1 font-medium text-primary hover:underline underline-offset-4">
+                              Live site <ExternalLink size={11} aria-hidden="true" />
                             </a>
                           </div>
                         </div>
-
-                        {/* Recreation of CraftPanel's own hero console mockup */}
-                        <div className="relative mt-11 w-[95%] max-w-[420px] rounded-md border overflow-hidden flex flex-col shadow-2xl" style={{ borderColor: "#27231f", backgroundColor: "#141210" }}>
-                          <div className="h-7 w-full flex items-center px-2.5 gap-1.5 shrink-0" style={{ backgroundColor: "#1a1613", borderBottom: "1px solid #27231f" }}>
-                            <div className="w-2 h-2 rounded-full bg-red-500/80" />
-                            <div className="w-2 h-2 rounded-full bg-yellow-500/80" />
-                            <div className="w-2 h-2 rounded-full bg-green-500/80" />
-                            <span className="ml-2 font-mono text-[9px]" style={{ color: "#756c60" }}>craftpanel &mdash; Skyblock Sunday</span>
-                          </div>
-                          <div className="flex text-[9px] font-mono" style={{ minHeight: 168 }}>
-                            <div className="w-[64px] shrink-0 flex flex-col gap-2.5 p-2.5" style={{ borderRight: "1px solid #201c19" }}>
-                              <div className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: "#fd9117" }} /><span className="h-1 rounded-full flex-1" style={{ backgroundColor: "#27231f" }} /></div>
-                              <div className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: "#3a342e" }} /><span className="h-1 rounded-full flex-1" style={{ backgroundColor: "#201c19" }} /></div>
-                              <div className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: "#3a342e" }} /><span className="h-1 rounded-full flex-1" style={{ backgroundColor: "#201c19" }} /></div>
-                            </div>
-                            <div className="flex-1 p-2.5 flex flex-col gap-1.5" style={{ color: "#a89f92" }}>
-                              <div>Starting Paper 1.21.4&hellip;</div>
-                              <div>Preparing spawn area: <span style={{ color: "#fd9117" }}>100%</span></div>
-                              <div><span style={{ color: "#4ade80" }}>Done</span> (9.4s)! For help, type &quot;help&quot;</div>
-                              <div>mossyPixel joined the game</div>
-                              <div><span style={{ color: "#fbc02d" }}>[!]</span> world backed up &mdash; scheduled</div>
-                              <div>&gt; <span className="inline-block w-1.5 h-3 align-middle animate-pulse" style={{ backgroundColor: "#f7f4f1" }} /></div>
-                            </div>
-                          </div>
+                        <div className="mx-auto w-full max-w-2xl">
+                          <CraftPanelWindow />
                         </div>
-
-                        <div className="mt-4 flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase" style={{ color: "#fd9117" }}>
-                          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: "#fd9117" }} /> v3.1.0 &middot; Live
-                        </div>
+                        <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> v3.1.0 · Live
+                        </p>
                       </div>
                     ) : project.name === "Spindare" ? (
                       <div className="relative h-[380px] bg-card flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
@@ -184,8 +147,8 @@ export default function PortfolioPage() {
                           ))}
                         </div>
                         <div className="absolute top-7 left-4 right-4 flex justify-between items-center z-10 pointer-events-none">
-                          <span className="font-mono text-[9px] text-muted-foreground/80 tracking-widest uppercase">Spindare iOS</span>
-                          <span className="font-mono text-[9px] text-primary tracking-widest uppercase font-semibold">{SPINDARE_SCREENS[spindareActiveIdx].name}</span>
+                          <span className="font-mono text-[10px] text-muted-foreground tracking-widest uppercase">Spindare iOS</span>
+                          <span className="font-mono text-[10px] text-foreground/80 tracking-widest uppercase">{SPINDARE_SCREENS[spindareActiveIdx].name}</span>
                         </div>
                         
                         <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between z-20 pointer-events-none">
@@ -211,8 +174,8 @@ export default function PortfolioPage() {
                           ))}
                         </div>
                         <div className="absolute top-7 left-4 right-4 flex justify-between items-center z-10 pointer-events-none">
-                          <span className="font-mono text-[9px] text-muted-foreground/80 tracking-widest uppercase">torre-ks.com</span>
-                          <span className="font-mono text-[9px] text-primary tracking-widest uppercase font-semibold">{TORRE_SCREENS[torreActiveIdx].name}</span>
+                          <span className="font-mono text-[10px] text-muted-foreground tracking-widest uppercase">torre-ks.com</span>
+                          <span className="font-mono text-[10px] text-foreground/80 tracking-widest uppercase">{TORRE_SCREENS[torreActiveIdx].name}</span>
                         </div>
                         
                         <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between z-20 pointer-events-none">
@@ -222,9 +185,9 @@ export default function PortfolioPage() {
 
                         <div className="relative mt-8 w-[95%] max-w-[340px] h-[170px] rounded-lg border-4 border-card-border bg-white shadow-2xl overflow-hidden flex flex-col">
                           <div className="h-4 bg-card-border w-full flex items-center px-1.5 gap-1 shrink-0">
-                            <div className="w-1.5 h-1.5 rounded-full bg-red-500/80" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
                           </div>
                           <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLightbox({ src: TORRE_SCREENS[torreActiveIdx].src, alt: TORRE_SCREENS[torreActiveIdx].name }); }} className="absolute inset-0 z-10 cursor-zoom-in" aria-label={`Zoom in on ${TORRE_SCREENS[torreActiveIdx].name}`}>
                             <Image placeholder="blur" key={torreActiveIdx} src={TORRE_SCREENS[torreActiveIdx].src} alt={TORRE_SCREENS[torreActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top" />
@@ -232,45 +195,44 @@ export default function PortfolioPage() {
                         </div>
                       </div>
                     ) : project.name === "Carrier" ? (
-                      <div className="relative h-[380px] bg-gradient-to-br from-[#0a0a0a] to-[#171717] flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
-                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-25 mix-blend-overlay"></div>
-                        <div className="absolute top-5 right-5 flex items-center gap-1.5 font-mono text-[8px] text-lime-400/80 tracking-widest uppercase">
-                          <span className="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse" /> live
+                      <div className="relative h-[380px] bg-background/40 flex flex-col items-center justify-center border-b border-card-border overflow-hidden p-4">
+                        <div className="absolute top-5 right-5 flex items-center gap-1.5 font-mono text-[10px] text-muted-foreground tracking-widest uppercase">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> live
                         </div>
                         <div className="relative z-10 flex flex-col items-center text-center gap-5">
                           <div className="flex items-center gap-2">
-                            <span className="font-mono text-3xl md:text-4xl tracking-[0.3em] text-neutral-100 lowercase">carr</span>
-                            <span className="w-1.5 h-1.5 rounded-sm bg-primary -translate-y-2.5" />
-                            <span className="font-mono text-3xl md:text-4xl tracking-[0.3em] text-neutral-100 lowercase">ier</span>
+                            <span className="font-mono text-3xl md:text-4xl tracking-[0.3em] text-foreground lowercase">carr</span>
+                            <span className="w-1.5 h-1.5 rounded-sm bg-foreground/60 -translate-y-2.5" />
+                            <span className="font-mono text-3xl md:text-4xl tracking-[0.3em] text-foreground lowercase">ier</span>
                           </div>
-                          <div className="w-40 h-px bg-neutral-700/60" />
-                          <p className="font-mono text-[10px] text-neutral-500 tracking-wide max-w-[260px]">
+                          <div className="w-40 h-px bg-border" />
+                          <p className="font-mono text-[11px] text-muted-foreground tracking-wide max-w-[260px]">
                             the city transmits &middot; what you take, everyone hears
                           </p>
-                          <span className="font-mono text-[10px] px-2.5 py-1 rounded-full border text-primary border-primary/30 bg-primary/10">Public Beta</span>
+                          <span className="font-mono text-[11px] px-2.5 py-1 rounded-full border text-muted-foreground border-border">Public Beta</span>
                         </div>
                       </div>
                     ) : project.name === "LuxHotelSystem" ? (
-                      <div className="relative h-[380px] bg-gradient-to-br from-[#0f172a] to-[#1e293b] flex flex-col items-center justify-center border-b border-card-border overflow-hidden">
-                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+                      <div className="relative h-[380px] bg-card flex flex-col items-center justify-center border-b border-card-border overflow-hidden">
+                        <div className="absolute inset-0 grid-bg opacity-15" />
                         
                         <div className="absolute top-7 left-4 right-4 flex justify-between items-center z-10 pointer-events-none">
-                          <a href="https://luxhotelsystem.com" target="_blank" rel="noopener noreferrer" className="pointer-events-auto font-mono text-[9px] text-slate-400/80 hover:text-blue-400 tracking-widest uppercase transition-colors inline-flex items-center gap-1">
+                          <a href="https://luxhotelsystem.com" target="_blank" rel="noopener noreferrer" className="pointer-events-auto font-mono text-[10px] text-muted-foreground hover:text-foreground tracking-widest uppercase transition-colors inline-flex items-center gap-1">
                             luxhotelsystem.com <ExternalLink size={8} />
                           </a>
-                          <span className="font-mono text-[9px] text-blue-400 tracking-widest uppercase font-semibold">{LUXHOTEL_SCREENS[luxActiveIdx].name}</span>
+                          <span className="font-mono text-[10px] text-foreground/80 tracking-widest uppercase">{LUXHOTEL_SCREENS[luxActiveIdx].name}</span>
                         </div>
                         
                         <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between z-20 pointer-events-none">
-                          <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLuxActiveIdx((prev) => (prev - 1 + LUXHOTEL_SCREENS.length) % LUXHOTEL_SCREENS.length); }} className="pointer-events-auto bg-slate-900/90 text-slate-400 hover:text-slate-100 rounded-full p-1 border border-slate-700/50 hover:bg-slate-800 transition-colors"><ChevronLeft size={16} /></button>
-                          <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLuxActiveIdx((prev) => (prev + 1) % LUXHOTEL_SCREENS.length); }} className="pointer-events-auto bg-slate-900/90 text-slate-400 hover:text-slate-100 rounded-full p-1 border border-slate-700/50 hover:bg-slate-800 transition-colors"><ChevronRight size={16} /></button>
+                          <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLuxActiveIdx((prev) => (prev - 1 + LUXHOTEL_SCREENS.length) % LUXHOTEL_SCREENS.length); }} className="pointer-events-auto bg-background/90 text-muted-foreground hover:text-foreground rounded-full p-1 border border-border/50 hover:bg-background transition-colors"><ChevronLeft size={16} /></button>
+                          <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLuxActiveIdx((prev) => (prev + 1) % LUXHOTEL_SCREENS.length); }} className="pointer-events-auto bg-background/90 text-muted-foreground hover:text-foreground rounded-full p-1 border border-border/50 hover:bg-background transition-colors"><ChevronRight size={16} /></button>
                         </div>
 
-                        <div className="relative mt-8 w-[95%] max-w-[340px] h-[170px] rounded-lg border-4 border-slate-800 bg-[#0f172a] shadow-2xl overflow-hidden flex flex-col">
-                          <div className="h-4 bg-slate-800 w-full flex items-center px-1.5 gap-1 shrink-0">
-                            <div className="w-1.5 h-1.5 rounded-full bg-red-500/80" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
+                        <div className="relative mt-8 w-[95%] max-w-[340px] h-[170px] rounded-lg border-4 border-card-border bg-background shadow-2xl overflow-hidden flex flex-col">
+                          <div className="h-4 bg-card-border w-full flex items-center px-1.5 gap-1 shrink-0">
+                            <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
                           </div>
                           <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLightbox({ src: LUXHOTEL_SCREENS[luxActiveIdx].src, alt: LUXHOTEL_SCREENS[luxActiveIdx].name }); }} className="absolute inset-0 z-10 cursor-zoom-in" aria-label={`Zoom in on ${LUXHOTEL_SCREENS[luxActiveIdx].name}`}>
                             <Image placeholder="blur" key={luxActiveIdx} src={LUXHOTEL_SCREENS[luxActiveIdx].src} alt={LUXHOTEL_SCREENS[luxActiveIdx].name} fill sizes="(max-width: 768px) 100vw, 640px" className="object-contain object-top" />
@@ -281,8 +243,8 @@ export default function PortfolioPage() {
                       <div className="h-48 bg-gradient-to-br from-card to-muted/20 flex items-center justify-center relative overflow-hidden">
                         <div className="absolute inset-0 grid-bg opacity-30" />
                         <div className="relative z-10 flex flex-col items-center gap-2">
-                          <span className="font-mono text-5xl font-black text-muted-foreground/10 group-hover:text-primary/20 transition-colors">{project.name.slice(0, 2).toUpperCase()}</span>
-                          <span className={`font-mono text-xs px-2.5 py-1 rounded-full border ${StatusColor}`}>{project.status}</span>
+                          <span className="text-5xl font-semibold text-muted-foreground/15">{project.name.slice(0, 2).toUpperCase()}</span>
+                          <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span className={`h-1.5 w-1.5 rounded-full ${statusDot}`} />{project.status}</span>
                         </div>
                       </div>
                     )}
@@ -306,7 +268,7 @@ export default function PortfolioPage() {
                         })}
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </FadeUp>
               );
             })}
@@ -322,9 +284,9 @@ export default function PortfolioPage() {
             <h2 className="text-3xl font-bold text-foreground">{t.portfolio.ctaTitle}</h2>
             <p className="mt-3 text-muted-foreground">{t.portfolio.ctaSub}</p>
             <div className="mt-8 flex justify-center">
-              <a href="/contact" data-testid="portfolio-cta-link" className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg text-sm hover:bg-primary/90 transition-colors">
-                {t.portfolio.ctaButton} <ExternalLink size={14} />
-              </a>
+              <Link href="/contact" data-testid="portfolio-cta-link" className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg text-sm hover:bg-primary/90 transition-colors">
+                {t.portfolio.ctaButton} <ArrowRight size={14} aria-hidden="true" />
+              </Link>
             </div>
           </FadeUp>
         </div>

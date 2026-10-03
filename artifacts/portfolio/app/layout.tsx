@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Mono, Pixelify_Sans } from "next/font/google";
+import { DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
 
 // Self-hosted at build time: no render-blocking request to fonts.googleapis.com
@@ -18,14 +18,6 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
-// Pixel/blocky display face, used only for the CraftPanel project card's
-// title — a Minecraft-look-alike without touching the trademarked font.
-const pixelifySans = Pixelify_Sans({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-pixelify",
-  display: "swap",
-});
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "@/components/Providers";
@@ -99,7 +91,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: "KIQA DEV",
-    images: [{ url: OG_IMAGE, width: 1280, height: 720, alt: "KIQA DEV" }],
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "KIQA DEV" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -115,7 +107,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${dmMono.variable} ${pixelifySans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${dmSans.variable} ${dmMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: JS_DETECT }} />
       </head>

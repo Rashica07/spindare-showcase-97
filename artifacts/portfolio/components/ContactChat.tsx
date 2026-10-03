@@ -130,7 +130,7 @@ export function ContactChat() {
   return (
     <div className="glass-card rounded-xl flex flex-col overflow-hidden min-h-[320px] max-h-[600px]" data-testid="contact-chat">
       <div className="flex items-center gap-2 px-5 py-3 border-b border-border/40 shrink-0">
-        <span className="w-2 h-2 rounded-full bg-primary" />
+        <span className="w-2 h-2 rounded-full bg-muted-foreground/60" />
         <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase">{c.intro}</span>
       </div>
 
@@ -183,7 +183,7 @@ export function ContactChat() {
         )}
 
         {!typing && step === "review" && (
-          <div className="self-start w-full border border-primary/25 bg-primary/5 rounded-xl p-4 flex flex-col gap-3 mt-1" data-testid="chat-review">
+          <div className="self-start w-full border border-border bg-card rounded-xl p-4 flex flex-col gap-3 mt-1" data-testid="chat-review">
             <dl className="text-xs text-muted-foreground space-y-1 font-mono">
               <div><dt className="inline text-foreground/70">{f.service}:</dt> <dd className="inline">{answers.current.service}</dd></div>
               <div><dt className="inline text-foreground/70">{f.timeline}:</dt> <dd className="inline">{answers.current.timeline}</dd></div>
@@ -212,8 +212,8 @@ export function ContactChat() {
         )}
 
         {!typing && step === "done" && (
-          <div className="self-start w-full border border-primary/30 bg-primary/5 rounded-xl p-6 text-center mt-1" data-testid="chat-done">
-            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3"><Check size={20} className="text-primary" /></div>
+          <div className="self-start w-full border border-border bg-card rounded-xl p-6 text-center mt-1" data-testid="chat-done">
+            <div className="w-10 h-10 rounded-full bg-emerald-500/15 flex items-center justify-center mx-auto mb-3"><Check size={20} className="text-emerald-400" /></div>
             <p className="text-sm font-semibold text-foreground">{t.contact.form.sent}</p>
             <p className="mt-1 text-xs text-muted-foreground">{t.contact.form.sentSub}</p>
             <button type="button" onClick={restart} data-testid="chat-send-another" className="mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors border border-border/60 rounded-lg px-4 py-2.5">

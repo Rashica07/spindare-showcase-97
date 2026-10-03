@@ -26,8 +26,7 @@ export default function ContactPage() {
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="contact-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="hero-in">
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'label', t.contact.label)}</span>
-            <h1 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.contact.title)}</h1>
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.contact.title)}</h1>
             <p className="mt-4 text-muted-foreground text-lg max-w-xl leading-relaxed">{pick(overrides, 'sub', t.contact.sub)}</p>
           </div>
         </div>
@@ -38,9 +37,9 @@ export default function ContactPage() {
             <FadeUp><h2 className="font-semibold text-foreground">{pick(overrides, 'detailsTitle', t.contact.detailsTitle)}</h2></FadeUp>
             {contactMeta.map(({ icon: Icon, label, value, href }, i) => (
               <FadeUp key={i} delay={i * 0.04}>
-                <div className="flex items-start gap-4 border border-card-border bg-card/60 backdrop-blur-sm rounded-xl p-5 transition-colors hover:border-primary/35" data-testid={`contact-info-${i}`}>
-                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                    <Icon size={16} className="text-primary" />
+                <div className="flex items-start gap-4 border border-card-border bg-card/60 backdrop-blur-sm rounded-xl p-5" data-testid={`contact-info-${i}`}>
+                  <div className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center shrink-0">
+                    <Icon size={16} className="text-foreground/80" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="font-mono text-xs text-muted-foreground tracking-widest uppercase">{label}</p>
@@ -53,10 +52,10 @@ export default function ContactPage() {
                 </div>
               </FadeUp>
             ))}
-            <FadeUp delay={0.3} className="border border-primary/20 bg-primary/5 rounded-xl p-6">
+            <FadeUp delay={0.3} className="border border-border bg-card rounded-xl p-6">
               <h3 className="font-semibold text-foreground text-sm mb-2">{pick(overrides, 'bookTitle', t.contact.bookTitle)}</h3>
               <p className="text-xs text-muted-foreground leading-relaxed mb-4">{pick(overrides, 'bookDesc', t.contact.bookDesc)}</p>
-              <a href="https://discord.com/users/871100378299654194" target="_blank" rel="noopener noreferrer" data-testid="contact-discord-link" className="inline-flex items-center gap-2 text-sm font-medium text-primary border border-primary/30 rounded-lg px-4 py-2.5 hover:bg-primary/10 transition-colors">
+              <a href="https://discord.com/users/871100378299654194" target="_blank" rel="noopener noreferrer" data-testid="contact-discord-link" className="inline-flex items-center gap-2 text-sm font-medium text-foreground border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors">
                 Discord: {t.contact.info.discord} <ArrowRight size={11} />
               </a>
             </FadeUp>
