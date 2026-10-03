@@ -352,3 +352,11 @@ html.js .signature[data-signed] .signature-ink {
   .slide-in-right, .caret-blink { animation: none; }
   .tilt-3d { transition: none; }
 }
+
+/* KIQA.DEV apps card (components/AppsPopup.tsx) */
+@keyframes apps-pop-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.apps-pop { animation: apps-pop-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@media (prefers-reduced-motion: reduce) { .apps-pop { animation: none; } }

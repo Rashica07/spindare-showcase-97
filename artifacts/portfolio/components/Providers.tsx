@@ -7,6 +7,7 @@ import { LoadingScreen } from "@/components/LoadingScreen";
 import { PageTransitionLoader } from "@/components/PageTransitionLoader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PulseStatusDot } from "@/components/PulseStatusDot";
+import { AppsPopup } from "@/components/AppsPopup";
 
 declare global {
   interface Window { __kiqaHydrated?: boolean }
@@ -30,6 +31,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <PageTransitionLoader />
       {children}
       <WhatsAppButton />
+      <AppsPopup />
       <PulseStatusDot />
       <Toaster />
     </I18nProvider>
