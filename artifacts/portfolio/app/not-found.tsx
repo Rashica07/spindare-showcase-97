@@ -9,7 +9,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-background">
       <div className="text-center">
-        <p className="font-mono text-xs text-primary tracking-widest uppercase mb-4">404</p>
+        <p className="font-mono text-sm text-muted-foreground mb-4">404</p>
         <h1 className="text-4xl font-bold text-foreground">{t.notFound.title}</h1>
         <p className="mt-3 text-sm text-muted-foreground">{t.notFound.description}</p>
         <Link href="/" className="inline-flex items-center gap-2 mt-8 text-sm text-primary hover:underline">

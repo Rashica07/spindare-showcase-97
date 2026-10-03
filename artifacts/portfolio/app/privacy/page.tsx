@@ -21,8 +21,8 @@ export default function PrivacyPage() {
           </p>
 
           {/* TL;DR Summary Box */}
-          <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 mb-12">
-            <h2 className="font-semibold text-primary mb-2 text-lg">{content.tldrTitle}</h2>
+          <div className="bg-card border border-border rounded-xl p-6 mb-12">
+            <h2 className="font-semibold text-foreground mb-2 text-lg">{content.tldrTitle}</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {content.tldrDesc}
             </p>

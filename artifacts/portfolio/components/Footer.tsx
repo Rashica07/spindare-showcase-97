@@ -13,7 +13,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div className="flex flex-col gap-3">
-            <span className="font-mono text-sm font-semibold tracking-widest">
+            <span className="font-mono text-sm font-medium tracking-widest">
               KIQA<span className="text-primary">.</span>DEV
             </span>
             <p className="text-xs text-muted-foreground max-w-xs">{t.footer.tagline}</p>

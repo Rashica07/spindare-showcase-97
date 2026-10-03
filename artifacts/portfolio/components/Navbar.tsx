@@ -90,7 +90,7 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" data-testid="nav-logo" className="py-2">
-          <span className="font-mono text-sm font-semibold tracking-widest text-foreground hover:text-primary transition-colors">
+          <span className="font-mono text-sm font-medium tracking-widest text-foreground hover:text-primary transition-colors">
             KIQA<span className="text-primary">.</span>DEV
           </span>
         </Link>

@@ -61,37 +61,37 @@
   --opaque-button-border-intensity: 9;
   --elevate-1: rgba(255,255,255,.04);
   --elevate-2: rgba(255,255,255,.09);
-  --background: 20 8% 4%;
-  --foreground: 30 15% 96%;
-  --border: 25 8% 14%;
-  --card: 22 8% 7%;
-  --card-foreground: 30 12% 90%;
-  --card-border: 24 8% 13%;
-  --sidebar: 20 8% 5%;
-  --sidebar-foreground: 30 12% 90%;
-  --sidebar-border: 24 8% 13%;
-  --sidebar-primary: 32 98% 54%;
-  --sidebar-primary-foreground: 20 8% 4%;
-  --sidebar-accent: 22 8% 11%;
-  --sidebar-accent-foreground: 30 12% 85%;
-  --sidebar-ring: 32 98% 54%;
-  --popover: 20 8% 6%;
-  --popover-foreground: 30 12% 90%;
-  --popover-border: 24 8% 15%;
-  --primary: 32 98% 54%;
-  --primary-foreground: 20 8% 4%;
-  --secondary: 22 8% 11%;
-  --secondary-foreground: 30 12% 85%;
-  --muted: 20 6% 9%;
-  --muted-foreground: 28 6% 50%;
-  --accent: 43 96% 58%;
-  --accent-foreground: 20 8% 4%;
+  --background: 215 20% 6%;
+  --foreground: 40 22% 92%;
+  --border: 215 13% 17%;
+  --card: 215 17% 9%;
+  --card-foreground: 40 18% 86%;
+  --card-border: 215 13% 17%;
+  --sidebar: 215 20% 7%;
+  --sidebar-foreground: 40 18% 86%;
+  --sidebar-border: 215 13% 17%;
+  --sidebar-primary: 22 58% 56%;
+  --sidebar-primary-foreground: 215 22% 7%;
+  --sidebar-accent: 215 14% 12%;
+  --sidebar-accent-foreground: 40 15% 82%;
+  --sidebar-ring: 22 58% 56%;
+  --popover: 215 18% 8%;
+  --popover-foreground: 40 18% 86%;
+  --popover-border: 215 13% 19%;
+  --primary: 22 58% 56%;
+  --primary-foreground: 215 22% 7%;
+  --secondary: 215 14% 12%;
+  --secondary-foreground: 40 15% 82%;
+  --muted: 215 14% 10%;
+  --muted-foreground: 215 9% 58%;
+  --accent: 38 48% 62%;
+  --accent-foreground: 215 22% 7%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-  --input: 24 8% 13%;
-  --ring: 32 98% 54%;
-  --chart-1: 32 98% 54%;
-  --chart-2: 43 96% 58%;
+  --input: 215 13% 17%;
+  --ring: 22 58% 56%;
+  --chart-1: 22 58% 56%;
+  --chart-2: 38 48% 62%;
   --chart-3: 142 70% 45%;
   --chart-4: 0 72% 51%;
   --chart-5: 270 70% 65%;
@@ -103,9 +103,9 @@
   --shadow-xs: 0 2px 4px rgba(0,0,0,.4);
   --shadow-sm: 0 2px 8px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.03);
   --shadow: 0 4px 16px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.03);
-  --shadow-md: 0 8px 24px rgba(0,0,0,.6), 0 0 20px rgba(251,146,60,.04);
-  --shadow-lg: 0 16px 48px rgba(0,0,0,.7), 0 0 40px rgba(251,146,60,.06);
-  --shadow-xl: 0 24px 64px rgba(0,0,0,.8), 0 0 60px rgba(251,146,60,.08);
+  --shadow-md: 0 8px 24px rgba(0,0,0,.6), 0 0 20px rgba(208,125,78,.04);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.7), 0 0 40px rgba(208,125,78,.06);
+  --shadow-xl: 0 24px 64px rgba(0,0,0,.8), 0 0 60px rgba(208,125,78,.08);
   --shadow-2xl: 0 32px 80px rgba(0,0,0,.9);
   --tracking-normal: -0.01em;
   --spacing: 0.25rem;
@@ -138,7 +138,7 @@
     font-weight: 700;
     letter-spacing: -0.02em;
   }
-  ::selection { background: hsl(var(--primary)); color: #fff; }
+  ::selection { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: hsl(var(--background)); }
   ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 2px; }
@@ -180,8 +180,8 @@
   }
 
   .glass-card:hover {
-    border-color: hsl(var(--primary) / 0.25);
-    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.3), 0 0 24px hsl(var(--primary) / 0.06), inset 0 1px 0 hsl(0 0% 100% / 0.05);
+    border-color: hsl(var(--foreground) / 0.18);
+    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(0 0% 100% / 0.05);
   }
 
   .page-hero-glow { position: relative; }
@@ -190,15 +190,14 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 70% 50% at 20% 0%, hsl(var(--primary) / 0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 80% 20%, hsl(var(--accent) / 0.05) 0%, transparent 55%);
+      radial-gradient(ellipse 70% 50% at 85% 0%, hsl(var(--primary) / 0.07) 0%, transparent 60%);
     pointer-events: none;
     z-index: 0;
   }
   .page-hero-glow > * { position: relative; z-index: 1; }
 
   .timeline-sticky-section {
-    --timeline-active-glow: 0 0 28px hsl(43 96% 58% / 0.22), 0 0 60px hsl(var(--primary) / 0.12);
+    --timeline-active-glow: 0 0 28px hsl(var(--accent) / 0.22), 0 0 60px hsl(var(--primary) / 0.12);
     --timeline-progress-height: 3px;
     --timeline-progress-bg: hsl(var(--border) / 0.5);
     --timeline-progress-fill: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
@@ -225,7 +224,7 @@
 
   .story-bar { height: 3px; flex: 1; border-radius: 999px; overflow: hidden; background: hsl(var(--border) / 0.7); cursor: pointer; transition: transform 0.2s ease; }
   .story-bar:hover { transform: scaleY(1.4); }
-  .story-bar--active { background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent))); box-shadow: 0 0 6px hsl(var(--primary) / 0.45); }
+  .story-bar--active { background: hsl(var(--primary)); }
 }
 
 /*
@@ -326,4 +325,30 @@ html.js .signature[data-signed] .signature-ink {
 }
 @media (prefers-reduced-motion: reduce) {
   .signature-ink { transition: none !important; }
+}
+
+/* CraftPanel window: tilted, sliding in from the right. The slide lives on the
+   wrapper and the tilt on the inner element so the two transforms don't fight. */
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(110px); }
+  to   { opacity: 1; transform: none; }
+}
+.slide-in-right { animation: slide-in-right 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
+
+.tilt-3d {
+  transform: perspective(1800px) rotateY(-17deg) rotateX(5deg) rotateZ(-3deg);
+  transform-origin: 30% 50%;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tilt-3d:hover { transform: perspective(1800px) rotateY(-9deg) rotateX(2deg) rotateZ(-1.5deg); }
+@media (max-width: 1023px) {
+  .tilt-3d { transform: perspective(1200px) rotateY(-9deg) rotateX(3deg) rotateZ(-2deg); }
+}
+
+@keyframes caret-blink-kf { 50% { opacity: 0; } }
+.caret-blink { animation: caret-blink-kf 1s steps(2, start) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-in-right, .caret-blink { animation: none; }
+  .tilt-3d { transition: none; }
 }

@@ -99,8 +99,8 @@ export function PageTransitionLoader() {
             <motion.div
               className="absolute inset-y-0 left-0"
               style={{
-                background: 'linear-gradient(90deg, hsl(32 95% 36%), hsl(32 98% 60%))',
-                boxShadow: '0 0 10px 0 hsl(32 98% 54% / 0.5)',
+                background: 'linear-gradient(90deg, hsl(22 50% 36%), hsl(22 62% 62%))',
+                boxShadow: '0 0 10px 0 hsl(22 58% 56% / 0.45)',
               }}
               animate={{ width: `${pct * 100}%` }}
               transition={{ ease: [0.25, 1, 0.35, 1], duration: 0.15 }}
@@ -113,7 +113,7 @@ export function PageTransitionLoader() {
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <motion.circle
                   cx="7" cy="7" r="5"
-                  stroke="hsl(32 98% 58% / 0.5)"
+                  stroke="hsl(22 60% 60% / 0.5)"
                   strokeWidth="0.8"
                   strokeDasharray="6 4"
                   strokeLinecap="round"
@@ -123,7 +123,7 @@ export function PageTransitionLoader() {
                 />
                 <motion.circle
                   cx="7" cy="7" r="3"
-                  stroke="hsl(32 98% 62%)"
+                  stroke="hsl(22 62% 64%)"
                   strokeWidth="1.2"
                   strokeDasharray="9 5"
                   strokeLinecap="round"
@@ -131,7 +131,7 @@ export function PageTransitionLoader() {
                   transition={{ duration: 0.7, repeat: Infinity, ease: 'linear' }}
                   style={{ transformOrigin: '7px 7px' }}
                 />
-                <circle cx="7" cy="7" r="1.2" fill="hsl(32 98% 68%)" />
+                <circle cx="7" cy="7" r="1.2" fill="hsl(22 64% 70%)" />
               </svg>
             </motion.div>
           </div>

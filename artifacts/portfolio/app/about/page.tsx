@@ -1,7 +1,6 @@
 'use client';
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
@@ -37,8 +36,7 @@ export default function AboutPage() {
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="about-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="hero-in">
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'label', t.about.label)}</span>
-            <h1 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.about.title)}</h1>
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.about.title)}</h1>
             <p className="mt-3 text-muted-foreground text-lg">{pick(overrides, 'sub', t.about.sub)}</p>
           </div>
         </div>
@@ -58,10 +56,10 @@ export default function AboutPage() {
                 { label: pick(overrides, 'metaAvailable', t.about.metaAvailable), value: pick(overrides, 'metaAvailableValue', t.about.metaAvailableValue) },
                 { label: pick(overrides, 'metaResponse', t.about.metaResponse), value: pick(overrides, 'metaResponseValue', t.about.metaResponseValue) },
               ].map(({ label, value }, i) => (
-                <motion.div key={i} whileHover={{ y: -3, borderColor: "hsl(var(--primary) / 0.3)" }} transition={{ duration: 0.2 }} className="glass-card rounded-lg p-4" data-testid={`about-meta-${i}`}>
+                <div key={i} className="rounded-lg border border-card-border bg-card/60 p-4" data-testid={`about-meta-${i}`}>
                   <p className="font-mono text-xs text-muted-foreground tracking-widest uppercase">{label}</p>
                   <p className="mt-1.5 text-sm font-medium text-foreground">{value}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </FadeUp>
@@ -70,14 +68,13 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40 bg-card/20" data-testid="about-skills">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'stackLabel', t.about.stackLabel)}</span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight">{pick(overrides, 'stackTitle', t.about.stackTitle)}</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{pick(overrides, 'stackTitle', t.about.stackTitle)}</h2>
           </FadeUp>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.about.skills.map((cat, i) => (
-              <FadeUp key={i} delay={i * 0.08}>
-                <motion.div whileHover={{ y: -4, borderColor: "hsl(var(--primary) / 0.4)" }} transition={{ duration: 0.2 }} className="border border-card-border bg-card/60 backdrop-blur-sm rounded-xl p-6 transition-colors shadow-sm" data-testid={`skill-category-${i}`}>
-                  <h3 className="font-mono text-xs text-primary tracking-widest uppercase mb-4">{cat.name}</h3>
+              <FadeUp key={i} delay={i * 0.08} className="h-full">
+                <div className="h-full border border-card-border bg-card/60 rounded-xl p-6" data-testid={`skill-category-${i}`}>
+                  <h3 className="text-sm font-semibold text-foreground mb-4">{cat.name}</h3>
                   <ul className="flex flex-col gap-2.5">
                     {cat.items.map((item, j) => {
                       const Icon = SKILL_ICONS[item];
@@ -89,7 +86,7 @@ export default function AboutPage() {
                       );
                     })}
                   </ul>
-                </motion.div>
+                </div>
               </FadeUp>
             ))}
           </div>
@@ -98,8 +95,7 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40" data-testid="about-experience">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'experienceLabel', t.about.experienceLabel)}</span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight">{pick(overrides, 'experienceTitle', t.about.experienceTitle)}</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{pick(overrides, 'experienceTitle', t.about.experienceTitle)}</h2>
           </FadeUp>
           <div className="mt-12 relative">
             <div className="absolute left-0 md:left-32 top-0 bottom-0 w-px bg-border/40" />
@@ -109,7 +105,7 @@ export default function AboutPage() {
                   <div className="flex gap-8 md:gap-0 relative" data-testid={`exp-item-${i}`}>
                     <div className="hidden md:block w-32 pt-1 shrink-0"><span className="font-mono text-xs text-muted-foreground">{exp.year}</span></div>
                     <div className="relative">
-                      <div className="absolute -left-1 md:-left-[41px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-primary/25 animate-pulse" />
+                      <div className="absolute -left-1 md:-left-[41px] top-1.5 w-2.5 h-2.5 rounded-full bg-muted-foreground/70 ring-4 ring-background" />
                       <div className="pl-6 md:pl-8">
                         <h3 className="font-semibold text-foreground text-sm">{exp.role}</h3>
                         <p className="md:hidden font-mono text-xs text-muted-foreground mt-0.5">{exp.year}</p>
@@ -126,16 +122,15 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40 bg-card/20" data-testid="about-values">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">{pick(overrides, 'approachLabel', t.about.approachLabel)}</span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight">{pick(overrides, 'approachTitle', t.about.approachTitle)}</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{pick(overrides, 'approachTitle', t.about.approachTitle)}</h2>
           </FadeUp>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.about.values.map((v, i) => (
-              <FadeUp key={i} delay={i * 0.08}>
-                <motion.div whileHover={{ y: -4, borderColor: "hsl(var(--primary) / 0.3)" }} transition={{ duration: 0.2 }} className="glass-card rounded-xl p-6" data-testid={`value-item-${i}`}>
+              <FadeUp key={i} delay={i * 0.08} className="h-full">
+                <div className="h-full rounded-xl border border-card-border bg-card/60 p-6" data-testid={`value-item-${i}`}>
                   <h3 className="font-semibold text-foreground">{v.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
-                </motion.div>
+                </div>
               </FadeUp>
             ))}
           </div>
@@ -148,12 +143,10 @@ export default function AboutPage() {
             <p className="mt-2 text-muted-foreground">{pick(overrides, 'ctaSub', t.about.ctaSub)}</p>
           </FadeUp>
           <FadeUp delay={0.1} className="flex gap-4 shrink-0">
-            <Link href="/contact" data-testid="about-cta-contact">
-              <motion.span whileHover={{ scale: 1.02 }} className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg text-sm hover:bg-primary/90 transition-colors cursor-pointer">
-                {pick(overrides, 'ctaButton', t.about.ctaButton)} <ArrowRight size={14} />
-              </motion.span>
+            <Link href="/contact" data-testid="about-cta-contact" className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg text-sm hover:bg-primary/90 transition-colors">
+              {pick(overrides, 'ctaButton', t.about.ctaButton)} <ArrowRight size={14} aria-hidden="true" />
             </Link>
-            <a href="https://github.com/rashica07" target="_blank" rel="noopener noreferrer" data-testid="about-cta-github" className="inline-flex items-center gap-2 px-5 py-3.5 border border-border/60 text-muted-foreground hover:text-foreground rounded-lg text-sm transition-colors">
+            <a href="https://github.com/rashica07" target="_blank" rel="noopener noreferrer" data-testid="about-cta-github" className="inline-flex items-center gap-2 px-5 py-3.5 border border-border text-foreground hover:bg-card rounded-lg text-sm transition-colors">
               <SiGithub size={16} /> GitHub
             </a>
           </FadeUp>

@@ -12,7 +12,7 @@ export function PolicyAccordion({ title, children, defaultOpen = false }: Policy
   return (
     <details
       open={defaultOpen}
-      className="disclosure group border border-border/40 bg-card rounded-xl overflow-hidden mb-4 transition-colors hover:border-primary/30"
+      className="disclosure group border border-border/40 bg-card rounded-xl overflow-hidden mb-4 transition-colors hover:border-foreground/20"
     >
       <summary className="w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer">
         <span className="font-semibold text-lg text-foreground pr-4">{title}</span>

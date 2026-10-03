@@ -59,7 +59,7 @@ export function LoadingScreen() {
   const maxD  = Math.sqrt(cx * cx + cy * cy);
 
   return (
-    <div className="fixed inset-0 z-[9999] overflow-hidden select-none" style={{ background: '#080503' }}>
+    <div className="fixed inset-0 z-[9999] overflow-hidden select-none" style={{ background: '#0c0f12' }}>
       <div
         className="absolute inset-0"
         style={{
@@ -67,7 +67,7 @@ export function LoadingScreen() {
           gridTemplateColumns: `repeat(${COLS}, 1fr)`,
           gridTemplateRows: `repeat(${ROWS}, 1fr)`,
           gap: '1px',
-          background: 'rgba(249,115,22,0.10)',
+          background: 'rgba(208,125,78,0.10)',
         }}
       >
         {Array.from({ length: total }, (_, idx) => {
@@ -78,7 +78,7 @@ export function LoadingScreen() {
           return (
             <motion.div
               key={idx}
-              style={{ background: '#0a0603' }}
+              style={{ background: '#0e1216' }}
               animate={exiting ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
               transition={{ duration: 0.24, delay, ease: [0.4, 0, 0.2, 1] }}
             />
@@ -95,7 +95,7 @@ export function LoadingScreen() {
           <svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
             <motion.circle
               cx="46" cy="46" r="42"
-              stroke="rgba(249,115,22,0.18)"
+              stroke="rgba(208,125,78,0.18)"
               strokeWidth="1"
               strokeDasharray="5 7"
               strokeLinecap="round"
@@ -103,10 +103,10 @@ export function LoadingScreen() {
               transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
               style={{ transformOrigin: '46px 46px' }}
             />
-            <circle cx="46" cy="46" r="35" stroke="rgba(249,115,22,0.14)" strokeWidth="1" />
+            <circle cx="46" cy="46" r="35" stroke="rgba(208,125,78,0.14)" strokeWidth="1" />
             <motion.circle
               cx="46" cy="46" r="27"
-              stroke="rgba(249,115,22,0.75)"
+              stroke="rgba(208,125,78,0.75)"
               strokeWidth="1.5"
               strokeDasharray="48 22"
               strokeLinecap="round"
@@ -114,9 +114,9 @@ export function LoadingScreen() {
               transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
               style={{ transformOrigin: '46px 46px' }}
             />
-            <circle cx="46" cy="46" r="18" stroke="rgba(249,115,22,0.28)" strokeWidth="1" />
-            <circle cx="46" cy="46" r="10" fill="rgba(249,115,22,0.12)" />
-            <circle cx="46" cy="46" r="5"  fill="rgb(249,115,22)" />
+            <circle cx="46" cy="46" r="18" stroke="rgba(208,125,78,0.28)" strokeWidth="1" />
+            <circle cx="46" cy="46" r="10" fill="rgba(208,125,78,0.12)" />
+            <circle cx="46" cy="46" r="5"  fill="rgb(208,125,78)" />
             <circle cx="46" cy="46" r="5"  fill="rgba(255,255,255,0.25)" />
           </svg>
         </motion.div>
@@ -135,7 +135,7 @@ export function LoadingScreen() {
               className="absolute inset-y-0 left-0 rounded-full transition-all"
               style={{
                 width: `${progress * 100}%`,
-                background: 'linear-gradient(90deg, hsl(32 95% 38%), hsl(32 98% 58%))',
+                background: 'linear-gradient(90deg, hsl(22 50% 38%), hsl(22 62% 60%))',
                 transition: 'width 200ms ease-out',
               }}
             />

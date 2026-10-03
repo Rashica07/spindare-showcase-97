@@ -40,7 +40,7 @@ export function CraftPanelWindow() {
             <span className="text-amber-300">[!]</span> world backed up — scheduled
           </div>
           <div>
-            &gt; <span className="rd-caret inline-block h-[1.05em] w-[0.55em] translate-y-[0.15em] bg-primary" />
+            &gt; <span className="caret-blink inline-block h-[1.05em] w-[0.55em] translate-y-[0.15em] bg-primary" />
           </div>
         </div>
       </div>
