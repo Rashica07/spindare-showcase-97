@@ -1,0 +1,46 @@
+/*
+ * Palette + typography overrides for the /redesign previews. Imported only by
+ * app/redesign/layout.tsx. Each variant page renders a wrapper with .rd-a1/2/3,
+ * and :has() lets that wrapper re-theme the whole document (navbar, footer and
+ * all) without touching the real site's tokens.
+ *
+ * Accent 1 keeps the site's own orange; 2 and 3 are the alternatives.
+ * Contrast (WCAG): text/bg 18.1 (orig) -> 15.3 (copper) / 16.3 (sage);
+ * muted text/bg 5.0 (orig) -> 6.4 / 6.1.
+ */
+html:has(.rd-a2) {
+  --background: 20 8% 6%;
+  --foreground: 30 14% 90%;
+  --card: 22 8% 9%;
+  --card-foreground: 30 12% 86%;
+  --card-border: 24 8% 17%;
+  --border: 24 8% 17%;
+  --input: 24 8% 17%;
+  --muted-foreground: 28 6% 58%;
+  --primary: 22 58% 56%;
+  --primary-foreground: 20 10% 8%;
+  --accent: 38 48% 62%;
+  --ring: 22 58% 56%;
+}
+
+html:has(.rd-a3) {
+  --background: 215 20% 6%;
+  --foreground: 40 22% 92%;
+  --card: 215 17% 9%;
+  --card-foreground: 40 18% 86%;
+  --card-border: 215 13% 17%;
+  --border: 215 13% 17%;
+  --input: 215 13% 17%;
+  --muted-foreground: 215 9% 58%;
+  --primary: 150 26% 60%;
+  --primary-foreground: 215 22% 7%;
+  --accent: 100 22% 68%;
+  --ring: 150 26% 60%;
+}
+
+/* DM Mono only ships weights 400 and 500, so any bold/black on a mono element
+   is browser-faked (smeared, uneven next to real DM Sans). Inside the
+   previews, cap mono text at a real weight. */
+html:has(.rd-root) .font-mono {
+  font-weight: 500;
+}

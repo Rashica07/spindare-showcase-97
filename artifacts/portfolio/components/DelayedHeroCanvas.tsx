@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
+import type { HeroTint } from "@/components/HeroCanvas";
+
 const HeroCanvas = dynamic(
   () => import("@/components/HeroCanvas").then((m) => ({ default: m.HeroCanvas })),
   { ssr: false, loading: () => null }
 );
 
-export function DelayedHeroCanvas() {
+export function DelayedHeroCanvas({ tint }: { tint?: HeroTint } = {}) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -22,5 +24,5 @@ export function DelayedHeroCanvas() {
   }, []);
 
   if (!show) return null;
-  return <HeroCanvas />;
+  return <HeroCanvas tint={tint} />;
 }

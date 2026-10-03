@@ -42,9 +42,11 @@ interface FieldProps {
   animate: boolean;
   rows: number;
   cols: number;
+  near?: string;
+  far?: string;
 }
 
-function ContourField({ mouse, animate, rows, cols }: FieldProps) {
+function ContourField({ mouse, animate, rows, cols, near: nearHex = '#fb923c', far: farHex = '#7c2d12' }: FieldProps) {
   const groupRef = useRef<THREE.Group>(null);
   const segments = rows * (cols - 1);
 
@@ -63,8 +65,8 @@ function ContourField({ mouse, animate, rows, cols }: FieldProps) {
 
     // Depth fade baked into vertex colours: far rows recede, near rows read solid.
     const color = new THREE.BufferAttribute(new Float32Array(segments * 6), 3);
-    const near = new THREE.Color('#fb923c');
-    const far = new THREE.Color('#7c2d12');
+    const near = new THREE.Color(nearHex);
+    const far = new THREE.Color(farHex);
     const tmp = new THREE.Color();
     let s = 0;
     for (let r = 0; r < rows; r++) {
@@ -81,7 +83,7 @@ function ContourField({ mouse, animate, rows, cols }: FieldProps) {
     g.setAttribute('position', position);
     g.setAttribute('color', color);
     return g;
-  }, [segments, rows, cols]);
+  }, [segments, rows, cols, nearHex, farHex]);
 
   const mat = useMemo(
     () => new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.5 }),
@@ -139,7 +141,15 @@ function StaticBackdrop() {
   return <div className="w-full h-full bg-[radial-gradient(ellipse_80%_60%_at_60%_40%,hsl(32_98%_54%_/_0.07)_0%,transparent_70%)]" />;
 }
 
-export function HeroCanvas() {
+export interface HeroTint {
+  near: string;
+  far: string;
+  fog: string;
+}
+
+// `tint` recolours the field (used by the /redesign palette previews); the
+// defaults are the site's original orange.
+export function HeroCanvas({ tint }: { tint?: HeroTint } = {}) {
   const [hasWebGL, setHasWebGL] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [animate, setAnimate] = useState(true);
@@ -205,8 +215,8 @@ export function HeroCanvas() {
             style={{ background: 'transparent' }}
             frameloop={running ? 'always' : 'demand'}
           >
-            <fog attach="fog" args={['#0b0804', 16, 42]} />
-            <ContourField mouse={mouse} animate={running} rows={q.rows} cols={q.cols} />
+            <fog attach="fog" args={[tint?.fog ?? '#0b0804', 16, 42]} />
+            <ContourField mouse={mouse} animate={running} rows={q.rows} cols={q.cols} near={tint?.near} far={tint?.far} />
           </Canvas>
         </motion.div>
       ) : (
