@@ -44,3 +44,45 @@ html:has(.rd-a3) {
 html:has(.rd-root) .font-mono {
   font-weight: 500;
 }
+
+/* ---- "Copper & Ink" mix (/redesign/mix): ink background from palette 3, copper accent from palette 2 ---- */
+html:has(.rd-mix) {
+  --background: 215 20% 6%;
+  --foreground: 40 22% 92%;
+  --card: 215 17% 9%;
+  --card-foreground: 40 18% 86%;
+  --card-border: 215 13% 17%;
+  --border: 215 13% 17%;
+  --input: 215 13% 17%;
+  --muted-foreground: 215 9% 58%;
+  --primary: 22 58% 56%;
+  --primary-foreground: 215 22% 7%;
+  --accent: 38 48% 62%;
+  --ring: 22 58% 56%;
+}
+
+/* CraftPanel window: tilted, sliding in from the right. The slide lives on the
+   wrapper and the tilt on the inner element so the two transforms don't fight. */
+@keyframes rd-slide-in {
+  from { opacity: 0; transform: translateX(110px); }
+  to   { opacity: 1; transform: none; }
+}
+.rd-slide-in { animation: rd-slide-in 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
+
+.rd-tilt {
+  transform: perspective(1800px) rotateY(-17deg) rotateX(5deg) rotateZ(-3deg);
+  transform-origin: 30% 50%;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rd-tilt:hover { transform: perspective(1800px) rotateY(-9deg) rotateX(2deg) rotateZ(-1.5deg); }
+@media (max-width: 1023px) {
+  .rd-tilt { transform: perspective(1200px) rotateY(-9deg) rotateX(3deg) rotateZ(-2deg); }
+}
+
+@keyframes rd-blink { 50% { opacity: 0; } }
+.rd-caret { animation: rd-blink 1s steps(2, start) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rd-slide-in, .rd-caret { animation: none; }
+  .rd-tilt { transition: none; }
+}

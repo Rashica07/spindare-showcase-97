@@ -37,7 +37,23 @@ export default function RedesignIndex() {
           here is on the real pages, and these links aren&apos;t indexed by search engines.
         </p>
 
-        <div className="mt-10 flex flex-col gap-6">
+        <Link
+          href="/redesign/mix"
+          className="mt-10 block rounded-xl border border-primary/40 bg-card p-6 transition-colors hover:bg-secondary"
+        >
+          <div className="flex items-center gap-2.5">
+            <span className="h-3.5 w-3.5 rounded-full" style={{ background: "#d07d4e" }} aria-hidden="true" />
+            <span className="h-3.5 w-3.5 rounded-full" style={{ background: "#0c0f12", boxShadow: "0 0 0 1px #2a3038" }} aria-hidden="true" />
+            <h2 className="text-xl font-semibold">Your mix: Copper &amp; Ink</h2>
+          </div>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Copper accent on the ink background. Lean like option 2, with a bit more to fill the page: a big, tilted
+            CraftPanel window sliding in from the right with its caption beside it, three more projects, services, and
+            a one-line process strip.
+          </p>
+        </Link>
+
+        <div className="mt-6 flex flex-col gap-6">
           {SCOPES.map((s) => (
             <section key={s.n} className="rounded-xl border border-card-border bg-card p-6">
               <h2 className="text-xl font-semibold">
