@@ -8,6 +8,7 @@ name: Deploy to Cloudflare
 #   CLOUDFLARE_API_TOKEN   - token from the "Edit Cloudflare Workers" template
 #   CLOUDFLARE_ACCOUNT_ID  - shown on the Workers & Pages overview page
 # If they are missing the job fails loudly instead of reporting a green skip.
+# Paste the token with no spaces or line breaks; a stray space gives "Invalid format for Authorization header".
 
 on:
   push:
