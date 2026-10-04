@@ -29,7 +29,7 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 const DESCRIPTION =
   "Freelance developer building mobile apps, landing pages, and web platforms. Fixed price, fixed delivery date.";
 
-const OG_IMAGE = "/opengraph.webp";
+const OG_IMAGE = "/og";
 
 const JSON_LD = [
   {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllSlugs } from "@/lib/blog-posts";
 import { translations } from "@/lib/translations";
+import { pageMeta } from "@/lib/seo";
 
 type Props = { children: React.ReactNode; params: Promise<{ slug: string }> };
 
@@ -14,12 +15,7 @@ export async function generateMetadata({ params }: Omit<Props, "children">): Pro
   const { slug } = await params;
   const post = translations.en.blog.posts.find((p) => p.slug === slug);
   if (!post) return {};
-  return {
-    title: post.title,
-    description: post.excerpt,
-    alternates: { canonical: `/blog/${slug}` },
-    openGraph: { type: "article", title: post.title, description: post.excerpt, url: `/blog/${slug}` },
-  };
+  return pageMeta({ title: post.title, description: post.excerpt, path: `/blog/${slug}`, type: "article" });
 }
 
 export default async function BlogPostLayout({ children, params }: Props) {

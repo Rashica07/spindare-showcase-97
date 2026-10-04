@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SiGithub } from "react-icons/si";
 import { useLanguage } from "@/lib/i18n";
 import { Signature } from "@/components/Signature";
+import { OPEN_APPS_EVENT } from "@/components/AppsPopup";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -35,6 +36,15 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
+            {/* Opens the KIQA.DEV apps card; script-only, so hidden without JS. */}
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event(OPEN_APPS_EVENT))}
+              data-testid="footer-apps"
+              className="js-only text-xs text-muted-foreground hover:text-foreground transition-colors tracking-widest uppercase"
+            >
+              {t.apps.footerLink}
+            </button>
           </nav>
 
           <div className="flex items-center gap-4">

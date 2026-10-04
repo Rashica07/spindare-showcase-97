@@ -279,6 +279,7 @@ export const translations = {
     footer: { tagline: "Fixed prices and fixed delivery dates.", legal: "© 2026 KIQA DEV. All rights reserved." },
     seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Chat on WhatsApp", aria: "Message us on WhatsApp", prefill: "Hi Kristian, I'd like to talk about a project." },
+    apps: { title: "KIQA.DEV apps", sub: "Tools by KIQA DEV, built to the same standard as the client work.", craftpanelDesc: "Run a Minecraft server without a terminal.", live: "Live", soon: "Coming soon", open: "Open", more: "More KIQA.DEV apps are on the way.", close: "Close", footerLink: "Apps" },
     notFound: {
       title: "Page Not Found",
       description: "The page you are looking for does not exist.",
@@ -480,6 +481,7 @@ export const translations = {
     footer: { tagline: "Lavoro di qualità. Prezzo fisso. Puntuale.", legal: "© 2026 KIQA DEV. Tutti i diritti riservati." },
     seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Chatta su WhatsApp", aria: "Scrivici su WhatsApp", prefill: "Ciao Kristian, vorrei parlarti di un progetto." },
+    apps: { title: "App KIQA.DEV", sub: "Strumenti di KIQA DEV, costruiti con lo stesso standard dei progetti per i clienti.", craftpanelDesc: "Gestisci un server Minecraft senza terminale.", live: "Attivo", soon: "In arrivo", open: "Apri", more: "Altre app KIQA.DEV sono in arrivo.", close: "Chiudi", footerLink: "App" },
     notFound: {
       title: "Pagina non trovata",
       description: "La pagina che stai cercando non esiste.",
@@ -682,6 +684,7 @@ export const translations = {
     footer: { tagline: "Punë cilësore. Çmim fiks. Në kohë.", legal: "© 2026 KIQA DEV. Të gjitha të drejtat të rezervuara." },
     seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Bisedo në WhatsApp", aria: "Na shkruaj në WhatsApp", prefill: "Përshëndetje Kristian, dua të flasim për një projekt." },
+    apps: { title: "Aplikacionet KIQA.DEV", sub: "Mjete nga KIQA DEV, të ndërtuara me të njëjtin standard si puna për klientët.", craftpanelDesc: "Menaxho një server Minecraft pa terminal.", live: "Aktiv", soon: "Së shpejti", open: "Hap", more: "Më shumë aplikacione KIQA.DEV po vijnë.", close: "Mbyll", footerLink: "Aplikacionet" },
     notFound: {
       title: "Faqja nuk u gjet",
       description: "Faqja që po kërkon nuk ekziston.",
@@ -883,6 +886,7 @@ export const translations = {
     footer: { tagline: "Qualitätsarbeit. Festpreis. Pünktlich.", legal: "© 2026 KIQA DEV. Alle Rechte vorbehalten." },
     seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Auf WhatsApp chatten", aria: "Schreib uns auf WhatsApp", prefill: "Hallo Kristian, ich möchte über ein Projekt sprechen." },
+    apps: { title: "KIQA.DEV Apps", sub: "Tools von KIQA DEV, mit demselben Anspruch wie die Kundenprojekte.", craftpanelDesc: "Einen Minecraft-Server ohne Terminal betreiben.", live: "Live", soon: "Demnächst", open: "Öffnen", more: "Weitere KIQA.DEV-Apps sind unterwegs.", close: "Schließen", footerLink: "Apps" },
     notFound: {
       title: "Seite nicht gefunden",
       description: "Die Seite, die du suchst, existiert nicht.",
