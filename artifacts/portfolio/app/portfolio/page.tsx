@@ -114,7 +114,8 @@ export default function PortfolioPage() {
               return (
                 <FadeUp key={project.name} delay={i * 0.08} className={isCraftPanel ? "h-full md:col-span-2" : "h-full"}>
                   <div
-                    className="group h-full rounded-xl border border-card-border bg-card overflow-hidden flex flex-col transition-colors hover:border-foreground/20"
+                    className={`group h-full rounded-xl border bg-card overflow-hidden flex flex-col transition-colors hover:border-foreground/20 ${identity?.highlight ? "" : "border-card-border"}`}
+                    style={identity?.highlight && identity.accent ? { borderColor: `${identity.accent}99` } : undefined}
                     data-testid={`portfolio-project-${i}`}
                   >
                     {project.name === "CraftPanel" ? (
@@ -245,19 +246,39 @@ export default function PortfolioPage() {
                       </div>
                     ) : (
                       <div
-                        className={`h-48 flex items-center justify-center relative overflow-hidden ${identity?.accent ? "bg-card" : "bg-gradient-to-br from-card to-muted/20"}`}
-                        style={identity?.accent ? { backgroundImage: `linear-gradient(135deg, ${identity.accent}2e 0%, transparent 70%)` } : undefined}
+                        className={`h-56 flex items-center justify-center relative overflow-hidden ${identity?.accent || identity?.image ? "bg-card" : "bg-gradient-to-br from-card to-muted/20"}`}
+                        style={identity?.accent && !identity.image ? { backgroundImage: `linear-gradient(135deg, ${identity.accent}${identity.highlight ? "59" : "2e"} 0%, transparent 70%)` } : undefined}
                       >
-                        <div className="absolute inset-0 grid-bg opacity-30" />
+                        {identity?.image ? (
+                          <>
+                            <Image src={identity.image} alt={`${project.name} screenshot`} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover object-top" />
+                            {/* Dark fade into the card body; the accent tints the lower part only. */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/10 to-transparent" style={identity.accent ? { backgroundImage: `linear-gradient(to top, ${identity.accent}55, transparent 60%)` } : undefined} />
+                          </>
+                        ) : (
+                          <div className="absolute inset-0 grid-bg opacity-30" />
+                        )}
                         {identity?.url && (
-                          <a href={identity.url} target="_blank" rel="noopener noreferrer" className="absolute top-4 right-4 z-10 inline-flex items-center gap-1 py-1 text-xs font-medium text-foreground hover:underline underline-offset-4">
+                          <a href={identity.url} target="_blank" rel="noopener noreferrer" className="absolute top-4 right-4 z-10 inline-flex items-center gap-1 py-1 text-xs font-medium text-foreground hover:underline underline-offset-4" style={identity.accentLight ? { color: identity.accentLight } : undefined}>
                             Visit site <ExternalLink size={11} aria-hidden="true" />
                           </a>
                         )}
-                        <div className="relative z-10 flex flex-col items-center gap-2">
-                          <span className="text-5xl font-semibold text-muted-foreground/15">{project.name.slice(0, 2).toUpperCase()}</span>
-                          <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span className={`h-1.5 w-1.5 rounded-full ${statusDot}`} />{project.status}</span>
-                        </div>
+                        {!identity?.image && (
+                          <div className="relative z-10 flex flex-col items-center gap-2">
+                            {identity?.mark ? (
+                              <Image src={identity.mark} alt="" width={64} height={64} unoptimized />
+                            ) : (
+                              <span className="text-5xl font-semibold text-muted-foreground/15">{project.name.slice(0, 2).toUpperCase()}</span>
+                            )}
+                            <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span className={`h-1.5 w-1.5 rounded-full ${statusDot}`} />{project.status}</span>
+                          </div>
+                        )}
+                        {identity?.image && (
+                          <span className="absolute bottom-4 left-4 z-10 inline-flex items-center gap-2 rounded bg-background/70 px-2 py-1 text-xs text-foreground backdrop-blur-sm">
+                            {identity.mark && <Image src={identity.mark} alt="" width={16} height={16} unoptimized />}
+                            <span className={`h-1.5 w-1.5 rounded-full ${statusDot}`} />{project.status}
+                          </span>
+                        )}
                       </div>
                     )}
                     <div className="p-6 flex flex-col gap-4 flex-1">
@@ -279,6 +300,9 @@ export default function PortfolioPage() {
                           );
                         })}
                       </div>
+                      {identity?.credit && (
+                        <p className="font-mono text-[11px] tracking-wide text-muted-foreground/80 border-t border-border/40 pt-3">{identity.credit}</p>
+                      )}
                     </div>
                   </div>
                 </FadeUp>
