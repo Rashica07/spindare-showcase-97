@@ -32,6 +32,7 @@ import luxhotel3Img from "@/public/luxhotel-3.webp";
 import luxhotel4Img from "@/public/luxhotel-4.webp";
 import { FadeUp } from "@/components/FadeUp";
 import { CraftPanelWindow } from "@/components/CraftPanelWindow";
+import { PROJECT_IDENTITY, STATUS_DOT } from "@/lib/project-identity";
 
 
 const ICON_MAP: Record<string, IconType> = {
@@ -81,8 +82,10 @@ export default function PortfolioPage() {
     return () => window.removeEventListener("keydown", onKey);
   }, [lightbox]);
 
-  const allFilters = ["All", "Mobile", "Web"];
-  const filtered = active === "All" ? t.work.projects : t.work.projects.filter((p) => p.type === active);
+  const allFilters = ["All", "Mobile", "Web", "Game", "Desktop"];
+  // "Desktop" also covers "Desktop App" (CraftPanel, NYRIS).
+  const matchesFilter = (type: string) => active === "All" || type === active || (active === "Desktop" && type.startsWith("Desktop"));
+  const filtered = t.work.projects.filter((p) => matchesFilter(p.type));
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -105,7 +108,8 @@ export default function PortfolioPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((project, i) => {
-              const statusDot = project.status === "Live" ? "bg-emerald-500" : project.status.includes("Development") ? "bg-amber-400/80" : "bg-muted-foreground";
+              const identity = PROJECT_IDENTITY[project.name];
+              const statusDot = identity ? STATUS_DOT[identity.tone] : project.status === "Live" ? "bg-emerald-500" : project.status.includes("Development") ? "bg-amber-400/80" : "bg-muted-foreground";
               const isCraftPanel = project.name === "CraftPanel";
               return (
                 <FadeUp key={project.name} delay={i * 0.08} className={isCraftPanel ? "h-full md:col-span-2" : "h-full"}>
@@ -240,8 +244,16 @@ export default function PortfolioPage() {
                         </div>
                       </div>
                     ) : (
-                      <div className="h-48 bg-gradient-to-br from-card to-muted/20 flex items-center justify-center relative overflow-hidden">
+                      <div
+                        className={`h-48 flex items-center justify-center relative overflow-hidden ${identity?.accent ? "bg-card" : "bg-gradient-to-br from-card to-muted/20"}`}
+                        style={identity?.accent ? { backgroundImage: `linear-gradient(135deg, ${identity.accent}2e 0%, transparent 70%)` } : undefined}
+                      >
                         <div className="absolute inset-0 grid-bg opacity-30" />
+                        {identity?.url && (
+                          <a href={identity.url} target="_blank" rel="noopener noreferrer" className="absolute top-4 right-4 z-10 inline-flex items-center gap-1 py-1 text-xs font-medium text-foreground hover:underline underline-offset-4">
+                            Visit site <ExternalLink size={11} aria-hidden="true" />
+                          </a>
+                        )}
                         <div className="relative z-10 flex flex-col items-center gap-2">
                           <span className="text-5xl font-semibold text-muted-foreground/15">{project.name.slice(0, 2).toUpperCase()}</span>
                           <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span className={`h-1.5 w-1.5 rounded-full ${statusDot}`} />{project.status}</span>
@@ -252,7 +264,7 @@ export default function PortfolioPage() {
                       <div className="flex items-center justify-between">
                         <h3 className="font-semibold text-foreground text-lg">{project.name}</h3>
                         <div className="flex items-center gap-2">
-                          <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
+                          {project.year && <span className="font-mono text-xs text-muted-foreground">{project.year}</span>}
                           <span className="font-mono text-xs text-muted-foreground border border-border/50 rounded px-1.5 py-0.5">{project.type}</span>
                         </div>
                       </div>
