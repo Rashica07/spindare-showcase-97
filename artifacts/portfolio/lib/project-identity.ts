@@ -43,6 +43,7 @@ export const PROJECT_IDENTITY: Record<string, ProjectIdentity> = {
       "/projects/echoverse-site.webp",
       "/projects/echoverse-chat.webp",
     ],
+    credit: "In partnership with BlueSquare AI",
   },
   // Dark horror treatment. The red is the "50:00:00" tone from the key art.
   FIFTH: {
@@ -52,7 +53,7 @@ export const PROJECT_IDENTITY: Record<string, ProjectIdentity> = {
   },
   "The Dragon of Albania": {
     tone: "progress",
-    image: "/projects/dragon-of-albania.webp",
+    image: "/projects/dragon-arcade.webp",
   },
   NYRIS: { tone: "early" },
   // Brand green #317246, from the Viktory logo and README. Highlighted on purpose.
