@@ -124,7 +124,7 @@ export const translations = {
           type: "Mobile",
           status: "Finished · Not published yet",
           year: "2026",
-          desc: "Speech translation for real conversations. Speech is transcribed, translated and spoken into your earbuds in about a second, with captions, a face-to-face mode and a tutor you practise with out loud. The iOS app is finished; the Android port is in progress. Launch expected late December.",
+          desc: "Speech translation for real conversations. Speech is transcribed, translated and spoken into your earbuds in about a second, with captions, a face-to-face mode and a tutor you practise with out loud. Finished on iOS and Android. Launch expected late December.",
           stack: ["Swift", "SwiftUI", "Kotlin", "Jetpack Compose", "Node.js", "Supabase", "Groq Whisper", "ElevenLabs"]
         },
         {
@@ -425,7 +425,7 @@ export const translations = {
           type: "Mobile",
           status: "Finished · Not published yet",
           year: "2026",
-          desc: "Traduzione vocale per conversazioni reali. Il parlato viene trascritto, tradotto e riprodotto negli auricolari in circa un secondo, con sottotitoli, modalità faccia a faccia e un tutor con cui esercitarsi a parlare. L'app iOS è completa; la versione Android è in lavorazione. Lancio previsto per fine dicembre.",
+          desc: "Traduzione vocale per conversazioni reali. Il parlato viene trascritto, tradotto e riprodotto negli auricolari in circa un secondo, con sottotitoli, modalità faccia a faccia e un tutor con cui esercitarsi a parlare. Completa su iOS e Android. Lancio previsto per fine dicembre.",
           stack: ["Swift", "SwiftUI", "Kotlin", "Jetpack Compose", "Node.js", "Supabase", "Groq Whisper", "ElevenLabs"]
         },
         {
@@ -676,7 +676,7 @@ export const translations = {
           type: "Mobile",
           status: "Finished · Not published yet",
           year: "2026",
-          desc: "Përkthim i të folurit për biseda reale. Fjalimi transkriptohet, përkthehet dhe lexohet në kufjet e veshit brenda rreth një sekonde, me titra, modalitet ballë për ballë dhe një tutor për praktikë me zë. Aplikacioni iOS është i përfunduar; versioni Android është në punë. Lansimi pritet në fund të dhjetorit.",
+          desc: "Përkthim i të folurit për biseda reale. Fjalimi transkriptohet, përkthehet dhe lexohet në kufjet e veshit brenda rreth një sekonde, me titra, modalitet ballë për ballë dhe një tutor për praktikë me zë. E përfunduar në iOS dhe Android. Lansimi pritet në fund të dhjetorit.",
           stack: ["Swift", "SwiftUI", "Kotlin", "Jetpack Compose", "Node.js", "Supabase", "Groq Whisper", "ElevenLabs"]
         },
         {
@@ -926,7 +926,7 @@ export const translations = {
           type: "Mobile",
           status: "Finished · Not published yet",
           year: "2026",
-          desc: "Sprachübersetzung für echte Gespräche. Gesprochenes wird transkribiert, übersetzt und in etwa einer Sekunde über die Ohrhörer ausgegeben, mit Untertiteln, einem Modus für direkte Gespräche und einem Tutor zum lauten Üben. Die iOS-App ist fertig; die Android-Version ist in Arbeit. Veröffentlichung voraussichtlich Ende Dezember.",
+          desc: "Sprachübersetzung für echte Gespräche. Gesprochenes wird transkribiert, übersetzt und in etwa einer Sekunde über die Ohrhörer ausgegeben, mit Untertiteln, einem Modus für direkte Gespräche und einem Tutor zum lauten Üben. Fertig für iOS und Android. Veröffentlichung voraussichtlich Ende Dezember.",
           stack: ["Swift", "SwiftUI", "Kotlin", "Jetpack Compose", "Node.js", "Supabase", "Groq Whisper", "ElevenLabs"]
         },
         {
