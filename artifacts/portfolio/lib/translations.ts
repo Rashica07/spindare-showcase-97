@@ -118,6 +118,54 @@ export const translations = {
           year: "2026",
           desc: "A companion travel application in early development phase, working in tandem with TravelMe to deliver seamless trip planning.",
           stack: ["Swift", "Neon Database"]
+        },
+        {
+          name: "EchoVerse",
+          type: "Mobile",
+          status: "Finished · Not published yet",
+          year: "2026",
+          desc: "Speech translation for real conversations. Speech is transcribed, translated and spoken into your earbuds in about a second, with captions, a face-to-face mode and a tutor you practise with out loud. The iOS app is finished; the Android port is in progress. Launch expected late December.",
+          stack: ["Swift", "SwiftUI", "Kotlin", "Jetpack Compose", "Node.js", "Supabase", "Groq Whisper", "ElevenLabs"]
+        },
+        {
+          name: "FIFTH",
+          type: "Game",
+          status: "Early development",
+          year: "",
+          desc: "A cinematic psychological-horror game set in The Fold, a fifth dimension run by a RealityManager. Built in Unreal Engine 5 with custom environments, Blender assets, lighting and animation. Targets: a 3-hour demo, then a 15-hour base game. Not playable yet.",
+          stack: ["Unreal Engine 5", "Blender"]
+        },
+        {
+          name: "The Dragon of Albania",
+          type: "Game",
+          status: "Almost finished",
+          year: "",
+          desc: "A 2D game built on Albanian folklore and fantasy, with its own world, gameplay and visual identity. Nearly finished; no release date announced yet.",
+          stack: ["Godot"]
+        },
+        {
+          name: "NYRIS",
+          type: "Desktop App",
+          status: "Early beta",
+          year: "",
+          desc: "A native macOS app exploring how Windows games run on Apple Silicon Macs: compatibility classes, benchmark reports, backend selection, and optimisations that can be evaluated and rolled back. Very early: no finished interface yet.",
+          stack: ["Swift", "SwiftUI"]
+        },
+        {
+          name: "Viktory",
+          type: "Web",
+          status: "Live",
+          year: "2026",
+          desc: "A scroll-driven website for an excavation and earthmoving company, written in Albanian. An animated excavator and terrain scene lead into services, machinery and contact, with a plain 'Simple View' for visitors who only want the facts.",
+          stack: ["Next.js", "TypeScript", "GSAP", "Lenis", "Tailwind CSS"]
+        },
+        {
+          name: "Gjoni Decor",
+          type: "Web",
+          status: "Live",
+          year: "2026",
+          desc: "The website of a decorating company in Lecco: drywall and ceilings, decorative plaster, painting, and thermal and acoustic insulation. Each service has its own page with answers to common questions, plus a project gallery and contact.",
+          stack: ["Next.js", "React", "TypeScript", "GSAP"]
         }
       ]
     },
@@ -371,6 +419,54 @@ export const translations = {
           year: "2026",
           desc: "Un'applicazione di viaggio in fase di sviluppo iniziale, che lavora in tandem con TravelMe per offrire una pianificazione del viaggio senza interruzioni.",
           stack: ["Swift", "Neon Database"]
+        },
+        {
+          name: "EchoVerse",
+          type: "Mobile",
+          status: "Finished · Not published yet",
+          year: "2026",
+          desc: "Traduzione vocale per conversazioni reali. Il parlato viene trascritto, tradotto e riprodotto negli auricolari in circa un secondo, con sottotitoli, modalità faccia a faccia e un tutor con cui esercitarsi a parlare. L'app iOS è completa; la versione Android è in lavorazione. Lancio previsto per fine dicembre.",
+          stack: ["Swift", "SwiftUI", "Kotlin", "Jetpack Compose", "Node.js", "Supabase", "Groq Whisper", "ElevenLabs"]
+        },
+        {
+          name: "FIFTH",
+          type: "Game",
+          status: "Early development",
+          year: "",
+          desc: "Un gioco horror psicologico cinematografico ambientato in The Fold, una quinta dimensione governata da un RealityManager. Sviluppato con Unreal Engine 5, ambienti personalizzati, asset in Blender, luci e animazioni. Obiettivi: una demo di circa 3 ore, poi un gioco base di circa 15 ore. Non ancora giocabile.",
+          stack: ["Unreal Engine 5", "Blender"]
+        },
+        {
+          name: "The Dragon of Albania",
+          type: "Game",
+          status: "Almost finished",
+          year: "",
+          desc: "Un gioco 2D ispirato al folklore e alla fantasia albanese, con un mondo, una giocabilità e un'identità visiva propri. Quasi completato; nessuna data di uscita ancora annunciata.",
+          stack: ["Godot"]
+        },
+        {
+          name: "NYRIS",
+          type: "Desktop App",
+          status: "Early beta",
+          year: "",
+          desc: "Un'app nativa per macOS che esplora come i giochi Windows girano sui Mac con Apple Silicon: classi di compatibilità, report di benchmark, scelta del backend e ottimizzazioni che si possono valutare e annullare. Molto in fase iniziale: non c'è ancora un'interfaccia completa.",
+          stack: ["Swift", "SwiftUI"]
+        },
+        {
+          name: "Viktory",
+          type: "Web",
+          status: "Live",
+          year: "2026",
+          desc: "Un sito con animazioni legate allo scroll per un'impresa di scavi e movimento terra, in albanese. Una scena animata con escavatore e terreno conduce a servizi, mezzi e contatti, con una 'Visualizzazione semplice' per chi vuole solo le informazioni essenziali.",
+          stack: ["Next.js", "TypeScript", "GSAP", "Lenis", "Tailwind CSS"]
+        },
+        {
+          name: "Gjoni Decor",
+          type: "Web",
+          status: "Live",
+          year: "2026",
+          desc: "Il sito di un'impresa di decorazione a Lecco: cartongesso e controsoffitti, decorazioni in gesso, pitture, isolamenti termici e acustici. Ogni servizio ha una pagina con le domande più frequenti, più una galleria dei lavori e i contatti.",
+          stack: ["Next.js", "React", "TypeScript", "GSAP"]
         }
       ]
     },
@@ -574,6 +670,54 @@ export const translations = {
           year: "2026",
           desc: "Një aplikacion udhëtimi në fazat e hershme të zhvillimit, që punon në tandem me TravelMe për të ofruar planifikim të përsosur udhëtimesh.",
           stack: ["Swift", "Neon Database"]
+        },
+        {
+          name: "EchoVerse",
+          type: "Mobile",
+          status: "Finished · Not published yet",
+          year: "2026",
+          desc: "Përkthim i të folurit për biseda reale. Fjalimi transkriptohet, përkthehet dhe lexohet në kufjet e veshit brenda rreth një sekonde, me titra, modalitet ballë për ballë dhe një tutor për praktikë me zë. Aplikacioni iOS është i përfunduar; versioni Android është në punë. Lansimi pritet në fund të dhjetorit.",
+          stack: ["Swift", "SwiftUI", "Kotlin", "Jetpack Compose", "Node.js", "Supabase", "Groq Whisper", "ElevenLabs"]
+        },
+        {
+          name: "FIFTH",
+          type: "Game",
+          status: "Early development",
+          year: "",
+          desc: "Një lojë horror psikologjike kinematike e vendosur në The Fold, një dimension i pestë i drejtuar nga një RealityManager. Ndërtuar me Unreal Engine 5, mjedise të personalizuara, asete në Blender, dritë dhe animacion. Synimet: një demo prej 3 orësh, pastaj loja bazë prej 15 orësh. Ende nuk është e luajtshme.",
+          stack: ["Unreal Engine 5", "Blender"]
+        },
+        {
+          name: "The Dragon of Albania",
+          type: "Game",
+          status: "Almost finished",
+          year: "",
+          desc: "Një lojë 2D e frymëzuar nga folklori dhe fantazia shqiptare, me botën, lojën dhe identitetin e vet vizual. Gati e përfunduar; nuk është njoftuar ende data e publikimit.",
+          stack: ["Godot"]
+        },
+        {
+          name: "NYRIS",
+          type: "Desktop App",
+          status: "Early beta",
+          year: "",
+          desc: "Një aplikacion vendas për macOS që eksploron si funksionojnë lojërat e Windows në Mac me Apple Silicon: klasa përputhshmërie, raporte benchmark, zgjedhje backend-i dhe optimizime që mund të vlerësohen dhe kthehen. Shumë në fillim: ende pa ndërfaqe të plotë.",
+          stack: ["Swift", "SwiftUI"]
+        },
+        {
+          name: "Viktory",
+          type: "Web",
+          status: "Live",
+          year: "2026",
+          desc: "Një sajt me animacione të lidhura me lëvizjen e faqes, për një kompani gërmimesh dhe lëvizjeje dheu, shkruar në shqip. Një skenë e animuar me ekskavator dhe terren të çon te shërbimet, makineria dhe kontakti, me një 'Pamje e thjeshtë' për vizitorët që duan vetëm faktet.",
+          stack: ["Next.js", "TypeScript", "GSAP", "Lenis", "Tailwind CSS"]
+        },
+        {
+          name: "Gjoni Decor",
+          type: "Web",
+          status: "Live",
+          year: "2026",
+          desc: "Sajti i një kompanie dekorimesh në Lecco: kartongesso dhe tavane, dekorime me gips, lyerje, izolime termike dhe akustike. Çdo shërbim ka faqen e vet me përgjigje për pyetjet më të shpeshta, plus një galeri punimesh dhe kontaktin.",
+          stack: ["Next.js", "React", "TypeScript", "GSAP"]
         }
       ]
     },
@@ -776,6 +920,54 @@ export const translations = {
           year: "2026",
           desc: "Eine Reise-App in einer frühen Entwicklungsphase, die zusammen mit TravelMe für eine nahtlose Reiseplanung sorgt.",
           stack: ["Swift", "Neon Database"]
+        },
+        {
+          name: "EchoVerse",
+          type: "Mobile",
+          status: "Finished · Not published yet",
+          year: "2026",
+          desc: "Sprachübersetzung für echte Gespräche. Gesprochenes wird transkribiert, übersetzt und in etwa einer Sekunde über die Ohrhörer ausgegeben, mit Untertiteln, einem Modus für direkte Gespräche und einem Tutor zum lauten Üben. Die iOS-App ist fertig; die Android-Version ist in Arbeit. Veröffentlichung voraussichtlich Ende Dezember.",
+          stack: ["Swift", "SwiftUI", "Kotlin", "Jetpack Compose", "Node.js", "Supabase", "Groq Whisper", "ElevenLabs"]
+        },
+        {
+          name: "FIFTH",
+          type: "Game",
+          status: "Early development",
+          year: "",
+          desc: "Ein filmisches Psycho-Horrorspiel im Fold, einer fünften Dimension unter der Leitung eines RealityManagers. Entwickelt mit Unreal Engine 5, eigenen Umgebungen, Blender-Assets, Licht und Animation. Ziel: eine Demo von etwa 3 Stunden, danach ein Hauptspiel von rund 15 Stunden. Noch nicht spielbar.",
+          stack: ["Unreal Engine 5", "Blender"]
+        },
+        {
+          name: "The Dragon of Albania",
+          type: "Game",
+          status: "Almost finished",
+          year: "",
+          desc: "Ein 2D-Spiel, inspiriert von albanischer Folklore und Fantasy, mit eigener Welt, eigenem Gameplay und eigener Bildsprache. Fast fertig; ein Veröffentlichungstermin ist noch nicht angekündigt.",
+          stack: ["Godot"]
+        },
+        {
+          name: "NYRIS",
+          type: "Desktop App",
+          status: "Early beta",
+          year: "",
+          desc: "Eine native macOS-App, die untersucht, wie Windows-Spiele auf Macs mit Apple Silicon laufen: Kompatibilitätsklassen, Benchmark-Berichte, Backend-Auswahl und Optimierungen, die sich prüfen und zurücknehmen lassen. Ganz am Anfang: noch keine fertige Oberfläche.",
+          stack: ["Swift", "SwiftUI"]
+        },
+        {
+          name: "Viktory",
+          type: "Web",
+          status: "Live",
+          year: "2026",
+          desc: "Eine scrollgesteuerte Website für ein Erdbau- und Aushubunternehmen, auf Albanisch. Eine animierte Bagger- und Geländeszene führt zu Leistungen, Maschinen und Kontakt, dazu eine schlichte 'Einfache Ansicht' für alle, die nur die Fakten wollen.",
+          stack: ["Next.js", "TypeScript", "GSAP", "Lenis", "Tailwind CSS"]
+        },
+        {
+          name: "Gjoni Decor",
+          type: "Web",
+          status: "Live",
+          year: "2026",
+          desc: "Die Website eines Malerbetriebs in Lecco: Trockenbau und Decken, Stuckdekorationen, Malerarbeiten sowie Wärme- und Schallschutz. Jede Leistung hat eine eigene Seite mit häufigen Fragen, dazu eine Projektgalerie und Kontakt.",
+          stack: ["Next.js", "React", "TypeScript", "GSAP"]
         }
       ]
     },
