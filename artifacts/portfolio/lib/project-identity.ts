@@ -19,6 +19,8 @@ export interface ProjectIdentity {
   accentLight?: string;
   url?: string;
   image?: string;
+  /** Several screenshots, switched with dot buttons. Replaces `image`. */
+  gallery?: string[];
   mark?: string;
   highlight?: boolean;
   credit?: string;
@@ -35,7 +37,12 @@ export const PROJECT_IDENTITY: Record<string, ProjectIdentity> = {
   EchoVerse: {
     tone: "finished",
     url: "https://echoverse-web-omega.vercel.app/",
-    image: "/projects/echoverse.webp",
+    gallery: [
+      "/projects/echoverse.webp",
+      "/projects/echoverse-app.webp",
+      "/projects/echoverse-site.webp",
+      "/projects/echoverse-chat.webp",
+    ],
   },
   // Dark horror treatment. The red is the "50:00:00" tone from the key art.
   FIFTH: {
@@ -63,6 +70,7 @@ export const PROJECT_IDENTITY: Record<string, ProjectIdentity> = {
     accent: "#144264",
     accentLight: "#7fa6c4",
     url: "https://gjoni-decor.vercel.app/",
+    image: "/projects/gjoni.webp",
   },
   LuxHotelSystem: { tone: "live", credit: "In partnership with BlueSquare AI" },
 };

@@ -32,6 +32,7 @@ import luxhotel3Img from "@/public/luxhotel-3.webp";
 import luxhotel4Img from "@/public/luxhotel-4.webp";
 import { FadeUp } from "@/components/FadeUp";
 import { CraftPanelWindow } from "@/components/CraftPanelWindow";
+import { ProjectGallery } from "@/components/ProjectGallery";
 import { PROJECT_IDENTITY, STATUS_DOT } from "@/lib/project-identity";
 
 
@@ -246,14 +247,14 @@ export default function PortfolioPage() {
                       </div>
                     ) : (
                       <div
-                        className={`h-56 flex items-center justify-center relative overflow-hidden ${identity?.accent || identity?.image ? "bg-card" : "bg-gradient-to-br from-card to-muted/20"}`}
+                        className={`h-56 flex items-center justify-center relative overflow-hidden ${identity?.accent || identity?.gallery || identity?.image ? "bg-card" : "bg-gradient-to-br from-card to-muted/20"}`}
                         style={identity?.accent && !identity.image ? { backgroundImage: `linear-gradient(135deg, ${identity.accent}${identity.highlight ? "59" : "2e"} 0%, transparent 70%)` } : undefined}
                       >
-                        {identity?.image ? (
+                        {identity?.gallery || identity?.image ? (
                           <>
-                            <Image src={identity.image} alt={`${project.name} screenshot`} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover object-top" />
+                            <ProjectGallery images={identity.gallery ?? (identity.image ? [identity.image] : [])} alt={project.name} fit={identity.gallery ? "contain" : "cover"} />
                             {/* Dark fade into the card body; the accent tints the lower part only. */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/10 to-transparent" style={identity.accent ? { backgroundImage: `linear-gradient(to top, ${identity.accent}55, transparent 60%)` } : undefined} />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-card/10 to-transparent" style={identity.accent ? { backgroundImage: `linear-gradient(to top, ${identity.accent}55, transparent 60%)` } : undefined} />
                           </>
                         ) : (
                           <div className="absolute inset-0 grid-bg opacity-30" />
@@ -263,7 +264,7 @@ export default function PortfolioPage() {
                             Visit site <ExternalLink size={11} aria-hidden="true" />
                           </a>
                         )}
-                        {!identity?.image && (
+                        {!identity?.gallery && !identity?.image && (
                           <div className="relative z-10 flex flex-col items-center gap-2">
                             {identity?.mark ? (
                               <Image src={identity.mark} alt="" width={64} height={64} unoptimized />
@@ -273,7 +274,7 @@ export default function PortfolioPage() {
                             <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span className={`h-1.5 w-1.5 rounded-full ${statusDot}`} />{project.status}</span>
                           </div>
                         )}
-                        {identity?.image && (
+                        {(identity?.gallery || identity?.image) && (
                           <span className="absolute bottom-4 left-4 z-10 inline-flex items-center gap-2 rounded bg-background/70 px-2 py-1 text-xs text-foreground backdrop-blur-sm">
                             {identity.mark && <Image src={identity.mark} alt="" width={16} height={16} unoptimized />}
                             <span className={`h-1.5 w-1.5 rounded-full ${statusDot}`} />{project.status}
