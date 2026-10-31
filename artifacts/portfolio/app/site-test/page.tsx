@@ -197,7 +197,7 @@ export default function SiteTestPage() {
             {/* Now-building status card */}
             <div className="rounded-xl border border-[#f6ede4]/10 bg-[#f6ede4]/[0.04] p-4">
               <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-[#f6ede4]/50">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ff8a65] animate-pulse" /> Now building
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ff8a65]" /> Now building
               </div>
               <div className="mt-2 font-medium">CraftPanel v3.1.0</div>
               <div className="mt-1 text-xs text-[#f6ede4]/50">Public beta &middot; self-hosted Minecraft server manager</div>

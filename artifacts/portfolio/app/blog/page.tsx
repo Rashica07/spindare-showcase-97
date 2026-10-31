@@ -21,7 +21,7 @@ export default function BlogPage() {
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="blog-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="hero-in">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">{t.blog.title}</h1>
+            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight">{t.blog.title}</h1>
             <p className="mt-4 text-muted-foreground max-w-xl leading-relaxed">{t.blog.sub}</p>
           </div>
         </div>
@@ -31,7 +31,7 @@ export default function BlogPage() {
           <div className="js-only flex flex-wrap gap-2 mb-12" data-testid="blog-filters">
             {t.blog.categories.map((cat) => (
               <button key={cat} onClick={() => setActive(cat)} data-testid={`blog-filter-${cat.toLowerCase().replace(/\s+/g, "-")}`}
-                className={`font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-lg border transition-all duration-200 ${active === cat ? "bg-primary text-primary-foreground border-primary" : "text-muted-foreground border-border/60 hover:text-foreground hover:border-muted-foreground/60 bg-card/40"}`}>
+                className={`font-mono text-xs px-4 py-2 rounded-lg border transition-colors duration-200 ${active === cat ? "bg-primary text-primary-foreground border-primary" : "text-muted-foreground border-border/60 hover:text-foreground hover:border-muted-foreground/60 bg-card/40"}`}>
                 {cat}
               </button>
             ))}

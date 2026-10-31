@@ -26,7 +26,7 @@ export default function ContactPage() {
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="contact-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="hero-in">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.contact.title)}</h1>
+            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight">{pick(overrides, 'title', t.contact.title)}</h1>
             <p className="mt-4 text-muted-foreground text-lg max-w-xl leading-relaxed">{pick(overrides, 'sub', t.contact.sub)}</p>
           </div>
         </div>

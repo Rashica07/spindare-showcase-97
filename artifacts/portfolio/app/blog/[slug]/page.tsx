@@ -15,7 +15,7 @@ function Renderer({ sections }: { sections: Section[] }) {
         switch (s.type) {
           case "h2":
             return (
-              <h2 key={i} className="mt-10 mb-4 text-2xl font-bold text-foreground tracking-tight">
+              <h2 key={i} className="mt-10 mb-4 text-2xl font-semibold text-foreground tracking-tight">
                 {s.text}
               </h2>
             );
@@ -114,7 +114,7 @@ export default function BlogPostPage() {
       <div className="min-h-screen bg-background text-foreground">
         <section className="pt-40 pb-20 text-center" data-testid="blog-post-not-found">
           <p className="font-mono text-sm text-muted-foreground mb-4">404</p>
-          <h1 className="text-4xl font-bold text-foreground">{t.blog.postNotFound}</h1>
+          <h1 className="text-4xl font-semibold text-foreground">{t.blog.postNotFound}</h1>
           <p className="mt-3 text-muted-foreground">{t.blog.postNotFoundDesc}</p>
           <Link href="/blog" data-testid="back-to-blog-404" className="inline-flex items-center gap-2 mt-8 text-sm text-primary hover:underline underline-offset-4">
             <ArrowLeft size={14} aria-hidden="true" /> {t.blog.backToWriting}
@@ -151,7 +151,7 @@ export default function BlogPostPage() {
               )}
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight">
               {meta.title}
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">

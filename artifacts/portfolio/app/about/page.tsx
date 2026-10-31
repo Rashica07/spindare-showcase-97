@@ -36,7 +36,7 @@ export default function AboutPage() {
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="about-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="hero-in">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.about.title)}</h1>
+            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight">{pick(overrides, 'title', t.about.title)}</h1>
             <p className="mt-3 text-muted-foreground text-lg">{pick(overrides, 'sub', t.about.sub)}</p>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40 bg-card/20" data-testid="about-skills">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <h2 className="text-3xl font-bold tracking-tight">{pick(overrides, 'stackTitle', t.about.stackTitle)}</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">{pick(overrides, 'stackTitle', t.about.stackTitle)}</h2>
           </FadeUp>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.about.skills.map((cat, i) => (
@@ -95,7 +95,7 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40" data-testid="about-experience">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <h2 className="text-3xl font-bold tracking-tight">{pick(overrides, 'experienceTitle', t.about.experienceTitle)}</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">{pick(overrides, 'experienceTitle', t.about.experienceTitle)}</h2>
           </FadeUp>
           <div className="mt-12 relative">
             <div className="absolute left-0 md:left-32 top-0 bottom-0 w-px bg-border/40" />
@@ -122,7 +122,7 @@ export default function AboutPage() {
       <section className="py-20 border-b border-border/40 bg-card/20" data-testid="about-values">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <h2 className="text-3xl font-bold tracking-tight">{pick(overrides, 'approachTitle', t.about.approachTitle)}</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">{pick(overrides, 'approachTitle', t.about.approachTitle)}</h2>
           </FadeUp>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.about.values.map((v, i) => (
@@ -139,7 +139,7 @@ export default function AboutPage() {
       <section className="py-20" data-testid="about-cta">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
           <FadeUp>
-            <h2 className="text-3xl font-bold text-foreground">{pick(overrides, 'ctaTitle', t.about.ctaTitle)}</h2>
+            <h2 className="text-3xl font-semibold text-foreground">{pick(overrides, 'ctaTitle', t.about.ctaTitle)}</h2>
             <p className="mt-2 text-muted-foreground">{pick(overrides, 'ctaSub', t.about.ctaSub)}</p>
           </FadeUp>
           <FadeUp delay={0.1} className="flex gap-4 shrink-0">

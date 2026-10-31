@@ -13,7 +13,7 @@ export default function TosPage() {
     <main className="min-h-screen bg-background">
       <div className="pt-32 pb-20 max-w-3xl mx-auto px-6">
         <div className="hero-in">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
             {content.title}
           </h1>
           <p className="text-muted-foreground mb-10 font-mono text-sm uppercase tracking-widest">
