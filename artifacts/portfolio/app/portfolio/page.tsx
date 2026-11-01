@@ -93,7 +93,7 @@ export default function PortfolioPage() {
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="portfolio-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="hero-in">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.work.title)}</h1>
+            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight">{pick(overrides, 'title', t.work.title)}</h1>
           </div>
         </div>
       </section>
@@ -102,7 +102,7 @@ export default function PortfolioPage() {
           <div className="js-only flex flex-wrap gap-2 mb-12" data-testid="portfolio-filters">
             {allFilters.map((f) => (
               <button key={f} onClick={() => setActive(f)} data-testid={`filter-${f.toLowerCase()}`}
-                className={`font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-lg border transition-all duration-200 ${active === f ? "bg-primary text-primary-foreground border-primary" : "text-muted-foreground border-border/60 hover:text-foreground hover:border-border"}`}>
+                className={`font-mono text-xs px-4 py-2 rounded-lg border transition-colors duration-200 ${active === f ? "bg-primary text-primary-foreground border-primary" : "text-muted-foreground border-border/60 hover:text-foreground hover:border-border"}`}>
                 {f}
               </button>
             ))}
@@ -318,7 +318,7 @@ export default function PortfolioPage() {
       <section className="py-20 border-t border-border/40 bg-card/20" data-testid="portfolio-cta">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <FadeUp>
-            <h2 className="text-3xl font-bold text-foreground">{t.portfolio.ctaTitle}</h2>
+            <h2 className="text-3xl font-semibold text-foreground">{t.portfolio.ctaTitle}</h2>
             <p className="mt-3 text-muted-foreground">{t.portfolio.ctaSub}</p>
             <div className="mt-8 flex justify-center">
               <Link href="/contact" data-testid="portfolio-cta-link" className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg text-sm hover:bg-primary/90 transition-colors">

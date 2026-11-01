@@ -82,7 +82,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`nav-header fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`nav-header fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow] duration-300 ${
         scrolled || open
           ? "border-b border-border/60 bg-background/80 backdrop-blur-xl shadow-md"
           : "bg-transparent"

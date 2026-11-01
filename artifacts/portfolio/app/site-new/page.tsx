@@ -99,7 +99,7 @@ export default function SiteNewPage() {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,hsl(var(--primary)/0.14),transparent)]" />
         <FadeUp>
           <span className="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-muted-foreground border border-border/60 rounded-full px-4 py-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Available from August 2026
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Available from August 2026
           </span>
         </FadeUp>
         <FadeUp delay={0.08}>

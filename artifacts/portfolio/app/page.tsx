@@ -52,7 +52,7 @@ export default function HomePage() {
               <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
               {t.hero.available}
             </p>
-            <h1 className="hero-in mt-6 max-w-2xl text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl xl:text-6xl" style={{ animationDelay: "60ms" }} data-testid="hero-headline">
+            <h1 className="hero-in mt-6 max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl xl:text-6xl" style={{ animationDelay: "60ms" }} data-testid="hero-headline">
               {t.hero.h1Line1} {t.hero.h1Line2}
             </h1>
             <p className="hero-in mt-5 text-xl text-muted-foreground sm:text-2xl" style={{ animationDelay: "120ms" }}>
@@ -105,7 +105,7 @@ export default function HomePage() {
       <section className="border-t border-border/40 py-20" data-testid="section-work">
         <div className="mx-auto max-w-7xl px-6">
           <FadeUp className="flex items-end justify-between gap-4">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t.work.title}</h2>
+            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{t.work.title}</h2>
             <Link href="/portfolio" data-testid="work-view-all" className="inline-flex items-center gap-1.5 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
               {t.page.viewAllProjects} <ArrowRight size={13} aria-hidden="true" />
             </Link>
@@ -140,7 +140,7 @@ export default function HomePage() {
       <section className="border-t border-border/40 py-20" data-testid="section-services">
         <div className="mx-auto max-w-7xl px-6">
           <FadeUp className="flex items-end justify-between gap-4 mb-8">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t.services.title}</h2>
+            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{t.services.title}</h2>
             <Link href="/services" className="hidden py-2 text-sm text-muted-foreground transition-colors hover:text-foreground md:inline-flex md:items-center md:gap-1.5">
               {t.page.allServices} <ArrowRight size={13} aria-hidden="true" />
             </Link>
@@ -186,7 +186,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-3xl px-6 text-center">
           <FadeUp>
             <div className="rounded-2xl border border-border bg-card/40 px-6 py-12 sm:p-12 md:p-16">
-              <h2 className="text-4xl font-bold tracking-tight md:text-5xl">{t.funnel.title}</h2>
+              <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">{t.funnel.title}</h2>
               <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{t.funnel.sub}</p>
               <div className="mt-10 flex justify-center">
                 <Link href="/contact" data-testid="hero-cta-funnel-btn" className={primaryBtn}>

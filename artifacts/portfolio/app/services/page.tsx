@@ -53,7 +53,7 @@ export default function ServicesPage() {
       <section className="page-hero-glow pt-32 pb-20 border-b border-border/40" data-testid="services-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="hero-in">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">{pick(overrides, 'title', t.services.title)}</h1>
+            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight">{pick(overrides, 'title', t.services.title)}</h1>
             <p className="mt-4 text-muted-foreground text-lg max-w-xl leading-relaxed">{pick(overrides, 'sub', t.services.sub)}</p>
           </div>
         </div>
@@ -87,7 +87,7 @@ export default function ServicesPage() {
             ))}
           </div>
           <FadeUp className="mt-14 text-center">
-            <h2 className="text-2xl font-bold text-foreground">{t.services.ctaTitle}</h2>
+            <h2 className="text-2xl font-semibold text-foreground">{t.services.ctaTitle}</h2>
             <p className="mt-2 text-muted-foreground">{t.services.ctaSub}</p>
             <div className="mt-6 flex justify-center">
               <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg text-sm hover:bg-primary/90 transition-colors" data-testid="services-cta-link">
@@ -100,7 +100,7 @@ export default function ServicesPage() {
       <section className="py-20 border-t border-border/40 bg-card/20" data-testid="services-process">
         <div className="max-w-7xl mx-auto px-6">
           <FadeUp>
-            <h2 className="text-3xl font-bold tracking-tight">{t.process.title}</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">{t.process.title}</h2>
           </FadeUp>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.process.steps.map((step, i) => (
