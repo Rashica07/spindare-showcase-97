@@ -11,7 +11,6 @@ import { SiReact, SiTypescript, SiSupabase, SiNextdotjs, SiNodedotjs, SiExpo, Si
 import type { IconType } from "react-icons";
 import { usePageOverride, pick, type BlockOverrides } from "@/components/PulseSyncProvider";
 
-import craftpanelIconImg from "@/public/craftpanel-icon.webp";
 
 import spindareFeedImg from "@/public/spindare-feed.webp";
 import spindareProfileImg from "@/public/spindare-profile.webp";
@@ -31,7 +30,7 @@ import luxhotel2Img from "@/public/luxhotel-2.webp";
 import luxhotel3Img from "@/public/luxhotel-3.webp";
 import luxhotel4Img from "@/public/luxhotel-4.webp";
 import { FadeUp } from "@/components/FadeUp";
-import { CraftPanelWindow } from "@/components/CraftPanelWindow";
+import { OmniServersWindow } from "@/components/OmniServersWindow";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import { PROJECT_IDENTITY, STATUS_DOT } from "@/lib/project-identity";
 
@@ -84,7 +83,7 @@ export default function PortfolioPage() {
   }, [lightbox]);
 
   const allFilters = ["All", "Mobile", "Web", "Game", "Desktop"];
-  // "Desktop" also covers "Desktop App" (CraftPanel, NYRIS).
+  // "Desktop" also covers "Desktop App" (OMNIServers, NYRIS).
   const matchesFilter = (type: string) => active === "All" || type === active || (active === "Desktop" && type.startsWith("Desktop"));
   const filtered = t.work.projects.filter((p) => matchesFilter(p.type));
 
@@ -111,35 +110,32 @@ export default function PortfolioPage() {
             {filtered.map((project, i) => {
               const identity = PROJECT_IDENTITY[project.name];
               const statusDot = identity ? STATUS_DOT[identity.tone] : project.status === "Live" ? "bg-emerald-500" : project.status.includes("Development") ? "bg-amber-400/80" : "bg-muted-foreground";
-              const isCraftPanel = project.name === "CraftPanel";
+              const isOmni = project.name === "OMNIServers";
               return (
-                <FadeUp key={project.name} delay={i * 0.08} className={isCraftPanel ? "h-full md:col-span-2" : "h-full"}>
+                <FadeUp key={project.name} delay={i * 0.08} className={isOmni ? "h-full md:col-span-2" : "h-full"}>
                   <div
-                    className={`group h-full rounded-xl border bg-card overflow-hidden flex flex-col transition-colors hover:border-foreground/20 ${identity?.highlight ? "" : "border-card-border"}`}
+                    className={`group h-full rounded-xl border bg-card overflow-hidden flex flex-col transition-colors hover:border-foreground/20 ${identity?.highlight ? "" : "border-card-border"} ${isOmni ? "omni" : ""}`}
                     style={identity?.highlight && identity.accent ? { borderColor: `${identity.accent}99` } : undefined}
                     data-testid={`portfolio-project-${i}`}
                   >
-                    {project.name === "CraftPanel" ? (
+                    {isOmni ? (
                       <div className="relative flex min-h-[420px] flex-col justify-center gap-6 overflow-hidden border-b border-card-border bg-background/40 p-5 sm:p-8">
                         <div className="flex items-center justify-between gap-4">
-                          <div className="flex items-center gap-2.5">
-                            <Image src={craftpanelIconImg} alt="" width={24} height={24} className="rounded-md" />
-                            <span className="text-sm font-semibold">CraftPanel</span>
-                          </div>
+                          <span className="text-sm font-semibold">OMNIServers</span>
                           <div className="flex items-center gap-4 text-xs">
                             <a href="https://github.com/Rashica07/craftpanel" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 py-1 text-muted-foreground transition-colors hover:text-foreground">
                               GitHub <ExternalLink size={11} aria-hidden="true" />
                             </a>
-                            <a href="https://rashica07.github.io/craftpanel-site/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 py-1 font-medium text-primary hover:underline underline-offset-4">
-                              Live site <ExternalLink size={11} aria-hidden="true" />
+                            <a href="https://omniservers.kiqa-dev.it" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+                              Visit site <ExternalLink size={11} aria-hidden="true" />
                             </a>
                           </div>
                         </div>
                         <div className="mx-auto w-full max-w-2xl">
-                          <CraftPanelWindow />
+                          <OmniServersWindow />
                         </div>
                         <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
-                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> v3.1.0 · Live
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Live
                         </p>
                       </div>
                     ) : project.name === "Spindare" ? (

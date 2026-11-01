@@ -7,5 +7,5 @@ export const OG_IMAGES = [
   { src: "/og/og-1.webp", weight: 2 },
   { src: "/og/og-2.webp", weight: 2 },
   { src: "/og/og-3.webp", weight: 4 }, // the signature card: the favourite
-  { src: "/og/og-4.webp", weight: 2 },
+  { src: "/og/og-4.webp", weight: 0 }, // off: the image shows the old CraftPanel name and icon; redraw with the OMNIServers mark first
 ] as const;

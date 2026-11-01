@@ -64,11 +64,11 @@ export const translations = {
       title: "Recent projects",
       projects: [
         {
-          name: "CraftPanel",
+          name: "OMNIServers",
           type: "Desktop App",
           status: "Live",
           year: "2026",
-          desc: "A self-hosted Minecraft server manager built with Tauri (Rust + React). One-click setup for Vanilla, Paper, Spigot, Fabric, Forge, NeoForge, Bedrock, or a Modrinth modpack, plus a live console, RCON, scheduled backups, and signed auto-updates. Free core app, optional Premium tier. Actively shipping, currently v3.1.0.",
+          desc: "Free, open source Minecraft server manager for Mac and Windows. Set up, run and back up servers on your own computer, no account needed.",
           stack: ["Tauri", "Rust", "React", "TypeScript", "Tailwind CSS"]
         },
         {
@@ -327,7 +327,7 @@ export const translations = {
     footer: { tagline: "Fixed prices and fixed delivery dates.", legal: "© 2026 KIQA DEV. All rights reserved." },
     seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Chat on WhatsApp", aria: "Message us on WhatsApp", prefill: "Hi Kristian, I'd like to talk about a project." },
-    apps: { title: "KIQA.DEV apps", sub: "Tools by KIQA DEV, built to the same standard as the client work.", craftpanelDesc: "Run a Minecraft server without a terminal.", live: "Live", soon: "Coming soon", open: "Open", more: "More KIQA.DEV apps are on the way.", close: "Close", footerLink: "Apps" },
+    apps: { title: "KIQA.DEV apps", sub: "Tools by KIQA DEV, built to the same standard as the client work.", omniserversDesc: "Free, open source Minecraft server manager for Mac and Windows.", live: "Live", soon: "Coming soon", open: "Open", more: "More KIQA.DEV apps are on the way.", close: "Close", footerLink: "Apps" },
     notFound: {
       title: "Page Not Found",
       description: "The page you are looking for does not exist.",
@@ -365,11 +365,11 @@ export const translations = {
       title: "Progetti recenti",
       projects: [
         {
-          name: "CraftPanel",
+          name: "OMNIServers",
           type: "Desktop App",
           status: "Live",
           year: "2026",
-          desc: "Un gestore di server Minecraft self-hosted realizzato con Tauri (Rust + React). Configurazione in un clic per Vanilla, Paper, Spigot, Fabric, Forge, NeoForge, Bedrock o un modpack da Modrinth, più console live, RCON, backup pianificati e aggiornamenti automatici firmati. App gratuita con un livello Premium opzionale. In sviluppo attivo, attualmente v3.1.0.",
+          desc: "Gestore di server Minecraft gratuito e open source per Mac e Windows. Configura, avvia ed esegui il backup dei server sul tuo computer, senza bisogno di un account.",
           stack: ["Tauri", "Rust", "React", "TypeScript", "Tailwind CSS"]
         },
         {
@@ -577,7 +577,7 @@ export const translations = {
     footer: { tagline: "Lavoro di qualità. Prezzo fisso. Puntuale.", legal: "© 2026 KIQA DEV. Tutti i diritti riservati." },
     seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Chatta su WhatsApp", aria: "Scrivici su WhatsApp", prefill: "Ciao Kristian, vorrei parlarti di un progetto." },
-    apps: { title: "App KIQA.DEV", sub: "Strumenti di KIQA DEV, costruiti con lo stesso standard dei progetti per i clienti.", craftpanelDesc: "Gestisci un server Minecraft senza terminale.", live: "Attivo", soon: "In arrivo", open: "Apri", more: "Altre app KIQA.DEV sono in arrivo.", close: "Chiudi", footerLink: "App" },
+    apps: { title: "App KIQA.DEV", sub: "Strumenti di KIQA DEV, costruiti con lo stesso standard dei progetti per i clienti.", omniserversDesc: "Gestore di server Minecraft gratuito e open source per Mac e Windows.", live: "Attivo", soon: "In arrivo", open: "Apri", more: "Altre app KIQA.DEV sono in arrivo.", close: "Chiudi", footerLink: "App" },
     notFound: {
       title: "Pagina non trovata",
       description: "La pagina che stai cercando non esiste.",
@@ -616,11 +616,11 @@ export const translations = {
       title: "Projekte të fundit",
       projects: [
         {
-          name: "CraftPanel",
+          name: "OMNIServers",
           type: "Desktop App",
           status: "Live",
           year: "2026",
-          desc: "Një menaxhues serveri Minecraft i vetë-hostuar, ndërtuar me Tauri (Rust + React). Konfigurim me një klikim për Vanilla, Paper, Spigot, Fabric, Forge, NeoForge, Bedrock, ose një modpack nga Modrinth, plus konsolë live, RCON, backup të planifikuar dhe përditësime automatike të nënshkruara. Aplikacion bazë falas, me një nivel Premium opsional. Në zhvillim aktiv, aktualisht v3.1.0.",
+          desc: "Menaxhues serveri Minecraft falas dhe me kod të hapur për Mac dhe Windows. Konfiguro, nis dhe bëj backup të serverëve në kompjuterin tënd, pa nevojë për llogari.",
           stack: ["Tauri", "Rust", "React", "TypeScript", "Tailwind CSS"]
         },
         {
@@ -828,7 +828,7 @@ export const translations = {
     footer: { tagline: "Punë cilësore. Çmim fiks. Në kohë.", legal: "© 2026 KIQA DEV. Të gjitha të drejtat të rezervuara." },
     seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Bisedo në WhatsApp", aria: "Na shkruaj në WhatsApp", prefill: "Përshëndetje Kristian, dua të flasim për një projekt." },
-    apps: { title: "Aplikacionet KIQA.DEV", sub: "Mjete nga KIQA DEV, të ndërtuara me të njëjtin standard si puna për klientët.", craftpanelDesc: "Menaxho një server Minecraft pa terminal.", live: "Aktiv", soon: "Së shpejti", open: "Hap", more: "Më shumë aplikacione KIQA.DEV po vijnë.", close: "Mbyll", footerLink: "Aplikacionet" },
+    apps: { title: "Aplikacionet KIQA.DEV", sub: "Mjete nga KIQA DEV, të ndërtuara me të njëjtin standard si puna për klientët.", omniserversDesc: "Menaxhues serveri Minecraft falas dhe me kod të hapur për Mac dhe Windows.", live: "Aktiv", soon: "Së shpejti", open: "Hap", more: "Më shumë aplikacione KIQA.DEV po vijnë.", close: "Mbyll", footerLink: "Aplikacionet" },
     notFound: {
       title: "Faqja nuk u gjet",
       description: "Faqja që po kërkon nuk ekziston.",
@@ -866,11 +866,11 @@ export const translations = {
       title: "Aktuelle Projekte",
       projects: [
         {
-          name: "CraftPanel",
+          name: "OMNIServers",
           type: "Desktop App",
           status: "Live",
           year: "2026",
-          desc: "Ein selbstgehosteter Minecraft-Server-Manager, gebaut mit Tauri (Rust + React). Ein-Klick-Setup für Vanilla, Paper, Spigot, Fabric, Forge, NeoForge, Bedrock oder ein Modrinth-Modpack, dazu Live-Konsole, RCON, geplante Backups und signierte Auto-Updates. Kostenlose Kernapp mit optionalem Premium-Tarif. Aktiv in Entwicklung, derzeit v3.1.0.",
+          desc: "Kostenloser Open-Source-Server-Manager für Minecraft auf Mac und Windows. Server auf dem eigenen Computer einrichten, betreiben und sichern, ohne Konto.",
           stack: ["Tauri", "Rust", "React", "TypeScript", "Tailwind CSS"]
         },
         {
@@ -1078,7 +1078,7 @@ export const translations = {
     footer: { tagline: "Qualitätsarbeit. Festpreis. Pünktlich.", legal: "© 2026 KIQA DEV. Alle Rechte vorbehalten." },
     seo: { title: "Kristian Gjergji | Kiqa DEV | Software Engineer", desc: "Freelance developer building mobile apps, landing pages, and web platforms." },
     whatsapp: { tooltip: "Auf WhatsApp chatten", aria: "Schreib uns auf WhatsApp", prefill: "Hallo Kristian, ich möchte über ein Projekt sprechen." },
-    apps: { title: "KIQA.DEV Apps", sub: "Tools von KIQA DEV, mit demselben Anspruch wie die Kundenprojekte.", craftpanelDesc: "Einen Minecraft-Server ohne Terminal betreiben.", live: "Live", soon: "Demnächst", open: "Öffnen", more: "Weitere KIQA.DEV-Apps sind unterwegs.", close: "Schließen", footerLink: "Apps" },
+    apps: { title: "KIQA.DEV Apps", sub: "Tools von KIQA DEV, mit demselben Anspruch wie die Kundenprojekte.", omniserversDesc: "Kostenloser Open-Source-Server-Manager für Minecraft auf Mac und Windows.", live: "Live", soon: "Demnächst", open: "Öffnen", more: "Weitere KIQA.DEV-Apps sind unterwegs.", close: "Schließen", footerLink: "Apps" },
     notFound: {
       title: "Seite nicht gefunden",
       description: "Die Seite, die du suchst, existiert nicht.",

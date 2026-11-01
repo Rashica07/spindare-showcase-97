@@ -327,11 +327,30 @@ html.js .signature[data-signed] .signature-ink {
   .signature-ink { transition: none !important; }
 }
 
-/* CraftPanel window: tilted, sliding in from the right. The slide lives on the
+/* OMNIServers window: tilted, sliding in from the right. The slide lives on the
    wrapper and the tilt on the inner element so the two transforms don't fight. */
 @keyframes slide-in-right {
   from { opacity: 0; transform: translateX(110px); }
   to   { opacity: 1; transform: none; }
+}
+/* OMNIServers palette. Scoped to .omni, so the rest of the site keeps Copper & Ink.
+   Given: background #0f0e0d, text #e8dcc8, Imperial Crimson #c83246 (primary
+   action only), Solar Gold #e8b44f (rare highlight). The card, hairline and
+   muted text are neutral steps derived from the background and text.
+   Contrast: text on background 14.2:1, muted text 4.8:1, white on crimson
+   5.3:1. Crimson is used as a fill only, never as small text (3.7:1). */
+.omni {
+  --background: 30 7% 5%;
+  --foreground: 38 41% 85%;
+  --card: 30 7% 8%;
+  --card-foreground: 38 41% 85%;
+  --card-border: 30 7% 16%;
+  --border: 30 7% 16%;
+  --muted-foreground: 37 7% 49%;
+  --primary: 352 60% 49%;
+  --primary-foreground: 0 0% 100%;
+  --omni-gold: 40 77% 61%;
+  color: hsl(var(--foreground));
 }
 .slide-in-right { animation: slide-in-right 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
 
