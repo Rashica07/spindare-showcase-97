@@ -27,7 +27,7 @@ const ROTATIONS = [
 ];
 
 const CASE_STUDIES = [
-  { key: "CraftPanel", img: craftpanelIconImg, fit: "contain" as const, bg: "bg-[#0a0908]", headline: "A desktop app that turns a terminal chore into one click" },
+  { key: "OMNIServers", img: craftpanelIconImg, fit: "contain" as const, bg: "bg-[#0a0908]", headline: "A desktop app that turns a terminal chore into one click" },
   { key: "Spindare", img: spindareFeedImg, fit: "cover" as const, bg: "bg-[#151515]", headline: "Co-building a social app's feed, auth, and rewards system from zero" },
   { key: "Torre Group", img: torreGroup1Img, fit: "cover" as const, bg: "bg-white", headline: "One redesign, four companies, a single unified presence" },
   { key: "LuxHotelSystem", img: luxhotel1Img, fit: "cover" as const, bg: "bg-[#0f172a]", headline: "A hotel platform interface built for a real external API" },
@@ -199,7 +199,7 @@ export default function SiteTestPage() {
               <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-[#f6ede4]/50">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#ff8a65]" /> Now building
               </div>
-              <div className="mt-2 font-medium">CraftPanel v3.1.0</div>
+              <div className="mt-2 font-medium">OMNIServers</div>
               <div className="mt-1 text-xs text-[#f6ede4]/50">Public beta &middot; self-hosted Minecraft server manager</div>
             </div>
           </div>

@@ -36,7 +36,7 @@ const FACT_STRIP = [
 ];
 
 const CASE_STUDIES = [
-  { key: "CraftPanel", img: craftpanelIconImg, imgFit: "contain" as const, imgBg: "bg-[#0a0908]", headline: "A desktop app that turns a terminal chore into one click" },
+  { key: "OMNIServers", img: craftpanelIconImg, imgFit: "contain" as const, imgBg: "bg-[#0a0908]", headline: "A desktop app that turns a terminal chore into one click" },
   { key: "Spindare", img: spindareFeedImg, imgFit: "cover" as const, imgBg: "bg-card", headline: "Co-building a social app's feed, auth, and rewards system from zero" },
   { key: "Torre Group", img: torreGroup1Img, imgFit: "cover" as const, imgBg: "bg-white", headline: "One redesign, four companies, a single unified presence" },
   { key: "LuxHotelSystem", img: luxhotel1Img, imgFit: "cover" as const, imgBg: "bg-[#0f172a]", headline: "A hotel platform interface built for a real external API" },

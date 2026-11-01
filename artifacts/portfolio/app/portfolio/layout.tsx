@@ -3,7 +3,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
   title: "Work",
-  description: "Selected projects by Kristian Gjergji: CraftPanel, Torre Group, Spindare, LuxHotelSystem and more, with the stack behind each one.",
+  description: "Selected projects by Kristian Gjergji: OMNIServers, Torre Group, Spindare, LuxHotelSystem and more, with the stack behind each one.",
   path: "/portfolio",
 });
 

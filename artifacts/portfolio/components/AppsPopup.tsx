@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
-import craftpanelIcon from "@/public/craftpanel-icon.webp";
 
 // Other pages (the footer) open the card by dispatching this event.
 export const OPEN_APPS_EVENT = "kiqa:open-apps";
@@ -16,8 +15,8 @@ const SHOW_ANYWAY_MS = 30000;
 const SCROLL_PAST_HERO = 0.75; // of the viewport height
 
 // The KIQA.DEV family. To add an app, add a row; "soon" rows render without a link.
-const APPS: { id: string; name: string; status: "live" | "soon"; href?: string; icon?: string; desc?: "craftpanelDesc" }[] = [
-  { id: "craftpanel", name: "CraftPanel", status: "live", href: "https://rashica07.github.io/craftpanel-site/", icon: craftpanelIcon.src, desc: "craftpanelDesc" },
+const APPS: { id: string; name: string; status: "live" | "soon"; href?: string; icon?: string; desc?: "omniserversDesc" }[] = [
+  { id: "omniservers", name: "OMNIServers", status: "live", href: "https://omniservers.kiqa-dev.it", desc: "omniserversDesc" },
   { id: "novus-panel", name: "Novus Panel", status: "soon" },
 ];
 

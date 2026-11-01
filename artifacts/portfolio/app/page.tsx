@@ -5,12 +5,12 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { Footer } from "@/components/Footer";
 import { FadeUp } from "@/components/FadeUp";
-import { CraftPanelWindow } from "@/components/CraftPanelWindow";
+import { OmniServersWindow } from "@/components/OmniServersWindow";
 
-// Home: text left with a tilted CraftPanel window sliding in on the right,
+// Home: text left with a tilted OMNIServers window sliding in on the right,
 // then the other projects, services, a one-line process strip and the CTA.
 
-const CRAFTPANEL_URL = "https://rashica07.github.io/craftpanel-site/";
+const OMNISERVERS_URL = "https://omniservers.kiqa-dev.it";
 
 const PROJECT_URLS: Record<string, string> = {
   "Torre Group": "https://torre-ks.com",
@@ -31,15 +31,15 @@ function statusDot(status: string) {
 
 export default function HomePage() {
   const { t } = useLanguage();
-  const craftpanel = t.work.projects.find((p) => p.name === "CraftPanel");
-  const others = t.work.projects.filter((p) => p.name !== "CraftPanel").slice(0, 3);
+  const omni = t.work.projects.find((p) => p.name === "OMNIServers");
+  const others = t.work.projects.filter((p) => p.name !== "OMNIServers").slice(0, 3);
 
   const primaryBtn = "inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors";
   const secondaryBtn = "inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3.5 border border-border text-foreground text-sm font-medium rounded-lg hover:bg-card transition-colors";
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* HERO: text left, CraftPanel right */}
+      {/* HERO: text left, OMNIServers right */}
       <section className="relative overflow-hidden" data-testid="section-hero">
         <div
           className="pointer-events-none absolute -right-40 top-10 h-[34rem] w-[34rem] rounded-full opacity-60 blur-3xl"
@@ -74,26 +74,26 @@ export default function HomePage() {
           {/* The window bleeds off the right edge on wide screens. */}
           <div className="slide-in-right lg:-mr-16 xl:-mr-28">
             <div className="tilt-3d">
-              <CraftPanelWindow />
+              <OmniServersWindow />
             </div>
-            {craftpanel && (
-              <div className="mt-10 max-w-md lg:ml-auto lg:mr-16 xl:mr-28" data-testid="craftpanel-caption">
+            {omni && (
+              <div className="mt-10 max-w-md lg:ml-auto lg:mr-16 xl:mr-28" data-testid="omniservers-caption">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <h2 className="text-lg font-semibold">{craftpanel.name}</h2>
+                  <h2 className="text-lg font-semibold">{omni.name}</h2>
                   <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <span className={`h-1.5 w-1.5 rounded-full ${statusDot(craftpanel.status)}`} />
-                    {craftpanel.status}
+                    <span className={`h-1.5 w-1.5 rounded-full ${statusDot(omni.status)}`} />
+                    {omni.status}
                   </span>
-                  <span className="font-mono text-xs text-muted-foreground">{craftpanel.year}</span>
+                  <span className="font-mono text-xs text-muted-foreground">{omni.year}</span>
                 </div>
-                <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{craftpanel.desc}</p>
+                <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{omni.desc}</p>
                 <a
-                  href={CRAFTPANEL_URL}
+                  href={OMNISERVERS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-3 inline-flex items-center gap-1.5 py-1 text-sm font-medium text-primary hover:underline underline-offset-4"
                 >
-                  rashica07.github.io/craftpanel-site <ArrowRight size={14} aria-hidden="true" />
+                  omniservers.kiqa-dev.it <ArrowRight size={14} aria-hidden="true" />
                 </a>
               </div>
             )}
